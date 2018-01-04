@@ -10,11 +10,12 @@ import android.widget.TextView;
 import com.livingworld.R;
 import com.livingworld.ui.fragment.registration.Step1SignUpFragment;
 import com.livingworld.ui.fragment.registration.Step2SignUpFragment;
+import com.livingworld.util.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends BaseActivity {
 
     @BindView(R.id.main_frame)
     FrameLayout mainFrame;

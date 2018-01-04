@@ -16,11 +16,12 @@ import com.livingworld.R;
 import com.livingworld.ui.fragment.login.CreatePasswordFragment;
 import com.livingworld.ui.fragment.login.EnterPasswordFragment;
 import com.livingworld.ui.fragment.login.InputCardNumberFragment;
+import com.livingworld.util.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.main_frame)
     FrameLayout mainFrame;
@@ -45,13 +46,14 @@ public class LoginActivity extends AppCompatActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!trying) {
-                    trying = true;
-                    setFragment(createPasswordFragment);
-                }else{
-                    trying = false;
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                }
+                showSnackbar("Assddddddd");
+//                if(!trying) {
+//                    trying = true;
+//                    setFragment(createPasswordFragment);
+//                }else{
+//                    trying = false;
+//                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+//                }
             }
         });
     }

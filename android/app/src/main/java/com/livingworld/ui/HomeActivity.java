@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import com.livingworld.R;
 import com.livingworld.adapter.HorizontalAdapter;
+import com.livingworld.util.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     @BindView(R.id.recylerView)
     RecyclerView recylerView;
