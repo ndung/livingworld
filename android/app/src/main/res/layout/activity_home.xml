@@ -11,10 +11,12 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
         android:background="#FFF"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -26,7 +28,7 @@
             android:paddingTop="10dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/iv_inbox"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -34,7 +36,7 @@
                 app:srcCompat="@drawable/rectangle_copy_2" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/iv_profile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
@@ -44,35 +46,149 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hello, John Doe"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayout2">
+        android:layout_below="@+id/linearLayout2"
+        android:id="@+id/nestedScrollView">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFF"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <RelativeLayout
+                    android:id="@+id/view_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp">
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        app:srcCompat="@drawable/img_card" />
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="25dp"
+                        android:text="John Doe"
+                        android:textColor="#FFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/textView25"
+                        android:layout_alignStart="@+id/textView25"
+                        android:layout_below="@+id/textView25"
+                        android:text="#12345678910111213"
+                        android:textColor="#FFF"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/imageView16"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginEnd="49dp"
+                        android:layout_marginRight="49dp"
+                        android:text="120pts"
+                        android:textColor="#FFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="25"
+                        android:textColor="#FFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/textView29"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="30dp"
+                        android:text="Lucky Draw"
+                        android:textColor="#FFF"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/textView28"
+                        android:layout_alignLeft="@+id/textView28"
+                        android:layout_alignStart="@+id/textView28"
+                        android:text="Your Points"
+                        android:textColor="#FFF"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_alignTop="@+id/textView30"
+                        android:layout_toEndOf="@+id/textView30"
+                        android:layout_toRightOf="@+id/textView30"
+                        app:srcCompat="@drawable/rectangle_copy" />
+
+                    <ImageView
+                        android:id="@+id/imageView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/imageView16"
+                        android:layout_toEndOf="@+id/textView31"
+                        android:layout_toRightOf="@+id/textView31"
+                        app:srcCompat="@drawable/rectangle_copy" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Hello, John Doe"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -196,6 +312,7 @@
                     android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_scan_bc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="6dp"
@@ -230,6 +347,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_my_bc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="6dp"
@@ -264,6 +382,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_parking"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="6dp"

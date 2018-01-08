@@ -46,14 +46,13 @@ public class LoginActivity extends BaseActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSnackbar("Assddddddd");
-//                if(!trying) {
-//                    trying = true;
-//                    setFragment(createPasswordFragment);
-//                }else{
-//                    trying = false;
-//                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-//                }
+                if(!trying) {
+                    trying = true;
+                    setFragment(createPasswordFragment);
+                }else{
+                    trying = false;
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                }
             }
         });
     }

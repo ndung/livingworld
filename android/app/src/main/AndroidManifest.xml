@@ -35,7 +35,28 @@
         <activity
             android:name=".ui.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.BAMActivity"></activity>
+        <activity
+            android:name=".ui.BAMActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.BAMRegistrationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.InboxActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.InboxDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.PaymentMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MyQRCodeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.ConfirmationBillActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.PinActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
