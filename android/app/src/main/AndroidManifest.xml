@@ -98,7 +98,16 @@
         <activity
             android:name=".ui.ContactUSActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.CurrentOfferActivity"
+        <activity
+            android:name=".ui.CurrentOfferActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MerchantListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MerchantDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.RewardsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

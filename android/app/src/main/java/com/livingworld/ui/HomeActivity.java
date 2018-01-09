@@ -53,7 +53,7 @@ public class HomeActivity extends BaseActivity {
         recylerView.setAdapter(new HorizontalAdapter(getApplicationContext(), new HorizontalAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                startActivity(new Intent(getApplicationContext(), ECashConnectActivity.class));
+                startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
             }
         }));
 
@@ -92,7 +92,7 @@ public class HomeActivity extends BaseActivity {
         viewCard.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.cv_scan_bc, R.id.cv_my_bc, R.id.cv_parking, R.id.tv_view_coffer})
+    @OnClick({R.id.cv_scan_bc, R.id.cv_my_bc, R.id.cv_parking, R.id.tv_view_coffer, R.id.cv_merchant})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cv_scan_bc:
@@ -106,6 +106,9 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.tv_view_coffer:
                 startActivity(new Intent(getApplicationContext(), CurrentOfferActivity.class));
+                break;
+            case R.id.cv_merchant:
+                startActivity(new Intent(getApplicationContext(), MerchantListActivity.class));
                 break;
         }
     }

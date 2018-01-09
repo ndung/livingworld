@@ -34,7 +34,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
         finish();
     }
 
-    @OnClick({R.id.ll_lw_pay, R.id.iv_img_inbox})
+    @OnClick({R.id.ll_lw_pay, R.id.iv_img_inbox, R.id.ll_add_payment})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_lw_pay:
@@ -42,6 +42,9 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 break;
             case R.id.iv_img_inbox:
                 startActivity(new Intent(getApplicationContext(), ConfirmationBillActivity.class));
+                break;
+            case R.id.ll_add_payment:
+                startActivity(new Intent(getApplicationContext(), ECashConnectActivity.class));
                 break;
         }
     }
