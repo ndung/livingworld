@@ -53,9 +53,52 @@
         <activity
             android:name=".ui.MyQRCodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.ConfirmationBillActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.PinActivity"
+        <activity
+            android:name=".ui.ConfirmationBillActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.PinActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ECashConnectActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MyCarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MyCarAddActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.AccountSettingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TrxHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.LanguageChoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.CurrentOffersActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.CurrentOffersDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.AboutUSActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.GiveUsFeedbackActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.InformationAccountActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ChangePasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ContactUSActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.CurrentOfferActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

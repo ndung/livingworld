@@ -32,8 +32,6 @@ public class PinActivity extends AppCompatActivity {
         mPinLockView.attachIndicatorDots(mIndicatorDots);
         mPinLockView.setPinLockListener(mPinLockListener);
         mPinLockView.setPinLockListener(mPinLockListener);
-        //mPinLockView.setCustomKeySet(new int[]{2, 3, 1, 5, 9, 6, 7, 0, 8, 4});
-        //mPinLockView.enableLayoutShuffling();
 
         mPinLockView.setPinLength(6);
         mPinLockView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));

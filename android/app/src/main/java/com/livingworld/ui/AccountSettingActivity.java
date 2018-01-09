@@ -1,0 +1,68 @@
+package com.livingworld.ui;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.livingworld.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class AccountSettingActivity extends AppCompatActivity {
+
+    @BindView(R.id.iv_finish)
+    ImageView ivFinish;
+    @BindView(R.id.iv_profile)
+    CircleImageView ivProfile;
+    @BindView(R.id.menu_trx_history)
+    LinearLayout menuTrxHistory;
+    @BindView(R.id.menu_lucky_draw)
+    LinearLayout menuLuckyDraw;
+    @BindView(R.id.menu_about_us)
+    LinearLayout menuAboutUs;
+    @BindView(R.id.menu_feedback)
+    LinearLayout menuFeedback;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_account_setting);
+        ButterKnife.bind(this);
+
+        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
+    }
+
+    @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_finish:
+                finish();
+                break;
+            case R.id.ll_profile:
+                startActivity(new Intent(getApplicationContext(), InformationAccountActivity.class));
+                break;
+            case R.id.menu_trx_history:
+                startActivity(new Intent(getApplicationContext(), TrxHistoryActivity.class));
+                break;
+            case R.id.menu_lucky_draw:
+                break;
+            case R.id.menu_about_us:
+                startActivity(new Intent(getApplicationContext(), AboutUSActivity.class));
+                break;
+            case R.id.menu_language:
+                startActivity(new Intent(getApplicationContext(), LanguageChoiceActivity.class));
+                break;
+            case R.id.menu_feedback:
+                startActivity(new Intent(getApplicationContext(), GiveUsFeedbackActivity.class));
+                break;
+        }
+    }
+}
