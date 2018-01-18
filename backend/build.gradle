@@ -1,0 +1,42 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'id.co.icg'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'id.co.icg.lw.Application'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+//    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    compile('org.springframework.security:spring-security-crypto:4.2.3.RELEASE')
+    compile 'io.jsonwebtoken:jjwt:0.9.0'
+    compile 'mysql:mysql-connector-java'
+    compile('org.woodylab.boot:spring-boot-starter-pebble:0.2.3')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
