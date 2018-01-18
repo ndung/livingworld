@@ -1,17 +1,24 @@
 package id.co.icg.lw.domain.merchant;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="merchant_category")
 public class MerchantCategory {
 
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "merchant_category_id")
     private long merchantCategoryId;
 
     private String merchantCategoryName;
 
-    @OneToMany(mappedBy="merchant")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy="merchantCategory", cascade = {CascadeType.ALL})
     private List<Merchant> merchantList;
 
     public long getMerchantCategoryId() {
@@ -30,6 +37,7 @@ public class MerchantCategory {
         this.merchantCategoryName = merchantCategoryName;
     }
 
+
     public List<Merchant> getMerchantList() {
         return merchantList;
     }
@@ -37,4 +45,21 @@ public class MerchantCategory {
     public void setMerchantList(List<Merchant> merchantList) {
         this.merchantList = merchantList;
     }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createAt = updateAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateAt = new Date();
+    }
+
 }

@@ -18,6 +18,11 @@ public class MessageServiceBean implements MessageService {
     }
 
     @Override
+    public boolean saveMessageFromUser(String userId, SendMessageRequest sendMessageRequest) {
+        return false;
+    }
+
+    @Override
     public MessageRequest createMessage(MessageRequest messageRequest) {
         return null;
     }

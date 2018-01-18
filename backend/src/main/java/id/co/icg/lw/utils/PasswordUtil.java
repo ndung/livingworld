@@ -38,7 +38,7 @@ public class PasswordUtil {
 		return md5(sb.toString());
 	}
 
-	private static String md5(String raw) {
+	public static String md5(String raw) {
 		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("MD5");

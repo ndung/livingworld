@@ -2,6 +2,7 @@ package id.co.icg.lw.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import id.co.icg.lw.domain.Role;
+import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.enums.UserStatus;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name="user")
 public class User {
 
     @Id
@@ -28,8 +29,25 @@ public class User {
     @JsonIgnore
     private String password;
     private int status;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
-    private Role role;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<Role>();
+
+    public List<Role> getRoles() {
+        if (roles == null)
+            roles = new ArrayList<>();
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public String getId() {
         return id;
@@ -87,11 +105,18 @@ public class User {
         this.status = status;
     }
 
-    public Role getRole() {
-        return role;
+    public void setRole(RoleEnum role) {
+        getRoles().add(new Role(role));
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    @PrePersist
+    protected void onCreate() {
+        createAt = updateAt = new Date();
     }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateAt = new Date();
+    }
+
 }

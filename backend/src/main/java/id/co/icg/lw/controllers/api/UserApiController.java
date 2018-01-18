@@ -50,8 +50,8 @@ public class UserApiController extends BaseController{
      * }
      */
     @RequestMapping(value = "/check/card-number", method = RequestMethod.POST)
-    public ResponseEntity<Response> checkCardNumber(@RequestBody String phoneNumber) {
-        boolean result = userService.checkCardNumber(phoneNumber);
+    public ResponseEntity<Response> checkCardNumber(@RequestBody String cardNumber) {
+        int result = userService.checkCardNumber(cardNumber);
         return getHttpStatus(new Response(result));
     }
 
@@ -62,19 +62,12 @@ public class UserApiController extends BaseController{
      * @apiPermission none
      * @apiDescription Meminta token dan informasi user berdasarkan nomor kartu
      * @apiParam {String} cardNumber
-     * @apiParam {String} password
+     * @apiParam {String} publicKey Hash md5 dengan ketentuan: md5([cardNumber][md5(password)][Tanggal akses dengan format YYYYMMDD][app-key]). contoh: md5(8877665574EE55083A714AA3791F8D594FEA00C920180118app-key)
      *
      * @apiSuccess {String} fullName
      * @apiSuccess {String} email
      * @apiSuccess {String} mobileNumber
-     * @apiSuccess {int} gender `1` Male; `2` Female; `3` Other
-     * @apiSuccess {int} martialStatus `1` Single; `2` Married; `3` Other
      * @apiSuccess {Date} dateOfBirth YYYY-MM-DD
-     * @apiSuccess {int} nationality `1` Indonesian; `2` Other
-     * @apiSuccess {String} address
-     * @apiSuccess {int} city `1` Jakarta; `2` Other
-     * @apiSuccess {String} zipCode
-     * @apiSuccess {String} homeNumber
      *
      * @apiHeader {String} Token Jika Sign In berhasil, maka akan dibuatkan token yang akan disimpan di header response.
      *                           Token ini digunakan sebagai authentication key untuk mengakses beberapa api.
@@ -85,8 +78,8 @@ public class UserApiController extends BaseController{
      *
      * @apiExample {json} Request
      * {
-     *     'cardNumber': '888123123'
-     *     'password': 'katasandi'
+     *     'cardNumber': '88776655'
+     *     'publicKey': '8246EC66759DB8B8F3EF6230911610EE'
      * }
      * @apiExample {json} Response Berhasil Sign In
      * {
@@ -94,14 +87,7 @@ public class UserApiController extends BaseController{
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
      *          "mobileNumber: "08123131313",
-     *          "gender" : 1,
-     *          "martialStatus" : 1,
-     *          "dateOfBirth" : "1920-01-31",
-     *          "nationality" : 1,
-     *          "address" : "Jl. Jendral Sudirman No 16 Kota Bogor",
-     *          "city" : 2,
-     *          "zipCode" : 16911,
-     *          "homeNumber" : "(0251) 7571231"
+     *          "dateOfBirth" : "1920-01-31"
      *      },
      *      message: null
      * }
@@ -113,9 +99,9 @@ public class UserApiController extends BaseController{
      * }
      */
     @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
-    public ResponseEntity<Response> signIn(@RequestBody RequestLogin requestSignIn) {
+    public ResponseEntity<Response> signIn(@RequestBody SignInRequest requestSignIn) {
         try {
-            User user = userService.login(requestSignIn);
+            User user = userService.signIn(requestSignIn);
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
@@ -139,7 +125,7 @@ public class UserApiController extends BaseController{
      * @apiSuccess {String} mobileNumber
      * @apiSuccess {Date} dateOfBirth YYYY-MM-DD
      *
-     * @apiHeader {String} Token Jika Sign In berhasil, maka akan dibuatkan token yang akan disimpan di header response.
+     * @apiHeader {String} Token Jika Sign Up berhasil, maka akan dibuatkan token yang akan disimpan di header response.
      *                           Token ini digunakan sebagai authentication key untuk mengakses beberapa api.
      * @apiHeaderExample {json} Contoh Response Header
      * {
@@ -151,7 +137,7 @@ public class UserApiController extends BaseController{
      *     'cardNumber': '888123123'
      *     'password': 'katasandi'
      * }
-     * @apiExample {json} Response Berhasil Sign In
+     * @apiExample {json} Response Berhasil Sign Up
      * {
      *      data: {
      *          "fullName" : "Budi",
@@ -162,7 +148,7 @@ public class UserApiController extends BaseController{
      *      message: null
      * }
      *
-     * @apiExample {json} Response Gagal Sign In
+     * @apiExample {json} Response Gagal Sign Up
      * {
      *      data: "",
      *      message: "Card number or password is invalid"
@@ -175,7 +161,7 @@ public class UserApiController extends BaseController{
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(true), responseHeaders);
+            return getHttpStatus(new Response(user), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }

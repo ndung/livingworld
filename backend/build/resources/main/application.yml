@@ -4,11 +4,12 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+
   datasource:
-    url: jdbc:mysql://mysql:3306/lw
-    username: root
-    password: Bismillah*123#
+    url: jdbc:mysql://localhost:3306/living_world
+    username: devDB
+    password: katasandi
     driver-class-name: com.mysql.jdbc.Driver
 
 jwt:
@@ -17,4 +18,6 @@ jwt:
 
 resources:
    static-locations: file:src/main/resources/static/
+debug: true
+
 

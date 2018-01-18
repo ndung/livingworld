@@ -7,10 +7,13 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "merchant")
 public class Merchant {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "merchant_id")
     private long merchantId;
 
     private String merchantName;
@@ -20,10 +23,10 @@ public class Merchant {
     @NotFound(action = NotFoundAction.IGNORE)
     private MerchantCategory merchantCategory;
 
-    @Column(columnDefinition= "TIME WITH TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
-    @Column(columnDefinition= "TIME WITH TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
 
     public long getMerchantId() {
@@ -64,5 +67,15 @@ public class Merchant {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createAt = updateAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateAt = new Date();
     }
 }
