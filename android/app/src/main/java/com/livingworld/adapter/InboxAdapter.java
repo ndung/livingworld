@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.livingworld.R;
-import com.livingworld.model.Inbox;
+import com.livingworld.clients.inbox.model.Inbox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,17 +46,20 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(position > 0){
-            holder.tvTitle.setTextColor(Color.parseColor("#333333"));
-            holder.tvTitle.setTypeface(null, Typeface.NORMAL);
-            holder.ivInbox.setImageResource(R.drawable.rectangle_copy_2);
-            holder.llNew.setVisibility(View.GONE);
-        }
+        final Inbox inbox = list.get(position);
+        holder.tvTitle.setText(inbox.getTitle());
+        holder.tvDate.setText(inbox.getDate());
+//        if(position > 0){
+//            holder.tvTitle.setTextColor(Color.parseColor("#333333"));
+//            holder.tvTitle.setTypeface(null, Typeface.NORMAL);
+//            holder.ivInbox.setImageResource(R.drawable.rectangle_copy_2);
+//            holder.llNew.setVisibility(View.GONE);
+//        }
 
         holder.ivClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onItemClick(null);
+                listener.onItemClick(inbox);
             }
         });
     }

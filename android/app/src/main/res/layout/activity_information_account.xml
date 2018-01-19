@@ -91,7 +91,7 @@
                     android:text="Email" />
 
                 <EditText
-                    android:id="@+id/et_nama"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter your email"
@@ -111,7 +111,7 @@
                     android:text="Mobile Number" />
 
                 <EditText
-                    android:id="@+id/et_nama"
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter your mobile number"
@@ -136,7 +136,7 @@
                         android:text="Password" />
 
                     <EditText
-                        android:id="@+id/et_nama"
+                        android:id="@+id/et_pwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter your mobile number"
@@ -169,7 +169,7 @@
                     android:text="Gender" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/sp_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -188,7 +188,7 @@
                     android:text="Material Status" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/sp_material_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -227,11 +227,10 @@
                     android:layout_height="wrap_content"
                     android:text="Nationality" />
 
-                <EditText
-                    android:id="@+id/editText2"
+                <Spinner
+                    android:id="@+id/sp_nationality"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="WNI" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -248,10 +247,13 @@
                     android:text="Address" />
 
                 <EditText
-                    android:id="@+id/et_bod"
+                    android:id="@+id/et_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your address" />
+                    android:gravity="top"
+                    android:hint="Enter your address"
+                    android:lines="4"
+                    android:textAlignment="textStart" />
 
             </LinearLayout>
 
@@ -274,7 +276,7 @@
                         android:text="City" />
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/sp_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -294,10 +296,11 @@
                         android:text="Zip Code" />
 
                     <EditText
-                        android:id="@+id/et_bod"
+                        android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your address" />
+                        android:hint="Enter your zip code"
+                        android:inputType="number" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -316,7 +319,7 @@
                     android:text="Home Phone" />
 
                 <EditText
-                    android:id="@+id/et_bod"
+                    android:id="@+id/et_home_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter your home phone" />

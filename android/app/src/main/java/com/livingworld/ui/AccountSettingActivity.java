@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.livingworld.R;
+import com.livingworld.clients.auth.model.User;
+import com.livingworld.util.Preferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +33,10 @@ public class AccountSettingActivity extends AppCompatActivity {
     LinearLayout menuAboutUs;
     @BindView(R.id.menu_feedback)
     LinearLayout menuFeedback;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_card_number)
+    TextView tvCardNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,10 @@ public class AccountSettingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
+
+        User user = Preferences.getUser(getApplicationContext());
+        tvName.setText(user.getFullName());
+        tvCardNumber.setText(Preferences.getCardNumber(getApplicationContext()));
     }
 
     @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile})

@@ -1,4 +1,4 @@
-package com.livingworld.clients.login;
+package com.livingworld.clients.member;
 
 import com.livingworld.clients.model.Response;
 
@@ -13,10 +13,10 @@ import retrofit2.http.POST;
  * Created by Dizzay on 11/10/2017.
  */
 
-public interface LoginService {
+public interface MemberService {
 
     @FormUrlEncoded
-    @POST("login/sales")
-    Call<Response> login(@FieldMap Map<String, String> map);
+    @POST("/user/registration/member")
+    Call<Response> registerMember(@FieldMap Map<String, String> map);
 
 }

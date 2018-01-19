@@ -71,7 +71,8 @@
                 <RelativeLayout
                     android:id="@+id/view_card"
                     android:layout_width="match_parent"
-                    android:layout_height="210dp">
+                    android:layout_height="210dp"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/imageView14"

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.util.Map;
+
 /**
  * Created by Dizzay on 1/4/2018.
  */
@@ -66,4 +68,5 @@ public class BaseActivity extends AppCompatActivity{
             materialDialogPleasewait.dismiss();
         }
     }
+
 }
