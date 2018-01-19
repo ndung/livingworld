@@ -12,11 +12,11 @@ buildscript {
 }
 
 group 'id.co.icg'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'application'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -25,6 +25,11 @@ mainClassName = 'id.co.icg.lw.Application'
 
 repositories {
     mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+war {
+    baseName = 'lw'
 }
 
 dependencies {
@@ -37,6 +42,7 @@ dependencies {
     compile 'io.jsonwebtoken:jjwt:0.9.0'
     compile 'mysql:mysql-connector-java'
     compile('org.woodylab.boot:spring-boot-starter-pebble:0.2.3')
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

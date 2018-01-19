@@ -5,12 +5,8 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/living_world
-    username: devDB
-    password: katasandi
-    driver-class-name: com.mysql.jdbc.Driver
+  profiles:
+    active: stage
 
 jwt:
   secret: uk_gex1lmaqpg0ir5g1f5eftyaa1
@@ -18,6 +14,6 @@ jwt:
 
 resources:
    static-locations: file:src/main/resources/static/
-debug: true
+
 
 
