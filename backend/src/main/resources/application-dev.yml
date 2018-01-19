@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/living_world
+    username: devDB
+    password: katasandi
+    driver-class-name: com.mysql.jdbc.Driver
+debug: true
+
+
