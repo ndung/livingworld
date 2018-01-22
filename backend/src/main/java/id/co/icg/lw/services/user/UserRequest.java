@@ -1,12 +1,19 @@
 package id.co.icg.lw.services.user;
 
+import id.co.icg.lw.domain.user.User;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class RegisterRequest {
+public class UserRequest {
     private String fullName;
     private String email;
     private String mobileNumber;
     private Date dateOfBirth;
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
 
     public String getFullName() {
         return fullName;
@@ -32,9 +39,6 @@ public class RegisterRequest {
         this.mobileNumber = mobileNumber;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;

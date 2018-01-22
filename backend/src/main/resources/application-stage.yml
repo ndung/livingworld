@@ -5,6 +5,10 @@ spring:
     password: icg123456
     driver-class-name: com.mysql.jdbc.Driver
 
-debug: true
+debug: false
+
+file:
+  location : /home/alif/livingworld/images/
+
 
 

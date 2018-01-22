@@ -33,7 +33,7 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User register(String userId, RegisterRequest request) {
+    public User register(String userId, UserRequest request) {
         User user = userRepository.findOne(userId);
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
@@ -48,7 +48,7 @@ public class UserServiceBean implements UserService {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setCardNumber(signUpRequest.getCardNumber());
-        user.setPassword(PasswordUtil.md5(signUpRequest.getPassword()));
+        user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
         user.setRole(RoleEnum.USER);
         userRepository.saveAndFlush(user);
         return user;
@@ -70,7 +70,7 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User paymentRegistration(RegisterRequest registerRequest) {
+    public User paymentRegistration(UserRequest userRequest) {
         return null;
     }
 

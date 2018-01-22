@@ -5,6 +5,7 @@ spring:
     password: katasandi
     driver-class-name: com.mysql.jdbc.Driver
 debug: true
+
 file:
   location: /Users/alif/workspace/icg/livingworld/backend/src/main/resources/files/
 
