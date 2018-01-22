@@ -6,10 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
     int checkCardNumber(String cardNumber);
-    User register(String userId, RegisterRequest request);
+    User register(String userId, UserRequest request);
     User signUp(SignUpRequest signUpRequest);
     User signIn(SignInRequest request) throws Exception;
     User edit(String usrId, EditUserRequest request);
-    User paymentRegistration(RegisterRequest registerRequest);
+    User paymentRegistration(UserRequest userRequest);
     User uploadPhotoProfile(String userId, MultipartFile multipartFile);
 }
