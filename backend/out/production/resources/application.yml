@@ -1,15 +1,12 @@
 server:
-  port: 1234
+  port: 7000
 spring:
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: none
-  datasource:
-    url: jdbc:mysql://mysql:3306/lw
-    username: root
-    password: Bismillah*123#
-    driver-class-name: com.mysql.jdbc.Driver
+      ddl-auto: update
+  profiles:
+    active: stage
 
 jwt:
   secret: uk_gex1lmaqpg0ir5g1f5eftyaa1
@@ -17,4 +14,6 @@ jwt:
 
 resources:
    static-locations: file:src/main/resources/static/
+
+
 
