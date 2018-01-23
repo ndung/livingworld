@@ -44,8 +44,13 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User signUp(SignUpRequest signUpRequest) {
-        User user = new User();
+    public User signUp(SignUpRequest signUpRequest) throws Exception{
+        User user = userRepository.findByCardNumber(signUpRequest.getCardNumber());
+        if (user != null) {
+            throw new Exception("Card Number is already registered");
+        }
+
+        user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setCardNumber(signUpRequest.getCardNumber());
         user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
