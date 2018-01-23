@@ -1,6 +1,7 @@
 package id.co.icg.lw.controllers.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,4 +20,5 @@ public class HomeController {
     public ModelAndView home2(HttpServletRequest request) {
         return new ModelAndView("redirect:/api/index.html" );
     }
+
 }
