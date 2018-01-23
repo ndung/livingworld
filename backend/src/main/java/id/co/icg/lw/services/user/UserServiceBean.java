@@ -39,7 +39,7 @@ public class UserServiceBean implements UserService {
         user.setEmail(request.getEmail());
         user.setDateOfBirth(request.getDateOfBirth());
         user.setMobileNumber(request.getMobileNumber());
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         return user;
     }
 
