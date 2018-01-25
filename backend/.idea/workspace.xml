@@ -2,7 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="219f42be-6873-404d-a426-a3b58832b257" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/auth/AuthService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/auth/model/User.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/inbox/InboxService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/inbox/model/Inbox.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/master/MasterService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/master/model/Master.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/member/model/User.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/merchant/MerchantService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/merchant/model/Merchant.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/merchant/model/MerchantCategory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/merchant/model/MerchantDetail.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/sign/LoginActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/ChipperUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/Preferences.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/spinner_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/RequestEditUser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/RequestNewUser.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/LoginActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/FileController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/PaymentController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/RewardController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/file/FileService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/file/FileServiceBean.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/reward/RedeemRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/reward/RewardResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/reward/RewardService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/EditUserRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/RegisterRequest.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/login/LoginService.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/member/MemberService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/adapter/InboxAdapter.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/adapter/InboxAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/ApiUtils.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/ApiUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/RetrofitClient.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/RetrofitClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/model/Response.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/clients/model/Response.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/AccountSettingActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/AccountSettingActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/BAMRegistrationActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/BAMRegistrationActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/ContactUSActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/ContactUSActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InboxActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InboxActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InboxDetailActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InboxDetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InformationAccountActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/InformationAccountActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/fragment/login/InputCardNumberFragment.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/ui/fragment/login/InputCardNumberFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/BaseActivity.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/BaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/SampleSlide.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/SampleSlide.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/Static.java" afterPath="$PROJECT_DIR$/../android/app/src/main/java/com/livingworld/util/Static.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_account_setting.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_account_setting.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_bamregistration.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_bamregistration.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_contact_us.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_contact_us.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_home.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_inbox_detail.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_inbox_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_information_account.xml" afterPath="$PROJECT_DIR$/../android/app/src/main/res/layout/activity_information_account.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/BaseController.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/TransactionController.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/TransactionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/UserApiController.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/UserApiController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/domain/user/User.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/domain/user/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserServiceBean.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserServiceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils/JwtTokenUtil.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils/JwtTokenUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils/PasswordUtil.java" afterPath="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils/PasswordUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/api/api_data.js" afterPath="$PROJECT_DIR$/src/main/resources/static/api/api_data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/api/api_data.json" afterPath="$PROJECT_DIR$/src/main/resources/static/api/api_data.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/api/api_project.js" afterPath="$PROJECT_DIR$/src/main/resources/static/api/api_project.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/api/api_project.json" afterPath="$PROJECT_DIR$/src/main/resources/static/api/api_project.json" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -57,21 +120,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserApiController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/UserApiController.java">
+      <file leaf-file-name="MasterApiController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/MasterApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-611">
-              <caret line="163" column="50" lean-forward="false" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
+            <state relative-caret-position="60">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,85 +160,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
+      <file leaf-file-name="MemberApiController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/MemberApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="16" column="41" lean-forward="false" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="MerchantApiController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/MerchantApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            <state relative-caret-position="75">
+              <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/Application.java">
+      <file leaf-file-name="TransactionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/TransactionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="477">
+              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/repositories/UserRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignInRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/SignInRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-              <folding>
-                <element signature="e#195#196#0" expanded="true" />
-                <element signature="e#247#248#0" expanded="true" />
-                <element signature="e#291#292#0" expanded="true" />
-                <element signature="e#327#328#0" expanded="true" />
-                <element signature="e#359#360#0" expanded="true" />
-                <element signature="e#409#410#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/services/user/UserServiceBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="55" column="13" lean-forward="false" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-              <folding>
-                <element signature="e#1615#1616#0" expanded="true" />
-                <element signature="e#1667#1668#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -731,6 +751,44 @@
               <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lw" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="livingworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lw" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="livingworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lw" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="livingworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lw" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="livingworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -752,10 +810,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services" />
-      <recent name="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="id.co.icg.lw.services.merchant" />
+      <recent name="id.co.icg.lw.services.message" />
+      <recent name="id.co.icg.lw.services.user" />
+      <recent name="id.co.icg.lw.services.member" />
+      <recent name="id.co.icg.lw.domain" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="id.co.icg.lw.enums" />
@@ -763,12 +823,10 @@
       <recent name="id.co.icg.lw.utils" />
       <recent name="id.co.icg.lw.controllers.api" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="id.co.icg.lw.services.merchant" />
-      <recent name="id.co.icg.lw.services.message" />
-      <recent name="id.co.icg.lw.services.user" />
-      <recent name="id.co.icg.lw.services.member" />
-      <recent name="id.co.icg.lw.domain" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/id/co/icg/lw/services" />
+      <recent name="$PROJECT_DIR$/src/main/java/id/co/icg/lw/utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -934,7 +992,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53721000" />
+    <option name="totallyTimeSpent" value="53952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -955,9 +1013,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -965,10 +1023,23 @@
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39908952" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1006,6 +1077,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1081,51 +1178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding>
-            <element signature="e#461#462#0" expanded="false" />
-            <element signature="e#511#512#0" expanded="false" />
-            <element signature="e#553#554#0" expanded="false" />
-            <element signature="e#585#586#0" expanded="false" />
-            <element signature="e#613#614#0" expanded="false" />
-            <element signature="e#655#656#0" expanded="false" />
-            <element signature="e#689#690#0" expanded="false" />
-            <element signature="e#721#722#0" expanded="false" />
-            <element signature="e#752#753#0" expanded="false" />
-            <element signature="e#797#798#0" expanded="false" />
-            <element signature="e#837#838#0" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#896#897#0" expanded="false" />
-            <element signature="e#937#938#0" expanded="false" />
-            <element signature="e#973#974#0" expanded="false" />
-            <element signature="e#1010#1011#0" expanded="false" />
-            <element signature="e#1046#1047#0" expanded="false" />
-            <element signature="e#1101#1102#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="false" />
-            <element signature="e#1180#1181#0" expanded="false" />
-            <element signature="e#1207#1208#0" expanded="false" />
-            <element signature="e#1245#1246#0" expanded="false" />
-            <element signature="e#1277#1278#0" expanded="false" />
-            <element signature="e#1312#1313#0" expanded="false" />
-            <element signature="e#1346#1347#0" expanded="false" />
-            <element signature="e#1397#1398#0" expanded="false" />
-            <element signature="e#1443#1444#0" expanded="false" />
-            <element signature="e#1477#1478#0" expanded="false" />
-            <element signature="e#1507#1508#0" expanded="false" />
-            <element signature="e#1553#1554#0" expanded="false" />
-            <element signature="e#1591#1592#0" expanded="false" />
-            <element signature="e#1619#1620#0" expanded="false" />
-            <element signature="e#1646#1647#0" expanded="false" />
-            <element signature="e#1683#1684#0" expanded="false" />
-            <element signature="e#1715#1716#0" expanded="false" />
-            <element signature="e#1749#1750#0" expanded="false" />
-            <element signature="e#1779#1780#0" expanded="false" />
-            <element signature="e#1825#1826#0" expanded="false" />
-            <element signature="e#1863#1864#0" expanded="false" />
-            <element signature="e#1899#1900#0" expanded="false" />
-            <element signature="e#1931#1932#0" expanded="false" />
-            <element signature="e#1981#1982#0" expanded="false" />
-            <element signature="e#2023#2024#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1140,9 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-          <folding>
-            <element signature="e#595#596#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1157,9 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-          <folding>
-            <element signature="e#186#187#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1181,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,19 +1234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-          <folding>
-            <element signature="e#224#225#0" expanded="false" />
-            <element signature="e#274#275#0" expanded="false" />
-            <element signature="e#316#317#0" expanded="false" />
-            <element signature="e#348#349#0" expanded="false" />
-            <element signature="e#376#377#0" expanded="false" />
-            <element signature="e#418#419#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-            <element signature="e#486#487#0" expanded="false" />
-            <element signature="e#516#517#0" expanded="false" />
-            <element signature="e#562#563#0" expanded="false" />
-            <element signature="e#600#601#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1209,7 +1241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="10" column="84" lean-forward="false" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1217,17 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#312#313#0" expanded="false" />
-            <element signature="e#377#378#0" expanded="false" />
-            <element signature="e#437#438#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#527#528#0" expanded="false" />
-            <element signature="e#718#719#0" expanded="false" />
-            <element signature="e#753#754#0" expanded="false" />
-            <element signature="e#825#826#0" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1235,19 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="e#232#233#0" expanded="false" />
-            <element signature="e#281#282#0" expanded="false" />
-            <element signature="e#325#326#0" expanded="false" />
-            <element signature="e#364#365#0" expanded="false" />
-            <element signature="e#399#400#0" expanded="false" />
-            <element signature="e#455#456#0" expanded="false" />
-            <element signature="e#503#504#0" expanded="false" />
-            <element signature="e#542#543#0" expanded="false" />
-            <element signature="e#577#578#0" expanded="false" />
-            <element signature="e#633#634#0" expanded="false" />
-            <element signature="e#681#682#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1255,9 +1262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1272,11 +1276,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#356#357#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1292,7 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,12 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-          <folding>
-            <element signature="e#230#231#0" expanded="false" />
-            <element signature="e#254#255#0" expanded="false" />
-            <element signature="e#322#323#0" expanded="false" />
-            <element signature="e#346#347#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1313,19 +1305,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/MasterApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,9 +1321,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
           <caret line="62" column="41" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="62" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1343,9 +1328,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="16" column="41" lean-forward="false" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1353,10 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#228#229#0" expanded="false" />
-            <element signature="e#256#257#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1364,10 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#543#544#0" expanded="false" />
-            <element signature="e#571#572#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1375,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1383,7 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1391,7 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,7 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1407,11 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-191">
           <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1677#1678#0" expanded="false" />
-            <element signature="e#1725#1726#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1419,13 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#1447#1448#0" expanded="true" />
-            <element signature="e#1495#1496#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1433,7 +1392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="36" column="23" lean-forward="false" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1441,7 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1449,7 +1406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1457,21 +1413,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="107" column="10" lean-forward="false" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
-          <folding>
-            <element signature="e#1335#1336#0" expanded="false" />
-            <element signature="e#1360#1361#0" expanded="false" />
-            <element signature="e#2390#2391#0" expanded="false" />
-            <element signature="e#2436#2437#0" expanded="false" />
-            <element signature="e#2485#2486#0" expanded="false" />
-            <element signature="e#2533#2534#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/id/co/icg/lw/controllers/api/TransactionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="85" column="34" lean-forward="false" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
+        <state relative-caret-position="477">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1480,9 +1428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1498,15 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding>
-            <element signature="e#195#196#0" expanded="true" />
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#359#360#0" expanded="true" />
-            <element signature="e#409#410#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1514,10 +1450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="55" column="13" lean-forward="false" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-          <folding>
-            <element signature="e#1615#1616#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1539,8 +1471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1555,8 +1487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="225">
+          <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -1565,7 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>

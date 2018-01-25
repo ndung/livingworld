@@ -54,8 +54,8 @@ public class BaseController {
         return tokenUtil.getUserId(token);
     }
 
-    protected String getEmail(String token) {
-        return tokenUtil.getEmail(token);
+    protected String getCardNumber(String token) {
+        return tokenUtil.getCardNumber(token);
     }
 
     protected List<RoleEnum> getRoles(String token) {

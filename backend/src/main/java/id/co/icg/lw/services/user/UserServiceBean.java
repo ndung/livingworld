@@ -3,9 +3,11 @@ package id.co.icg.lw.services.user;
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.repositories.UserRepository;
+import id.co.icg.lw.services.file.FileService;
 import id.co.icg.lw.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -14,6 +16,9 @@ public class UserServiceBean implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private FileService fileService;
 
     @Override
     public int checkCardNumber(String cardNumber) {
@@ -28,8 +33,14 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User register(RequestNewUser request) {
-        return null;
+    public User register(String userId, RegisterRequest request) {
+        User user = userRepository.findOne(userId);
+        user.setFullName(request.getFullName());
+        user.setEmail(request.getEmail());
+        user.setDateOfBirth(request.getDateOfBirth());
+        user.setMobileNumber(request.getMobileNumber());
+        userRepository.save(user);
+        return user;
     }
 
     @Override
@@ -44,21 +55,37 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User signIn(SignInRequest request) {
+    public User signIn(SignInRequest request) throws Exception{
+        User user = userRepository.findByCardNumber(request.getCardNumber());
+        if (!PasswordUtil.checkPublicKey(request.getPublicKey(), user.getCardNumber(), user.getPassword())) {
+            throw new Exception("CardNumber or password is invalid");
+        }
+
+        return user;
+    }
+
+    @Override
+    public User edit(String userId, EditUserRequest request) {
+        return register(userId, request);
+    }
+
+    @Override
+    public User paymentRegistration(RegisterRequest registerRequest) {
         return null;
     }
 
     @Override
-    public User edit(RequestEditUser request) {
-        return null;
-    }
-
-    @Override
-    public User paymentRegistration(RequestNewUser requestNewUser) {
-        return null;
+    public User uploadPhotoProfile(String userId, MultipartFile multipartFile) {
+        String photoUrl = fileService.upload(multipartFile);
+        User user = userRepository.findOne(userId);
+        user.setPhotoProfileUrl(photoUrl);
+        userRepository.save(user);
+        return user;
     }
 
     private boolean checkCardNumberToIfabula(String cardNumber) {
         return cardNumber.equals("88776655");
     }
+
+
 }

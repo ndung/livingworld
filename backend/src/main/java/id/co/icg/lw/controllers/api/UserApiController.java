@@ -3,14 +3,13 @@ package id.co.icg.lw.controllers.api;
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
 import id.co.icg.lw.domain.user.User;
+import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.services.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(Application.API_PATH + "/user")
@@ -168,6 +167,68 @@ public class UserApiController extends BaseController{
     }
 
     /**
+     * @api {post} /user/registration Registration
+     * @apiName Registration
+     * @apiGroup User
+     * @apiPermission USER
+     * @apiDescription Daftar untuk bergabung dengan program Living World
+     * @apiParam {String} firstName
+     * @apiParam {String} email
+     * @apiParam {Date} dateOfBirth YYYY-MM-DD
+     * @apiParam {String} mobileNumber
+     *
+     * @apiSuccess {String} fullName
+     * @apiSuccess {String} email
+     * @apiSuccess {String} mobileNumber
+     * @apiSuccess {Date} dateOfBirth YYYY-MM-DD
+     *
+     * @apiHeader {String} Token Jika Sign Up berhasil, maka akan dibuatkan token yang akan disimpan di header response.
+     *                           Token ini digunakan sebagai authentication key untuk mengakses beberapa api.
+     * @apiHeaderExample {json} Contoh Response Header
+     * {
+     *     "Token" : "B3CDB813C735BF6D93ED713E1E94D351EF43213A382EB43C64A677F7D43BB0FC"
+     * }
+     *
+     * @apiExample {body} Request
+     * {
+     *     'firstName': 'Budi',
+     *     'email': 'budi@mail.com',
+     *     'mobileNumber': '08123131313',
+     *     'dateOfBirth' : '1920-01-31'
+     * }
+     * @apiExample {json} Response Berhasil Registrasi
+     * {
+     *      data: {
+     *          "fullName" : "Budi",
+     *          "email" : "budi@mail.com",
+     *          "mobileNumber": "08123131313",
+     *          "dateOfBirth" : "1920-01-31"
+     *      },
+     *      message: null
+     * }
+     *
+     * @apiExample {json} Response Gagal Registrasi
+     * {
+     *      data: "",
+     *      message: "Date format is invalid"
+     * }
+     */
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public ResponseEntity<Response> registration(@RequestHeader(Application.AUTH) String token,
+                                                 @RequestBody RegisterRequest registerRequest) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+        try {
+            String userId = getUserId(token);
+            User user = userService.register(userId, registerRequest);
+            return getHttpStatus(new Response(user));
+        } catch (Exception e) {
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+    /**
      * @api {post} /user/payment/registration Payment Registration
      * @apiName Registration
      * @apiGroup User
@@ -181,7 +242,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} email
      * @apiParam {String} pin
      * @apiParam {String} pinConfirmation
-     * @apiParam {String} phoneNumber
+     * @apiParam {String} mobileNumber
      * @apiParam {int} securityQuestion
      * @apiParam {String} securityAnswer
      * @apiExample {json} Request
@@ -206,9 +267,9 @@ public class UserApiController extends BaseController{
      */
 
     @RequestMapping(value = "/registration/payment", method = RequestMethod.POST)
-    public ResponseEntity<Response> paymentRegistration(@RequestBody RequestNewUser requestNewUser) {
+    public ResponseEntity<Response> paymentRegistration(@RequestBody RegisterRequest registerRequest) {
         try {
-            User user = userService.paymentRegistration(requestNewUser);
+            User user = userService.paymentRegistration(registerRequest);
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
@@ -233,7 +294,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} email
      * @apiParam {String} pin
      * @apiParam {String} pinConfirmation
-     * @apiParam {String} phoneNumber
+     * @apiParam {String} mobileNumber
      * @apiParam {int} securityQuestion
      * @apiParam {String} securityAnswer
      * @apiExample {json} Request
@@ -257,13 +318,55 @@ public class UserApiController extends BaseController{
      * }
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ResponseEntity<Response> edit(@RequestBody RequestEditUser requestEditUser) {
+    public ResponseEntity<Response> edit(@RequestHeader(Application.AUTH) String token,
+                                         @RequestBody EditUserRequest editUserRequest) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+
         try {
-            User user = userService.edit(requestEditUser);
-            String token = createToken(user);
-            HttpHeaders responseHeaders = new HttpHeaders();
-            responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(true), responseHeaders);
+            String userId = getUserId(token);
+            User user = userService.edit(userId, editUserRequest);
+            return getHttpStatus(new Response(user));
+        } catch (Exception e) {
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+    /**
+     * @api {put} /user/upload/photo-profile Upload Photo Profile
+     * @apiName Upload Photo Profile
+     * @apiGroup User
+     * @apiPermission USER
+     * @apiHeader {String} Authorization Jika registrasi berhasil, maka akan dibuatkan token yang akan disimpan di header response.
+     *                           Token ini digunakan sebagai authentication key untuk mengakses beberapa api.
+     * @apiHeaderExample {json} Contoh Response Header
+     * {
+     *     "Authorization" : "B3CDB813C735BF6D93ED713E1E94D351EF43213A382EB43C64A677F7D43BB0FC"
+     * }
+
+     * @apiExample {json} Response Berhasil
+     * {
+     *      data: "/image/photo/profile/[file_name].jpg",
+     *      message: null
+     * }
+     * @apiExample {json} Response Gagal
+     * {
+     *      data: false,
+     *      message: "Format must be in jpg or jpeg"
+     * }
+     */
+    @RequestMapping(value = "/upload/photo-profile", method = RequestMethod.POST)
+    public ResponseEntity<Response> uploadPhotoProfile(@RequestHeader(Application.AUTH) String token,
+                                                       @RequestBody MultipartFile photo) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+
+        try {
+            String userId = getUserId(token);
+            User user = userService.uploadPhotoProfile(userId, photo);
+            return getHttpStatus(new Response(user));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }

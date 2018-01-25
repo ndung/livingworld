@@ -3,7 +3,6 @@ package id.co.icg.lw.domain.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import id.co.icg.lw.domain.Role;
 import id.co.icg.lw.enums.RoleEnum;
-import id.co.icg.lw.enums.UserStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,9 +17,11 @@ public class User {
     @Id
     private String id;
 
-    private String firstName;
+    private String fullName;
     private String email;
-    private String phoneNumber;
+    private String mobileNumber;
+    private Date dateOfBirth;
+    private String photoProfileUrl;
 
     @NotNull
     @Column(unique = true)
@@ -57,12 +58,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -73,12 +74,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getCardNumber() {
@@ -119,4 +120,35 @@ public class User {
         updateAt = new Date();
     }
 
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhotoProfileUrl() {
+        return photoProfileUrl;
+    }
+
+    public void setPhotoProfileUrl(String photoProfileUrl) {
+        this.photoProfileUrl = photoProfileUrl;
+    }
 }

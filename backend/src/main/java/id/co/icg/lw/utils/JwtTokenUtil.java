@@ -38,7 +38,7 @@ public class JwtTokenUtil {
 				.setId(user.getId())
 				.setIssuedAt(now)
 				.setSubject(Helper.implode(temp, DELIMITER))
-				.setIssuer(user.getEmail())
+				.setIssuer(user.getCardNumber())
 				.signWith(signatureAlgorithm, signingKey);
 		if (expiration >= 0) {
 			long expMillis = nowMillis + (expiration * 1000);
@@ -57,7 +57,7 @@ public class JwtTokenUtil {
 		}
 	}
 
-	public String getEmail(String token) {
+	public String getCardNumber(String token) {
 		try {
 			Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secret)).parseClaimsJws(token)
 					.getBody();
