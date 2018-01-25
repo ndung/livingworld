@@ -6,6 +6,7 @@ import android.preference.Preference;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.livingworld.util.Preferences;
+import com.livingworld.util.Static;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -43,13 +44,15 @@ public class RetrofitClient {
                     public Response intercept(Chain chain) throws IOException {
                         Request newRequest  = chain.request().newBuilder()
                                 .addHeader("Authorization", Preferences.getToken(context))
+                                .addHeader("Content-Type", "application/json")
                                 .build();
                         return chain.proceed(newRequest);
                     }
-                });
+                })
+        ;
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(Static.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
                 .build();

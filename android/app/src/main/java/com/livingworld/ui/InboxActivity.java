@@ -48,7 +48,7 @@ public class InboxActivity extends BaseActivity {
     }
 
     private void getMessage() {
-        inboxService.getMessage("/message/"+PAGE+"/page").enqueue(new Callback<Response>() {
+        inboxService.getMessage("message/"+PAGE+"/page").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 dissmissPleasewaitDialog();

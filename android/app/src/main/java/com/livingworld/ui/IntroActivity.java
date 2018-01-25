@@ -1,5 +1,6 @@
 package com.livingworld.ui;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,10 +13,13 @@ import com.livingworld.util.SampleSlide;
 
 public class IntroActivity extends AppIntro {
 
+    public static Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_intro);
+        activity = this;
         addSlide(SampleSlide.newInstance(R.layout.layout_intro_1));
         addSlide(SampleSlide.newInstance(R.layout.layout_intro_2));
         addSlide(SampleSlide.newInstance(R.layout.layout_intro_3));

@@ -4,7 +4,9 @@ import com.livingworld.clients.model.Response;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -15,12 +17,12 @@ import retrofit2.http.POST;
 
 public interface AuthService {
 
-    @FormUrlEncoded
-    @POST("/user/check/card-number")
-    Call<Response> checkCard(@FieldMap Map<String, String> map);
+//    @FormUrlEncoded
+    @POST("user/check/card-number")
+    Call<Response> checkCard(@Body RequestBody s);
 
-    @FormUrlEncoded
-    @POST("/user/sign-in")
-    Call<Response> signIn(@FieldMap Map<String, String> map);
+//    @FormUrlEncoded
+    @POST("user/sign-in")
+    Call<Response> signIn(@Body Map<String, String> map);
 
 }

@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.master.MasterService;
@@ -174,7 +178,10 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    religionMasters.addAll((List<Master>) response.body().getData());
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                    religionMasters.addAll(list);
                     ArrayAdapter<Master> adapter =
                             new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
                     adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -194,7 +201,10 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    cityMasters.addAll((List<Master>) response.body().getData());
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                    cityMasters.addAll(list);
                     ArrayAdapter<Master> adapter =
                             new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
                     adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -214,7 +224,10 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    materialStatusMasters.addAll((List<Master>) response.body().getData());
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                    materialStatusMasters.addAll(list);
                     ArrayAdapter<Master> adapter =
                             new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
                     adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -234,7 +247,10 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    genderMasters.addAll((List<Master>) response.body().getData());
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                    genderMasters.addAll(list);
                     ArrayAdapter<Master> adapter =
                             new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
                     adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -254,7 +270,10 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    nationalityMasters.addAll((List<Master>) response.body().getData());
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                    nationalityMasters.addAll(list);
                     ArrayAdapter<Master> adapter =
                             new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
                     adapter.setDropDownViewResource(R.layout.spinner_item);

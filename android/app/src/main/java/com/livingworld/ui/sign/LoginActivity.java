@@ -4,17 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.auth.AuthService;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.model.Response;
 import com.livingworld.ui.HomeActivity;
+import com.livingworld.ui.IntroActivity;
 import com.livingworld.ui.fragment.login.CreatePasswordFragment;
 import com.livingworld.ui.fragment.login.EnterPasswordFragment;
 import com.livingworld.ui.fragment.login.InputCardNumberFragment;
@@ -24,12 +29,17 @@ import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Header;
 
 public class LoginActivity extends BaseActivity {
 
@@ -74,7 +84,7 @@ public class LoginActivity extends BaseActivity {
                 if(STEP == STEP_CARD){
                     checkCard();
                 } else if(STEP == INPUT_PASSWORD){
-
+                    checkPassword();
                 } else if(STEP == CREATE_PASSWORD){
 
                 }
@@ -89,13 +99,16 @@ public class LoginActivity extends BaseActivity {
             String params = "cardNumber";
             Map<String, String> map = new HashMap<>();
             map.put(params, cardNumber);
-            authService.checkCard(map).enqueue(new Callback<Response>() {
+            RequestBody body =
+                    RequestBody.create(MediaType.parse("text/plain"), cardNumber);
+
+            authService.checkCard(body).enqueue(new Callback<Response>() {
                 @Override
                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                     dissmissPleasewaitDialog();
                     if(response.isSuccessful()){
                         Response body = response.body();
-                        int data = (int) body.getData();
+                        double data = (double) body.getData();
                         if(data > 0){
                             STEP = INPUT_PASSWORD;
                             setFragment(enterPasswordFragment);
@@ -137,12 +150,18 @@ public class LoginActivity extends BaseActivity {
                     dissmissPleasewaitDialog();
                     if(response.isSuccessful()){
                         Response body = response.body();
-                        User user = (User) body.getData();
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        User user = gson.fromJson(jsonObject, User.class);
                         if(user != null){
+                            String token = response.headers().get("Token");
                             Preferences.setUser(getApplicationContext(), user);
                             Preferences.setCardNumber(getApplicationContext(), cardNumber);
                             Preferences.setPublicKey(getApplicationContext(), publicKey);
+                            Preferences.setToken(getApplicationContext(), token);
+                            Preferences.setLoginFlag(getApplicationContext(), true);
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            IntroActivity.activity.finish();
                             finish();
                         } else {
                             showMessage(body.getMessage());

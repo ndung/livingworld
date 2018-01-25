@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.livingworld.R;
+import com.livingworld.util.Preferences;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -21,7 +22,11 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(getApplicationContext(), IntroActivity.class));
+                    if(Preferences.getLoginFlag(getApplicationContext())) {
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), IntroActivity.class));
+                    }
                     finish();
                 }
             }

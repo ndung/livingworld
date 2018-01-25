@@ -5,6 +5,7 @@ import com.livingworld.clients.model.Response;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -21,8 +22,8 @@ public interface InboxService {
     @GET //("/message/page")
     Call<Response> getMessage(@Url String url);
 
-    @FormUrlEncoded
-    @POST("/message/contact-us")
-    Call<Response> contacUs(@FieldMap Map<String, String> map);
+//    @FormUrlEncoded
+    @POST("message/contact-us")
+    Call<Response> contacUs(@Body Map<String, String> map);
 
 }

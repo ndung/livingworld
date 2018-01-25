@@ -5,6 +5,7 @@ import com.livingworld.clients.model.Response;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -15,8 +16,8 @@ import retrofit2.http.POST;
 
 public interface MemberService {
 
-    @FormUrlEncoded
-    @POST("/user/registration/member")
-    Call<Response> registerMember(@FieldMap Map<String, String> map);
+//    @FormUrlEncoded
+    @POST("user/registration/member")
+    Call<Response> registerMember(@Body Map<String, String> map);
 
 }

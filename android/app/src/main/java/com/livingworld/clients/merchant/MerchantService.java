@@ -18,7 +18,7 @@ import retrofit2.http.Url;
 
 public interface MerchantService {
 
-    @GET("/merchant")
+    @GET("merchant")
     Call<Response> getMerchant();
 
 //    @FormUrlEncoded

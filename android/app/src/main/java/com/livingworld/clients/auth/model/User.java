@@ -1,17 +1,27 @@
 package com.livingworld.clients.auth.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 /**
  * Created by Dizzay on 1/19/2018.
  */
 
-public class User {
+public class User implements Serializable{
 
+    @SerializedName("fullName")
     String fullName;
+    @SerializedName("email")
     String email;
+    @SerializedName("mobileNumber")
     String mobileNumber;
+    @SerializedName("dateOfBirth")
+    String dateOfBirth;
+    @SerializedName("photoProfileUrl")
+    String photoProfileUrl;
     int gender;
     int martialStatus;
-    String dateOfBirth;
     int nationality;
     String address;
     int city;
@@ -42,6 +52,22 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhotoProfileUrl() {
+        return photoProfileUrl;
+    }
+
+    public void setPhotoProfileUrl(String photoProfileUrl) {
+        this.photoProfileUrl = photoProfileUrl;
+    }
+
     public int getGender() {
         return gender;
     }
@@ -56,14 +82,6 @@ public class User {
 
     public void setMartialStatus(int martialStatus) {
         this.martialStatus = martialStatus;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public int getNationality() {

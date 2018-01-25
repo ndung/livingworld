@@ -20,13 +20,14 @@ import java.util.Map;
 public class BaseActivity extends AppCompatActivity{
 
     private static Context context;
-    private static MaterialDialog materialDialogPleasewait;
+    private MaterialDialog materialDialogPleasewait;
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        materialDialogPleasewait = new MaterialDialog.Builder(this)
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = this;
+        materialDialogPleasewait = new MaterialDialog.Builder(BaseActivity.this)
                 .content(Static.DIALOG_PLEASEWAIT_TITLE).build();
     }
 

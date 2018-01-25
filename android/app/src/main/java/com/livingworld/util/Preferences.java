@@ -84,4 +84,12 @@ public class Preferences {
         putString(context, Static.USER_DATA, new Gson().toJson(user));
     }
 
+    public static void setLoginFlag(Context context, boolean flag){
+        putBoolean(context, Static.LOGIN_KEY, flag);
+    }
+
+    public static boolean getLoginFlag(Context context){
+        return getBoolean(context, Static.LOGIN_KEY);
+    }
+
 }

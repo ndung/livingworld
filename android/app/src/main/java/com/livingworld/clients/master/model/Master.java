@@ -7,7 +7,7 @@ package com.livingworld.clients.master.model;
 public class Master {
 
     int id;
-    String value;
+    String name;
 
     public int getId() {
         return id;
@@ -17,16 +17,16 @@ public class Master {
         this.id = id;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return value;
+        return name;
     }
 }

@@ -16,7 +16,7 @@ import retrofit2.http.Url;
 
 public interface MasterService {
 
-    @GET("/master")
+    @GET("master")
     Call<Response> getMaster(@Query("type") String type);
 
 }

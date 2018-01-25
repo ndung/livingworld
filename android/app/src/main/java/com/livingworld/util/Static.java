@@ -8,15 +8,17 @@ public class Static {
 
     public final static String MyPref = "lw_pref";
 
-    public final static String PORT = ":8085";
-    public final static String IP = "49.128.182.148"+PORT;
-    public final static String APPS = "/loyalty-apps-api/";
-    public final static String BASE_URL = "http://"+IP+APPS;
+//    public final static String PORT = ":8085";
+//    public final static String IP = "49.128.182.148"+PORT;
+//    public final static String APPS = "/lw/api/v1/";
+//    public final static String BASE_URL = "http://49.128.182.148"+IP+APPS;
+    public final static String BASE_URL = "http://49.128.182.148:8085/lw/api/v1/";
 
     public final static String DIALOG_PLEASEWAIT_TITLE = "Loading...";
     public final static String REQUIRED = "  Can't Empty !";
     public final static String SOMETHING_WRONG = "Failed request, check your connection";
 
+    public final static String LOGIN_KEY = "LOGIN_KEY";
     public final static String TOKEN = "TOKEN_KEY";
     public final static String CARD_NUMBER = "CARD_NUMBER";
     public final static String PUBLIC_KEY = "PUBLIC_KEY";

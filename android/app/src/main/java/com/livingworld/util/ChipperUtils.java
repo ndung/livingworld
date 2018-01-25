@@ -16,8 +16,8 @@ public class ChipperUtils {
 
     public static String getPublicKey(String cardNumber, String pwd){
         Date date = new Date();
-        String dateNow = new SimpleDateFormat("YYYYMMDD").format(date);
-        String data = cardNumber+getMD5Hash(pwd)+dateNow+ BuildConfig.APPLICATION_ID;
+        String dateNow = new SimpleDateFormat("yyyyMMdd").format(date);
+        String data = cardNumber+getMD5Hash(pwd)+dateNow+ "com.livingworld";
         return getMD5Hash(data);
     }
 
