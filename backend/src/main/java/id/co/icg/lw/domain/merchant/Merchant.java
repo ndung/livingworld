@@ -23,6 +23,9 @@ public class Merchant {
     @NotFound(action = NotFoundAction.IGNORE)
     private MerchantCategory merchantCategory;
 
+    private String merchantLogo;
+    private String description;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
@@ -77,5 +80,21 @@ public class Merchant {
     @PreUpdate
     protected void onUpdate() {
         updateAt = new Date();
+    }
+
+    public String getMerchantLogo() {
+        return merchantLogo;
+    }
+
+    public void setMerchantLogo(String merchantLogo) {
+        this.merchantLogo = merchantLogo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
