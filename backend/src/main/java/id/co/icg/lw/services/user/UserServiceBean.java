@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -86,6 +87,12 @@ public class UserServiceBean implements UserService {
         user.setPhotoProfileUrl(photoUrl);
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> users = userRepository.findAll();
+        return users;
     }
 
     private boolean checkCardNumberToIfabula(String cardNumber) {

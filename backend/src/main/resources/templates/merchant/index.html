@@ -4,7 +4,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>User List
+            <h2>Merchant List
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -30,22 +30,18 @@
                    cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th>Card Number</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Date of Birth</th>
-                    <th>Mobile Number</th>
+                    <th>No</th>
+                    <th>Merchant Name</th>
+                    <th>Merchant Category</th>
                     <th>Create Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for user in users %}
+                {% for merchant in merchants %}
                 <tr>
-                    <td>{{ user.cardNumber }}</td>
-                    <td>{{ user.fullName }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.dateOfBirth }}</td>
-                    <td>{{ user.mobileNumber }}</td>
+                    <td>{{ loop.index + 1 }}</td>
+                    <td>{{ merchant.merchantName }}</td>
+                    <td>{{ merchant.merchantCategory.merchantCategoryName }}</td>
                     <td>{{ user.createAt }}</td>
                 </tr>
                 {% endfor %}

@@ -2,6 +2,7 @@ package id.co.icg.lw.controllers.api;
 
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
+import id.co.icg.lw.domain.merchant.MerchantCategory;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.services.merchant.MerchantCategoryResponse;
 import id.co.icg.lw.services.merchant.MerchantResponse;
@@ -88,7 +89,7 @@ public class MerchantApiController extends BaseController {
             return FORBIDDEN;
         }
 
-        List<MerchantCategoryResponse> messageRequests = merchantService.findAllOrderByMerchantCategoryName();
+        List<MerchantCategory> messageRequests = merchantService.findAllMerchantCategory();
         return getHttpStatus(new Response(messageRequests));
     }
 
