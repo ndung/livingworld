@@ -32,6 +32,8 @@ public class Merchant {
     private List<MerchantOfficeHour> merchantOfficeHourList;
 
     private String merchantLogo;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
 
