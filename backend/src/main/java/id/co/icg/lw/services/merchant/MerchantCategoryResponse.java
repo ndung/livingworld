@@ -1,17 +1,35 @@
 package id.co.icg.lw.services.merchant;
 
+import id.co.icg.lw.domain.merchant.Merchant;
+import id.co.icg.lw.domain.merchant.MerchantCategory;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MerchantCategoryResponse {
-    private int merchantCategoryId;
+    private long merchantCategoryId;
     private String merchantCategoryName;
     private List<MerchantResponse> merchantList;
 
-    public int getMerchantCategoryId() {
+    public MerchantCategoryResponse(){}
+
+    public MerchantCategoryResponse(MerchantCategory merchantCategory) {
+        this.merchantCategoryId = merchantCategory.getMerchantCategoryId();
+        this.merchantCategoryName = merchantCategory.getMerchantCategoryName();
+
+        if (merchantCategory.getMerchantList() != null) {
+            merchantList = new ArrayList<>();
+            for (Merchant merchant : merchantCategory.getMerchantList()) {
+                merchantList.add(new MerchantResponse(merchant));
+            }
+        }
+    }
+
+    public long getMerchantCategoryId() {
         return merchantCategoryId;
     }
 
-    public void setMerchantCategoryId(int merchantCategoryId) {
+    public void setMerchantCategoryId(long merchantCategoryId) {
         this.merchantCategoryId = merchantCategoryId;
     }
 

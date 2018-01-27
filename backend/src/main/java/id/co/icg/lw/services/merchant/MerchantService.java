@@ -8,9 +8,20 @@ import java.util.List;
 
 public interface MerchantService {
     List<MerchantCategoryResponse> findAllOrderByMerchantCategoryName();
-    MerchantResponse findOne(int merchantId);
+
+    Merchant findOne(long merchantId);
 
     List<Merchant> findAllMerchant();
 
     List<MerchantCategory> findAllMerchantCategory();
+
+    boolean createMerchant(CreateMerchantRequest request) throws Exception;
+
+    boolean updateMerchant(UpdateMerchantRequest request);
+
+    boolean createCategory(String categoryName) throws Exception;
+
+    boolean updateCategory(long categoryId, String categoryName) throws Exception;
+
+
 }

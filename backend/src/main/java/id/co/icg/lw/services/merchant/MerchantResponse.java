@@ -1,15 +1,23 @@
 package id.co.icg.lw.services.merchant;
 
+import id.co.icg.lw.domain.merchant.Merchant;
+
 public class MerchantResponse {
-    private int merchantId;
+    private long merchantId;
     private String merchantName;
     private String merchantLogo;
 
-    public int getMerchantId() {
+    public MerchantResponse(Merchant merchant) {
+        merchantId      = merchant.getMerchantId();
+        merchantLogo    = merchant.getMerchantLogo();
+        merchantName    = merchant.getMerchantName();
+    }
+
+    public long getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(long merchantId) {
         this.merchantId = merchantId;
     }
 

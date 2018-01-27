@@ -1,11 +1,13 @@
 package id.co.icg.lw.domain.merchant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "merchant")
@@ -17,14 +19,21 @@ public class Merchant {
     private long merchantId;
 
     private String merchantName;
+    private String merchantPhone;
+    private String merchantImage;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="merchant_category_id")
     @NotFound(action = NotFoundAction.IGNORE)
     private MerchantCategory merchantCategory;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy="merchantId", cascade = {CascadeType.ALL})
+    private List<MerchantOfficeHour> merchantOfficeHourList;
+
     private String merchantLogo;
     private String description;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
@@ -96,5 +105,29 @@ public class Merchant {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<MerchantOfficeHour> getMerchantOfficeHourList() {
+        return merchantOfficeHourList;
+    }
+
+    public void setMerchantOfficeHourList(List<MerchantOfficeHour> merchantOfficeHourList) {
+        this.merchantOfficeHourList = merchantOfficeHourList;
+    }
+
+    public String getMerchantImage() {
+        return merchantImage;
+    }
+
+    public void setMerchantImage(String merchantImage) {
+        this.merchantImage = merchantImage;
+    }
+
+    public String getMerchantPhone() {
+        return merchantPhone;
+    }
+
+    public void setMerchantPhone(String merchantPhone) {
+        this.merchantPhone = merchantPhone;
     }
 }

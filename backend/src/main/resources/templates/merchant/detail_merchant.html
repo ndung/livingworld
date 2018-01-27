@@ -36,21 +36,10 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="merchant-name" required="required" name="merchantName"
+                                <input type="text" id="merchant-name" required="required" name="merchantName" value="{{ merchant.merchantName }}"
                                        class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-phone">Merchant Phone<span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="merchant-phone" required="required" name="merchantPhone"
-                                       class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-category">Merchant Category<span
                                     class="required">*</span>
@@ -59,7 +48,7 @@
                             <select id="merchant-category" class="form-control" name="merchantCategoryId" required>
                                 <option value="">Choose Category</option>
                                 {% for category in categories%}
-                                    <option value="{{ category.merchantCategoryId }}">{{ category.merchantCategoryName }}</option>
+                                    <option value="{{ category.merchantCategoryId }}" {% merchant.merchantCategoryId equal category.merchantCategoryId? 'selected': '' %}>{{ category.merchantCategoryName }}</option>
                                 {% endfor %}
                             </select>
                             </div>
@@ -72,6 +61,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="file" id="merchant-image" required="required" name="merchantImage"
                                        class="form-control col-md-7 col-xs-12">
+                                {% if merchant.merchantImage not empty %}
+                                <img src="/files/{{merchant.merchantImage}}" width="200px" height="auto" />
+                                {% endif%}
                             </div>
                         </div>
 
@@ -82,7 +74,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="file" id="merchant-logo" required="required" name="merchantLogo"
                                        class="form-control col-md-7 col-xs-12">
-
+                                {% if merchant.merchantLogo not empty %}
+                                <img src="/files/{{merchant.merchantLogo}}" width="200px" height="auto" />
+                                {% endif%}
                             </div>
                         </div>
 
@@ -90,6 +84,7 @@
                             <label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">Merchant Description</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea id="description" class="form-control col-md-7 col-xs-12" name="description">
+                                    {{ merchant.merchantDescription }}
                                 </textarea>
                             </div>
                         </div>
@@ -104,14 +99,14 @@
                                     class="required">*</span>
                             </label>
                             <div class="col-md-3 col-sm-3 col-xs-5">
-                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                <input type="text" required="required" name="openingTime" placeholder="07:00" value="{{ merchant.merchantOfficeHour.0.startTime }}"
                                        class="form-control col-md-7 col-xs-12">
                             </div>
                             <div style="margin-top: 5px;float: left">
                                 <span> - </span>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-5">
-                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00" value="{{ merchant.merchantOfficeHour.0.endTime }}"
                                        class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
