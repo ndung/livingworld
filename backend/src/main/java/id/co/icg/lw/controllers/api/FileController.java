@@ -27,7 +27,7 @@ public class FileController extends BaseController {
     private String location;
 
     /**
-     * @api {get} /file/{fileName} Get Images
+     * @api {get} /files/{fileName} Get Images
      * @apiName Get Image
      * @apiGroup File
 
