@@ -30,6 +30,7 @@
                    cellspacing="0" width="100%">
                 <thead>
                 <tr>
+                    <th>User ID</th>
                     <th>Card Number</th>
                     <th>Full Name</th>
                     <th>Email</th>
@@ -41,6 +42,7 @@
                 <tbody>
                 {% for user in users %}
                 <tr>
+                    <td>{{ user.Id }}</td>
                     <td>{{ user.cardNumber }}</td>
                     <td>{{ user.fullName }}</td>
                     <td>{{ user.email }}</td>

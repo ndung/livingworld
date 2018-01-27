@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserResponse {
+    private String id;
     private String fullName;
     private String email;
     private String mobileNumber;
@@ -15,11 +16,20 @@ public class UserResponse {
     public UserResponse() {}
 
     public UserResponse(User user) {
+        setId(user.getId());
         setFullName(user.getFullName());
         setEmail(user.getEmail());
         setDateOfBirth(user.getDateOfBirth());
         setMobileNumber(user.getMobileNumber());
         user.getPhotoProfileUrl();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFullName() {

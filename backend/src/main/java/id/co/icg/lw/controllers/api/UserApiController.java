@@ -63,6 +63,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} cardNumber
      * @apiParam {String} publicKey Hash md5 dengan ketentuan: md5([cardNumber][md5(password)][Tanggal akses dengan format YYYYMMDD][app-key]). contoh: md5(8877665574EE55083A714AA3791F8D594FEA00C920180118app-key)
      *
+     * @apiSuccess {String} id
      * @apiSuccess {String} fullName
      * @apiSuccess {String} email
      * @apiSuccess {String} mobileNumber
@@ -120,6 +121,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} cardNumber
      * @apiParam {String} password
      *
+     * @apiSuccess {String} id
      * @apiSuccess {String} fullName
      * @apiSuccess {String} email
      * @apiSuccess {String} mobileNumber
@@ -140,6 +142,7 @@ public class UserApiController extends BaseController{
      * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
+     *          "id" : "2131231231gaf",
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
      *          "mobileNumber": "08123131313",
@@ -201,6 +204,7 @@ public class UserApiController extends BaseController{
      * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
+     *          "id" : "2131231231gaf",
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
      *          "mobileNumber": "08123131313",
@@ -351,6 +355,7 @@ public class UserApiController extends BaseController{
      * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
+     *          "id" : "2131231231gaf",
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
      *          "mobileNumber": "08123131313",
