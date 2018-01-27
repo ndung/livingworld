@@ -1,3 +1,4 @@
+basePath: http://49.128.182.148:8085/lw
 
 spring:
   datasource:

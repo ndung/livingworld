@@ -11,18 +11,18 @@
     <title>Living World | {{ title }}</title>
 
     <!-- Bootstrap -->
-    <link href="/res/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ basePath }}/res/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="/res/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ basePath }}/res/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="/res/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="{{ basePath }}/res/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="/res/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="{{ basePath }}/res/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     {% block css%}{% endblock %}
 
     <!-- Custom Theme Style -->
-    <link href="/res/build/css/custom.min.css" rel="stylesheet">
+    <link href="{{ basePath }}/res/build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -253,28 +253,28 @@
 </div>
 
 <!-- jQuery -->
-<script src="/res/vendors/jquery/dist/jquery.min.js"></script>
+<script src="{{ basePath }}/res/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="/res/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ basePath }}/res/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="/res/vendors/fastclick/lib/fastclick.js"></script>
+<script src="{{ basePath }}/res/vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
-<script src="/res/vendors/nprogress/nprogress.js"></script>
+<script src="{{ basePath }}/res/vendors/nprogress/nprogress.js"></script>
 <!-- Chart.js -->
-<script src="/res/vendors/Chart.js/dist/Chart.min.js"></script>
+<script src="{{ basePath }}/res/vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- gauge.js -->
-<script src="/res/vendors/gauge.js/dist/gauge.min.js"></script>
+<script src="{{ basePath }}/res/vendors/gauge.js/dist/gauge.min.js"></script>
 <!-- bootstrap-progressbar -->
-<script src="/res/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="{{ basePath }}/res/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- iCheck -->
-<script src="/res/vendors/iCheck/icheck.min.js"></script>
+<script src="{{ basePath }}/res/vendors/iCheck/icheck.min.js"></script>
 <!-- Skycons -->
-<script src="/res/vendors/skycons/skycons.js"></script>
+<script src="{{ basePath }}/res/vendors/skycons/skycons.js"></script>
 
 {% block js%}{% endblock %}
 
 <!-- Custom Theme Scripts -->
-<script src="/res/build/js/custom.min.js"></script>
+<script src="{{ basePath }}/res/build/js/custom.min.js"></script>
 
 </body>
 </html>

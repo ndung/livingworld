@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/merchant")
-public class MerchantWebController {
+public class MerchantWebController extends BaseController {
 
     @Autowired
     private MerchantService merchantService;
