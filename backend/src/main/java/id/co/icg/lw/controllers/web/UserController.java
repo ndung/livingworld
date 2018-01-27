@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getUser(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
         List<User> users = userService.findAll();
-
+        model.addAttribute("title", "User List");
         model.addAttribute("users", users);
         return "/user/index";
 

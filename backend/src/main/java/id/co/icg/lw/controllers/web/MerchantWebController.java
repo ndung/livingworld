@@ -23,6 +23,7 @@ public class MerchantWebController {
     public String getMerchant(Model model) {
         List<Merchant> merchants = merchantService.findAllMerchant();
         model.addAttribute("merchants", merchants);
+        model.addAttribute("title", "Merchant List");
         return "merchant/index";
     }
 
@@ -35,6 +36,7 @@ public class MerchantWebController {
     public String getMerchantCategory(Model model) {
         List<MerchantCategory> categories = merchantService.findAllMerchantCategory();
         model.addAttribute("categories", categories);
+        model.addAttribute("title", "Merchant Category List");
         return "merchant/category";
     }
 }
