@@ -58,7 +58,10 @@ public class MasterApiController extends BaseController {
             return getHttpStatus(new Response(masterService.getGender()));
         } else if (type.equals("nationality")) {
             return getHttpStatus(new Response(masterService.getNationality()));
-        } else {
+        } else if (type.equals("city")) {
+            return getHttpStatus(new Response(masterService.getCity()));
+
+        }else {
             return getHttpStatus(new Response(false, "Type is not found"));
         }
     }

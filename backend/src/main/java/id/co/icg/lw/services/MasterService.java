@@ -9,4 +9,5 @@ public interface MasterService {
     List<Master> getMartialStatus();
     List<Master> getGender();
     List<Master> getNationality();
+    List<Master> getCity();
 }

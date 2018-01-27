@@ -1,10 +1,7 @@
 package id.co.icg.lw.services;
 
 import id.co.icg.lw.domain.Master;
-import id.co.icg.lw.enums.GenderEnum;
-import id.co.icg.lw.enums.MartialStatusEnum;
-import id.co.icg.lw.enums.NationalityEnum;
-import id.co.icg.lw.enums.ReligionEnum;
+import id.co.icg.lw.enums.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,6 +53,17 @@ public class MasterServiceBean implements MasterService {
         }
 
         return nationality;
+    }
+
+    @Override
+    public List<Master> getCity() {
+        List<Master> city = new ArrayList<>();
+        List<CityEnum> enumList = Arrays.asList(CityEnum.values());
+        for (CityEnum e : enumList ) {
+            city.add(new Master(e.getValue(), e.name()));
+        }
+
+        return city;
     }
 
 }
