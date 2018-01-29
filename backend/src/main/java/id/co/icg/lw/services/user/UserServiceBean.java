@@ -95,6 +95,11 @@ public class UserServiceBean implements UserService {
         return users;
     }
 
+    @Override
+    public User findOne(String userId) {
+        return userRepository.findOne(userId);
+    }
+
     private boolean checkCardNumberToIfabula(String cardNumber) {
         return cardNumber.equals("88776655");
     }

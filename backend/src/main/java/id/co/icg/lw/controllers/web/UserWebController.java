@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserWebController extends BaseController {
 
     @Autowired
     private UserService userService;

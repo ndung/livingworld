@@ -16,4 +16,6 @@ public interface UserService {
     User uploadPhotoProfile(String userId, MultipartFile multipartFile);
 
     List<User> findAll();
+
+    User findOne(String userId);
 }

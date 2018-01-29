@@ -1,8 +1,11 @@
 package id.co.icg.lw.services.member;
 
+import id.co.icg.lw.domain.user.Member;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CreateMemberRequest {
+public class MemberResponse {
     private String fullName;
     private String ktpNo;
     private int religion;
@@ -14,6 +17,20 @@ public class CreateMemberRequest {
     private int city;
     private String zipCode;
     private String homePhone;
+
+    public MemberResponse(Member member) {
+        setFullName(member.getIdentityName());
+        setAddress(member.getAddress());
+        setCity(member.getCity());
+        setDateOfBirth(member.getDateOfBirth());
+        setGender(member.getGender());
+        setKtpNo(member.getIdenitityNumber());
+        setReligion(member.getReligion());
+        setNationality(member.getNationalitly());
+        setZipCode(member.getZipcode());
+        setHomePhone(member.getHomePhone());
+        setMartialStatus(member.getMartialStatus());
+    }
 
     public String getFullName() {
         return fullName;
@@ -55,12 +72,17 @@ public class CreateMemberRequest {
         this.martialStatus = martialStatus;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        if (dateOfBirth != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(dateOfBirth);
+        } else {
+            return null;
+        }
     }
 
-    public void setDateOfBirth(Date date) {
-        this.dateOfBirth = date;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getNationality() {

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class HomeController extends BaseController {
+public class HomeWebController extends BaseController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request) {
