@@ -30,6 +30,7 @@ public class User {
     @JsonIgnore
     private String password;
     private int status;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 

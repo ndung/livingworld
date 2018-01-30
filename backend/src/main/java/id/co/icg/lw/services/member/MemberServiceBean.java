@@ -7,6 +7,8 @@ import id.co.icg.lw.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberServiceBean implements MemberService {
 
@@ -56,7 +58,7 @@ public class MemberServiceBean implements MemberService {
             return false;
         }
 
-        member.setIdenitityNumber(request.getFullName());
+        member.setIdentityName(request.getFullName());
         member.setIdenitityNumber(request.getKtpNo());
         member.setAddress(request.getAddress());
         member.setHomePhone(request.getHomePhone());
@@ -66,10 +68,15 @@ public class MemberServiceBean implements MemberService {
         member.setReligion(request.getReligion());
         member.setDateOfBirth(request.getDateOfBirth());
         member.setZipcode(request.getZipCode());
-        member.setMemberType(0);
+        member.setNationalitly(request.getNationality());
 
         memberRepository.save(member);
 
         return true;
+    }
+
+    @Override
+    public List<Member> findAll() {
+        return memberRepository.findAll();
     }
 }

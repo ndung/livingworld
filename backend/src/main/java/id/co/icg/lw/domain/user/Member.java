@@ -26,6 +26,12 @@ public class Member {
     private int nationalitly;
     private Date dateOfBirth;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
+
     public Member() {}
 
     public long getMemberId() {
@@ -138,5 +144,15 @@ public class Member {
 
     public void setNationalitly(int nationalitly) {
         this.nationalitly = nationalitly;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createAt = updateAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateAt = new Date();
     }
 }
