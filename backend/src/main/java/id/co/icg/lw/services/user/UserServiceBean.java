@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -33,22 +34,27 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User register(String userId, RegisterRequest request) {
+    public User register(String userId, UserRequest request) {
         User user = userRepository.findOne(userId);
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setDateOfBirth(request.getDateOfBirth());
         user.setMobileNumber(request.getMobileNumber());
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
         return user;
     }
 
     @Override
-    public User signUp(SignUpRequest signUpRequest) {
-        User user = new User();
+    public User signUp(SignUpRequest signUpRequest) throws Exception{
+        User user = userRepository.findByCardNumber(signUpRequest.getCardNumber());
+        if (user != null) {
+            throw new Exception("Card Number is already registered");
+        }
+
+        user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setCardNumber(signUpRequest.getCardNumber());
-        user.setPassword(PasswordUtil.md5(signUpRequest.getPassword()));
+        user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
         user.setRole(RoleEnum.USER);
         userRepository.saveAndFlush(user);
         return user;
@@ -70,7 +76,7 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public User paymentRegistration(RegisterRequest registerRequest) {
+    public User paymentRegistration(UserRequest userRequest) {
         return null;
     }
 
@@ -81,6 +87,17 @@ public class UserServiceBean implements UserService {
         user.setPhotoProfileUrl(photoUrl);
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> users = userRepository.findAll();
+        return users;
+    }
+
+    @Override
+    public User findOne(String userId) {
+        return userRepository.findOne(userId);
     }
 
     private boolean checkCardNumberToIfabula(String cardNumber) {

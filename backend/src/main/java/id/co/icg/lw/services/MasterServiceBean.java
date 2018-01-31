@@ -1,7 +1,7 @@
 package id.co.icg.lw.services;
 
 import id.co.icg.lw.domain.Master;
-import id.co.icg.lw.enums.ReligionEnum;
+import id.co.icg.lw.enums.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,12 +23,47 @@ public class MasterServiceBean implements MasterService {
 
     @Override
     public List<Master> getMartialStatus() {
-        return null;
+        List<Master> martialStatus = new ArrayList<>();
+        List<MartialStatusEnum> enumList = Arrays.asList(MartialStatusEnum.values());
+        for (MartialStatusEnum e : enumList ) {
+            martialStatus.add(new Master(e.getValue(), e.name()));
+        }
+
+        return martialStatus;
+
     }
 
     @Override
     public List<Master> getGender() {
-        return null;
+        List<Master> gender = new ArrayList<>();
+        List<GenderEnum> enumList = Arrays.asList(GenderEnum.values());
+        for (GenderEnum e : enumList ) {
+            gender.add(new Master(e.getValue(), e.name()));
+        }
+
+        return gender;
+    }
+
+    @Override
+    public List<Master> getNationality() {
+        List<Master> nationality = new ArrayList<>();
+        List<NationalityEnum> enumList = Arrays.asList(NationalityEnum.values());
+        for (NationalityEnum e : enumList ) {
+            nationality.add(new Master(e.getValue(), e.name()));
+        }
+
+        return nationality;
+    }
+
+    @Override
+    public List<Master> getCity() {
+        List<Master> city = new ArrayList<>();
+        List<CityEnum> enumList = Arrays.asList(CityEnum.values());
+        for (CityEnum e : enumList ) {
+            city.add(new Master(e.getValue(), e.name()));
+        }
+
+        return city;
     }
 
 }

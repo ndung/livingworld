@@ -1,7 +1,7 @@
 package id.co.icg.lw.enums;
 
 public enum MemberEnum {
-    ADMIN(0), CLIENT(1);
+    GOLD(0), BLUE(1), BLACK(2);
 
     private int value;
 

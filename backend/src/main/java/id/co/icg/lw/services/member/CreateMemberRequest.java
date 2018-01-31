@@ -3,24 +3,24 @@ package id.co.icg.lw.services.member;
 import java.util.Date;
 
 public class CreateMemberRequest {
-    private String firstName;
+    private String fullName;
     private String ktpNo;
     private int religion;
     private int gender;
     private int martialStatus;
-    private Date date;
+    private Date dateOfBirth;
     private int nationality;
     private String address;
     private int city;
     private String zipCode;
     private String homePhone;
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getKtpNo() {
@@ -55,12 +55,12 @@ public class CreateMemberRequest {
         this.martialStatus = martialStatus;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateOfBirth(Date date) {
+        this.dateOfBirth = date;
     }
 
     public int getNationality() {

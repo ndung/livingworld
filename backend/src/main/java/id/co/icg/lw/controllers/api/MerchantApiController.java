@@ -2,8 +2,11 @@ package id.co.icg.lw.controllers.api;
 
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
+import id.co.icg.lw.domain.merchant.Merchant;
+import id.co.icg.lw.domain.merchant.MerchantCategory;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.services.merchant.MerchantCategoryResponse;
+import id.co.icg.lw.services.merchant.MerchantDetailResponse;
 import id.co.icg.lw.services.merchant.MerchantResponse;
 import id.co.icg.lw.services.merchant.MerchantService;
 import id.co.icg.lw.services.message.MessageRequest;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -111,6 +115,7 @@ public class MerchantApiController extends BaseController {
      *       "merchantImage" : "/merchant/images/jco.jpg",
      *       "merchantPhone": "021 - 41231231",
      *       "merchantDescription" : "Lorem Ipsum",
+     *       "merchantLogo" : "/merchant/logo/celebrity_fitness.jpg"
      *       "merchantOfficeHour" : [
      *           {
      *              "day" : 1,
@@ -148,14 +153,14 @@ public class MerchantApiController extends BaseController {
      * @apiSuccess {String} close Jam tutup
      *
      */
-    @RequestMapping("/detail/{merchantId}/detail")
+    @RequestMapping("/{merchantId}/detail")
     public ResponseEntity<Response> getMessageByUser(@RequestHeader(Application.AUTH) String token,
-                                                     @PathVariable("merchantId") int merchantId) {
+                                                     @PathVariable("merchantId") long merchantId) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
 
-        MerchantResponse merchant = merchantService.findOne(merchantId);
+        MerchantDetailResponse merchant = new MerchantDetailResponse(merchantService.findOne(merchantId));
         return getHttpStatus(new Response(merchant));
     }
 }

@@ -53,7 +53,7 @@ public class MessageApiController extends BaseController {
      * @apiSuccess {Date} date YYYY-MM-DD
      *
      */
-    @RequestMapping("")
+    @RequestMapping("/{page}/page")
     public ResponseEntity<Response> getMessageByUser(@RequestHeader(Application.AUTH) String token,
                                                @PathVariable("page") int page) {
         if (!authorize(RoleEnum.USER, token)) {

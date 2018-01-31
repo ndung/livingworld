@@ -1,0 +1,231 @@
+{% extends "layout/form" %}
+
+{% block content %}
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{ title }}
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form action="/merchant/create" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Merchant Name<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="merchant-name" required="required" name="merchantName" value="{{ merchant.merchantName }}"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-category">Merchant Category<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select id="merchant-category" class="form-control" name="merchantCategoryId" required>
+                                <option value="">Choose Category</option>
+                                {% for category in categories%}
+                                    <option value="{{ category.merchantCategoryId }}" {% merchant.merchantCategoryId equal category.merchantCategoryId? 'selected': '' %}>{{ category.merchantCategoryName }}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-image">Merchant Image<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" id="merchant-image" required="required" name="merchantImage"
+                                       class="form-control col-md-7 col-xs-12">
+                                {% if merchant.merchantImage not empty %}
+                                <img src="/files/{{merchant.merchantImage}}" width="200px" height="auto" />
+                                {% endif%}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-logo">Merchant Logo<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" id="merchant-logo" required="required" name="merchantLogo"
+                                       class="form-control col-md-7 col-xs-12">
+                                {% if merchant.merchantLogo not empty %}
+                                <img src="/files/{{merchant.merchantLogo}}" width="200px" height="auto" />
+                                {% endif%}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">Merchant Description</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="description" class="form-control col-md-7 col-xs-12" name="description">
+                                    {{ merchant.merchantDescription }}
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Working Hours</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Sunday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00" value="{{ merchant.merchantOfficeHour.0.startTime }}"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00" value="{{ merchant.merchantOfficeHour.0.endTime }}"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Monday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Tuesday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Wednesday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Thursday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Friday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="merchant-name">Saturday<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text" required="required" name="openingTime" placeholder="07:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <div style="margin-top: 5px;float: left">
+                                <span> - </span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-5">
+                                <input type="text"  required="required" name="closingTime" placeholder="08:00"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-primary" type="button">Cancel</button>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

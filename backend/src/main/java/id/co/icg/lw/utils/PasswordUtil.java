@@ -88,9 +88,34 @@ public class PasswordUtil {
         return true;
     }
 
+    public static String md5Hash(String raw) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+        md.update(raw.getBytes());
+        byte[] bytes = md.digest();
+
+        StringBuffer hexString = new StringBuffer();
+        for (int i = 0; i < bytes.length; i++) {
+            String hex = Integer.toHexString(0xff & bytes[i]);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+
+        return hexString.toString();
+
+    }
+
+
     public static boolean checkPublicKey(String publicKey, String cardNumber, String password) {
-        Date today = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        return publicKey.equals(md5(cardNumber + password + sdf.format(today) + APP_KEY));
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String today = sdf.format(date);
+        String generatedKey = md5Hash(cardNumber + password + today + APP_KEY);
+        return publicKey.equals(generatedKey);
     }
 }

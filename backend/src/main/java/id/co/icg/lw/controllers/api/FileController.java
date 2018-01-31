@@ -26,6 +26,13 @@ public class FileController extends BaseController {
     @Value("${file.location}")
     private String location;
 
+    /**
+     * @api {get} /files/{fileName} Get Images
+     * @apiName Get Image
+     * @apiGroup File
+
+
+     */
     @RequestMapping(value = "/files/{fileName:.+}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImage(@PathVariable("fileName") String fileName) {
         HttpHeaders headers = new HttpHeaders();

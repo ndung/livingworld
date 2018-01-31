@@ -63,6 +63,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} cardNumber
      * @apiParam {String} publicKey Hash md5 dengan ketentuan: md5([cardNumber][md5(password)][Tanggal akses dengan format YYYYMMDD][app-key]). contoh: md5(8877665574EE55083A714AA3791F8D594FEA00C920180118app-key)
      *
+     * @apiSuccess {String} id
      * @apiSuccess {String} fullName
      * @apiSuccess {String} email
      * @apiSuccess {String} mobileNumber
@@ -80,13 +81,14 @@ public class UserApiController extends BaseController{
      *     'cardNumber': '88776655'
      *     'publicKey': '8246EC66759DB8B8F3EF6230911610EE'
      * }
-     * @apiExample {json} Response Berhasil Sign In
+     * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
-     *          "mobileNumber: "08123131313",
-     *          "dateOfBirth" : "1920-01-31"
+     *          "mobileNumber": "08123131313",
+     *          "dateOfBirth" : "1920-01-31",
+     *          "photoProfileUrl" : "/files/filename.jpg"
      *      },
      *      message: null
      * }
@@ -104,7 +106,7 @@ public class UserApiController extends BaseController{
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(true), responseHeaders);
+            return getHttpStatus(new Response(new UserResponse(user)), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -119,6 +121,7 @@ public class UserApiController extends BaseController{
      * @apiParam {String} cardNumber
      * @apiParam {String} password
      *
+     * @apiSuccess {String} id
      * @apiSuccess {String} fullName
      * @apiSuccess {String} email
      * @apiSuccess {String} mobileNumber
@@ -136,13 +139,15 @@ public class UserApiController extends BaseController{
      *     'cardNumber': '888123123'
      *     'password': 'katasandi'
      * }
-     * @apiExample {json} Response Berhasil Sign Up
+     * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
+     *          "id" : "2131231231gaf",
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
-     *          "mobileNumber: "08123131313",
-     *          "dateOfBirth" : "1920-01-31"
+     *          "mobileNumber": "08123131313",
+     *          "dateOfBirth" : "1920-01-31",
+     *          "photoProfileUrl" : "/files/filename.jpg"
      *      },
      *      message: null
      * }
@@ -160,7 +165,7 @@ public class UserApiController extends BaseController{
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(user), responseHeaders);
+            return getHttpStatus(new Response(new UserResponse(user)), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -191,7 +196,7 @@ public class UserApiController extends BaseController{
      *
      * @apiExample {body} Request
      * {
-     *     'firstName': 'Budi',
+     *     'fullName': 'Budi',
      *     'email': 'budi@mail.com',
      *     'mobileNumber': '08123131313',
      *     'dateOfBirth' : '1920-01-31'
@@ -199,10 +204,12 @@ public class UserApiController extends BaseController{
      * @apiExample {json} Response Berhasil Registrasi
      * {
      *      data: {
+     *          "id" : "2131231231gaf",
      *          "fullName" : "Budi",
      *          "email" : "budi@mail.com",
      *          "mobileNumber": "08123131313",
-     *          "dateOfBirth" : "1920-01-31"
+     *          "dateOfBirth" : "1920-01-31",
+     *          "photoProfileUrl" : "/files/filename.jpg"
      *      },
      *      message: null
      * }
@@ -215,14 +222,14 @@ public class UserApiController extends BaseController{
      */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ResponseEntity<Response> registration(@RequestHeader(Application.AUTH) String token,
-                                                 @RequestBody RegisterRequest registerRequest) {
+                                                 @RequestBody UserRequest userRequest) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
         try {
             String userId = getUserId(token);
-            User user = userService.register(userId, registerRequest);
-            return getHttpStatus(new Response(user));
+            User user = userService.register(userId, userRequest);
+            return getHttpStatus(new Response(new UserResponse(user)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -267,9 +274,9 @@ public class UserApiController extends BaseController{
      */
 
     @RequestMapping(value = "/registration/payment", method = RequestMethod.POST)
-    public ResponseEntity<Response> paymentRegistration(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<Response> paymentRegistration(@RequestBody UserRequest userRequest) {
         try {
-            User user = userService.paymentRegistration(registerRequest);
+            User user = userService.paymentRegistration(userRequest);
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
@@ -327,27 +334,34 @@ public class UserApiController extends BaseController{
         try {
             String userId = getUserId(token);
             User user = userService.edit(userId, editUserRequest);
-            return getHttpStatus(new Response(user));
+            return getHttpStatus(new Response(new UserResponse(user)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
     }
 
     /**
-     * @api {put} /user/upload/photo-profile Upload Photo Profile
+     * @api {post} /user/upload/photo-profile Upload Photo Profile
      * @apiName Upload Photo Profile
      * @apiGroup User
      * @apiPermission USER
+     * @apiParam {File} photo Dikirim dengan format MultipartFile
      * @apiHeader {String} Authorization Jika registrasi berhasil, maka akan dibuatkan token yang akan disimpan di header response.
      *                           Token ini digunakan sebagai authentication key untuk mengakses beberapa api.
      * @apiHeaderExample {json} Contoh Response Header
      * {
      *     "Authorization" : "B3CDB813C735BF6D93ED713E1E94D351EF43213A382EB43C64A677F7D43BB0FC"
      * }
-
-     * @apiExample {json} Response Berhasil
+     * @apiExample {json} Response Berhasil Registrasi
      * {
-     *      data: "/image/photo/profile/[file_name].jpg",
+     *      data: {
+     *          "id" : "2131231231gaf",
+     *          "fullName" : "Budi",
+     *          "email" : "budi@mail.com",
+     *          "mobileNumber": "08123131313",
+     *          "dateOfBirth" : "1920-01-31",
+     *          "photoProfileUrl" : "/files/filename.jpg"
+     *      },
      *      message: null
      * }
      * @apiExample {json} Response Gagal
@@ -358,7 +372,7 @@ public class UserApiController extends BaseController{
      */
     @RequestMapping(value = "/upload/photo-profile", method = RequestMethod.POST)
     public ResponseEntity<Response> uploadPhotoProfile(@RequestHeader(Application.AUTH) String token,
-                                                       @RequestBody MultipartFile photo) {
+                                                       @RequestParam("photo") MultipartFile photo) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
