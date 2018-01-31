@@ -10,6 +10,8 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
+    @SerializedName("id")
+    String id;
     @SerializedName("fullName")
     String fullName;
     @SerializedName("email")
@@ -27,6 +29,14 @@ public class User implements Serializable{
     int city;
     int zipCode;
     String homeNumber;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;

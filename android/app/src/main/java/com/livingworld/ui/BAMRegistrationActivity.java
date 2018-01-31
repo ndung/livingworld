@@ -21,8 +21,10 @@ import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.model.Response;
 import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +126,42 @@ public class BAMRegistrationActivity extends BaseActivity {
                 registerMember(nama, ktp, date, address, zipCode, homePhone, idReligion, idGender, idMaterialStatus, idNationality, idCity);
             }
         });
+
+        etBod.setFocusable(false);
+        etBod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                int month = (monthOfYear + 1);
+                                String monthS;
+                                if(month <= 9){
+                                    monthS = "0"+month;
+                                } else {
+                                    monthS = String.valueOf(month);
+                                }
+
+                                int day = dayOfMonth;
+                                String dayS;
+                                if(day <= 9){
+                                    dayS = "0"+day;
+                                } else {
+                                    dayS = String.valueOf(day);
+                                }
+                                String tgl = String.valueOf(year + "-" +monthS+ "-" +dayS);
+                                etBod.setText(tgl);
+                            }
+                        },
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
     }
 
     private void registerMember(String nama, String ktp, String date, String address, String zipCode, String homePhone, String idReligion, String idGender, String idMaterialStatus, String idNationality, String idCity) {
@@ -178,14 +216,18 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    religionMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spReligion.setAdapter(adapter);
+                    try{
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                        religionMasters.addAll(list);
+                        ArrayAdapter<Master> adapter =
+                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
+                        adapter.setDropDownViewResource(R.layout.spinner_item);
+                        spReligion.setAdapter(adapter);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -201,14 +243,18 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    cityMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spCity.setAdapter(adapter);
+                    try{
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                        cityMasters.addAll(list);
+                        ArrayAdapter<Master> adapter =
+                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
+                        adapter.setDropDownViewResource(R.layout.spinner_item);
+                        spCity.setAdapter(adapter);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -224,14 +270,18 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    materialStatusMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spMaterialStatus.setAdapter(adapter);
+                    try{
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                        materialStatusMasters.addAll(list);
+                        ArrayAdapter<Master> adapter =
+                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
+                        adapter.setDropDownViewResource(R.layout.spinner_item);
+                        spMaterialStatus.setAdapter(adapter);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -247,14 +297,18 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    genderMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spGender.setAdapter(adapter);
+                    try{
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                        genderMasters.addAll(list);
+                        ArrayAdapter<Master> adapter =
+                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
+                        adapter.setDropDownViewResource(R.layout.spinner_item);
+                        spGender.setAdapter(adapter);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -270,14 +324,18 @@ public class BAMRegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    nationalityMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spNationality.setAdapter(adapter);
+                    try{
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
+                        nationalityMasters.addAll(list);
+                        ArrayAdapter<Master> adapter =
+                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
+                        adapter.setDropDownViewResource(R.layout.spinner_item);
+                        spNationality.setAdapter(adapter);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 

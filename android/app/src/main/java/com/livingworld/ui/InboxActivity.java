@@ -33,7 +33,7 @@ public class InboxActivity extends BaseActivity {
     InboxService inboxService;
     List<Inbox> list = new ArrayList<>();
     boolean loading = false;
-    private int PAGE = 0;
+    private int PAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

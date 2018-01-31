@@ -14,6 +14,7 @@ public class Static {
 //    public final static String BASE_URL = "http://49.128.182.148"+IP+APPS;
     public final static String BASE_URL = "http://49.128.182.148:8085/lw/api/v1/";
 
+    public final static String DIR_IMAGE = "Living World";
     public final static String DIALOG_PLEASEWAIT_TITLE = "Loading...";
     public final static String REQUIRED = "  Can't Empty !";
     public final static String SOMETHING_WRONG = "Failed request, check your connection";

@@ -28,7 +28,9 @@ public class BaseActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         context = this;
         materialDialogPleasewait = new MaterialDialog.Builder(BaseActivity.this)
-                .content(Static.DIALOG_PLEASEWAIT_TITLE).build();
+                .content(Static.DIALOG_PLEASEWAIT_TITLE)
+                .progress(true, 0)
+                .build();
     }
 
     public void showMessage(String message){

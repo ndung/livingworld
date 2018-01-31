@@ -75,7 +75,8 @@
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Your Name" />
+                    android:hint="Enter Your Name"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 
@@ -94,7 +95,8 @@
                     android:id="@+id/et_ktp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your ID number" />
+                    android:hint="Enter your ID number"
+                    android:inputType="number" />
 
             </LinearLayout>
 
@@ -171,8 +173,9 @@
                     android:id="@+id/et_bod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_calendaar"
                     android:hint="Enter your birth of date"
-                    android:drawableRight="@drawable/ic_calendaar"/>
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 
@@ -211,7 +214,9 @@
                     android:id="@+id/et_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your address" />
+                    android:gravity="top"
+                    android:hint="Enter your address"
+                    android:minLines="4" />
 
             </LinearLayout>
 
@@ -257,7 +262,8 @@
                         android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your address" />
+                        android:hint="Enter your address"
+                        android:inputType="number" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -279,7 +285,8 @@
                     android:id="@+id/et_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your home phone" />
+                    android:hint="Enter your home phone"
+                    android:inputType="phone" />
 
             </LinearLayout>
 
