@@ -27,4 +27,6 @@ public interface ECashApiService {
     @POST("NonTransactionManager/getRegisterTicket")
     Call<BalanceInquiryResponse> getBalanceInquiry(@Field("msisdn") String msisdn, @Field("accountId") String accountId, @Field("token") String token);
 
+    
+
 }

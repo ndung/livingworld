@@ -20,9 +20,9 @@ public class EcashApiController extends BaseController{
     private ECashService eCashService;
 
     /**
-     * @api {get} /e-cash/token
+     * @api {get} /e-cash/token Get Token
      * @apiName Get Token
-     * @apiGroup E-Cash
+     * @apiGroup ECash
      *
      * @apiHeader {String} Authorization Token hasil generate dari Sign In ditambahkan di header
      * @apiHeaderExample {json} Contoh Token Header
@@ -55,11 +55,11 @@ public class EcashApiController extends BaseController{
     }
 
     /**
-     * @api {POST} /e-cash/logout
+     * @api {POST} /e-cash/logout Logout
      * @apiName Logout
-     * @apiGroup E-Cash
+     * @apiGroup ECash
      *
-     * @apiDescription Logutut ecash
+     * @apiDescription Logout ecash
      *
      * @apiParam {String} Token Nilai token diperoleh dari /e-cash/token
      *
@@ -84,7 +84,7 @@ public class EcashApiController extends BaseController{
      *
      */
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ResponseEntity<Response> getDetail(@RequestHeader(Application.AUTH) String token,
+    public ResponseEntity<Response> logout(@RequestHeader(Application.AUTH) String token,
                                               @RequestBody String ecashToken) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
@@ -99,9 +99,10 @@ public class EcashApiController extends BaseController{
     }
 
     /**
-     * @api {POST} /e-cash/logout
-     * @apiName Close merchant session
-     * @apiGroup E-Cash
+     * @api {POST} /e-cash/validate Account Validation
+     * @apiName Account Validation
+     * @apiDescription Validasi apakah user sudah terdaftar dengan e-cash atau belum
+     * @apiGroup ECash
      *
      * @apiDescription Logout
      *
@@ -112,7 +113,7 @@ public class EcashApiController extends BaseController{
      * {
      *     "Authorization" : "6hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk56hka2osxj73f9s8jc3ertqf43k8xq2xsypvk"
      * }
-     *
+     * @apiParam {String} Token Nilai token diperoleh dari /e-cash/token
      * @apiExample {json} Request
      * {
      *      esr5656hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk
@@ -128,7 +129,7 @@ public class EcashApiController extends BaseController{
      *
      */
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
-    public ResponseEntity<Response> lo(@RequestHeader(Application.AUTH) String token,
+    public ResponseEntity<Response> validate(@RequestHeader(Application.AUTH) String token,
                                               @RequestBody String ecashToken) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
@@ -137,6 +138,47 @@ public class EcashApiController extends BaseController{
         try {
             String userId = getUserId(token);
             return getHttpStatus(new Response(eCashService.validate(userId, ecashToken)));
+        } catch (Exception e) {
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+    /**
+     * @api {POST} /e-cash/ticket Request Ticket
+     * @apiName Request Ticket
+     * @apiGroup ECash
+     *
+     * @apiHeader {String} Authorization Token hasil generate dari Sign In ditambahkan di header
+     * @apiHeaderExample {json} Contoh Token Header
+     * {
+     *     "Authorization" : "6hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk56hka2osxj73f9s8jc3ertqf43k8xq2xsypvk"
+     * }
+     * @apiParam {String} Token Nilai token diperoleh dari /e-cash/token
+     * @apiExample {json} Request
+     * {
+     *      esr5656hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk
+     * }
+     * @apiExample {json} Response
+     * {
+     *
+     *   data : {
+     *      "token" : "esr5656hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk",
+     *      "status" : "PROCESSED"
+     *      },
+     *   message: null
+     *
+     * }
+     *
+     */
+    @RequestMapping(value = "/ticket", method = RequestMethod.POST)
+    public ResponseEntity<Response> getTicket(@RequestHeader(Application.AUTH) String token,
+                                              @RequestBody String ecashToken) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+        try {
+            String userId = getUserId(token);
+            return getHttpStatus(new Response(eCashService.getTicket(userId, ecashToken)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }

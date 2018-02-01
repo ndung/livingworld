@@ -80,7 +80,7 @@ public class ECashServiceBean implements ECashService {
     }
 
     @Override
-    public TicketResponse requestTicket(String userId, String token) throws Exception{
+    public TicketResponse getTicket(String userId, String token) throws Exception{
         User user = userService.findOne(userId);
         if (user.getMobileNumber() == null || user.getMobileNumber().isEmpty()) {
             throw new Exception("Mobile number is required");
