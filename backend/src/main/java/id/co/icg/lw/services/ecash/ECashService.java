@@ -10,7 +10,7 @@ public interface ECashService {
 
     ValidateResponse validate(String userId, String token) throws Exception;
 
-    TicketResponse requestTicket(String userId, String token) throws Exception;
+    TicketResponse getTicket(String userId, String token) throws Exception;
 
     BalanceInquiryResponse getBalanceInquiry(String userId, String token) throws Exception;
 
