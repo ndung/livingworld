@@ -12,5 +12,5 @@ debug: false
 file:
   location : /home/alif/livingworld/images/
 
-
+publicKey: /home/alif/livingworld/key/public_key.der
 

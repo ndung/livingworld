@@ -23,6 +23,8 @@ public class User {
     private Date dateOfBirth;
     private String photoProfileUrl;
 
+    private String ecashId;
+
     @NotNull
     @Column(unique = true)
     private String cardNumber;
@@ -151,5 +153,13 @@ public class User {
 
     public void setPhotoProfileUrl(String photoProfileUrl) {
         this.photoProfileUrl = photoProfileUrl;
+    }
+
+    public String getEcashId() {
+        return ecashId;
+    }
+
+    public void setEcashId(String ecashId) {
+        this.ecashId = ecashId;
     }
 }
