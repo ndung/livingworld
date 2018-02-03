@@ -15,6 +15,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     private String id;
 
     private String fullName;
@@ -40,7 +41,7 @@ public class User {
     private Date updateAt;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<Role>();
 
     public List<Role> getRoles() {

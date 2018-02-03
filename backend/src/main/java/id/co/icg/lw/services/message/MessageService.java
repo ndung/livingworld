@@ -1,14 +1,15 @@
 package id.co.icg.lw.services.message;
 
-import id.co.icg.lw.domain.LwMessage;
-import id.co.icg.lw.domain.user.User;
+import id.co.icg.lw.domain.Message;
 
 import java.util.List;
 
 public interface MessageService {
-    List<MessageRequest> getMessages(int page);
-    List<MessageRequest> getMessagesByUser(int page, String userId);
-    boolean saveMessageFromUser(String userId, SendMessageRequest sendMessageRequest);
-    MessageRequest createMessage(MessageRequest messageRequest);
+    List<Message> getMessages(int page) throws Exception;
+    List<MessageResponse> getMessagesByUser(int page, String userId) throws Exception;
+    List<MessageResponse> getGlobalMessages(int page) throws Exception;
+    boolean saveMessageFromUser(String userId, SendMessageRequest sendMessageRequest) throws Exception;
+    MessageRequest createMessage(MessageRequest messageRequest) throws Exception;
+
 
 }
