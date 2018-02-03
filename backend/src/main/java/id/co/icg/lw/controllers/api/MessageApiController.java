@@ -4,6 +4,7 @@ import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.services.message.MessageRequest;
+import id.co.icg.lw.services.message.MessageResponse;
 import id.co.icg.lw.services.message.MessageService;
 import id.co.icg.lw.services.message.SendMessageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +62,15 @@ public class MessageApiController extends BaseController {
         }
 
         String userId = getUserId(token);
-        List<MessageRequest> messageRequests = messageService.getMessagesByUser(page, userId);
-        return getHttpStatus(new Response(messageRequests));
+        List<MessageResponse> messageRequests = null;
+        String message;
+        try {
+            messageRequests = messageService.getMessagesByUser(page, userId);
+            message = "Success";
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+        return getHttpStatus(new Response(messageRequests, message));
     }
 
     /**
@@ -105,7 +113,12 @@ public class MessageApiController extends BaseController {
         }
 
         String userId = getUserId(token);
-        boolean status = messageService.saveMessageFromUser(userId, sendMessageRequest);
+        boolean status = false;
+        try {
+            status = messageService.saveMessageFromUser(userId, sendMessageRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return getHttpStatus(new Response(status));
     }
 }

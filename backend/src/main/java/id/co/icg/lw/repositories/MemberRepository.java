@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    Member findByUser(User uesr);
+    Member findByUser(User user);
 }

@@ -1,12 +1,14 @@
 package id.co.icg.lw.services.message;
 
-import id.co.icg.lw.domain.LwMessage;
+import id.co.icg.lw.domain.Message;
 
 import java.util.Date;
 
 public class MessageRequest {
     private String title;
     private String message;
+    private String receiverId;
+    private String senderId;
     private Date date;
 
     public MessageRequest(String title, String message, Date date) {
@@ -15,7 +17,7 @@ public class MessageRequest {
         this.date = date;
     }
 
-    public MessageRequest(LwMessage lwMessage) {
+    public MessageRequest(Message message) {
 
     }
 
@@ -45,5 +47,13 @@ public class MessageRequest {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 }
