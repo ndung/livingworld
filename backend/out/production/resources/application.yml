@@ -6,7 +6,7 @@ spring:
     hibernate:
       ddl-auto: update
   profiles:
-    active: dev
+    active: stage
 
 jwt:
   secret: uk_gex1lmaqpg0ir5g1f5eftyaa1
@@ -14,6 +14,16 @@ jwt:
 
 resources:
    static-locations: file:src/main/resources/static/
+
+eCash:
+  username: livingworld
+  password: pass123456
+  url: https://api.mandiri-ecash.com/eCashHost
+  apiKey: 56c4382d6873f46e7d000001959410aa05204e724cbd842ac3926b47
+  urlWebRegister: http://188.166.220.62
+
+
+pageSize : 10
 
 
 
