@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
 import com.livingworld.adapter.InboxAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.inbox.InboxService;
 import com.livingworld.clients.inbox.model.Inbox;
+import com.livingworld.clients.master.model.Master;
 import com.livingworld.clients.model.Response;
 import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
@@ -34,6 +36,7 @@ public class InboxActivity extends BaseActivity {
     List<Inbox> list = new ArrayList<>();
     boolean loading = false;
     private int PAGE = 1;
+    InboxAdapter inboxAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,10 @@ public class InboxActivity extends BaseActivity {
                 if (response.isSuccessful()){
                     Response body = response.body();
                     if(body.getData() != null){
-                        list.addAll((List<Inbox>) body.getData());
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(body).getAsJsonObject();
+                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {}.getType());
+                        list.addAll(listBody);
                         initAdapter();
                         loading = false;
                     }
@@ -72,8 +78,36 @@ public class InboxActivity extends BaseActivity {
         });
     }
 
+    private void pagging() {
+        inboxService.getMessage("message/"+PAGE+"/page").enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                dissmissPleasewaitDialog();
+                if (response.isSuccessful()){
+                    Response body = response.body();
+                    if(body.getData() != null){
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(body).getAsJsonObject();
+                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {}.getType());
+                        list.addAll(listBody);
+                        inboxAdapter.notifyDataSetChanged();
+                        loading = false;
+                    }
+                }else{
+                    showMessage(Static.SOMETHING_WRONG);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                dissmissPleasewaitDialog();
+                showMessage(Static.SOMETHING_WRONG);
+            }
+        });
+    }
+
     private void initAdapter() {
-        InboxAdapter inboxAdapter = new InboxAdapter(list, new InboxAdapter.OnItemClickListener() {
+        inboxAdapter = new InboxAdapter(list, new InboxAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Inbox model) {
                 Intent intent = new Intent(getApplicationContext(), InboxDetailActivity.class);
@@ -102,7 +136,7 @@ public class InboxActivity extends BaseActivity {
                         {
                             loading = true;
                             PAGE = PAGE + 1;
-                            getMessage();
+                            pagging();
                         }
                     }
                 }

@@ -1,14 +1,11 @@
 package com.livingworld.clients.merchant.model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Dizzay on 1/19/2018.
  */
 
 public class Merchant {
 
-    @SerializedName("merchantCategoryId")
     private String merchantId;
     private String merchantName;
     private String merchantLogo;
