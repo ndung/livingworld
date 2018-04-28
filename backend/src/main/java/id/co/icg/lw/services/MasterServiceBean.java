@@ -3,6 +3,7 @@ package id.co.icg.lw.services;
 import id.co.icg.lw.domain.master.Master;
 import id.co.icg.lw.domain.master.MemberType;
 import id.co.icg.lw.enums.*;
+import id.co.icg.lw.services.livingWorld.LivingWorldApiServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class MasterServiceBean implements MasterService {
 
 
     @Autowired
-    private LivingWorldApiService lwComponent;
+    private LivingWorldApiServiceImpl lwComponent;
 
     @Override
     public List<MemberType> getMemberTypes() {

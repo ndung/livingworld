@@ -1,4 +1,4 @@
-package id.co.icg.lw.services.ecash.mandiriApi;
+package id.co.icg.lw.services.ecash;
 
 public class BalanceInquiryResponse {
     private String accountBalance;

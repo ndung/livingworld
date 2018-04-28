@@ -1,4 +1,4 @@
-package id.co.icg.lw.services;
+package id.co.icg.lw.services.livingWorld;
 
 import id.co.icg.lw.api.livingWorld.LivingWorldApi;
 import id.co.icg.lw.component.RetrofitClient;
@@ -14,61 +14,76 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 @Component
-public class LivingWorldApiService extends RetrofitClient<LivingWorldApi> {
+public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> implements LivingWorldApiService {
 
     @Autowired
-    public LivingWorldApiService(@Value("${iFabula.url}") String baseUrl) {
+    public LivingWorldApiServiceImpl(@Value("${iFabula.url}") String baseUrl) {
         super(baseUrl, LivingWorldApi.class);
     }
 
+    @Override
     public Object getMemberType() throws Exception {
         return getMasterData("member_type");
     }
 
+    @Override
     public Object getReligion() throws Exception {
         return getMasterData("religion");
     }
 
+    @Override
     public Object gender() throws Exception {
         return getMasterData("gender");
     }
 
+    @Override
     public Object getMartialStatus() throws Exception {
         return getMasterData("martial_status");
     }
 
+    @Override
     public Object getNationality() throws Exception {
         return getMasterData("nationality");
     }
 
+    @Override
     public Object getCity() throws Exception {
         return getMasterData("city");
     }
 
+    @Override
     public Object getMerchantCategory() throws Exception {
         return getMasterData("merchant_categories");
     }
 
+    @Override
     public Object getMerchant() throws Exception {
         return getMasterData("merchants");
     }
 
+    @Override
     public Object getSourceOfFunds() throws Exception {
         return getMasterData("sof");
     }
 
+    @Override
     public Object getTransactionHistory(String cardNumber) throws Exception {
         return getTransactionData("history", cardNumber);
     }
 
+    @Override
     public Object getLuckyDraw(String cardNumber) throws Exception {
         return getTransactionData("luckyDraws", cardNumber);
     }
 
     public Object getMember(String cardNumber) throws Exception {
-        return getMember("read", cardNumber);
+        Call<IFabulaResponse> callSync = service.getMember(cardNumber);
+        Response<IFabulaResponse> response = callSync.execute();
+        IFabulaResponse iFabulaResponse = response.body();
+        return iFabulaResponse.getList();
     }
 
+    @Override
     public String createMember(CreateMemberRequest request) throws Exception{
         Call<CreateMemberResponse> callSync = service.createMember(request);
         Response<CreateMemberResponse> response = callSync.execute();
@@ -76,6 +91,7 @@ public class LivingWorldApiService extends RetrofitClient<LivingWorldApi> {
         return iFabulaResponse.getCardNumber();
     }
 
+    @Override
     public boolean updateMember(UpdateMemberRequest request) throws Exception {
         Call<UpdateMemberResponse> callSync = service.updateMember(request);
         Response<UpdateMemberResponse> response = callSync.execute();
@@ -100,13 +116,6 @@ public class LivingWorldApiService extends RetrofitClient<LivingWorldApi> {
 
     private Object getTransactionData(String type, String cardNumber) throws Exception{
         Call<IFabulaResponse> callSync = service.getTransaction(type, cardNumber);
-        Response<IFabulaResponse> response = callSync.execute();
-        IFabulaResponse iFabulaResponse = response.body();
-        return iFabulaResponse.getList();
-    }
-
-    private Object getMember(String type, String cardNumber) throws Exception {
-        Call<IFabulaResponse> callSync = service.getMember(type, cardNumber);
         Response<IFabulaResponse> response = callSync.execute();
         IFabulaResponse iFabulaResponse = response.body();
         return iFabulaResponse.getList();

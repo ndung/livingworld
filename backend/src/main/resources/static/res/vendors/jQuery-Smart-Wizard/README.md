@@ -206,7 +206,7 @@ $(document).ready(function(){
     // Your Step validation logic
     function validateSteps(stepnumber){
         var isStepValid = true;
-        // validate step 1
+        validateAccount
         if(stepnumber == 1){
             // Your step validation logic
             // set isStepValid = false if has errors

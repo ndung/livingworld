@@ -3,7 +3,7 @@ package id.co.icg.lw.controllers.api;
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
 import id.co.icg.lw.enums.RoleEnum;
-import id.co.icg.lw.services.ecash.ECashService;
+import id.co.icg.lw.services.ecash.EcashApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EcashApiController extends BaseController{
 
     @Autowired
-    private ECashService eCashService;
+    private EcashApiService ecashApiService;
 
     /**
      * @api {get} /e-cash/token Get Token
@@ -48,7 +48,7 @@ public class EcashApiController extends BaseController{
             return FORBIDDEN;
         }
         try {
-            return getHttpStatus(new Response(eCashService.login()));
+            return getHttpStatus(new Response(ecashApiService.login()));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -92,14 +92,14 @@ public class EcashApiController extends BaseController{
 
         try {
             String userId = getUserId(token);
-            return getHttpStatus(new Response(eCashService.logout(ecashToken)));
+            return getHttpStatus(new Response(ecashApiService.logout(ecashToken)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
     }
 
     /**
-     * @api {POST} /e-cash/validate Account Validation
+     * @api {POST} /e-cash/validateAccount Account Validation
      * @apiName Account Validation
      * @apiDescription Validasi apakah user sudah terdaftar dengan e-cash atau belum
      * @apiGroup ECash
@@ -137,7 +137,7 @@ public class EcashApiController extends BaseController{
 
         try {
             String userId = getUserId(token);
-            return getHttpStatus(new Response(eCashService.validate(userId, ecashToken)));
+            return getHttpStatus(new Response(ecashApiService.validate(userId, ecashToken)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -178,7 +178,7 @@ public class EcashApiController extends BaseController{
         }
         try {
             String userId = getUserId(token);
-            return getHttpStatus(new Response(eCashService.getTicket(userId, ecashToken)));
+            return getHttpStatus(new Response(ecashApiService.getTicket(userId, ecashToken)));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }

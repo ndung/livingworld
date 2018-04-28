@@ -1,8 +1,6 @@
 package id.co.icg.lw.services.ecash;
 
-import id.co.icg.lw.services.ecash.mandiriApi.*;
-
-public interface ECashService {
+public interface EcashApiService {
 
     LoginResponse login() throws Exception;
 

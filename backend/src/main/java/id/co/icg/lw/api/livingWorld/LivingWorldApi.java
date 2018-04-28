@@ -25,8 +25,8 @@ public interface LivingWorldApi {
     @POST("transaction?type=redeem_points")
     Call<RedeemPointResponse> redeemPoints(@Body RedeemPointRequest body);
 
-    @GET("member")
-    Call<IFabulaResponse> getMember(@Query("type") String type, @Query("card_number") String cardNumber);
+    @GET("member?type=read")
+    Call<IFabulaResponse> getMember(@Query("card_number") String cardNumber);
 
     @POST("member?type=create")
     Call<CreateMemberResponse> createMember(@Body CreateMemberRequest body);
