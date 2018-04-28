@@ -887,7 +887,7 @@ require.register("interfaces/bdd.js", function(module, exports, require){
 
 var Suite = require('../suite')
   , Test = require('../test')
-  , utils = require('../utils');
+  , utils = require('../component');
 
 /**
  * BDD-style interface:
@@ -1101,7 +1101,7 @@ require.register("interfaces/qunit.js", function(module, exports, require){
 
 var Suite = require('../suite')
   , Test = require('../test')
-  , utils = require('../utils');
+  , utils = require('../component');
 
 /**
  * QUnit-style interface:
@@ -1227,7 +1227,7 @@ require.register("interfaces/tdd.js", function(module, exports, require){
 
 var Suite = require('../suite')
   , Test = require('../test')
-  , utils = require('../utils');;
+  , utils = require('../component');;
 
 /**
  * TDD-style interface:
@@ -1373,7 +1373,7 @@ require.register("mocha.js", function(module, exports, require){
  */
 
 var path = require('browser/path')
-  , utils = require('./utils');
+  , utils = require('./component');
 
 /**
  * Expose `Mocha`.
@@ -1856,7 +1856,7 @@ require.register("reporters/base.js", function(module, exports, require){
 var tty = require('browser/tty')
   , diff = require('browser/diff')
   , ms = require('../ms')
-  , utils = require('../utils');
+  , utils = require('../component');
 
 /**
  * Save timer references to avoid Sinon interfering (see GH-237).
@@ -2365,7 +2365,7 @@ require.register("reporters/doc.js", function(module, exports, require){
  */
 
 var Base = require('./base')
-  , utils = require('../utils');
+  , utils = require('../component');
 
 /**
  * Expose `Doc`.
@@ -2548,7 +2548,7 @@ require.register("reporters/html.js", function(module, exports, require){
  */
 
 var Base = require('./base')
-  , utils = require('../utils')
+  , utils = require('../component')
   , Progress = require('../browser/progress')
   , escape = utils.escape;
 
@@ -3317,7 +3317,7 @@ require.register("reporters/markdown.js", function(module, exports, require){
  */
 
 var Base = require('./base')
-  , utils = require('../utils');
+  , utils = require('../component');
 
 /**
  * Expose `Markdown`.
@@ -3988,7 +3988,7 @@ require.register("reporters/xunit.js", function(module, exports, require){
  */
 
 var Base = require('./base')
-  , utils = require('../utils')
+  , utils = require('../component')
   , escape = utils.escape;
 
 /**
@@ -4351,7 +4351,7 @@ require.register("runner.js", function(module, exports, require){
 var EventEmitter = require('browser/events').EventEmitter
   , debug = require('browser/debug')('mocha:runner')
   , Test = require('./test')
-  , utils = require('./utils')
+  , utils = require('./component')
   , filter = utils.filter
   , keys = utils.keys;
 
@@ -5021,7 +5021,7 @@ require.register("suite.js", function(module, exports, require){
 var EventEmitter = require('browser/events').EventEmitter
   , debug = require('browser/debug')('mocha:suite')
   , milliseconds = require('./ms')
-  , utils = require('./utils')
+  , utils = require('./component')
   , Hook = require('./hook');
 
 /**
@@ -5657,7 +5657,7 @@ exports.highlightTags = function(name) {
   }
 };
 
-}); // module: utils.js
+}); // module: component.js
 // The global object is "self" in Web Workers.
 global = (function() { return this; })();
 

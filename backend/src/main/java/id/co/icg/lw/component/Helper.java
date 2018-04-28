@@ -1,4 +1,4 @@
-package id.co.icg.lw.utils;
+package id.co.icg.lw.component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

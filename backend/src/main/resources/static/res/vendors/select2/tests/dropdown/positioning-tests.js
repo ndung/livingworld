@@ -14,7 +14,7 @@ test('appends to the dropdown parent', function (assert) {
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
 
-    var Utils = require('select2/utils');
+    var Utils = require('select2/component');
     var Options = require('select2/options');
 
     var Dropdown = require('select2/dropdown');
@@ -76,7 +76,7 @@ test('dropdown is positioned down with static margins', function (assert) {
     $parent.appendTo($('#qunit-fixture'));
     $container.appendTo($parent);
 
-    var Utils = require('select2/utils');
+    var Utils = require('select2/component');
     var Options = require('select2/options');
 
     var Dropdown = require('select2/dropdown');
@@ -134,7 +134,7 @@ test('dropdown is positioned down with absolute offsets', function (assert) {
     $parent.appendTo($('#qunit-fixture'));
     $container.appendTo($parent);
 
-    var Utils = require('select2/utils');
+    var Utils = require('select2/component');
     var Options = require('select2/options');
 
     var Dropdown = require('select2/dropdown');

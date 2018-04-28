@@ -4,7 +4,7 @@ var MaximumSelectionLength = require('select2/data/maximumSelectionLength');
 
 var $ = require('jquery');
 var Options = require('select2/options');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 function MaximumSelectionStub () {
   this.called = false;

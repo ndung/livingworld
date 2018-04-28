@@ -2,7 +2,7 @@ basePath: http://localhost:7000
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/living_world
-    username: devDB
+    username: alif
     password: katasandi
     driver-class-name: com.mysql.jdbc.Driver
 debug: true

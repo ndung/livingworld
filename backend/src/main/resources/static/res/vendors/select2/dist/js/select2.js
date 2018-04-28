@@ -759,7 +759,7 @@ S2.define('select2/utils',[
 
 S2.define('select2/results',[
   'jquery',
-  './utils'
+  './component'
 ], function ($, Utils) {
   function Results ($element, options, dataAdapter) {
     this.$element = $element;
@@ -1309,7 +1309,7 @@ S2.define('select2/keys',[
 
 S2.define('select2/selection/base',[
   'jquery',
-  '../utils',
+  '../component',
   '../keys'
 ], function ($, Utils, KEYS) {
   function BaseSelection ($element, options) {
@@ -1469,7 +1469,7 @@ S2.define('select2/selection/base',[
 S2.define('select2/selection/single',[
   'jquery',
   './base',
-  '../utils',
+  '../component',
   '../keys'
 ], function ($, BaseSelection, Utils, KEYS) {
   function SingleSelection () {
@@ -1569,7 +1569,7 @@ S2.define('select2/selection/single',[
 S2.define('select2/selection/multiple',[
   'jquery',
   './base',
-  '../utils'
+  '../component'
 ], function ($, BaseSelection, Utils) {
   function MultipleSelection ($element, options) {
     MultipleSelection.__super__.constructor.apply(this, arguments);
@@ -1677,7 +1677,7 @@ S2.define('select2/selection/multiple',[
 });
 
 S2.define('select2/selection/placeholder',[
-  '../utils'
+  '../component'
 ], function (Utils) {
   function Placeholder (decorated, $element, options) {
     this.placeholder = this.normalizePlaceholder(options.get('placeholder'));
@@ -1826,7 +1826,7 @@ S2.define('select2/selection/allowClear',[
 
 S2.define('select2/selection/search',[
   'jquery',
-  '../utils',
+  '../component',
   '../keys'
 ], function ($, Utils, KEYS) {
   function Search (decorated, $element, options) {
@@ -2979,7 +2979,7 @@ S2.define('select2/diacritics',[
 });
 
 S2.define('select2/data/base',[
-  '../utils'
+  '../component'
 ], function (Utils) {
   function BaseAdapter ($element, options) {
     BaseAdapter.__super__.constructor.call(this);
@@ -3021,7 +3021,7 @@ S2.define('select2/data/base',[
 
 S2.define('select2/data/select',[
   './base',
-  '../utils',
+  '../component',
   'jquery'
 ], function (BaseAdapter, Utils, $) {
   function SelectAdapter ($element, options) {
@@ -3307,7 +3307,7 @@ S2.define('select2/data/select',[
 
 S2.define('select2/data/array',[
   './select',
-  '../utils',
+  '../component',
   'jquery'
 ], function (SelectAdapter, Utils, $) {
   function ArrayAdapter ($element, options) {
@@ -3387,7 +3387,7 @@ S2.define('select2/data/array',[
 
 S2.define('select2/data/ajax',[
   './array',
-  '../utils',
+  '../component',
   'jquery'
 ], function (ArrayAdapter, Utils, $) {
   function AjaxAdapter ($element, options) {
@@ -3835,7 +3835,7 @@ S2.define('select2/data/maximumSelectionLength',[
 
 S2.define('select2/dropdown',[
   'jquery',
-  './utils'
+  './component'
 ], function ($, Utils) {
   function Dropdown ($element, options) {
     this.$element = $element;
@@ -3878,7 +3878,7 @@ S2.define('select2/dropdown',[
 
 S2.define('select2/dropdown/search',[
   'jquery',
-  '../utils'
+  '../component'
 ], function ($, Utils) {
   function Search () { }
 
@@ -4113,7 +4113,7 @@ S2.define('select2/dropdown/infiniteScroll',[
 
 S2.define('select2/dropdown/attachBody',[
   'jquery',
-  '../utils'
+  '../component'
 ], function ($, Utils) {
   function AttachBody (decorated, $element, options) {
     this.$dropdownParent = options.get('dropdownParent') || $(document.body);
@@ -4519,7 +4519,7 @@ S2.define('select2/defaults',[
   './selection/search',
   './selection/eventRelay',
 
-  './utils',
+  './component',
   './translation',
   './diacritics',
 
@@ -4907,7 +4907,7 @@ S2.define('select2/options',[
   'require',
   'jquery',
   './defaults',
-  './utils'
+  './component'
 ], function (require, $, Defaults, Utils) {
   function Options (options, $element) {
     this.options = options;
@@ -5029,7 +5029,7 @@ S2.define('select2/options',[
 S2.define('select2/core',[
   'jquery',
   './options',
-  './utils',
+  './component',
   './keys'
 ], function ($, Options, Utils, KEYS) {
   var Select2 = function ($element, options) {

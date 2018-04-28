@@ -437,7 +437,7 @@ Context.prototype.inspect = function() {
  */
 
 var Runnable = require('./runnable');
-var inherits = require('./utils').inherits;
+var inherits = require('./component').inherits;
 
 /**
  * Expose `Hook`.
@@ -955,7 +955,7 @@ module.exports = function(suite) {
 var escapeRe = require('escape-string-regexp');
 var path = require('path');
 var reporters = require('./reporters');
-var utils = require('./utils');
+var utils = require('./component');
 
 /**
  * Expose `Mocha`.
@@ -1587,7 +1587,7 @@ function Pending(message) {
 var tty = require('tty');
 var diff = require('diff');
 var ms = require('../ms');
-var utils = require('../utils');
+var utils = require('../component');
 var supportsColor = process.browser ? null : require('supports-color');
 
 /**
@@ -2075,7 +2075,7 @@ function sameType(a, b) {
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../component');
 
 /**
  * Expose `Doc`.
@@ -2140,7 +2140,7 @@ function Doc(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 var color = Base.color;
 
 /**
@@ -2272,7 +2272,7 @@ function coverageClass(coveragePctg) {
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../component');
 var Progress = require('../browser/progress');
 var escapeRe = require('escape-string-regexp');
 var escape = utils.escape;
@@ -2931,7 +2931,7 @@ function errorJSON(err) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 var cursor = Base.cursor;
 var color = Base.color;
 
@@ -3027,7 +3027,7 @@ inherits(Landing, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3092,7 +3092,7 @@ inherits(List, Base);
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../component');
 
 /**
  * Constants
@@ -3193,7 +3193,7 @@ function Markdown(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 
 /**
  * Expose `Min`.
@@ -3233,7 +3233,7 @@ inherits(Min, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 
 /**
  * Expose `Dot`.
@@ -3498,7 +3498,7 @@ function write(string) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3590,7 +3590,7 @@ inherits(Progress, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../component').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3746,7 +3746,7 @@ function title(test) {
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../component');
 var inherits = utils.inherits;
 var fs = require('fs');
 var escape = utils.escape;
@@ -3922,7 +3922,7 @@ var EventEmitter = require('events').EventEmitter;
 var Pending = require('./pending');
 var debug = require('debug')('mocha:runnable');
 var milliseconds = require('./ms');
-var utils = require('./utils');
+var utils = require('./component');
 var inherits = utils.inherits;
 
 /**
@@ -4244,7 +4244,7 @@ Runnable.prototype.run = function(fn) {
 
 var EventEmitter = require('events').EventEmitter;
 var Pending = require('./pending');
-var utils = require('./utils');
+var utils = require('./component');
 var inherits = utils.inherits;
 var debug = require('debug')('mocha:runner');
 var Runnable = require('./runnable');
@@ -5087,7 +5087,7 @@ function extraGlobals() {
 
 var EventEmitter = require('events').EventEmitter;
 var Hook = require('./hook');
-var utils = require('./utils');
+var utils = require('./component');
 var inherits = utils.inherits;
 var debug = require('debug')('mocha:suite');
 var milliseconds = require('./ms');
@@ -5453,7 +5453,7 @@ Suite.prototype.run = function run() {
  */
 
 var Runnable = require('./runnable');
-var inherits = require('./utils').inherits;
+var inherits = require('./component').inherits;
 
 /**
  * Expose `Test`.

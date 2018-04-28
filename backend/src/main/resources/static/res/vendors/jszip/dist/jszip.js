@@ -182,7 +182,7 @@ exports.DEFLATE = require('./flate');
 },{"./flate":9}],5:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils');
+var utils = require('./component');
 
 var table = [
     0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
@@ -285,7 +285,7 @@ module.exports = function crc32(input, crc) {
 
 },{"./utils":22}],6:[function(require,module,exports){
 'use strict';
-var utils = require('./utils');
+var utils = require('./component');
 
 function DataReader(data) {
     this.data = null; // type : see implementation
@@ -408,7 +408,7 @@ exports.dosPermissions = null;
 
 },{}],8:[function(require,module,exports){
 'use strict';
-var utils = require('./utils');
+var utils = require('./component');
 
 /**
  * @deprecated
@@ -616,7 +616,7 @@ module.exports = JSZip;
 'use strict';
 var base64 = require('./base64');
 var utf8 = require('./utf8');
-var utils = require('./utils');
+var utils = require('./component');
 var ZipEntries = require('./zipEntries');
 module.exports = function(data, options) {
     var files, zipEntries, i, input;
@@ -690,7 +690,7 @@ module.exports = NodeBufferReader;
 },{"./uint8ArrayReader":19}],14:[function(require,module,exports){
 'use strict';
 var support = require('./support');
-var utils = require('./utils');
+var utils = require('./component');
 var crc32 = require('./crc32');
 var signature = require('./signature');
 var defaults = require('./defaults');
@@ -1571,7 +1571,7 @@ exports.DATA_DESCRIPTOR = "PK\x07\x08";
 },{}],16:[function(require,module,exports){
 'use strict';
 var DataReader = require('./dataReader');
-var utils = require('./utils');
+var utils = require('./component');
 
 function StringReader(data, optimizedBinaryString) {
     this.data = data;
@@ -1610,7 +1610,7 @@ module.exports = StringReader;
 },{"./dataReader":6,"./utils":22}],17:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils');
+var utils = require('./component');
 
 /**
  * An object to write any content to a string.
@@ -1708,7 +1708,7 @@ module.exports = Uint8ArrayReader;
 },{"./arrayReader":1}],20:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils');
+var utils = require('./component');
 
 /**
  * An object to write any content to an Uint8Array.
@@ -1746,12 +1746,12 @@ module.exports = Uint8ArrayWriter;
 },{"./utils":22}],21:[function(require,module,exports){
 'use strict';
 
-var utils = require('./utils');
+var utils = require('./component');
 var support = require('./support');
 var nodeBuffer = require('./nodeBuffer');
 
 /**
- * The following functions come from pako, from pako/lib/utils/strings
+ * The following functions come from pako, from pako/lib/component/strings
  * released under the MIT license, see pako https://github.com/nodeca/pako/
  */
 
@@ -2202,7 +2202,7 @@ exports.transformTo = function(outputType, input) {
 
 /**
  * Return the type of the input.
- * The type will be in a format valid for JSZip.utils.transformTo : string, array, uint8array, arraybuffer.
+ * The type will be in a format valid for JSZip.component.transformTo : string, array, uint8array, arraybuffer.
  * @param {Object} input the input to identify.
  * @return {String} the (lowercase) type of the input.
  */
@@ -2304,7 +2304,7 @@ var StringReader = require('./stringReader');
 var NodeBufferReader = require('./nodeBufferReader');
 var Uint8ArrayReader = require('./uint8ArrayReader');
 var ArrayReader = require('./arrayReader');
-var utils = require('./utils');
+var utils = require('./component');
 var sig = require('./signature');
 var ZipEntry = require('./zipEntry');
 var support = require('./support');
@@ -2583,7 +2583,7 @@ module.exports = ZipEntries;
 },{"./arrayReader":1,"./nodeBufferReader":13,"./object":14,"./signature":15,"./stringReader":16,"./support":18,"./uint8ArrayReader":19,"./utils":22,"./zipEntry":24}],24:[function(require,module,exports){
 'use strict';
 var StringReader = require('./stringReader');
-var utils = require('./utils');
+var utils = require('./component');
 var CompressedObject = require('./compressedObject');
 var jszipProto = require('./object');
 var support = require('./support');
@@ -2905,7 +2905,7 @@ module.exports = ZipEntry;
 // Top level file is just a mixin of submodules & constants
 'use strict';
 
-var assign    = require('./lib/utils/common').assign;
+var assign    = require('./lib/component/common').assign;
 
 var deflate   = require('./lib/deflate');
 var inflate   = require('./lib/inflate');
@@ -2922,8 +2922,8 @@ module.exports = pako;
 
 
 var zlib_deflate = require('./zlib/deflate');
-var utils        = require('./utils/common');
-var strings      = require('./utils/strings');
+var utils        = require('./component/common');
+var strings      = require('./component/strings');
 var msg          = require('./zlib/messages');
 var ZStream      = require('./zlib/zstream');
 
@@ -3301,8 +3301,8 @@ exports.gzip = gzip;
 
 
 var zlib_inflate = require('./zlib/inflate');
-var utils        = require('./utils/common');
-var strings      = require('./utils/strings');
+var utils        = require('./component/common');
+var strings      = require('./component/strings');
 var c            = require('./zlib/constants');
 var msg          = require('./zlib/messages');
 var ZStream      = require('./zlib/zstream');
@@ -4122,7 +4122,7 @@ module.exports = crc32;
 },{}],33:[function(require,module,exports){
 'use strict';
 
-var utils   = require('../utils/common');
+var utils   = require('../component/common');
 var trees   = require('./trees');
 var adler32 = require('./adler32');
 var crc32   = require('./crc32');
@@ -6260,7 +6260,7 @@ module.exports = function inflate_fast(strm, start) {
 'use strict';
 
 
-var utils         = require('../utils/common');
+var utils         = require('../component/common');
 var adler32       = require('./adler32');
 var crc32         = require('./crc32');
 var inflate_fast  = require('./inffast');
@@ -6409,7 +6409,7 @@ function InflateState() {
    because we don't have pointers in js, we use lencode and distcode directly
    as buffers so we don't need codes
   */
-  //this.codes = new utils.Buf32(ENOUGH);       /* space for code tables */
+  //this.codes = new component.Buf32(ENOUGH);       /* space for code tables */
   this.lendyn = null;              /* dynamic table for length/literal codes (JS specific) */
   this.distdyn = null;             /* dynamic table for distance codes (JS specific) */
   this.sane = 0;                   /* if false, allow invalid distance too far */
@@ -7765,7 +7765,7 @@ exports.inflateUndermine = inflateUndermine;
 'use strict';
 
 
-var utils = require('../utils/common');
+var utils = require('../component/common');
 
 var MAXBITS = 15;
 var ENOUGH_LENS = 852;
@@ -8109,7 +8109,7 @@ module.exports = {
 'use strict';
 
 
-var utils = require('../utils/common');
+var utils = require('../component/common');
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/

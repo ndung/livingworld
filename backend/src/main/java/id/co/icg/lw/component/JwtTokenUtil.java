@@ -1,4 +1,4 @@
-package id.co.icg.lw.utils;
+package id.co.icg.lw.component;
 
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;

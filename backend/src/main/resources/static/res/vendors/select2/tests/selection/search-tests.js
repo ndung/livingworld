@@ -5,7 +5,7 @@ var InlineSearch = require('select2/selection/search');
 
 var $ = require('jquery');
 var Options = require('select2/options');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 var options = new Options({});
 

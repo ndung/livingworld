@@ -5,7 +5,7 @@ var StopPropagation = require('select2/dropdown/stopPropagation');
 
 var $ = require('jquery');
 var Options = require('select2/options');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 var CustomDropdown = Utils.Decorate(Dropdown, StopPropagation);
 

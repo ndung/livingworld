@@ -1,6 +1,6 @@
 module('Utils - escapeMarkup');
 
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 test('text passes through', function (assert) {
   var text = 'testing this';

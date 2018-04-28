@@ -1,10 +1,8 @@
 package id.co.icg.lw.controllers.web;
 
 import id.co.icg.lw.domain.CurrentOffer;
-import id.co.icg.lw.domain.merchant.Merchant;
 import id.co.icg.lw.services.currentOffer.CreateCurrentOfferRequest;
 import id.co.icg.lw.services.currentOffer.CurrentOfferService;
-import id.co.icg.lw.services.merchant.CreateMerchantRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

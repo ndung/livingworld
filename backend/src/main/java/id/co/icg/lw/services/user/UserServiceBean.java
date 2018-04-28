@@ -4,7 +4,7 @@ import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.repositories.UserRepository;
 import id.co.icg.lw.services.file.FileService;
-import id.co.icg.lw.utils.PasswordUtil;
+import id.co.icg.lw.component.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

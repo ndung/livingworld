@@ -8,7 +8,7 @@ test('triggers the select event', function (assert) {
   var Tags = require('select2/data/tags');
 
   var Options = require('select2/options');
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
 
   var $ = require('jquery');
 
@@ -50,7 +50,7 @@ test('createTag can return null', function (assert) {
   var Tags = require('select2/data/tags');
 
   var Options = require('select2/options');
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
 
   var $ = require('jquery');
 
@@ -99,7 +99,7 @@ test('createTag returning null does not cut the term', function (assert) {
   var Tags = require('select2/data/tags');
 
   var Options = require('select2/options');
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
 
   var $ = require('jquery');
 
@@ -178,7 +178,7 @@ test('works with multiple tokens given', function (assert) {
   var Tags = require('select2/data/tags');
 
   var Options = require('select2/options');
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
 
   var $ = require('jquery');
 

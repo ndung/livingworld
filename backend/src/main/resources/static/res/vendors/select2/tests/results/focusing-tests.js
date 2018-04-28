@@ -14,7 +14,7 @@ test('results:all with no data skips results:focus', function (assert) {
   $parent.appendTo($('#qunit-fixture'));
   $select.appendTo($parent);
 
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
   var Options = require('select2/options');
 
   var Results = require('select2/results');
@@ -56,7 +56,7 @@ test('results:all triggers results:focus on the first item', function (assert) {
   $parent.appendTo($('#qunit-fixture'));
   $select.appendTo($parent);
 
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
   var Options = require('select2/options');
 
   var Results = require('select2/results');
@@ -104,7 +104,7 @@ test('results:append does not trigger results:focus', function (assert) {
   $parent.appendTo($('#qunit-fixture'));
   $select.appendTo($parent);
 
-  var Utils = require('select2/utils');
+  var Utils = require('select2/component');
   var Options = require('select2/options');
 
   var Results = require('select2/results');

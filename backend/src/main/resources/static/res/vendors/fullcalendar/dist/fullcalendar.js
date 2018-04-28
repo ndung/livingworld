@@ -8087,7 +8087,7 @@ var View = FC.View = Class.extend(EmitterMixin, ListenerMixin, {
 	widgetContentClass: null,
 	highlightStateClass: null,
 
-	// for date utils, computed from options
+	// for date component, computed from options
 	nextDayThreshold: null,
 	isHiddenDayHash: null,
 
@@ -8561,7 +8561,7 @@ var View = FC.View = Class.extend(EmitterMixin, ListenerMixin, {
 	},
 
 
-	// Misc view rendering utils
+	// Misc view rendering component
 	// -------------------------
 
 

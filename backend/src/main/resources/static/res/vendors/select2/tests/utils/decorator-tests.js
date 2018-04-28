@@ -1,6 +1,6 @@
 module('Decorators');
 
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 test('overridden - method', function (assert) {
   function BaseClass () {}

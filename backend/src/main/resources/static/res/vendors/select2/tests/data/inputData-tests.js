@@ -3,7 +3,7 @@ module('Data adapters - <input> compatibility');
 var $ = require('jquery');
 
 var Options = require('select2/options');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 var ArrayData = require('select2/data/array');
 var InputData = require('select2/compat/inputData');

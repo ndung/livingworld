@@ -26157,7 +26157,7 @@
 	   because we don't have pointers in js, we use lencode and distcode directly
 	   as buffers so we don't need codes
 	  */
-	  //this.codes = new utils.Buf32(ENOUGH);       /* space for code tables */
+	  //this.codes = new component.Buf32(ENOUGH);       /* space for code tables */
 	  this.lendyn = null;              /* dynamic table for length/literal codes (JS specific) */
 	  this.distdyn = null;             /* dynamic table for distance codes (JS specific) */
 	  this.sane = 0;                   /* if false, allow invalid distance too far */

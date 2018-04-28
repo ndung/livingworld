@@ -247,7 +247,7 @@ exports.transformTo = function(outputType, input) {
 
 /**
  * Return the type of the input.
- * The type will be in a format valid for JSZip.utils.transformTo : string, array, uint8array, arraybuffer.
+ * The type will be in a format valid for JSZip.component.transformTo : string, array, uint8array, arraybuffer.
  * @param {Object} input the input to identify.
  * @return {String} the (lowercase) type of the input.
  */

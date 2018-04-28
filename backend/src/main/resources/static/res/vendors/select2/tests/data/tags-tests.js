@@ -5,7 +5,7 @@ var Tags = require('select2/data/tags');
 
 var $ = require('jquery');
 var Options = require('select2/options');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 var SelectTags = Utils.Decorate(SelectData, Tags);
 var options = new Options({

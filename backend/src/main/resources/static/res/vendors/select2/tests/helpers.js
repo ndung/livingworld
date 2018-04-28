@@ -5,7 +5,7 @@ var define = $.fn.select2.amd.define;
 // Disable jQuery's binding to $
 jQuery.noConflict();
 
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 
 function MockContainer () {
   MockContainer.__super__.constructor.call(this);

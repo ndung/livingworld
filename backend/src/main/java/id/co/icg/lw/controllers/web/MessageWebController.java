@@ -3,7 +3,7 @@ package id.co.icg.lw.controllers.web;
 import id.co.icg.lw.domain.Message;
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.services.merchant.CreateMerchantRequest;
-import id.co.icg.lw.services.merchant.MerchantDetailResponse;
+
 import id.co.icg.lw.services.message.MessageRequest;
 import id.co.icg.lw.services.message.MessageService;
 import id.co.icg.lw.services.user.UserService;

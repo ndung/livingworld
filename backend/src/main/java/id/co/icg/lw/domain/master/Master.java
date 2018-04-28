@@ -1,4 +1,4 @@
-package id.co.icg.lw.domain;
+package id.co.icg.lw.domain.master;
 
 public class Master {
     private int id;

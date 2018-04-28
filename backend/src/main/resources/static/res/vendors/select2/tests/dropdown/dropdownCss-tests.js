@@ -1,7 +1,7 @@
 module('Dropdown - dropdownCssClass compatibility');
 
 var $ = require('jquery');
-var Utils = require('select2/utils');
+var Utils = require('select2/component');
 var Options = require('select2/options');
 
 var Dropdown = require('select2/dropdown');
