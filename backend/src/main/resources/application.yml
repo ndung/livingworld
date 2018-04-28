@@ -13,7 +13,7 @@ jwt:
   expiration: -1
 
 resources:
-   static-locations: file:src/mazin/resources/static/
+   static-locations: file:src/main/resources/static/
 
 eCash:
   username: livingworld
@@ -27,6 +27,11 @@ pageSize : 10
 
 iFabula:
   url: http://103.27.207.124/~ifabula/demo/apis/
+
+indiePay:
+  url: http://indiepay.damcorp.id/api/indiepay/
+  apiKey: toBeDecided
+
 
 
 

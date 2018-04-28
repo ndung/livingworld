@@ -2,7 +2,7 @@ package id.co.icg.lw.controllers.api;
 
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
-import id.co.icg.lw.services.MasterService;
+import id.co.icg.lw.services.master.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

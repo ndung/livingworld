@@ -1,4 +1,4 @@
-package id.co.icg.lw.services;
+package id.co.icg.lw.services.master;
 
 import id.co.icg.lw.domain.master.Master;
 import id.co.icg.lw.domain.master.MemberType;
