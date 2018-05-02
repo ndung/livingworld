@@ -13,12 +13,12 @@ jwt:
   expiration: -1
 
 resources:
-   static-locations: file:src/mazin/resources/static/
+   static-locations: file:src/main/resources/static/
 
 eCash:
   username: livingworld
   password: pass123456
-  url: https://api.mandiri-ecash.com/eCashHost
+  url: https://api.mandiri-ecash.com/eCashHost/
   apiKey: 56c4382d6873f46e7d000001959410aa05204e724cbd842ac3926b47
   urlWebRegister: http://188.166.220.62
 
@@ -27,6 +27,11 @@ pageSize : 10
 
 iFabula:
   url: http://103.27.207.124/~ifabula/demo/apis/
+
+indiePay:
+  url: http://indiepay.damcorp.id/api/indiepay/
+  apiKey: toBeDecided
+
 
 
 
