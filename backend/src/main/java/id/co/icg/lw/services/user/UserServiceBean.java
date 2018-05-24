@@ -52,7 +52,7 @@ public class UserServiceBean implements UserService {
         }
 
         user = new User();
-        user.setId(UUID.randomUUID().toString());
+        user.setUserId(UUID.randomUUID().toString());
         user.setCardNumber(signUpRequest.getCardNumber());
         user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
         user.setRole(RoleEnum.USER);
@@ -63,6 +63,9 @@ public class UserServiceBean implements UserService {
     @Override
     public User signIn(SignInRequest request) throws Exception{
         User user = userRepository.findByCardNumber(request.getCardNumber());
+        if (user == null) {
+            throw new Exception("User is not found");
+        }
         if (!PasswordUtil.checkPublicKey(request.getPublicKey(), user.getCardNumber(), user.getPassword())) {
             throw new Exception("CardNumber or password is invalid");
         }

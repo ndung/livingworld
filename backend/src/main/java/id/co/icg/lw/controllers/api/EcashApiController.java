@@ -20,6 +20,42 @@ public class EcashApiController extends BaseController{
     private EcashApiService ecashApiService;
 
     /**
+     * @api {get} /e-cash/login Login
+     * @apiName Login
+     * @apiGroup ECash
+     *
+     * @apiHeader {String} Authorization Token hasil generate dari Sign In ditambahkan di header
+     * @apiHeaderExample {json} Contoh Token Header
+     * {
+     *     "Authorization" : "6hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk56hka2osxj73f9s8jc3ertqf43k8xq2xsypvk"
+     * }
+     *
+     * @apiExample {json} Response
+     * {
+     *
+     *   data : {
+     *      "token" : "esr5656hka2osxj73f9s8jcw53b1d3ertqf43k8xq2xsypvk",
+     *      "status" : "PROCESSED"
+     *      },
+     *   message: null
+     *
+     * }
+     *
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<Response> login(@RequestHeader(Application.AUTH) String token) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+        try {
+            return getHttpStatus(new Response(ecashApiService.login()));
+        } catch (Exception e) {
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+
+    /**
      * @api {get} /e-cash/token Get Token
      * @apiName Get Token
      * @apiGroup ECash

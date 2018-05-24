@@ -35,7 +35,7 @@ public class JwtTokenUtil {
 		for (int i=0; i<user.getRoles().size(); i++)
 			temp[i] = String.valueOf(user.getRoles().get(i).getId());
 		JwtBuilder builder = Jwts.builder()
-				.setId(user.getId())
+				.setId(user.getUserId())
 				.setIssuedAt(now)
 				.setSubject(Helper.implode(temp, DELIMITER))
 				.setIssuer(user.getCardNumber())

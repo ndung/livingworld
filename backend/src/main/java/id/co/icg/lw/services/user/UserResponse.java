@@ -16,7 +16,7 @@ public class UserResponse {
     public UserResponse() {}
 
     public UserResponse(User user) {
-        setId(user.getId());
+        setId(user.getUserId());
         setFullName(user.getFullName());
         setEmail(user.getEmail());
         setDateOfBirth(user.getDateOfBirth());

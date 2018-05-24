@@ -10,5 +10,5 @@ debug: true
 file:
   location: /Users/alif/workspace/icg/livingworld/backend/src/main/resources/files/
 
-publicKey: /Users/alif/workspace/icg/livingworld/backend/public_key.der
+publicKey: /Users/alif/Documents/workspace/livingworld/backend/public_key.der
 

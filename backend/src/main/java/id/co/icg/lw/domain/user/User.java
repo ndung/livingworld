@@ -1,8 +1,12 @@
 package id.co.icg.lw.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import id.co.icg.lw.domain.CurrentOfferImage;
 import id.co.icg.lw.domain.Role;
+import id.co.icg.lw.domain.Vehicle;
 import id.co.icg.lw.enums.RoleEnum;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +20,7 @@ public class User {
 
     @Id
     @Column(name = "user_id")
-    private String id;
+    private String userId;
 
     private String fullName;
     private String email;
@@ -54,12 +58,12 @@ public class User {
         this.roles = roles;
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFullName() {
