@@ -15,28 +15,11 @@ import java.util.List;
 @Service
 public class MasterServiceBean implements MasterService {
 
-    @Value("${iFabula.url}")
-    private String iFabulaUrl;
-
-
     @Autowired
     private LivingWorldApiServiceImpl lwComponent;
 
     @Override
     public List<MemberType> getMemberTypes() {
-//        IFabulaService iFabulaService = livingWorldApiComponent.createService(IFabulaService.class);
-//        Call<IFabulaResponse> callSync = iFabulaService.getMasterData("member_type");
-//        IFabulaResponse response = null;
-//        try {
-//            response = callSync.execute().body();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Gson gson = new Gson();
-//        List<MemberType> memberTypes = gson.fromJson(response.getList(), List.class);
-//        return memberTypes;
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.get(iFabulaUrl + "/master?type=member_types", MemberType.class);
         try {
             lwComponent.getMemberType();
         } catch (Exception e) {
