@@ -144,7 +144,7 @@ public class VehicleApiController extends BaseController {
     }
 
     /**
-     * @api {delete} /vehicle/{vehicleId}
+     * @api {delete} /vehicle/{vehicleId} Delete Vehicle
      * @apiName Delete Vehicle
      * @apiGroup Vehicle
      * @apiPermission USER
@@ -186,15 +186,12 @@ public class VehicleApiController extends BaseController {
     }
 
     /**
-     * @api {post} /vehicle/edit Edit Vehicle
-     * @apiName Edit Vehicle
+     * @api {get} /vehicle Get Vehicle
+     * @apiName Get Vehicle
      * @apiGroup Vehicle
      * @apiPermission USER
-     * @apiDescription Create vehicle
+     * @apiDescription Get vehicle by User
      *
-     * @apiParam {String} vehicleId
-     * @apiParam {String} vehicleType
-     * @apiParam {String} vehicleColor
      *
      *
      * @apiHeader {String} Authorization Token hasil generate dari Sign In ditambahkan di header
@@ -213,12 +210,17 @@ public class VehicleApiController extends BaseController {
      * }
      * @apiExample {json} Response Berhasil
      * {
-     *  "vehicleId" : "3d3bb860-870d-4d4f-bd7c-e6ce17c78f39",
-     *   "vehicleType" : "BMW",
-     *   "vehicleColor" : "Blue",
-     *   "vehicleNumber" : "B 1234 CD"
+     *  data :[
+     *      {
+     *          "vehicleId" : "3d3bb860-870d-4d4f-bd7c-e6ce17c78f39",
+     *          "vehicleType" : "BMW",
+     *          "vehicleColor" : "Blue",
+     *          "vehicleNumber" : "B 1234 CD"
+     *       }
      *
-     * }
+     *      ],
+     *   message: null
+     *   }
      * @apiExample {json} Response Gagal
      * {
      *      data: null,
