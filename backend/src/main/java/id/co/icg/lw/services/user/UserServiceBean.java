@@ -5,6 +5,8 @@ import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.repositories.UserRepository;
 import id.co.icg.lw.services.file.FileService;
 import id.co.icg.lw.component.PasswordUtil;
+import id.co.icg.lw.services.livingWorld.LivingWorldApiService;
+import id.co.icg.lw.services.member.CreateMemberRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,9 @@ public class UserServiceBean implements UserService {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private LivingWorldApiService livingWorldApiService;
 
     @Override
     public int checkCardNumber(String cardNumber) {
@@ -41,6 +46,7 @@ public class UserServiceBean implements UserService {
         user.setDateOfBirth(request.getDateOfBirth());
         user.setMobileNumber(request.getMobileNumber());
         userRepository.saveAndFlush(user);
+
         return user;
     }
 
@@ -57,6 +63,8 @@ public class UserServiceBean implements UserService {
         user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
         user.setRole(RoleEnum.USER);
         userRepository.saveAndFlush(user);
+
+
         return user;
     }
 
