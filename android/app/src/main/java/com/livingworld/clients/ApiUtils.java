@@ -3,6 +3,7 @@ package com.livingworld.clients;
 import android.content.Context;
 
 import com.livingworld.clients.auth.AuthService;
+import com.livingworld.clients.car.CarrService;
 import com.livingworld.clients.inbox.InboxService;
 import com.livingworld.clients.master.MasterService;
 import com.livingworld.clients.member.MemberService;
@@ -42,6 +43,10 @@ public class ApiUtils {
 
     public static TrxService TrxService(Context context){
         return RetrofitClient.getClient(context, API).create(TrxService.class);
+    }
+
+    public static CarrService CarService(Context context){
+        return RetrofitClient.getClient(context, API).create(CarrService.class);
     }
 
 }

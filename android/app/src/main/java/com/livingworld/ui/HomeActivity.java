@@ -15,10 +15,12 @@ import android.widget.TextView;
 import com.livingworld.R;
 import com.livingworld.adapter.HorizontalAdapter;
 import com.livingworld.clients.ApiUtils;
+import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.trx.TrxService;
 import com.livingworld.util.BaseActivity;
 import com.livingworld.util.IDRUtils;
+import com.livingworld.util.Preferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +28,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recylerView)
     RecyclerView recylerView;
@@ -38,8 +40,6 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     ImageView ivProfile;
     @BindView(R.id.view_card)
     RelativeLayout viewCard;
-    @BindView(R.id.tv_name)
-    TextView tvName;
     @BindView(R.id.cv_scan_bc)
     CardView cvScanBc;
     @BindView(R.id.cv_my_bc)
@@ -55,6 +55,17 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     TextView tvTrxMonth;
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout swiperefresh;
+    MemberService memberService;
+    @BindView(R.id.tv_name_card)
+    TextView tvNameCard;
+    @BindView(R.id.tv_card)
+    TextView tvCard;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_poin)
+    TextView tvPoin;
+    @BindView(R.id.tv_lucdraw)
+    TextView tvLucdraw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,8 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         ButterKnife.bind(this);
 
         trxService = ApiUtils.TrxService(getApplicationContext());
+        memberService = ApiUtils.MemberService(getApplicationContext());
+
         swiperefresh.setOnRefreshListener(this);
         getBalanceMonth();
 
@@ -126,6 +139,48 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         ivInbox.setImageResource(R.drawable.ic_inbox);
         tvName.setVisibility(View.GONE);
         viewCard.setVisibility(View.VISIBLE);
+
+        initGetDetail();
+
+    }
+
+    private void initGetDetail() {
+        tvNameCard.setText(Preferences.getUser(getApplicationContext()).getFullName());
+        tvCard.setText(Preferences.getCardNumber(getApplicationContext()));
+        tvPoin.setText("0");
+        tvLucdraw.setText("0");
+
+//        showPleasewaitDialog();
+//        memberService.detail().enqueue(new Callback<Response>() {
+//            @Override
+//            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+//                dissmissPleasewaitDialog();
+//                if (response.isSuccessful()) {
+//                    Response body = response.body();
+//                    if (body != null && body.getData() != null) {
+//                        Gson gson = new Gson();
+//                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+//                        Member member = gson.fromJson(jsonObject.get("data"), Member.class);
+//                        tvName.setText(member.getFullName());
+//
+////                        etAddress.setText(member.getAddress());
+////                        etZipCode.setText(String.valueOf(member.getZipCode()));
+////                        etHomePhone.setText(member.getHomePhone());
+////                        initMasters();
+//                    }else{
+//                        showMessage(Static.SOMETHING_WRONG);
+//                    }
+//                }else{
+//                    showMessage(Static.SOMETHING_WRONG);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Response> call, Throwable t) { `1
+//                dissmissPleasewaitDialog();
+//                showMessage(Static.SOMETHING_WRONG);
+//            }
+//        });
     }
 
     private void initNotMember() {

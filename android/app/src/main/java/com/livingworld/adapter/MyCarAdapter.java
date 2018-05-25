@@ -55,8 +55,13 @@ public class MyCarAdapter extends RecyclerView.Adapter<MyCarAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        MyCar model = list.get(position);
 
-        if(position == 9){
+        holder.tvTitle.setText(model.getName());
+        holder.tvPla.setText(model.getColor());
+
+
+        if(position == list.size() - 1){
             holder.llAdd.setVisibility(View.VISIBLE);
             holder.llAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,7 +74,7 @@ public class MyCarAdapter extends RecyclerView.Adapter<MyCarAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

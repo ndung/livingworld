@@ -14,11 +14,19 @@ import static android.R.attr.password;
 
 public class ChipperUtils {
 
+    private static final String APP_KEY = "com.livingworld";
+
+
     public static String getPublicKey(String cardNumber, String pwd){
+//        Date date = new Date();
+//        String dateNow = new SimpleDateFormat("yyyyMMdd").format(date);
+//        String data = cardNumber+getMD5Hash(pwd)+dateNow+ "com.livingworld";
+//        return getMD5Hash(data);
         Date date = new Date();
-        String dateNow = new SimpleDateFormat("yyyyMMdd").format(date);
-        String data = cardNumber+getMD5Hash(pwd)+dateNow+ "com.livingworld";
-        return getMD5Hash(data);
+        String today = new SimpleDateFormat("yyyyMMdd").format(date);
+        String generatedKey = getMD5Hash(cardNumber + getMD5Hash(pwd) + today + APP_KEY);
+        System.out.println(generatedKey);
+        return generatedKey;
     }
 
     public static String getMD5Hash(String value){
