@@ -79,10 +79,10 @@ public class MerchantListActivity extends BaseActivity {
 
     private void initAdapter() {
         if(list.size() > 0) {
-            MerchantAdapter inboxAdapter = new MerchantAdapter(list, new MerchantAdapter.OnItemClickListener() {
+            MerchantAdapter inboxAdapter = new MerchantAdapter(this, list, new MerchantAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(MerchantCategory model) {
-
+                    startActivity(new Intent(getApplicationContext(), MerchantDetailActivity.class));
                 }
             });
 
