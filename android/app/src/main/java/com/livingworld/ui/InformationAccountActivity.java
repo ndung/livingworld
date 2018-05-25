@@ -115,7 +115,7 @@ public class InformationAccountActivity extends BaseActivity {
         masterService = ApiUtils.MasterService(getApplicationContext());
         memberService = ApiUtils.MemberService(getApplicationContext());
 
-        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
+//        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
 
         user = Preferences.getUser(getApplicationContext());
 //        initData(user);
@@ -129,6 +129,12 @@ public class InformationAccountActivity extends BaseActivity {
         initTglLahir();
         initGetDetail();
         initChangePicture();
+        initMasters();
+
+        Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
+
+
+
     }
 
     private void initChangePicture() {
@@ -157,7 +163,9 @@ public class InformationAccountActivity extends BaseActivity {
                         etAddress.setText(member.getAddress());
                         etZipCode.setText(String.valueOf(member.getZipCode()));
                         etHomePhone.setText(member.getHomePhone());
-                        initMasters();
+
+
+//                        member.get
                     }
                 }
             }
@@ -270,6 +278,7 @@ public class InformationAccountActivity extends BaseActivity {
                             JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
                             User user = gson.fromJson(jsonObject.get("data"), User.class);
                             Preferences.setUser(getApplicationContext(), user);
+                            Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
                             dialog.dismiss();
                             showMessage("Berhasil upload photo profile");
                         }else{
@@ -329,7 +338,7 @@ public class InformationAccountActivity extends BaseActivity {
                     spReligion.setAdapter(adapter);
                     for (int i=0; i < list.size(); i++){
                         Master master = list.get(i);
-                        if(master.getId() == member.getReligion()){
+                        if(member != null && master.getId() == member.getReligion()){
                             spReligion.setSelection(i);
                             break;
                         }
@@ -359,7 +368,7 @@ public class InformationAccountActivity extends BaseActivity {
                     spCity.setAdapter(adapter);
                     for (int i=0; i < list.size(); i++){
                         Master master = list.get(i);
-                        if(master.getId() == member.getCity()){
+                        if(member != null && master.getId() == member.getCity()){
                             spCity.setSelection(i);
                             break;
                         }
@@ -389,7 +398,7 @@ public class InformationAccountActivity extends BaseActivity {
                     spMaterialStatus.setAdapter(adapter);
                     for (int i=0; i < list.size(); i++){
                         Master master = list.get(i);
-                        if(master.getId() == member.getMartialStatus()){
+                        if(member != null && master.getId() == member.getMartialStatus()){
                             spMaterialStatus.setSelection(i);
                             break;
                         }
@@ -419,7 +428,7 @@ public class InformationAccountActivity extends BaseActivity {
                     spGender.setAdapter(adapter);
                     for (int i=0; i < list.size(); i++){
                         Master master = list.get(i);
-                        if(master.getId() == member.getGender()){
+                        if(member != null && master.getId() == member.getGender()){
                             spGender.setSelection(i);
                             break;
                         }
@@ -449,7 +458,7 @@ public class InformationAccountActivity extends BaseActivity {
                     spNationality.setAdapter(adapter);
                     for (int i=0; i < list.size(); i++){
                         Master master = list.get(i);
-                        if(master.getId() == member.getNationality()){
+                        if(member != null && master.getId() == member.getNationality()){
                             spNationality.setSelection(i);
                             break;
                         }

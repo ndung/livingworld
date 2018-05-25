@@ -12,6 +12,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 /**
  * Created by Dizzay on 11/10/2017.
@@ -32,5 +33,8 @@ public interface MemberService {
     @Multipart
     @POST("user/upload/photo-profile")
     Call<Response> upload(@Part MultipartBody.Part image);
+
+    @GET("files/{fileName}")
+    Call<Response> getFile(@Query("{fileName}") String filename);
 
 }

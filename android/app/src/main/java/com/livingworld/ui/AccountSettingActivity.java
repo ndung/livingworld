@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.livingworld.R;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.util.Preferences;
+import com.livingworld.util.Static;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,9 +51,12 @@ public class AccountSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_setting);
         ButterKnife.bind(this);
 
-        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
+//        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
 
         User user = Preferences.getUser(getApplicationContext());
+
+        Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
+
         tvName.setText(user.getFullName());
         tvCardNumber.setText(Preferences.getCardNumber(getApplicationContext()));
     }

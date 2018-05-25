@@ -83,7 +83,8 @@
                 android:id="@+id/et_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter your mobile number" />
+                android:hint="Enter your mobile number"
+                android:inputType="number" />
 
         </LinearLayout>
 
