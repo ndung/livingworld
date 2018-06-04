@@ -1,30 +1,35 @@
 package id.co.icg.lw.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import id.co.icg.lw.domain.master.*;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private long memberId;
 
-    @OneToOne
+    @OneToOne @JsonIgnore
+    @JoinColumn(name="user_id")
     User user;
 
+    @Id
+    private String cardNumber;
     private String identityName;
     private String idenitityNumber;
-    private int religion;
-    private int gender;
-    private int martialStatus;
+    private String religion;
+    private String gender;
+    private String martialStatus;
     private String address;
-    private int city;
+    private String city;
     private String zipcode;
     private String homePhone;
-    private int memberType;
-    private int nationalitly;
-    private Date dateOfBirth;
+    private String memberType;
+    private String nationalitly;
+    private String dateOfBirth;
+    private String email;
+    private String mobileNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
@@ -34,12 +39,12 @@ public class Member {
 
     public Member() {}
 
-    public long getMemberId() {
-        return memberId;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setMemberId(long memberId) {
-        this.memberId = memberId;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public User getUser() {
@@ -66,27 +71,27 @@ public class Member {
         this.idenitityNumber = idenitityNumber;
     }
 
-    public int getReligion() {
+    public String getReligion() {
         return religion;
     }
 
-    public void setReligion(int religion) {
+    public void setReligion(String religion) {
         this.religion = religion;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getMartialStatus() {
+    public String getMartialStatus() {
         return martialStatus;
     }
 
-    public void setMartialStatus(int martialStatus) {
+    public void setMartialStatus(String martialStatus) {
         this.martialStatus = martialStatus;
     }
 
@@ -98,11 +103,11 @@ public class Member {
         this.address = address;
     }
 
-    public int getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -122,29 +127,37 @@ public class Member {
         this.homePhone = homePhone;
     }
 
-    public int getMemberType() {
+    public String getMemberType() {
         return memberType;
     }
 
-    public void setMemberType(int memberType) {
+    public void setMemberType(String memberType) {
         this.memberType = memberType;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getNationalitly() {
+    public String getNationalitly() {
         return nationalitly;
     }
 
-    public void setNationalitly(int nationalitly) {
+    public void setNationalitly(String nationalitly) {
         this.nationalitly = nationalitly;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getMobileNumber() { return mobileNumber; }
+
+    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
 
     @PrePersist
     protected void onCreate() {
@@ -154,5 +167,105 @@ public class Member {
     @PreUpdate
     protected void onUpdate() {
         updateAt = new Date();
+    }
+
+    @Transient
+    private List<MemberType> memberTypes;
+
+    public void setMemberTypes(List<MemberType> memberTypes) {
+        this.memberTypes = memberTypes;
+    }
+
+    @Transient
+    private List<Religion> religions;
+
+    public void setReligions(List<Religion> religions) {
+        this.religions = religions;
+    }
+
+    @Transient
+    private List<Gender> genders;
+
+    public void setGenders(List<Gender> genders) {
+        this.genders = genders;
+    }
+
+    @Transient
+    private List<MaritalStatus> maritalStatuses;
+
+    public void setMaritalStatuses(List<MaritalStatus> maritalStatuses) {
+        this.maritalStatuses = maritalStatuses;
+    }
+
+    @Transient
+    private List<Nationality> nationalities;
+
+
+    public void setNationalities(List<Nationality> nationalities) {
+        this.nationalities = nationalities;
+    }
+
+    @Transient
+    private List<City> cities;
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
+
+    @Transient
+    private String currentMonthTransaction;
+
+    @Transient
+    private String points;
+
+    @Transient
+    private String luckyDraws;
+
+    public void setCurrentMonthTransaction(String currentMonthTransaction) {
+        this.currentMonthTransaction = currentMonthTransaction;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
+    }
+
+    public void setLuckyDraws(String luckyDraws) {
+        this.luckyDraws = luckyDraws;
+    }
+
+    public String getCurrentMonthTransaction() {
+        return currentMonthTransaction;
+    }
+
+    public String getPoints() {
+        return points;
+    }
+
+    public String getLuckyDraws() {
+        return luckyDraws;
+    }
+
+    public List<MemberType> getMemberTypes() {
+        return memberTypes;
+    }
+
+    public List<Religion> getReligions() {
+        return religions;
+    }
+
+    public List<Gender> getGenders() {
+        return genders;
+    }
+
+    public List<MaritalStatus> getMaritalStatuses() {
+        return maritalStatuses;
+    }
+
+    public List<Nationality> getNationalities() {
+        return nationalities;
+    }
+
+    public List<City> getCities() {
+        return cities;
     }
 }

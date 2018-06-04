@@ -11,9 +11,9 @@ import java.util.List;
 @Table(name="merchant_category")
 public class MerchantCategory {
 
-    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
     @Column(name = "merchant_category_id")
-    private long merchantCategoryId;
+    private String merchantCategoryId;
 
     private String merchantCategoryName;
 
@@ -21,11 +21,11 @@ public class MerchantCategory {
     @OneToMany(mappedBy="merchantCategory", cascade = {CascadeType.ALL})
     private List<Merchant> merchantList;
 
-    public long getMerchantCategoryId() {
+    public String getMerchantCategoryId() {
         return merchantCategoryId;
     }
 
-    public void setMerchantCategoryId(long merchantCategoryId) {
+    public void setMerchantCategoryId(String merchantCategoryId) {
         this.merchantCategoryId = merchantCategoryId;
     }
 
@@ -36,7 +36,6 @@ public class MerchantCategory {
     public void setMerchantCategoryName(String merchantCategoryName) {
         this.merchantCategoryName = merchantCategoryName;
     }
-
 
     public List<Merchant> getMerchantList() {
         return merchantList;

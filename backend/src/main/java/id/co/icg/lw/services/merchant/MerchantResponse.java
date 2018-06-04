@@ -1,7 +1,7 @@
 package id.co.icg.lw.services.merchant;
 
 public class MerchantResponse {
-    private long merchantId;
+    private String merchantId;
     private String merchantName;
     private String merchantLogo;
 
@@ -11,11 +11,11 @@ public class MerchantResponse {
         merchantName    = merchant.getMerchantName();
     }
 
-    public long getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(long merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 

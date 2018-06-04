@@ -1,5 +1,7 @@
 package id.co.icg.lw.component;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -7,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 public class RetrofitClient<T> {
@@ -37,9 +40,13 @@ public class RetrofitClient<T> {
     }
 
     private void init(String baseUrl) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(gson));
         retrofit = builder.build();
         httpClient = new OkHttpClient.Builder();
         logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -57,7 +64,11 @@ public class RetrofitClient<T> {
                 Request request = builder1.build();
                 return chain.proceed(request);
             });
-            builder.client(httpClient.build());
+            OkHttpClient client = httpClient
+                    .connectTimeout(180, TimeUnit.SECONDS)
+                    .readTimeout(180, TimeUnit.SECONDS)
+                    .build();
+            builder.client(client);
             retrofit = builder.build();
         }
 

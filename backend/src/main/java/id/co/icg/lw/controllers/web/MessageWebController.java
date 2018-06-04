@@ -1,16 +1,12 @@
 package id.co.icg.lw.controllers.web;
 
 import id.co.icg.lw.domain.Message;
-import id.co.icg.lw.domain.user.User;
-import id.co.icg.lw.services.merchant.CreateMerchantRequest;
 
 import id.co.icg.lw.services.message.MessageRequest;
 import id.co.icg.lw.services.message.MessageService;
-import id.co.icg.lw.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

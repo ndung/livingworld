@@ -1,10 +1,9 @@
 package id.co.icg.lw.api.livingWorld;
 
 import id.co.icg.lw.domain.IFabulaResponse;
-import id.co.icg.lw.services.member.CreateMemberResponse;
 import id.co.icg.lw.services.member.UpdateMemberResponse;
-import id.co.icg.lw.services.member.CreateMemberRequest;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -20,7 +19,7 @@ public interface LivingWorldApi {
     Call<IFabulaResponse> getTransaction(@Query("type") String type, @Query("card_number") String cardNumber);
 
     @POST("transaction?type=add")
-    Call<AddTransactionResponse> addTransaction(@Body AddTransactionRequest body);
+    Call<ResponseBody> addTransaction(@Body AddTransactionRequest body);
 
     @POST("transaction?type=redeem_points")
     Call<RedeemPointResponse> redeemPoints(@Body RedeemPointRequest body);
@@ -32,7 +31,7 @@ public interface LivingWorldApi {
     Call<CreateMemberResponse> createMember(@Body CreateMemberRequest body);
 
     @POST("member?type=update")
-    Call<UpdateMemberResponse> updateMember(@Body UpdateMemberRequest body);
+    Call<ResponseBody> updateMember(@Body UpdateMemberRequest body);
 
 
 }

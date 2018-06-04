@@ -1,6 +1,8 @@
 package id.co.icg.lw.services.livingWorld;
 
-import id.co.icg.lw.services.member.CreateMemberRequest;
+import id.co.icg.lw.api.livingWorld.AddTransactionRequest;
+import id.co.icg.lw.api.livingWorld.AddTransactionResponse;
+import id.co.icg.lw.api.livingWorld.CreateMemberRequest;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
 
 public interface LivingWorldApiService {
@@ -9,7 +11,7 @@ public interface LivingWorldApiService {
 
     Object getReligion() throws Exception ;
 
-    Object gender() throws Exception;
+    Object getGender() throws Exception;
 
     Object getMartialStatus() throws Exception;
 
@@ -32,4 +34,6 @@ public interface LivingWorldApiService {
     String createMember(CreateMemberRequest request) throws Exception;
 
     boolean updateMember(UpdateMemberRequest request) throws Exception;
+
+    Object addTransaction(AddTransactionRequest request) throws Exception;
 }

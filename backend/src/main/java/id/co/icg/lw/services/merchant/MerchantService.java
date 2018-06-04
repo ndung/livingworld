@@ -14,13 +14,12 @@ public interface MerchantService {
 
     List<MerchantCategory> findAllMerchantCategory();
 
-    boolean createMerchant(CreateMerchantRequest request) throws Exception;
+    MerchantCategory findOne(String name);
 
-    boolean updateMerchant(UpdateMerchantRequest request);
+    boolean createMerchant(Merchant merchant) throws Exception;
 
-    boolean createCategory(String categoryName) throws Exception;
+    boolean createCategory(String categoryId, String categoryName) throws Exception;
 
-    boolean updateCategory(long categoryId, String categoryName) throws Exception;
 
 
 }

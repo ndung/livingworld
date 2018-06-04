@@ -49,73 +49,27 @@ public class MerchantServiceBean implements MerchantService {
     }
 
     @Override
-    public boolean createMerchant(CreateMerchantRequest request) {
-        Merchant merchant = new Merchant();
+    public MerchantCategory findOne(String categoryName) {
+        return merchantCategoryRepository.findByCategoryName(categoryName);
+    }
 
-        // upload image
-        if (request.getMerchantImage() != null) {
-            String imageUrl = fileService.upload(request.getMerchantImage());
-            merchant.setMerchantImage(imageUrl);
-        }
-
-        // upload logo
-        if (request.getMerchantLogo() != null) {
-            String logoUrl = fileService.upload(request.getMerchantLogo());
-            merchant.setMerchantLogo(logoUrl);
-        }
+    @Override
+    public boolean createMerchant(Merchant merchant) {
 
 
-        merchant.setMerchantName(request.getMerchantName());
-        merchant.setMerchantCategory(merchantCategoryRepository.findOne(request.getMerchantCategoryId()));
-
-        merchant.setDescription(request.getDescription());
-        merchant.setMerchantPhone(request.getMerchantPhone());
-
+        //merchant.setMerchantOfficeHourList(hours);
         merchantRepository.saveAndFlush(merchant);
-
-        // set working hours
-        List<MerchantOfficeHour> hours = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            MerchantOfficeHour hour = new MerchantOfficeHour();
-            hour.setDay(i);
-            hour.setStartTime(request.getOpeningTime()[i]);
-            hour.setEndTime(request.getClosingTime()[i]);
-            hour.setMerchantId(merchant);
-            hours.add(hour);
-        }
-
-        merchantWorkingHoursRepository.save(hours);
+        //merchantWorkingHoursRepository.save(hours);
 
 
         return true;
     }
 
     @Override
-    public boolean updateMerchant(UpdateMerchantRequest request) {
-        return false;
-    }
+    public boolean createCategory(String categoryId, String categoryName) throws Exception {
 
-    @Override
-    public boolean createCategory(String categoryName) throws Exception {
-
-        MerchantCategory merchantCategory = merchantCategoryRepository.findByCategoryName(categoryName);
-        if (merchantCategory != null) {
-            throw new Exception("Category name is already used");
-        }
-        merchantCategory = new MerchantCategory();
-        merchantCategory.setMerchantCategoryName(categoryName);
-        merchantCategoryRepository.save(merchantCategory);
-        return true;
-    }
-
-    @Override
-    public boolean updateCategory(long merchantCategoryId, String categoryName) throws Exception {
-
-        MerchantCategory merchantCategory = merchantCategoryRepository.findOne(merchantCategoryId);
-        if (merchantCategory == null) {
-            throw new Exception("Category is not found");
-        }
-
+        MerchantCategory merchantCategory = new MerchantCategory();
+        merchantCategory.setMerchantCategoryId(categoryId);
         merchantCategory.setMerchantCategoryName(categoryName);
         merchantCategoryRepository.save(merchantCategory);
         return true;

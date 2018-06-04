@@ -1,13 +1,15 @@
 package id.co.icg.lw.domain.transaction;
 
+import java.util.ArrayList;
+
 public class History {
     private String id;
     private String merchant;
     private String amount;
     private String sourceOfFund;
     private String time;
-    private int points;
-    private String[] luckyDraws;
+    private String points;
+    private ArrayList luckyDraws;
 
     public String getId() {
         return id;
@@ -49,19 +51,19 @@ public class History {
         this.time = time;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String points) {
         this.points = points;
     }
 
-    public String[] getLuckyDraws() {
+    public ArrayList getLuckyDraws() {
         return luckyDraws;
     }
 
-    public void setLuckyDraws(String[] luckyDraws) {
+    public void setLuckyDraws(ArrayList luckyDraws) {
         this.luckyDraws = luckyDraws;
     }
 }

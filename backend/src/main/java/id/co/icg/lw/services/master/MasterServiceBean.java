@@ -1,5 +1,8 @@
 package id.co.icg.lw.services.master;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import id.co.icg.lw.domain.master.Master;
 import id.co.icg.lw.domain.master.MemberType;
 import id.co.icg.lw.enums.*;
@@ -29,25 +32,31 @@ public class MasterServiceBean implements MasterService {
 
     }
 
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").enableComplexMapKeySerialization().create();
+
     @Override
     public List<Master> getReligions() {
         List<Master> religions = new ArrayList<>();
-        List<ReligionEnum> enumList = Arrays.asList(ReligionEnum.values());
-        for (ReligionEnum e : enumList ) {
-            religions.add(new Master(e.getValue(), e.name()));
-        }
+        try {
+            Object object = lwComponent.getReligion();
+            religions = gson.fromJson((String) object, new TypeToken<List<Master>>() {}.getType());
+            System.out.println("list:" + religions);
+        }catch(Exception ex){
 
+        }
         return religions;
     }
 
     @Override
     public List<Master> getMartialStatus() {
         List<Master> martialStatus = new ArrayList<>();
-        List<MartialStatusEnum> enumList = Arrays.asList(MartialStatusEnum.values());
-        for (MartialStatusEnum e : enumList ) {
-            martialStatus.add(new Master(e.getValue(), e.name()));
-        }
+        try {
+            Object object = lwComponent.getMartialStatus();
+            martialStatus = gson.fromJson((String) object, new TypeToken<List<Master>>() {}.getType());
+            System.out.println("list:" + martialStatus);
+        }catch(Exception ex){
 
+        }
         return martialStatus;
 
     }
@@ -55,31 +64,38 @@ public class MasterServiceBean implements MasterService {
     @Override
     public List<Master> getGenders() {
         List<Master> gender = new ArrayList<>();
-        List<GenderEnum> enumList = Arrays.asList(GenderEnum.values());
-        for (GenderEnum e : enumList ) {
-            gender.add(new Master(e.getValue(), e.name()));
-        }
+        try {
+            Object object = lwComponent.getMartialStatus();
+            gender = gson.fromJson((String) object, new TypeToken<List<Master>>() {}.getType());
+            System.out.println("list:" + gender);
+        }catch(Exception ex){
 
+        }
         return gender;
     }
 
     @Override
     public List<Master> getNationalities() {
         List<Master> nationality = new ArrayList<>();
-        List<NationalityEnum> enumList = Arrays.asList(NationalityEnum.values());
-        for (NationalityEnum e : enumList ) {
-            nationality.add(new Master(e.getValue(), e.name()));
-        }
+        try {
+            Object object = lwComponent.getMartialStatus();
+            nationality = gson.fromJson((String) object, new TypeToken<List<Master>>() {}.getType());
+            System.out.println("list:" + nationality);
+        }catch(Exception ex){
 
+        }
         return nationality;
     }
 
     @Override
     public List<Master> getCities() {
         List<Master> city = new ArrayList<>();
-        List<CityEnum> enumList = Arrays.asList(CityEnum.values());
-        for (CityEnum e : enumList ) {
-            city.add(new Master(e.getValue(), e.name()));
+        try {
+            Object object = lwComponent.getMartialStatus();
+            city = gson.fromJson((String) object, new TypeToken<List<Master>>() {}.getType());
+            System.out.println("list:" + city);
+        }catch(Exception ex){
+
         }
 
         return city;

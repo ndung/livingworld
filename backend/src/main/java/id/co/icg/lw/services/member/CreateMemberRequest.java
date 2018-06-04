@@ -5,13 +5,13 @@ import java.util.Date;
 public class CreateMemberRequest {
     private String fullName;
     private String ktpNo;
-    private int religion;
-    private int gender;
-    private int martialStatus;
-    private Date dateOfBirth;
-    private int nationality;
+    private String religion;
+    private String gender;
+    private String martialStatus;
+    private String dateOfBirth;
+    private String nationality;
     private String address;
-    private int city;
+    private String city;
     private String zipCode;
     private String homePhone;
 
@@ -31,43 +31,43 @@ public class CreateMemberRequest {
         this.ktpNo = ktpNo;
     }
 
-    public int getReligion() {
+    public String getReligion() {
         return religion;
     }
 
-    public void setReligion(int religion) {
+    public void setReligion(String religion) {
         this.religion = religion;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getMartialStatus() {
+    public String getMartialStatus() {
         return martialStatus;
     }
 
-    public void setMartialStatus(int martialStatus) {
+    public void setMartialStatus(String martialStatus) {
         this.martialStatus = martialStatus;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date date) {
+    public void setDateOfBirth(String date) {
         this.dateOfBirth = date;
     }
 
-    public int getNationality() {
+    public String getNationality() {
         return nationality;
     }
 
-    public void setNationality(int nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
@@ -79,11 +79,11 @@ public class CreateMemberRequest {
         this.address = address;
     }
 
-    public int getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(String city) {
         this.city = city;
     }
 

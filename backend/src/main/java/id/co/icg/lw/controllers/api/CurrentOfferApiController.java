@@ -73,6 +73,54 @@ public class CurrentOfferApiController extends BaseController {
     }
 
     /**
+     * @api {get} /current-offer/{page}/page Get Current Offer
+     * @apiName Get Current Offer
+     * @apiDescription Menggambil current offer. Satu page terdapat 10 messages. Pesan akan diurutkan berdasarkan tanggal secara descending
+     * @apiGroup Current_Offer
+     * @apiParam {int} page Minimal nilai page = 1
+     * @apiPermission USER
+     * @apiHeader {String} Authorization Token hasil generate dari Sign In ditambahkan di header
+     * @apiHeaderExample {json} Contoh Token Header
+     * {
+     *     "Authorization" : "B3CDB813C735BF6D93ED713E1E94D351EF43213A382EB43C64A677F7D43BB0FC"
+     * }
+     * @apiExample {json} Response
+     * {
+     *     data : [
+     *          {
+     *              "id" : "9",
+     *              "title" : "Lorem Ipsum",
+     *              "shortDescription" : "Isi pesan yang akan diterima",
+     *              "thumbnail" : "3123-daf-23dsf.jpg"
+     *          }
+     *
+     *     ],
+     *     message : null
+     * }
+     * @apiSuccess {long} id
+     * @apiSuccess {String} title
+     * @apiSuccess {String} shortDescription
+     * @apiSuccess {String} thumbnail image
+     *
+     */
+    @RequestMapping("")
+    public ResponseEntity<Response> getCurrentOffer(@RequestHeader(Application.AUTH) String token) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+
+        List<CurrentOffer> list = null;
+        String message;
+        try {
+            list = currentOfferService.findAllActive();
+            message = "Success";
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+        return getHttpStatus(new Response(list, message));
+    }
+
+    /**
      * @api {get} /current-offer/{id}/detail Get Detail Current Offer
      * @apiName Get Detail Current Offer
      * @apiDescription Memanggil detail current offer

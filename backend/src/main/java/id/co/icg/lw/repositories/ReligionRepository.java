@@ -1,0 +1,10 @@
+package id.co.icg.lw.repositories;
+
+import id.co.icg.lw.domain.master.Religion;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import javax.transaction.Transactional;
+
+@Transactional
+public interface ReligionRepository extends JpaRepository<Religion, String> {
+}

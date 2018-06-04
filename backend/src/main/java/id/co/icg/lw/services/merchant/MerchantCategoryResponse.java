@@ -4,9 +4,10 @@ import id.co.icg.lw.domain.merchant.MerchantCategory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MerchantCategoryResponse {
-    private long merchantCategoryId;
+    private String merchantCategoryId;
     private String merchantCategoryName;
     private List<MerchantResponse> merchantList;
 
@@ -24,11 +25,11 @@ public class MerchantCategoryResponse {
         }
     }
 
-    public long getMerchantCategoryId() {
+    public String getMerchantCategoryId() {
         return merchantCategoryId;
     }
 
-    public void setMerchantCategoryId(long merchantCategoryId) {
+    public void setMerchantCategoryId(String merchantCategoryId) {
         this.merchantCategoryId = merchantCategoryId;
     }
 
@@ -46,5 +47,20 @@ public class MerchantCategoryResponse {
 
     public void setMerchantList(List<MerchantResponse> merchantList) {
         this.merchantList = merchantList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MerchantCategoryResponse that = (MerchantCategoryResponse) o;
+        return Objects.equals(merchantCategoryId, that.merchantCategoryId) &&
+                Objects.equals(merchantCategoryName, that.merchantCategoryName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(merchantCategoryId, merchantCategoryName);
     }
 }

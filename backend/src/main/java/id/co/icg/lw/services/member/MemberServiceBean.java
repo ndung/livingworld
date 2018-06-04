@@ -37,7 +37,7 @@ public class MemberServiceBean implements MemberService {
         member.setDateOfBirth(request.getDateOfBirth());
         member.setZipcode(request.getZipCode());
         member.setNationalitly(request.getNationality());
-        member.setMemberType(0);
+        member.setMemberType("0");
         member.setUser(user);
 
         memberRepository.save(member);

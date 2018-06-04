@@ -167,4 +167,15 @@ public class User {
     public void setEcashId(String ecashId) {
         this.ecashId = ecashId;
     }
+
+    @Transient
+    private Member member;
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

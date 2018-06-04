@@ -73,4 +73,9 @@ public class CurrentOfferBean implements CurrentOfferService {
     public CurrentOffer findOne(long id) {
         return currentOfferRepository.findOne(id);
     }
+
+    @Override
+    public List<CurrentOffer> findAllActive() {
+        return currentOfferRepository.findALlActive();
+    }
 }

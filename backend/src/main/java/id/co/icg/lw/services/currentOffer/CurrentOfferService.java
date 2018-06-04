@@ -14,4 +14,6 @@ public interface CurrentOfferService {
     List<CurrentOffer> findAll();
 
     CurrentOffer findOne(long id);
+
+    List<CurrentOffer> findAllActive();
 }

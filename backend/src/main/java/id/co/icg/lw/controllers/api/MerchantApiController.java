@@ -1,9 +1,16 @@
 package id.co.icg.lw.controllers.api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
+import id.co.icg.lw.domain.merchant.Merchant;
+import id.co.icg.lw.domain.merchant.MerchantCategory;
+import id.co.icg.lw.domain.merchant.MerchantOfficeHour;
 import id.co.icg.lw.enums.RoleEnum;
 
+import id.co.icg.lw.services.livingWorld.LivingWorldApiService;
 import id.co.icg.lw.services.merchant.MerchantCategoryResponse;
 import id.co.icg.lw.services.merchant.MerchantDetailResponse;
 import id.co.icg.lw.services.merchant.MerchantService;
@@ -14,11 +21,18 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(Application.API_PATH + "/merchant")
 public class MerchantApiController extends BaseController {
+
+    int i = 1;
+
+    @Autowired
+    private LivingWorldApiService livingWorldApiService;
 
     @Autowired
     private MerchantService merchantService;
@@ -87,9 +101,74 @@ public class MerchantApiController extends BaseController {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
+        i=i+1;
+        List<MerchantCategory> categoryMap = new ArrayList<>();
+        Map<String, List<Merchant>> merchantMap = new LinkedTreeMap<>();
+        try {
+            List<LinkedTreeMap> list = (List<LinkedTreeMap>) livingWorldApiService.getMerchantCategory();
 
-        List<MerchantCategoryResponse> messageRequests = merchantService.findAllOrderByMerchantCategoryName();
-        return getHttpStatus(new Response(messageRequests));
+            for (LinkedTreeMap map : list){
+                MerchantCategory category = new MerchantCategory();
+                category.setMerchantCategoryId((String)map.get("id"));
+                category.setMerchantCategoryName((String)map.get("name"));
+                if (i%10==0){
+                    merchantService.createCategory(category.getMerchantCategoryId(), category.getMerchantCategoryName());
+                }
+                categoryMap.add(category);
+            }
+
+            list = (List<LinkedTreeMap>) livingWorldApiService.getMerchant();
+            for (LinkedTreeMap map : list){
+                String category = (String)map.get("category");
+                Merchant request = new Merchant();
+                request.setMerchantId((String)map.get("id"));
+                request.setMerchantName((String)map.get("name"));
+                request.setDescription((String)map.get("description"));
+                request.setMerchantPhone((String)map.get("phone"));
+                request.setMerchantLogo((String)map.get("icon"));
+                request.setMerchantImage((String)map.get("image"));
+
+                if (i%5==0) {
+                    request.setMerchantCategory(merchantService.findOne(category));
+                    merchantService.createMerchant(request);
+                }
+
+                String[] openingTime = new String[]{"10:00","10:00","10:00","10:00","10:00","10:00","10:00"};
+                String[] closingTime = new String[]{"22:00","22:00","22:00","22:00","22:00","22:00","00:00"};
+
+                // set working hours
+                List<MerchantOfficeHour> hours = new ArrayList<>();
+                for (int i = 0; i < 7; i++) {
+                    MerchantOfficeHour hour = new MerchantOfficeHour();
+                    hour.setDay(i);
+                    hour.setStartTime(openingTime[i]);
+                    hour.setEndTime(closingTime[i]);
+                    //hour.setMerchantId(merchant);
+                    hours.add(hour);
+                }
+                request.setMerchantOfficeHourList(hours);
+                List<Merchant> merchants = new ArrayList<>();
+                if (merchantMap.containsKey(category)){
+                    merchants = merchantMap.get(category);
+                }
+                merchants.add(request);
+                merchantMap.put(category, merchants);
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        List<MerchantCategory> responses = new ArrayList<>();
+        for (MerchantCategory merchantCategory : categoryMap){
+            List<Merchant> merchants = merchantMap.get(merchantCategory.getMerchantCategoryName());
+            if (merchants==null){
+                merchants = new ArrayList<>();
+            }
+            merchantCategory.setMerchantList(merchants);
+            responses.add(merchantCategory);
+        }
+        //List<MerchantCategoryResponse> messageRequests = merchantService.findAllOrderByMerchantCategoryName();
+        return getHttpStatus(new Response(responses));
     }
 
     /**

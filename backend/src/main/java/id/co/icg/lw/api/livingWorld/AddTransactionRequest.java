@@ -8,6 +8,9 @@ public class AddTransactionRequest {
     private String amount;
     private String sourceOfFund;
     private String time;
+    private String receiptNo;
+    private String description;
+    private String memberType;
 
     public String getTid() {
         return tid;
@@ -55,5 +58,37 @@ public class AddTransactionRequest {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getCardId() { return cardId; }
+
+    public void setCardId(String cardId) { this.cardId = cardId; }
+
+    public String getReceiptNo() { return receiptNo; }
+
+    public void setReceiptNo(String receiptNo) { this.receiptNo = receiptNo; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public String getMemberType() { return memberType; }
+
+    public void setMemberType(String memberType) { this.memberType = memberType; }
+
+    @Override
+    public String toString() {
+        return "AddTransactionRequest{" +
+                "tid='" + tid + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", merchant='" + merchant + '\'' +
+                ", amount='" + amount + '\'' +
+                ", sourceOfFund='" + sourceOfFund + '\'' +
+                ", time='" + time + '\'' +
+                ", receiptNo='" + receiptNo + '\'' +
+                ", description='" + description + '\'' +
+                ", memberType='" + memberType + '\'' +
+                '}';
     }
 }

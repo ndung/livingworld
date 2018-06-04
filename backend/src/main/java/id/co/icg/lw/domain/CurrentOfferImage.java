@@ -1,5 +1,6 @@
 package id.co.icg.lw.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -15,6 +16,7 @@ public class CurrentOfferImage {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "current_offer_id")
     @NotFound(action = NotFoundAction.IGNORE)
+    @JsonIgnore
     private CurrentOffer currentOffer;
 
     @Temporal(TemporalType.TIMESTAMP)

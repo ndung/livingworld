@@ -15,9 +15,8 @@ import java.util.List;
 public class Merchant {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "merchant_id")
-    private long merchantId;
+    private String merchantId;
 
     private String merchantName;
     private String merchantPhone;
@@ -44,11 +43,11 @@ public class Merchant {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateAt;
 
-    public long getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(long merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 

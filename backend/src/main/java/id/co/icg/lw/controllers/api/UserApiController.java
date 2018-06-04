@@ -2,8 +2,10 @@ package id.co.icg.lw.controllers.api;
 
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
+import id.co.icg.lw.domain.user.Member;
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
+import id.co.icg.lw.services.member.UpdateMemberRequest;
 import id.co.icg.lw.services.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -106,7 +108,7 @@ public class UserApiController extends BaseController{
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(new UserResponse(user)), responseHeaders);
+            return getHttpStatus(new Response(user), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -165,7 +167,7 @@ public class UserApiController extends BaseController{
             String token = createToken(user);
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
-            return getHttpStatus(new Response(new UserResponse(user)), responseHeaders);
+            return getHttpStatus(new Response(user), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -221,15 +223,17 @@ public class UserApiController extends BaseController{
      * }
      */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ResponseEntity<Response> registration(@RequestHeader(Application.AUTH) String token,
-                                                 @RequestBody UserRequest userRequest) {
-        if (!authorize(RoleEnum.USER, token)) {
-            return FORBIDDEN;
-        }
+    public ResponseEntity<Response> registration(@RequestBody UserRequest userRequest) {
+        //if (!authorize(RoleEnum.USER, token)) {
+        //    return FORBIDDEN;
+        //}
         try {
-            String userId = getUserId(token);
-            User user = userService.register(userId, userRequest);
-            return getHttpStatus(new Response(new UserResponse(user)));
+            //String userId = getUserId(token);
+            User user = userService.register(userRequest);
+            String token = createToken(user);
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("Token", token);
+            return getHttpStatus(new Response(user), responseHeaders);
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -324,9 +328,9 @@ public class UserApiController extends BaseController{
      *      message: "Pin and comfirmation pin is not match"
      * }
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
     public ResponseEntity<Response> edit(@RequestHeader(Application.AUTH) String token,
-                                         @RequestBody EditUserRequest editUserRequest) {
+                                         @RequestBody UpdateMemberRequest editUserRequest) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
@@ -334,8 +338,9 @@ public class UserApiController extends BaseController{
         try {
             String userId = getUserId(token);
             User user = userService.edit(userId, editUserRequest);
-            return getHttpStatus(new Response(new UserResponse(user)));
+            return getHttpStatus(new Response(user));
         } catch (Exception e) {
+            e.printStackTrace();
             return getHttpStatus(new Response(e.getMessage()));
         }
     }

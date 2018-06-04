@@ -1,24 +1,36 @@
 package id.co.icg.lw.services.livingWorld;
 
-import id.co.icg.lw.api.livingWorld.LivingWorldApi;
+import id.co.icg.lw.api.livingWorld.*;
 import id.co.icg.lw.component.RetrofitClient;
 import id.co.icg.lw.domain.IFabulaResponse;
-import id.co.icg.lw.services.member.CreateMemberResponse;
 import id.co.icg.lw.services.member.UpdateMemberResponse;
-import id.co.icg.lw.services.member.CreateMemberRequest;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.IOException;
 
 @Component
 public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> implements LivingWorldApiService {
 
+    private Logger logger = LoggerFactory.getLogger(LivingWorldApiServiceImpl.class);
+
+    String baseUrl;
+
     @Autowired
     public LivingWorldApiServiceImpl(@Value("${iFabula.url}") String baseUrl) {
         super(baseUrl, LivingWorldApi.class);
+        this.baseUrl = baseUrl;
     }
 
     @Override
@@ -32,13 +44,13 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
     }
 
     @Override
-    public Object gender() throws Exception {
+    public Object getGender() throws Exception {
         return getMasterData("gender");
     }
 
     @Override
     public Object getMartialStatus() throws Exception {
-        return getMasterData("martial_status");
+        return getMasterData("marital_status");
     }
 
     @Override
@@ -83,6 +95,8 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
         return iFabulaResponse.getList();
     }
 
+    private Retrofit mRetrofit = null;
+
     @Override
     public String createMember(CreateMemberRequest request) throws Exception{
         Call<CreateMemberResponse> callSync = service.createMember(request);
@@ -93,14 +107,27 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
 
     @Override
     public boolean updateMember(UpdateMemberRequest request) throws Exception {
-        Call<UpdateMemberResponse> callSync = service.updateMember(request);
-        Response<UpdateMemberResponse> response = callSync.execute();
-        UpdateMemberResponse iFabulaResponse = response.body();
-        if (!iFabulaResponse.getStatus().equals("success")) {
-            throw new Exception(iFabulaResponse.getFailedReason());
-        }
+        Call<ResponseBody> callSync = service.updateMember(request);
+        Response<ResponseBody> body = callSync.execute();
+        System.out.println(body);
+        System.out.println(body.message());
+        System.out.println(body.raw());
+        System.out.println(body.toString());
 
         return true;
+    }
+
+    @Override
+    public Object addTransaction(AddTransactionRequest request) throws Exception {
+        System.out.println("before");
+        Call<ResponseBody> callSync = service.addTransaction(request);
+        Response body = callSync.execute();
+        System.out.println(body);
+        System.out.println(body.message());
+        System.out.println(body.raw());
+        System.out.println(body.toString());
+        System.out.println(body.errorBody());
+        return null;
     }
 
 //    public AddTransactionResponse addMemberTransaction(AddTransactionRequest request) throws Exception {

@@ -6,10 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserRequest {
+
     private String fullName;
     private String email;
     private String mobileNumber;
     private Date dateOfBirth;
+    private String password;
 
     public Date getDateOfBirth() {
         return dateOfBirth;
@@ -39,8 +41,15 @@ public class UserRequest {
         this.mobileNumber = mobileNumber;
     }
 
-
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserResponse {
+
     private String id;
     private String fullName;
     private String email;
