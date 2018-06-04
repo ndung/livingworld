@@ -22,7 +22,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@id/slider"
+                    android:id="@id/iv_merchant"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     android:fitsSystemWindows="true"
@@ -63,7 +63,7 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/textView57"
+                            android:id="@+id/tv_merchant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Cinema XXI"
@@ -72,7 +72,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView58"
+                            android:id="@+id/tv_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
@@ -83,7 +83,6 @@
                             android:textSize="14sp" />
 
                         <LinearLayout
-                            android:id="@+id/ll_lw_pay"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -99,12 +98,9 @@
                                     android:layout_alignParentLeft="true"
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:id="@+id/textView67"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentLeft="true"
@@ -117,28 +113,17 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/textView18"
+                                        android:id="@+id/tv_phone"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignBaseline="@+id/textView67"
-                                        android:layout_alignBottom="@+id/textView67"
-                                        android:layout_toLeftOf="@+id/iv_click"
-                                        android:layout_toStartOf="@+id/iv_click"
                                         android:layout_weight="1"
                                         android:text="021-12345678"
                                         android:textAlignment="textEnd"
                                         android:textColor="#000000"
-                                        android:textSize="14sp" />
+                                        android:textSize="14sp"
+                                        android:gravity="end" />
                                 </LinearLayout>
 
-                                <ImageView
-                                    android:id="@+id/iv_click"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_alignParentTop="true"
-                                    app:srcCompat="@drawable/ic_chevron_grey" />
                             </RelativeLayout>
 
                             <LinearLayout
@@ -150,7 +135,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_lw_pay"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -171,7 +155,6 @@
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:id="@+id/textView67"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentLeft="true"
@@ -200,7 +183,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_monday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -219,12 +202,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_monday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -236,24 +217,22 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_monday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
                         <LinearLayout
+                            android:id="@+id/line_monday"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:alpha="0.5"
@@ -263,11 +242,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_tuesday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorAccent"
                         android:orientation="vertical"
+                        android:background="#F5F5F5"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp">
 
@@ -289,12 +268,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_tuesday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -302,31 +279,35 @@
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
                                     android:text="Tuesday"
-                                    android:textColor="@color/white"
+                                    android:textColor="#333333"
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_tuesday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/white"
-                                    android:textSize="14sp" />
+                                    android:textColor="#505050"
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
+                        <LinearLayout
+                            android:id="@+id/line_tuesday"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:alpha="0.5"
+                            android:background="#333333"
+                            android:orientation="vertical"></LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_wednesday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -345,12 +326,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_wednesday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -362,24 +341,22 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_wednesday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
                         <LinearLayout
+                            android:id="@+id/line_wednesday"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:alpha="0.5"
@@ -389,7 +366,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_thursday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -408,12 +385,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_thursday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -425,24 +400,22 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_thursday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
                         <LinearLayout
+                            android:id="@+id/line_thursday"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:alpha="0.5"
@@ -452,7 +425,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_friday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -471,12 +444,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_friday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -488,27 +459,31 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_friday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
+                        <LinearLayout
+                            android:id="@+id/line_friday"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:alpha="0.5"
+                            android:background="#333333"
+                            android:orientation="vertical"></LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_saturday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -527,12 +502,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_saturday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -544,24 +517,22 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_saturday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
                         <LinearLayout
+                            android:id="@+id/line_saturday"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:alpha="0.5"
@@ -571,7 +542,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_lw_pay"
+                        android:id="@+id/ll_sunday"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#F5F5F5"
@@ -590,12 +561,10 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toLeftOf="@+id/iv_click"
-                                android:layout_toStartOf="@+id/iv_click"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView67"
+                                    android:id="@+id/label_sunday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -607,24 +576,22 @@
                                     android:textSize="14sp" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/tv_sunday"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignBaseline="@+id/textView67"
-                                    android:layout_alignBottom="@+id/textView67"
-                                    android:layout_toLeftOf="@+id/iv_click"
-                                    android:layout_toStartOf="@+id/iv_click"
                                     android:layout_weight="1"
                                     android:alpha="0.6"
                                     android:text="10am - 10pm"
                                     android:textAlignment="textEnd"
                                     android:textColor="#505050"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:gravity="end" />
                             </LinearLayout>
 
                         </RelativeLayout>
 
                         <LinearLayout
+                            android:id="@+id/line_sunday"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:alpha="0.5"

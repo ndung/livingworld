@@ -24,11 +24,14 @@ public interface MemberService {
     @POST("member/registration")
     Call<Response> registerMember(@Body Map<String, String> map);
 
-    @PUT("member")
+    @PUT("user/edit")
     Call<Response> updateMember(@Body Map<String, String> map);
 
     @GET("member")
     Call<Response> detail();
+
+    @POST("user/registration")
+    Call<Response> registerUser(@Body Map<String, String> map);
 
     @Multipart
     @POST("user/upload/photo-profile")

@@ -180,28 +180,28 @@ public class BAMRegistrationActivity extends BaseActivity {
         map.put("homeNumber", homePhone);
 
         memberService.registerMember(map).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                dissmissPleasewaitDialog();
-                if(response.isSuccessful()){
-                    Response body = response.body();
-                    boolean success = (boolean) body.getData();
-                    if(success){
-                        showMessage("Success to register member");
-                        finish();
-                    }
-                }else{
-                    showMessage(Static.SOMETHING_WRONG);
+        @Override
+        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            dissmissPleasewaitDialog();
+            if(response.isSuccessful()){
+                Response body = response.body();
+                boolean success = (boolean) body.getData();
+                if(success){
+                    showMessage("Success to register member");
+                    finish();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-                dissmissPleasewaitDialog();
+            }else{
                 showMessage(Static.SOMETHING_WRONG);
             }
-        });
-    }
+        }
+
+        @Override
+        public void onFailure(Call<Response> call, Throwable t) {
+            dissmissPleasewaitDialog();
+            showMessage(Static.SOMETHING_WRONG);
+        }
+    });
+}
 
     private void initMasters() {
         initMasterReligion();

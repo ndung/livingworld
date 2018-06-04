@@ -21,5 +21,12 @@ public interface TrxService {
     @GET("transaction/balance/day")
     Call<Response> getBalanceDay();
 
+    @GET("transaction/luckyDraws")
+    Call<Response> getLuckyDraws();
 
+    @GET("transaction/history")
+    Call<Response> getHistory();
+
+    @POST("transaction/create")
+    Call<Response> create(@Body Map<String, String> map);
 }

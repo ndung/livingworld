@@ -31,6 +31,25 @@ public class Step1SignUpFragment extends Fragment {
     EditText etBod;
     @BindView(R.id.et_mobile)
     EditText etMobile;
+    @BindView(R.id.et_email)
+    EditText etEmail;
+
+    public EditText getEtNama() {
+        return etNama;
+    }
+
+    public EditText getEtBod() {
+        return etBod;
+    }
+
+    public EditText getEtMobile() {
+        return etMobile;
+    }
+
+    public EditText getEtEmail() {
+        return etEmail;
+    }
+
     Unbinder unbinder;
 
     public Step1SignUpFragment() {
@@ -62,7 +81,7 @@ public class Step1SignUpFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                etBod.setText(String.valueOf(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth));
+                                etBod.setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
                             }
                         },
                         now.get(Calendar.YEAR),
@@ -74,6 +93,14 @@ public class Step1SignUpFragment extends Fragment {
         });
 
         etBod.setFocusable(false);
+    }
+
+    private String convertNumber(int number){
+        String str = String.valueOf(number);
+        if (str.length()<2){
+            str = "0"+str;
+        }
+        return str;
     }
 
     @Override

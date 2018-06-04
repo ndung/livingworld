@@ -53,7 +53,7 @@ public class MerchantDetAdapter extends RecyclerView.Adapter<MerchantDetAdapter.
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Merchant model = list.get(position);
         holder.tvTitle.setText(model.getMerchantName());
-        Glide.with(context).load(Static.BASE_URL+"files/"+model.getMerchantLogo()).into(holder.ivImgBox);
+        Glide.with(context).load(Static.LW_URL+model.getMerchantLogo()).into(holder.ivImgBox);
 
 
 //        if(position > 0){
@@ -66,7 +66,7 @@ public class MerchantDetAdapter extends RecyclerView.Adapter<MerchantDetAdapter.
         holder.rvItem.setVisibility(View.GONE);
 
 
-        holder.ivClick.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onItemClick(model);

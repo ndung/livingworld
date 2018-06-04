@@ -57,15 +57,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
     compile 'com.snatik:storage:2.1.0'
+    compile 'com.journeyapps:zxing-android-embedded:3.6.0'
 }
-
-
-
-
-
-
-
-
-
 
 apply plugin: 'com.google.gms.google-services'

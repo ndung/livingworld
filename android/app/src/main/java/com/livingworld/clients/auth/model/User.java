@@ -1,8 +1,10 @@
 package com.livingworld.clients.auth.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.livingworld.clients.member.model.Member;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Dizzay on 1/19/2018.
@@ -10,32 +12,22 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
-    @SerializedName("id")
-    String id;
-    @SerializedName("fullName")
-    String fullName;
-    @SerializedName("email")
-    String email;
-    @SerializedName("mobileNumber")
-    String mobileNumber;
-    @SerializedName("dateOfBirth")
-    String dateOfBirth;
-    @SerializedName("photoProfileUrl")
-    String photoProfileUrl;
-    int gender;
-    int martialStatus;
-    int nationality;
-    String address;
-    int city;
-    int zipCode;
-    String homeNumber;
+    private String userId;
+    private String fullName;
+    private String email;
+    private String mobileNumber;
+    //private Date dateOfBirth;
+    private String photoProfileUrl;
 
-    public String getId() {
-        return id;
+    private String ecashId;
+    private Member member;
+
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFullName() {
@@ -62,13 +54,13 @@ public class User implements Serializable{
         this.mobileNumber = mobileNumber;
     }
 
-    public String getDateOfBirth() {
+    /**public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
+    }*/
 
     public String getPhotoProfileUrl() {
         return photoProfileUrl;
@@ -78,59 +70,33 @@ public class User implements Serializable{
         this.photoProfileUrl = photoProfileUrl;
     }
 
-    public int getGender() {
-        return gender;
+    public String getEcashId() {
+        return ecashId;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setEcashId(String ecashId) {
+        this.ecashId = ecashId;
     }
 
-    public int getMartialStatus() {
-        return martialStatus;
+    public Member getMember() {
+        return member;
     }
 
-    public void setMartialStatus(int martialStatus) {
-        this.martialStatus = martialStatus;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
-    public int getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(int nationality) {
-        this.nationality = nationality;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getCity() {
-        return city;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getHomeNumber() {
-        return homeNumber;
-    }
-
-    public void setHomeNumber(String homeNumber) {
-        this.homeNumber = homeNumber;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                //", dateOfBirth=" + dateOfBirth +
+                ", photoProfileUrl='" + photoProfileUrl + '\'' +
+                ", ecashId='" + ecashId + '\'' +
+                ", member=" + member +
+                '}';
     }
 }

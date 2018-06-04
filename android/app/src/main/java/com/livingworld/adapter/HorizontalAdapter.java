@@ -10,6 +10,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.livingworld.R;
+import com.livingworld.clients.offers.model.CurrentOffer;
+import com.livingworld.clients.offers.model.CurrentOfferImage;
+import com.livingworld.util.Static;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,14 +26,16 @@ import butterknife.ButterKnife;
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.ViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(CurrentOffer position);
     }
 
     private final OnItemClickListener listener;
+    private List<CurrentOffer> list;
     private Context context;
 
-    public HorizontalAdapter(Context context, OnItemClickListener listener) {
+    public HorizontalAdapter(Context context, List<CurrentOffer> list, OnItemClickListener listener) {
         this.listener = listener;
+        this.list = list;
         this.context = context;
     }
 
@@ -40,13 +47,19 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Glide.with(context)
-                .load("http://www.lihat.co.id/wp-content/uploads/2016/08/Pantai-Tanjung-Pakis-1.jpg").into(holder.imageView);
-
+        final CurrentOffer model = list.get(position);
+        List<CurrentOfferImage> images = model.getCurrentOfferImages();
+        if (images!=null) {
+            Glide.with(context)
+                    .load(Static.IMAGES_URL+images.get(0).getCurrentOfferImageId()).into(holder.imageView);
+        }else{
+            Glide.with(context)
+                    .load(Static.NO_IMAGE_URL).into(holder.imageView);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onItemClick(position);
+                listener.onItemClick(model);
             }
         });
 
@@ -54,7 +67,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

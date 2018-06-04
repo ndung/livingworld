@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -31,7 +32,12 @@ import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.master.MasterService;
+import com.livingworld.clients.master.model.City;
+import com.livingworld.clients.master.model.Gender;
+import com.livingworld.clients.master.model.MaritalStatus;
 import com.livingworld.clients.master.model.Master;
+import com.livingworld.clients.master.model.Nationality;
+import com.livingworld.clients.master.model.Religion;
 import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.member.model.Member;
 import com.livingworld.clients.model.Response;
@@ -44,7 +50,10 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -95,16 +104,18 @@ public class InformationAccountActivity extends BaseActivity {
     MasterService masterService;
     MemberService memberService;
 
-    List<Master> religionMasters = new ArrayList<>();
-    List<Master> cityMasters = new ArrayList<>();
-    List<Master> materialStatusMasters = new ArrayList<>();
-    List<Master> genderMasters = new ArrayList<>();
-    List<Master> nationalityMasters = new ArrayList<>();
+    List<Religion> religionMasters = new ArrayList<>();
+    List<City> cityMasters = new ArrayList<>();
+    List<MaritalStatus> materialStatusMasters = new ArrayList<>();
+    List<Gender> genderMasters = new ArrayList<>();
+    List<Nationality> nationalityMasters = new ArrayList<>();
 
     Member member = null;
 
     private static final int CODE_CAMERA = 3321;
     private static final int CODE_GALLERY = 3322;
+
+    private static final String TAG = InformationAccountActivity.class.toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +126,9 @@ public class InformationAccountActivity extends BaseActivity {
         masterService = ApiUtils.MasterService(getApplicationContext());
         memberService = ApiUtils.MemberService(getApplicationContext());
 
-//        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
-
         user = Preferences.getUser(getApplicationContext());
+
+        member = user.getMember();
 //        initData(user);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,14 +138,86 @@ public class InformationAccountActivity extends BaseActivity {
         });
 
         initTglLahir();
-        initGetDetail();
         initChangePicture();
-        initMasters();
 
-        Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
+        if (user.getPhotoProfileUrl()!=null) {
+            Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
+        }else{
+            Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
+        }
 
+        religionMasters = user.getMember().getReligions();
 
+        ArrayAdapter<Religion> religionAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
+        religionAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spReligion.setAdapter(religionAdapter);
+        for (int i=0; i < religionMasters.size(); i++){
+            Master master = religionMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getReligion())){
+                spReligion.setSelection(i);
+                break;
+            }
+        }
 
+        cityMasters = user.getMember().getCities();
+
+        ArrayAdapter<City> cityAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
+        cityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spCity.setAdapter(cityAdapter);
+        for (int i=0; i < cityMasters.size(); i++){
+            Master master = cityMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getCity())){
+                spCity.setSelection(i);
+                break;
+            }
+        }
+
+        materialStatusMasters = user.getMember().getMaritalStatuses();
+
+        ArrayAdapter<MaritalStatus> materialStatusAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
+        materialStatusAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spMaterialStatus.setAdapter(materialStatusAdapter);
+        for (int i=0; i < materialStatusMasters.size(); i++){
+            Master master = materialStatusMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getMartialStatus())){
+                spMaterialStatus.setSelection(i);
+                break;
+            }
+        }
+
+        genderMasters = user.getMember().getGenders();
+
+        ArrayAdapter<Gender> genderAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
+        genderAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spGender.setAdapter(genderAdapter);
+        for (int i=0; i < genderMasters.size(); i++){
+            Master master = genderMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getGender())){
+                spGender.setSelection(i);
+                break;
+            }
+        }
+
+        nationalityMasters = user.getMember().getNationalities();
+
+        ArrayAdapter<Nationality> nationalityAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
+        nationalityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spNationality.setAdapter(nationalityAdapter);
+        for (int i=0; i < nationalityMasters.size(); i++){
+            Master master = nationalityMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getNationalitly())){
+                spNationality.setSelection(i);
+                break;
+            }
+        }
+
+        etName.setText(member.getIdentityName());
+        etEmail.setText(member.getEmail());
+        etAddress.setText(member.getAddress());
+        etBod.setText(member.getDateOfBirth());
+        etPhone.setText(user.getMobileNumber());
+        etHomePhone.setText(member.getHomePhone());
+        etZipCode.setText(member.getZipcode());
     }
 
     private void initChangePicture() {
@@ -142,37 +225,6 @@ public class InformationAccountActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 changeImageProfile();
-            }
-        });
-    }
-
-    private void initGetDetail() {
-        memberService.detail().enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Response body = response.body();
-                    if(body != null && body.getData() != null){
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        member = gson.fromJson(jsonObject.get("data"), Member.class);
-                        etName.setText(member.getFullName());
-                        etName.setSelection(member.getFullName().length());
-//                        etName.setText(member.getKtpNo());
-                        etBod.setText(member.getDateOfBirth());
-                        etAddress.setText(member.getAddress());
-                        etZipCode.setText(String.valueOf(member.getZipCode()));
-                        etHomePhone.setText(member.getHomePhone());
-
-
-//                        member.get
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
             }
         });
     }
@@ -186,7 +238,7 @@ public class InformationAccountActivity extends BaseActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                etBod.setText(String.valueOf(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth));
+                                etBod.setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
                             }
                         },
                         now.get(Calendar.YEAR),
@@ -198,6 +250,14 @@ public class InformationAccountActivity extends BaseActivity {
         });
 
         etBod.setFocusable(false);
+    }
+
+    private String convertNumber(int number){
+        String str = String.valueOf(number);
+        if (str.length()<2){
+            str = "0"+str;
+        }
+        return str;
     }
 
     private void changeImageProfile() {
@@ -278,7 +338,7 @@ public class InformationAccountActivity extends BaseActivity {
                             JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
                             User user = gson.fromJson(jsonObject.get("data"), User.class);
                             Preferences.setUser(getApplicationContext(), user);
-                            Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
+                            Glide.with(getApplicationContext()).load(Static.IMAGES_URL+user.getPhotoProfileUrl()).into(ivProfile);
                             dialog.dismiss();
                             showMessage("Berhasil upload photo profile");
                         }else{
@@ -315,216 +375,118 @@ public class InformationAccountActivity extends BaseActivity {
 
     }
 
-    private void initMasters() {
-        initMasterReligion();
-        initMasterMaterialStatus();
-        initMasterGender();
-        initMasterNationality();
-        initMasterCity();
-    }
-
-    private void initMasterReligion() {
-        masterService.getMaster(Static.MASTER_RELIGION).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    religionMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spReligion.setAdapter(adapter);
-                    for (int i=0; i < list.size(); i++){
-                        Master master = list.get(i);
-                        if(member != null && master.getId() == member.getReligion()){
-                            spReligion.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterCity() {
-        masterService.getMaster(Static.MASTER_CITY).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    cityMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spCity.setAdapter(adapter);
-                    for (int i=0; i < list.size(); i++){
-                        Master master = list.get(i);
-                        if(member != null && master.getId() == member.getCity()){
-                            spCity.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterMaterialStatus() {
-        masterService.getMaster(Static.MASTER_MATERIAL_STATUS).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    materialStatusMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spMaterialStatus.setAdapter(adapter);
-                    for (int i=0; i < list.size(); i++){
-                        Master master = list.get(i);
-                        if(member != null && master.getId() == member.getMartialStatus()){
-                            spMaterialStatus.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterGender() {
-        masterService.getMaster(Static.MASTER_GENDER).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    genderMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spGender.setAdapter(adapter);
-                    for (int i=0; i < list.size(); i++){
-                        Master master = list.get(i);
-                        if(member != null && master.getId() == member.getGender()){
-                            spGender.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterNationality() {
-        masterService.getMaster(Static.MASTER_NATIONALITY).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                    nationalityMasters.addAll(list);
-                    ArrayAdapter<Master> adapter =
-                            new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spNationality.setAdapter(adapter);
-                    for (int i=0; i < list.size(); i++){
-                        Master master = list.get(i);
-                        if(member != null && master.getId() == member.getNationality()){
-                            spNationality.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initData(User user) {
-        etName.setText(user.getFullName());
-        etEmail.setText(user.getEmail());
-        etAddress.setText(user.getAddress());
-        etBod.setText(user.getDateOfBirth());
-        etPhone.setText(user.getMobileNumber());
-        etHomePhone.setText(user.getHomeNumber());
-        etZipCode.setText(String.valueOf(user.getZipCode()));
-    }
-
     private void setData(){
+        Map<String,String> map = new HashMap<>();
+
         if(etName.getText().toString().isEmpty()){
             showMessage("Name "+ Static.REQUIRED);
             return;
         }
-        user.setFullName(etName.getText().toString());
+        map.put("name",etName.getText().toString());
 
         if(etEmail.getText().toString().isEmpty()){
             showMessage("Email "+ Static.REQUIRED);
             return;
         }
-        user.setEmail(etEmail.getText().toString());
+        map.put("email",etEmail.getText().toString());
 
         if(etPhone.getText().toString().isEmpty()){
             showMessage("Mobile Number "+ Static.REQUIRED);
             return;
         }
-        user.setMobileNumber(etPhone.getText().toString());
+        map.put("mobilePhoneNumber",etPhone.getText().toString());
 
         if(etBod.getText().toString().isEmpty()){
             showMessage("Date of Birth "+ Static.REQUIRED);
             return;
         }
-        user.setDateOfBirth(etBod.getText().toString());
+        map.put("birthOfDate",etBod.getText().toString());
 
         if(etAddress.getText().toString().isEmpty()){
             showMessage("Address "+ Static.REQUIRED);
             return;
         }
-        user.setAddress(etAddress.getText().toString());
+        map.put("address",etAddress.getText().toString());
 
         if(etZipCode.getText().toString().isEmpty()){
             showMessage("ZIP Code "+ Static.REQUIRED);
             return;
         }
-        user.setZipCode(Integer.valueOf(etZipCode.getText().toString()));
+        map.put("zipCode",etZipCode.getText().toString());
 
         if(etHomePhone.getText().toString().isEmpty()){
             showMessage("Home Number "+ Static.REQUIRED);
             return;
         }
-        user.setHomeNumber(etHomePhone.getText().toString());
+        map.put("homePhoneNumber",etHomePhone.getText().toString());
+
+        for (int i=0; i < religionMasters.size(); i++){
+            Master master = religionMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spReligion.getSelectedItem().toString())){
+                map.put("religion",master.getId());
+                break;
+            }
+        }
+        Log.d(TAG,"religion:"+map.get("religion"));
+
+        for (int i=0; i < genderMasters.size(); i++){
+            Master master = genderMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spGender.getSelectedItem().toString())){
+                map.put("gender",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < materialStatusMasters.size(); i++){
+            Master master = materialStatusMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spMaterialStatus.getSelectedItem().toString())){
+                map.put("maritalStatus",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < nationalityMasters.size(); i++){
+            Master master = nationalityMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spNationality.getSelectedItem().toString())){
+                map.put("nationality",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < cityMasters.size(); i++){
+            Master master = cityMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spCity.getSelectedItem().toString())){
+                map.put("city",master.getId());
+                break;
+            }
+        }
+        map.put("cardNumber", member.getCardNumber());
+        map.put("tid", UUID.randomUUID().toString());
+        map.put("idNumber", member.getIdenitityNumber());
+        map.put("memberType", member.getMemberType());
+
+        showPleasewaitDialog();
+        memberService.updateMember(map).enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                dissmissPleasewaitDialog();
+                if(response.isSuccessful()){
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    User user = gson.fromJson(jsonObject.get("data"), User.class);
+                    Preferences.setUser(getApplicationContext(), user);
+                    showMessage("Berhasil update profil");
+                }else{
+                    showMessage(Static.SOMETHING_WRONG);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                dissmissPleasewaitDialog();
+                showMessage(Static.SOMETHING_WRONG);
+            }
+        });
     }
 
     @OnClick({R.id.iv_finish, R.id.iv_profile, R.id.iv_change_pwd})

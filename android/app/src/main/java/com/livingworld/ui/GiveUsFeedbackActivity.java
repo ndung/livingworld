@@ -30,5 +30,6 @@ public class GiveUsFeedbackActivity extends AppCompatActivity {
 
     @OnClick(R.id.iv_finish)
     public void onViewClicked() {
+        finish();
     }
 }

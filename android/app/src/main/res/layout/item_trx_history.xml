@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_img_inbox"
+                    android:layout_toRightOf="@+id/iv_img_inbox"
+                    android:text="Starbucks Coffee"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_img_inbox"
+                    android:layout_toRightOf="@+id/iv_img_inbox"
+                    android:text="18/07/17"
+                    android:textColor="#8A8B8A"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_pts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_toEndOf="@+id/iv_img_inbox"
+                    android:layout_toRightOf="@+id/iv_img_inbox"
+                    android:background="@color/colorAccent"
+                    android:padding="3dp"
+                    android:text="+20"
+                    android:textAlignment="textEnd"
+                    android:gravity="end"
+                    android:textColor="#FFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_img_inbox"
+                    android:layout_toRightOf="@+id/iv_img_inbox"
+                    android:text="- Rp100.000"
+                    android:textAlignment="textEnd"
+                    android:textColor="#88A0AD"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.5"
+            android:background="#333333"
+            android:orientation="vertical"></LinearLayout>
+</LinearLayout>

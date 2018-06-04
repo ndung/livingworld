@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.livingworld.R;
 import com.livingworld.clients.auth.model.User;
+import com.livingworld.clients.trx.model.LuckyDraw;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
@@ -55,8 +56,11 @@ public class AccountSettingActivity extends AppCompatActivity {
 
         User user = Preferences.getUser(getApplicationContext());
 
-        Glide.with(getApplicationContext()).load(Static.BASE_URL+"files/"+user.getPhotoProfileUrl()).into(ivProfile);
-
+        if (user.getPhotoProfileUrl()!=null) {
+            Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
+        }else{
+            Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
+        }
         tvName.setText(user.getFullName());
         tvCardNumber.setText(Preferences.getCardNumber(getApplicationContext()));
     }
@@ -74,6 +78,7 @@ public class AccountSettingActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), TrxHistoryActivity.class));
                 break;
             case R.id.menu_lucky_draw:
+                startActivity(new Intent(getApplicationContext(), LuckyDrawsActivity.class));
                 break;
             case R.id.menu_about_us:
                 startActivity(new Intent(getApplicationContext(), AboutUSActivity.class));

@@ -1,22 +1,34 @@
 package com.livingworld.clients.member.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * Created by Dizzay on 1/19/2018.
  */
 
-public class User {
+public class User implements Serializable {
 
-    String fullName;
-    String email;
-    String mobileNumber;
-    int gender;
-    int martialStatus;
-    String dateOfBirth;
-    int nationality;
-    String address;
-    int city;
-    int zipCode;
-    String homeNumber;
+    private String userId;
+
+    private String fullName;
+    private String email;
+    private String mobileNumber;
+    private Date dateOfBirth;
+    private String photoProfileUrl;
+
+    private String ecashId;
+    private String cardNumber;
+    private int status;
+    private Member member;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getFullName() {
         return fullName;
@@ -42,67 +54,51 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public int getMartialStatus() {
-        return martialStatus;
-    }
-
-    public void setMartialStatus(int martialStatus) {
-        this.martialStatus = martialStatus;
-    }
-
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getNationality() {
-        return nationality;
+    public String getPhotoProfileUrl() {
+        return photoProfileUrl;
     }
 
-    public void setNationality(int nationality) {
-        this.nationality = nationality;
+    public void setPhotoProfileUrl(String photoProfileUrl) {
+        this.photoProfileUrl = photoProfileUrl;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEcashId() {
+        return ecashId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEcashId(String ecashId) {
+        this.ecashId = ecashId;
     }
 
-    public int getCity() {
-        return city;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setCity(int city) {
-        this.city = city;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
-    public int getZipCode() {
-        return zipCode;
+    public int getStatus() {
+        return status;
     }
 
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getHomeNumber() {
-        return homeNumber;
+    public Member getMember() {
+        return member;
     }
 
-    public void setHomeNumber(String homeNumber) {
-        this.homeNumber = homeNumber;
+    public void setMember(Member member) {
+        this.member = member;
     }
 }

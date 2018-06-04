@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -32,6 +34,8 @@ public class InboxActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.iv_finish)
+    ImageView ivFinish;
     InboxService inboxService;
     List<Inbox> list = new ArrayList<>();
     boolean loading = false;
@@ -45,6 +49,12 @@ public class InboxActivity extends BaseActivity {
         ButterKnife.bind(this);
         inboxService = ApiUtils.InboxService(getApplicationContext());
 
+        ivFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         showPleasewaitDialog();
         getMessage();
 

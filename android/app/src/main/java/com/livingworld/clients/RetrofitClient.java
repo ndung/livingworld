@@ -2,6 +2,7 @@ package com.livingworld.clients;
 
 import android.content.Context;
 import android.preference.Preference;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
+    private static final String TAG = RetrofitClient.class.toString();
+
     public static Retrofit retrofit;
 
     public static Retrofit getClient(final Context context, String baseUrl) {
@@ -33,6 +36,9 @@ public class RetrofitClient {
                 .setLenient()
                 .create();
 
+        final String token = Preferences.getToken(context);
+        Log.d(TAG, "token:"+token);
+
         httpClient.readTimeout(300, TimeUnit.SECONDS)
                 .connectTimeout(300, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
@@ -43,7 +49,7 @@ public class RetrofitClient {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request newRequest  = chain.request().newBuilder()
-                                .addHeader("Authorization", Preferences.getToken(context))
+                                .addHeader("Authorization", token)
                                 .addHeader("Content-Type", "application/json")
                                 .build();
                         return chain.proceed(newRequest);

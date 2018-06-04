@@ -1,9 +1,11 @@
 package com.livingworld.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,19 +31,14 @@ import butterknife.ButterKnife;
 
 public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.ViewHolder> {
 
+    private static final String TAG = MerchantAdapter.class.toString();
+
     List<MerchantCategory> list = new ArrayList<>();
 
-    public interface OnItemClickListener {
-        void onItemClick(MerchantCategory model);
-    }
+    Activity context;
 
-    Context context;
-
-    private final OnItemClickListener listener;
-
-    public MerchantAdapter(Context context, List<MerchantCategory> list, OnItemClickListener listener) {
+    public MerchantAdapter(Activity context, List<MerchantCategory> list) {
         this.list = list;
-        this.listener = listener;
         this.context = context;
     }
 
@@ -65,7 +62,9 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.ViewHo
         MerchantDetAdapter inboxAdapter = new MerchantDetAdapter(context, model.getMerchantList(), new MerchantDetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Merchant m) {
-                listener.onItemClick(model);
+                Intent intent = new Intent(context, MerchantDetailActivity.class);
+                intent.putExtra("merchant", m);
+                context.startActivity(intent);
             }
         });
 
@@ -73,11 +72,14 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.ViewHo
         holder.rvItem.setLayoutManager(layoutManager);
         holder.rvItem.setAdapter(inboxAdapter);
 
-        holder.ivClick.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                listener.onItemClick(model);
-                holder.rvItem.setVisibility(View.VISIBLE);
+                if (holder.rvItem.getVisibility()== View.VISIBLE){
+                    holder.rvItem.setVisibility(View.GONE);
+                }else {
+                    holder.rvItem.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

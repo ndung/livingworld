@@ -88,7 +88,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_img_inbox"
                             android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Bahasa indonesia"
+                            android:text="English (United States)"
                             android:textColor="#333333"
                             android:textSize="16sp" />
 
@@ -122,13 +122,12 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/tv_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_img_inbox"
                             android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="English (United States)"
+                            android:text="Bahasa Indonesia"
                             android:textColor="#333333"
                             android:textSize="16sp" />
 

@@ -91,6 +91,9 @@
             android:name=".ui.TrxHistoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.LuckyDrawsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.LanguageChoiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
