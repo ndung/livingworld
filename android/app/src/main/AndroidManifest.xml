@@ -44,9 +44,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.RegistrationActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.sign.LoginActivity"
+            android:name=".ui.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.HomeActivity"
@@ -97,13 +99,10 @@
             android:name=".ui.LanguageChoiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.CurrentOffersActivity"
+            android:name=".ui.CurrentOfferDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.CurrentOffersDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.AboutUSActivity"
+            android:name=".ui.AboutUsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.GiveUsFeedbackActivity"
@@ -115,10 +114,10 @@
             android:name=".ui.ChangePasswordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ContactUSActivity"
+            android:name=".ui.ContactUsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.CurrentOfferActivity"
+            android:name=".ui.CurrentOffersActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.MerchantListActivity"
@@ -128,6 +127,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.RewardsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/FinestWebViewTheme.Light" />
     </application>
 
 </manifest>

@@ -2,9 +2,6 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,7 +18,6 @@ import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.model.Response;
 import com.livingworld.ui.fragment.registration.Step1SignUpFragment;
 import com.livingworld.ui.fragment.registration.Step2SignUpFragment;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;

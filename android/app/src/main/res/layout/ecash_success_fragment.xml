@@ -6,7 +6,7 @@
     android:autofillHints="#FFF"
     tools:context="com.livingworld.ui.fragment.registration.Step1SignUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update fragment_blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"

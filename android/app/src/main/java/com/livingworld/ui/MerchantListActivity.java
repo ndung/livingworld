@@ -1,30 +1,21 @@
 package com.livingworld.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
-import com.livingworld.adapter.InboxAdapter;
-import com.livingworld.adapter.MerchantAdapter;
+import com.livingworld.adapter.MerchantCategoryAdapter;
 import com.livingworld.clients.ApiUtils;
-import com.livingworld.clients.inbox.model.Inbox;
-import com.livingworld.clients.master.model.Master;
 import com.livingworld.clients.merchant.MerchantService;
-import com.livingworld.clients.merchant.model.Merchant;
 import com.livingworld.clients.merchant.model.MerchantCategory;
 import com.livingworld.clients.model.Response;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Static;
 
@@ -34,7 +25,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -49,7 +39,7 @@ public class MerchantListActivity extends BaseActivity {
 
     MerchantService merchantService;
     List<MerchantCategory> list = new ArrayList<>();
-    MerchantAdapter merchantAdapter;
+    MerchantCategoryAdapter merchantAdapter;
 
 
     @Override
@@ -67,7 +57,7 @@ public class MerchantListActivity extends BaseActivity {
 
         merchantService = ApiUtils.MerchantService(getApplicationContext());
 
-        merchantAdapter = new MerchantAdapter(this, list);
+        merchantAdapter = new MerchantCategoryAdapter(this, list);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);

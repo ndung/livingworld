@@ -2,10 +2,8 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,9 +15,7 @@ import com.livingworld.adapter.InboxAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.inbox.InboxService;
 import com.livingworld.clients.inbox.model.Inbox;
-import com.livingworld.clients.master.model.Master;
 import com.livingworld.clients.model.Response;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
 
 import java.util.ArrayList;

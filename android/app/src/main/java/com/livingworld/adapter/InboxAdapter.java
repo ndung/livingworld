@@ -56,7 +56,7 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
 //            holder.llNew.setVisibility(View.GONE);
 //        }
 
-        holder.ivClick.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onItemClick(inbox);
@@ -66,7 +66,7 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

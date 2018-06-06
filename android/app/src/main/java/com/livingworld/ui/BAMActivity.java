@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.livingworld.R;
-import com.livingworld.util.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

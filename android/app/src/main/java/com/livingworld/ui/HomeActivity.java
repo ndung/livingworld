@@ -34,7 +34,6 @@ import com.livingworld.clients.model.Response;
 import com.livingworld.clients.offers.OffersService;
 import com.livingworld.clients.offers.model.CurrentOffer;
 import com.livingworld.clients.trx.TrxService;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.IDRUtils;
 import com.livingworld.util.Preferences;
@@ -120,7 +119,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
             @Override
             public void onItemClick(CurrentOffer obj) {
-                Intent intent = new Intent(getApplicationContext(), CurrentOffersDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CurrentOfferDetailActivity.class);
                 intent.putExtra("currentOffer", obj);
                 startActivity(intent);
             }
@@ -282,7 +281,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(getApplicationContext(), MyCarActivity.class));
                 break;
             case R.id.tv_view_coffer:
-                startActivity(new Intent(getApplicationContext(), CurrentOfferActivity.class));
+                startActivity(new Intent(getApplicationContext(), CurrentOffersActivity.class));
                 break;
             case R.id.cv_merchant:
                 startActivity(new Intent(getApplicationContext(), MerchantListActivity.class));

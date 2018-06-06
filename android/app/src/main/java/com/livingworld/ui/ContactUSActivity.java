@@ -10,7 +10,6 @@ import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.inbox.InboxService;
 import com.livingworld.clients.model.Response;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
 
 import java.util.HashMap;
@@ -22,7 +21,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class ContactUSActivity extends BaseActivity {
+public class ContactUsActivity extends BaseActivity {
 
     @BindView(R.id.iv_finish)
     ImageView ivFinish;

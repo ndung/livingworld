@@ -55,4 +55,16 @@ public class ValidateResponse {
     public void setKyc(String kyc) {
         this.kyc = kyc;
     }
+
+    @Override
+    public String toString() {
+        return "ValidateResponse{" +
+                "msisdn='" + msisdn + '\'' +
+                ", status='" + status + '\'' +
+                ", groupID='" + groupID + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", kyc='" + kyc + '\'' +
+                '}';
+    }
 }

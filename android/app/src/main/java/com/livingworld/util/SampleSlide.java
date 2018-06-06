@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.livingworld.R;
-import com.livingworld.ui.sign.LoginActivity;
+import com.livingworld.ui.LoginActivity;
 import com.livingworld.ui.RegistrationActivity;
 
 public class SampleSlide extends Fragment {

@@ -1,10 +1,8 @@
 package com.livingworld.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -12,14 +10,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
-import com.livingworld.adapter.LuckyDrawAdapter;
 import com.livingworld.adapter.TrxAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.trx.TrxService;
 import com.livingworld.clients.trx.model.History;
-import com.livingworld.clients.trx.model.LuckyDraw;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Static;
 

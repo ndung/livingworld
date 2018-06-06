@@ -1,7 +1,6 @@
 package com.livingworld.ui.fragment.ecash;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,25 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.livingworld.R;
-import com.livingworld.adapter.ViewPagerAdapter;
-import com.livingworld.ui.fragment.ecash.intro.EcashIntro1Fragment;
-import com.livingworld.ui.fragment.login.CreatePasswordFragment;
-import com.robohorse.pagerbullet.PagerBullet;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EcashIntroFragment extends Fragment {
+public class ECashIntroFragment extends Fragment {
 
-    @BindView(R.id.pagerBullet)
-    PagerBullet pagerBullet;
-    Unbinder unbinder;
 
-    public EcashIntroFragment() {
+    public ECashIntroFragment() {
         // Required empty public constructor
     }
 
@@ -39,7 +27,6 @@ public class EcashIntroFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.ecash_intro_fragment, container, false);
-        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -47,22 +34,10 @@ public class EcashIntroFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        pagerBullet.setAdapter(viewPagerAdapter);
-
-        viewPagerAdapter.addFragment(new EcashIntro1Fragment());
-        viewPagerAdapter.addFragment(new EcashIntro1Fragment());
-        viewPagerAdapter.addFragment(new EcashIntro1Fragment());
-        viewPagerAdapter.addFragment(new EcashIntro1Fragment());
-
-        pagerBullet.setIndicatorTintColorScheme(R.color.colorAccent, R.color.colorPrimary);
-        pagerBullet.invalidateBullets();
-        viewPagerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
     }
 }
