@@ -1,7 +1,5 @@
-backend/.gradle/
 backend/build/
 backend/out/
-backend/.idea/
 android/app/.idea
 android/app/build
 /android/app/.idea
