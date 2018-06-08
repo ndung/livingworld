@@ -1,12 +1,9 @@
 package com.livingworld.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,10 +12,8 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.livingworld.R;
 import com.livingworld.clients.auth.model.User;
-import com.livingworld.clients.trx.model.LuckyDraw;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
@@ -81,7 +76,7 @@ public class AccountSettingActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), LuckyDrawsActivity.class));
                 break;
             case R.id.menu_about_us:
-                startActivity(new Intent(getApplicationContext(), AboutUSActivity.class));
+                startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
                 break;
             case R.id.menu_language:
                 startActivity(new Intent(getApplicationContext(), LanguageChoiceActivity.class));

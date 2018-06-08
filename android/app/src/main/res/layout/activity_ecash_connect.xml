@@ -38,9 +38,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout"
-        android:layout_above="@+id/bt_next">
+        android:layout_above="@+id/pagerBullet">
 
     </FrameLayout>
+
+    <com.robohorse.pagerbullet.PagerBullet
+        android:id="@+id/pagerBullet"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_above="@+id/bt_next"
+        app:panelHeightInDp="52dp" />
 
     <Button
         android:id="@+id/bt_next"

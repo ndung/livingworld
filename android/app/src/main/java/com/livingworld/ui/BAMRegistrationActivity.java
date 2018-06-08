@@ -1,8 +1,6 @@
 package com.livingworld.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
@@ -19,7 +16,6 @@ import com.livingworld.clients.master.MasterService;
 import com.livingworld.clients.master.model.Master;
 import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.model.Response;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 

@@ -2,8 +2,14 @@ package id.co.icg.lw.controllers.api;
 
 import id.co.icg.lw.Application;
 import id.co.icg.lw.domain.Response;
+import id.co.icg.lw.domain.user.Member;
+import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
-import id.co.icg.lw.services.ecash.EcashApiService;
+import id.co.icg.lw.repositories.MemberRepository;
+import id.co.icg.lw.repositories.UserRepository;
+import id.co.icg.lw.services.ecash.ECashApiService;
+import id.co.icg.lw.services.ecash.TicketResponse;
+import id.co.icg.lw.services.ecash.ValidateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,11 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(Application.API_PATH + "/e-cash")
-public class EcashApiController extends BaseController{
+public class ECashApiController extends BaseController {
 
     @Autowired
-    private EcashApiService ecashApiService;
-
+    private ECashApiService ecashApiService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private MemberRepository memberRepository;
     /**
      * @api {get} /e-cash/login Login
      * @apiName Login
@@ -165,15 +174,19 @@ public class EcashApiController extends BaseController{
      *
      */
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
-    public ResponseEntity<Response> validate(@RequestHeader(Application.AUTH) String token,
-                                              @RequestBody String ecashToken) {
+    public ResponseEntity<Response> validate(@RequestHeader(Application.AUTH) String token) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
 
         try {
             String userId = getUserId(token);
-            return getHttpStatus(new Response(ecashApiService.validate(userId, ecashToken)));
+            User user = userRepository.findOne(userId);
+            Member member = memberRepository.findByUser(user);
+            System.out.println("mobileno:"+member.getMobileNumber());
+            ValidateResponse response = ecashApiService.validate(member.getMobileNumber());
+            System.out.println("ticket:"+response);
+            return getHttpStatus(new Response());
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }
@@ -207,15 +220,21 @@ public class EcashApiController extends BaseController{
      *
      */
     @RequestMapping(value = "/ticket", method = RequestMethod.POST)
-    public ResponseEntity<Response> getTicket(@RequestHeader(Application.AUTH) String token,
-                                              @RequestBody String ecashToken) {
+    public ResponseEntity<Response> getTicket(@RequestHeader(Application.AUTH) String token) {
         if (!authorize(RoleEnum.USER, token)) {
             return FORBIDDEN;
         }
         try {
             String userId = getUserId(token);
-            return getHttpStatus(new Response(ecashApiService.getTicket(userId, ecashToken)));
+            User user = userRepository.findOne(userId);
+            Member member = memberRepository.findByUser(user);
+            System.out.println("user:"+user);
+            System.out.println("mobileno:"+member.getMobileNumber());
+            TicketResponse response = ecashApiService.getTicket(member.getMobileNumber());
+            System.out.println("ticket:"+response);
+            return getHttpStatus(new Response(response));
         } catch (Exception e) {
+            e.printStackTrace();
             return getHttpStatus(new Response(e.getMessage()));
         }
     }

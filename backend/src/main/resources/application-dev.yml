@@ -1,14 +1,14 @@
 basePath: http://localhost:7000
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.6:3306/livingworld
+    url: jdbc:mysql://localhost:3306/living_world
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
 debug: true
 
 file:
-  location: /Users/alif/workspace/icg/livingworld/backend/src/main/resources/files/
+  location: /Users/ndung/Workspace/livingworld/backend/src/main/resources/files/
 
-publicKey: /Users/alif/Documents/workspace/livingworld/backend/public_key.der
+publicKey: /Users/ndung/Workspace/livingworld/docs/ECashSecurityPack/public_key.der
 

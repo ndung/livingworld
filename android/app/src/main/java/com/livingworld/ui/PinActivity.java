@@ -2,11 +2,7 @@ package com.livingworld.ui;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.andrognito.pinlockview.IndicatorDots;
 import com.andrognito.pinlockview.PinLockListener;
@@ -16,11 +12,9 @@ import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.trx.TrxService;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
-import java.io.StringBufferInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;

@@ -2,7 +2,6 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -11,15 +10,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
-import com.livingworld.adapter.InboxAdapter;
 import com.livingworld.adapter.MyCarAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.car.CarrService;
 import com.livingworld.clients.model.Response;
-import com.livingworld.model.Inbox;
 import com.livingworld.model.MyCar;
-import com.livingworld.ui.fragment.mycar.MyCarAddFormFragment;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
 
 import java.util.ArrayList;

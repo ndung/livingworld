@@ -16,7 +16,6 @@ import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.trx.TrxService;
 import com.livingworld.clients.trx.model.LuckyDraw;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Static;
 
@@ -45,7 +44,6 @@ public class LuckyDrawsActivity extends BaseActivity {
 
     TrxService trxService;
     LuckyDrawAdapter adapter;
-
 
     List<LuckyDraw> list = new ArrayList<>();
 

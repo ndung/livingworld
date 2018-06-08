@@ -1,7 +1,6 @@
 package com.livingworld.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +12,6 @@ import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.car.CarrService;
 import com.livingworld.clients.model.Response;
-import com.livingworld.ui.fragment.mycar.MyCarEnterPINFragment;
-import com.livingworld.util.BaseActivity;
 import com.livingworld.util.Static;
 
 import java.util.HashMap;

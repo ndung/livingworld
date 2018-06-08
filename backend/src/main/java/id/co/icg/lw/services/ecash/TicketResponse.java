@@ -28,4 +28,13 @@ public class TicketResponse {
     public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
     }
+
+    @Override
+    public String toString() {
+        return "TicketResponse{" +
+                "ticket='" + ticket + '\'' +
+                ", status='" + status + '\'' +
+                ", mobileno='" + mobileno + '\'' +
+                '}';
+    }
 }

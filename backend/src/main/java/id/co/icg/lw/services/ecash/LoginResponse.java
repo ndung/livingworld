@@ -19,4 +19,12 @@ public class LoginResponse {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "status='" + status + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }
