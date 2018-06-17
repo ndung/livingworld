@@ -1,6 +1,7 @@
 package id.co.icg.lw.services.ecash;
 
-import id.co.icg.lw.api.ecash.ECashApi;
+import id.co.icg.lw.api.ecash.EcashApi;
+import id.co.icg.lw.component.EcashRetrofitClient;
 import id.co.icg.lw.component.RetrofitClient;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,32 +21,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class ECashApiServiceImpl extends RetrofitClient<ECashApi> implements ECashApiService, InitializingBean {
+public class EcashApiServiceImpl extends EcashRetrofitClient<EcashApi> implements EcashApiService, InitializingBean {
 
     private String username;
     private String token;
 
+    private String APIKey;
+    private String password;
+    private  String publicKey;
+
     @Autowired
-    public ECashApiServiceImpl(@Value("${publicKey}") String publicKey,
+    public EcashApiServiceImpl(@Value("${publicKey}") String publicKey,
                                @Value("${eCash.url}") String baseUrl,
                                @Value("${eCash.apiKey}") String APIKey,
                                @Value("${eCash.username}") String userName,
                                @Value("${eCash.password}") String password) {
         super(baseUrl);
         this.username = userName;
-
-        try {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("APIKey", APIKey);
-            headers.put("Credentials", encrypt(password, publicKey));
-            setHeader(ECashApi.class, headers);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.APIKey = APIKey;
+        this.password = password;
+        this.publicKey = publicKey;
     }
 
     @Override
     public LoginResponse login() throws Exception{
+        Map<String, String> headers = new HashMap<>();
+        headers.put("APIKey", APIKey);
+        headers.put("Content-Type", "application/x-www-form-urlencoded");
+        headers.put("Credentials", encrypt(password, publicKey));
+        setHeader(EcashApi.class, headers);
+
         Response<LoginResponse> response = service.login(username).execute();
         token = response.body().getToken();
         return response.body();
@@ -66,6 +71,10 @@ public class ECashApiServiceImpl extends RetrofitClient<ECashApi> implements ECa
 
     @Override
     public TicketResponse getTicket(String mobileNumber) throws Exception{
+        Map<String, String> headers = new HashMap<>();
+        headers.put("APIKey", APIKey);
+        headers.put("Content-Type", "application/x-www-form-urlencoded");
+        setHeader(EcashApi.class, headers);
         Response<TicketResponse> response = service.getRegisterTicket(mobileNumber, token).execute();
         return response.body();
     }
@@ -97,10 +106,6 @@ public class ECashApiServiceImpl extends RetrofitClient<ECashApi> implements ECa
     public void afterPropertiesSet() throws Exception {
         LoginResponse login = this.login();
         System.out.println("login:"+login);
-        ValidateResponse response = this.validate("08131234567");
-        System.out.println("response1:"+response);
-        ValidateResponse response2 = this.validate("08132224554");
-        System.out.println("response2:"+response2);
 
     }
 }

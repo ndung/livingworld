@@ -117,7 +117,7 @@ public class UserServiceBean implements UserService {
 
         try {
             user = checkCardNumberToIfabula(signUpRequest.getCardNumber());
-            if (user!=null){
+            if (user != null) {
                 user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
                 userRepository.saveAndFlush(user);
                 memberRepository.saveAndFlush(user.getMember());
@@ -142,7 +142,7 @@ public class UserServiceBean implements UserService {
         }
         User updatedUser = checkCardNumberToIfabula(request.getCardNumber());
         updatedUser.setPassword(user.getPassword());
-        if (updatedUser!=null){
+        if (updatedUser != null) {
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
             return updatedUser;
@@ -159,7 +159,7 @@ public class UserServiceBean implements UserService {
         livingWorldApiService.updateMember(request);
         User updatedUser = checkCardNumberToIfabula(request.getCardNumber());
         updatedUser.setPassword(user.getPassword());
-        if (updatedUser!=null){
+        if (updatedUser != null) {
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
             return updatedUser;
@@ -175,18 +175,29 @@ public class UserServiceBean implements UserService {
     @Override
     public User uploadPhotoProfile(String userId, MultipartFile multipartFile) {
         String photoUrl = fileService.upload(multipartFile);
-        System.out.println("photoUrl:"+photoUrl);
+        System.out.println("photoUrl:" + photoUrl);
         User user = userRepository.findOne(userId);
         user.setPhotoProfileUrl(photoUrl);
         //userRepository.save(user);
         User updatedUser = checkCardNumberToIfabula(user.getCardNumber());
         updatedUser.setPassword(user.getPassword());
         updatedUser.setPhotoProfileUrl(photoUrl);
-        if (updatedUser!=null){
+        if (updatedUser != null) {
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
             return updatedUser;
         }
+        return user;
+    }
+
+    @Override
+    public User changePassword(String userId, ChangePasswordRequest request) throws Exception {
+        User user = userRepository.findOne(userId, PasswordUtil.md5Hash(request.getOldPassword()));
+        if (user == null) {
+            throw new Exception("User is not found");
+        }
+        user.setPassword(PasswordUtil.md5Hash(request.getNewPassword()));
+        userRepository.saveAndFlush(user);
         return user;
     }
 
@@ -215,11 +226,11 @@ public class UserServiceBean implements UserService {
 
                     String memberType = (String) map.get("memberType");
                     MemberType memberTypeObj = memberTypeRepository.findOne(memberType);
-                    if (memberTypeObj==null){
+                    if (memberTypeObj == null) {
                         List<LinkedTreeMap> memberTypes = (List<LinkedTreeMap>) livingWorldApiService.getMemberType();
-                        for (LinkedTreeMap memberTypeMap : memberTypes){
-                            MemberType obj = new MemberType((String)memberTypeMap.get("id"),(String)memberTypeMap.get("name"));
-                            obj.setMinimumTransaction((String)memberTypeMap.get("minimumTransaction"));
+                        for (LinkedTreeMap memberTypeMap : memberTypes) {
+                            MemberType obj = new MemberType((String) memberTypeMap.get("id"), (String) memberTypeMap.get("name"));
+                            obj.setMinimumTransaction((String) memberTypeMap.get("minimumTransaction"));
                             memberTypeRepository.save(obj);
                         }
                     }
@@ -229,10 +240,10 @@ public class UserServiceBean implements UserService {
 
                     String religion = (String) map.get("religion");
                     Religion religionObj = religionRepository.findOne(religion);
-                    if (religionObj==null){
+                    if (religionObj == null) {
                         List<LinkedTreeMap> religions = (List<LinkedTreeMap>) livingWorldApiService.getReligion();
-                        for (LinkedTreeMap religionMap : religions){
-                            Religion obj = new Religion((String)religionMap.get("id"),(String)religionMap.get("name"));
+                        for (LinkedTreeMap religionMap : religions) {
+                            Religion obj = new Religion((String) religionMap.get("id"), (String) religionMap.get("name"));
                             religionRepository.save(obj);
                         }
                     }
@@ -240,10 +251,10 @@ public class UserServiceBean implements UserService {
 
                     String gender = (String) map.get("gender");
                     Gender genderObj = genderRepository.findOne(gender);
-                    if (genderObj==null){
+                    if (genderObj == null) {
                         List<LinkedTreeMap> genders = (List<LinkedTreeMap>) livingWorldApiService.getGender();
-                        for (LinkedTreeMap genderMap : genders){
-                            Gender obj = new Gender((String)genderMap.get("id"),(String)genderMap.get("name"));
+                        for (LinkedTreeMap genderMap : genders) {
+                            Gender obj = new Gender((String) genderMap.get("id"), (String) genderMap.get("name"));
                             genderRepository.save(obj);
                         }
                     }
@@ -251,10 +262,10 @@ public class UserServiceBean implements UserService {
 
                     String maritalStatus = (String) map.get("maritalStatus");
                     MaritalStatus maritalStatusObj = maritalStatusRepository.findOne(maritalStatus);
-                    if (maritalStatusObj==null){
+                    if (maritalStatusObj == null) {
                         List<LinkedTreeMap> maritalStatuses = (List<LinkedTreeMap>) livingWorldApiService.getMartialStatus();
-                        for (LinkedTreeMap maritalStatusMap : maritalStatuses){
-                            MaritalStatus obj = new MaritalStatus((String)maritalStatusMap.get("id"),(String)maritalStatusMap.get("name"));
+                        for (LinkedTreeMap maritalStatusMap : maritalStatuses) {
+                            MaritalStatus obj = new MaritalStatus((String) maritalStatusMap.get("id"), (String) maritalStatusMap.get("name"));
                             maritalStatusRepository.save(obj);
                         }
                     }
@@ -264,10 +275,10 @@ public class UserServiceBean implements UserService {
 
                     String nationality = (String) map.get("nationality");
                     Nationality nationalityObj = nationalityRepository.findOne(nationality);
-                    if (nationalityObj==null){
+                    if (nationalityObj == null) {
                         List<LinkedTreeMap> nationalities = (List<LinkedTreeMap>) livingWorldApiService.getNationality();
-                        for (LinkedTreeMap nationalityMap : nationalities){
-                            Nationality obj = new Nationality((String)nationalityMap.get("id"),(String)nationalityMap.get("name"));
+                        for (LinkedTreeMap nationalityMap : nationalities) {
+                            Nationality obj = new Nationality((String) nationalityMap.get("id"), (String) nationalityMap.get("name"));
                             nationalityRepository.save(obj);
                         }
                     }
@@ -277,11 +288,11 @@ public class UserServiceBean implements UserService {
 
                     String city = (String) map.get("city");
                     City cityObj = cityRepository.findOne(city);
-                    System.out.println("cityObj:"+cityObj);
-                    if (cityObj==null){
+                    System.out.println("cityObj:" + cityObj);
+                    if (cityObj == null) {
                         List<LinkedTreeMap> cities = (List<LinkedTreeMap>) livingWorldApiService.getCity();
-                        for (LinkedTreeMap cityMap : cities){
-                            City obj = new City((String)cityMap.get("id"),(String)cityMap.get("name"));
+                        for (LinkedTreeMap cityMap : cities) {
+                            City obj = new City((String) cityMap.get("id"), (String) cityMap.get("name"));
                             cityRepository.save(obj);
                         }
                     }

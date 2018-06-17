@@ -119,14 +119,14 @@ public class MerchantApiController extends BaseController {
 
             list = (List<LinkedTreeMap>) livingWorldApiService.getMerchant();
             for (LinkedTreeMap map : list){
-                String category = (String)map.get("category");
+                String category = ((String)map.get("category")).trim();
                 Merchant request = new Merchant();
-                request.setMerchantId((String)map.get("id"));
-                request.setMerchantName((String)map.get("name"));
-                request.setDescription((String)map.get("description"));
-                request.setMerchantPhone((String)map.get("phone"));
-                request.setMerchantLogo((String)map.get("icon"));
-                request.setMerchantImage((String)map.get("image"));
+                request.setMerchantId(((String)map.get("id")).trim());
+                request.setMerchantName(((String)map.get("name")).trim());
+                request.setDescription(((String)map.get("description")).trim());
+                request.setMerchantPhone(((String)map.get("phone")).trim());
+                request.setMerchantLogo(((String)map.get("icon")).trim());
+                request.setMerchantImage(((String)map.get("image")).trim());
 
                 if (i%5==0) {
                     request.setMerchantCategory(merchantService.findOne(category));

@@ -61,4 +61,11 @@ public class MerchantCategory {
         updateAt = new Date();
     }
 
+    @Override
+    public String toString() {
+        return "MerchantCategory{" +
+                "merchantCategoryId='" + merchantCategoryId + '\'' +
+                ", merchantCategoryName='" + merchantCategoryName + '\'' +
+                '}';
+    }
 }

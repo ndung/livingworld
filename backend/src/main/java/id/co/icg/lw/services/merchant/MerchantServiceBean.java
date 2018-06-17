@@ -56,9 +56,13 @@ public class MerchantServiceBean implements MerchantService {
     @Override
     public boolean createMerchant(Merchant merchant) {
 
-
+        //System.out.println("merchant:"+merchant);
         //merchant.setMerchantOfficeHourList(hours);
-        merchantRepository.saveAndFlush(merchant);
+        try {
+            merchantRepository.save(merchant);
+        }catch(Exception ex){
+            //ex.printStackTrace();
+        }
         //merchantWorkingHoursRepository.save(hours);
 
 

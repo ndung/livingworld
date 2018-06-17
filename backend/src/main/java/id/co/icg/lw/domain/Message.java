@@ -30,6 +30,7 @@ public class Message {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
 
+
     public long getMessageId() {
         return messageId;
     }
@@ -90,4 +91,5 @@ public class Message {
     protected void onCreate() {
         createAt = new Date();
     }
+
 }

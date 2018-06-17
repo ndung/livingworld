@@ -1,6 +1,6 @@
 package id.co.icg.lw.services.ecash;
 
-public interface ECashApiService {
+public interface EcashApiService {
 
     LoginResponse login() throws Exception;
 

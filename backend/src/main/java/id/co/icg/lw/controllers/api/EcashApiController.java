@@ -7,7 +7,7 @@ import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.repositories.MemberRepository;
 import id.co.icg.lw.repositories.UserRepository;
-import id.co.icg.lw.services.ecash.ECashApiService;
+import id.co.icg.lw.services.ecash.EcashApiService;
 import id.co.icg.lw.services.ecash.TicketResponse;
 import id.co.icg.lw.services.ecash.ValidateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(Application.API_PATH + "/e-cash")
-public class ECashApiController extends BaseController {
+class EcashApiController extends BaseController {
 
     @Autowired
-    private ECashApiService ecashApiService;
+    private EcashApiService ecashApiService;
     @Autowired
     private UserRepository userRepository;
     @Autowired
