@@ -15,9 +15,9 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/iv_img_inbox"
@@ -58,6 +58,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:layout_marginTop="5dp"
                         android:id="@+id/tv_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -77,15 +78,16 @@
                     app:srcCompat="@drawable/ic_chevron_grey" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="63dp"
-                android:alpha="0.5"
-                android:background="#333333"
-                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="46dp"
+            android:alpha="0.5"
+            android:background="#d8d8d8"
+            android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

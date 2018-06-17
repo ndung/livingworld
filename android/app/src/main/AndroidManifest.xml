@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.livingworld">
+    package="com.livingworld"
+    android:versionCode="2"
+    android:versionName="0.2" >
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -40,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.IntroActivity"
+            android:name=".ui.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.RegistrationActivity"
@@ -58,6 +60,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.BAMRegistrationActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InboxActivity"
@@ -78,7 +81,7 @@
             android:name=".ui.PinActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ECashConnectActivity"
+            android:name=".ui.EcashConnectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.MyCarActivity"
@@ -106,15 +109,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.GiveUsFeedbackActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.InformationAccountActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ChangePasswordActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ContactUsActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.CurrentOffersActivity"
@@ -123,15 +130,26 @@
             android:name=".ui.MerchantListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.MerchantSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.MerchantDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.RewardsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.HowToRedeemActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.TermsAndConditionsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.RewardRedeemActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.RedeemActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"
-            android:theme="@style/FinestWebViewTheme.Light" />
+            android:theme="@style/FinestWebViewTheme" />
     </application>
 
 </manifest>

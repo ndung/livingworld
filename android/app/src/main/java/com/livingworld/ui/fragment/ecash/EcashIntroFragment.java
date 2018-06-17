@@ -14,10 +14,10 @@ import com.livingworld.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ECashIntroFragment extends Fragment {
+public class EcashIntroFragment extends Fragment {
 
 
-    public ECashIntroFragment() {
+    public EcashIntroFragment() {
         // Required empty public constructor
     }
 

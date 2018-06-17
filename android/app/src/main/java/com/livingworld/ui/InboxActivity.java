@@ -44,7 +44,7 @@ public class InboxActivity extends BaseActivity {
         setContentView(R.layout.activity_inbox);
         ButterKnife.bind(this);
         inboxService = ApiUtils.InboxService(getApplicationContext());
-
+        initAdapter();
         ivFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +53,13 @@ public class InboxActivity extends BaseActivity {
         });
         showPleasewaitDialog();
         getMessage();
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        inboxAdapter.notifyDataSetChanged();
     }
 
     private void getMessage() {
@@ -68,7 +74,7 @@ public class InboxActivity extends BaseActivity {
                         JsonObject jsonObject = gson.toJsonTree(body).getAsJsonObject();
                         List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {}.getType());
                         list.addAll(listBody);
-                        initAdapter();
+                        inboxAdapter.notifyDataSetChanged();
                         loading = false;
                     }
                 }else{
@@ -113,7 +119,7 @@ public class InboxActivity extends BaseActivity {
     }
 
     private void initAdapter() {
-        inboxAdapter = new InboxAdapter(list, new InboxAdapter.OnItemClickListener() {
+        inboxAdapter = new InboxAdapter(getApplicationContext(), list, new InboxAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Inbox model) {
                 Intent intent = new Intent(getApplicationContext(), InboxDetailActivity.class);

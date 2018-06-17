@@ -36,22 +36,22 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Our Merchants"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"/>
 
             <ImageView
-                android:id="@+id/imageView23"
+                android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                app:srcCompat="@drawable/ic_search"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/ic_search" />
+                android:layout_marginRight="15dp" />
 
         </RelativeLayout>
 
@@ -62,7 +62,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:visibility="gone"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
@@ -71,7 +71,6 @@
                 app:srcCompat="@drawable/ic_chevron_blue" />
 
             <TextView
-                android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -79,328 +78,9 @@
                 android:layout_centerVertical="true"
                 android:text="All Categories"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"/>
 
         </RelativeLayout>
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/ll_merchant_click"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_ecash"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_ecash"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_ecash"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_ecash"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_ecash"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:id="@+id/iv_img_inbox"
-                            android:layout_width="55dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_mandiri_ecash_list" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_img_inbox"
-                            android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Madiri e-Cash"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_click"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            app:srcCompat="@drawable/ic_chevron_grey" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="80dp"
-                        android:alpha="0.5"
-                        android:background="#333333"
-                        android:orientation="vertical"></LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

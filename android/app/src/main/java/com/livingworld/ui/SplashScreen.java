@@ -3,9 +3,12 @@ package com.livingworld.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.livingworld.R;
 import com.livingworld.util.Preferences;
+import com.thefinestartist.finestwebview.FinestWebView;
+import com.thefinestartist.finestwebview.listeners.WebViewListener;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -25,7 +28,7 @@ public class SplashScreen extends AppCompatActivity {
                     if(Preferences.getLoginFlag(getApplicationContext())) {
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     } else {
-                        startActivity(new Intent(getApplicationContext(), IntroActivity.class));
+                        startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
                     }
                     finish();
                 }

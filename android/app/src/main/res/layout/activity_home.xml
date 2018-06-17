@@ -29,11 +29,11 @@
 
             <ImageView
                 android:id="@+id/iv_inbox"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/rectangle_copy_2" />
+                app:srcCompat="@drawable/ic_notif" />
 
             <ImageView
                 android:id="@+id/iv_profile"
@@ -84,19 +84,17 @@
                         <ImageView
                             android:id="@+id/imageView14"
                             android:layout_width="match_parent"
-                            android:layout_height="210dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
                             app:srcCompat="@drawable/img_card" />
 
                         <TextView
                             android:id="@+id/tv_name_card"
-                            android:layout_width="wrap_content"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="16dp"
                             android:text="John Doe"
                             android:textColor="#FFF"
                             android:textSize="20sp"
@@ -197,18 +195,19 @@
                         android:visibility="gone" />
 
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shadow"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/relativeLayout"
-                    android:layout_marginTop="16dp"
                     android:background="#FFF"
                     android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -254,6 +253,11 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shadow"/>
+
                 <RelativeLayout
                     android:id="@+id/ll_reward"
                     android:layout_width="match_parent"
@@ -262,7 +266,6 @@
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/imageView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -271,7 +274,7 @@
                         app:srcCompat="@drawable/ic_chevron_white" />
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_reward_white"
@@ -280,27 +283,30 @@
                         android:layout_alignParentStart="true" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/tv_eventName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView10"
-                        android:layout_toRightOf="@+id/imageView10"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
                         android:text="Chirstmas &amp; New year\nSpecial"
+                        android:layout_marginLeft="16dp"
                         android:textColor="#FFF"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView20"
+                        android:id="@+id/tv_eventDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView21"
+                        android:layout_below="@+id/tv_eventName"
                         android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@+id/imageView10"
-                        android:layout_toRightOf="@+id/imageView10"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:layout_marginLeft="16dp"
                         android:text="21 Des - 28 Des 2017"
-                        android:textColor="#DDD"
+                        android:textColor="#fff"
+                        android:alpha="0.5"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -309,7 +315,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/relativeLayout"
-                    android:layout_marginTop="16dp"
                     android:background="#FFF"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -338,10 +343,12 @@
                             android:id="@+id/cv_scan_bc"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="6dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="1dp"
                             android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="7dp">
+                            app:cardCornerRadius="5dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -371,10 +378,12 @@
                             android:id="@+id/cv_my_bc"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="6dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="3dp"
                             android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="5dp">
+                            app:cardCornerRadius="5dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -404,10 +413,12 @@
                             android:id="@+id/cv_parking"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="6dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="1dp"
                             android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="5dp">
+                            app:cardCornerRadius="5dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -449,11 +460,10 @@
                             android:layout_height="72dp">
 
                             <ImageView
-                                android:id="@+id/imageView9"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/img_card_welcome" />
+                                app:srcCompat="@drawable/merchant" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -472,7 +482,6 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/textView16"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Our Merchants"
@@ -481,7 +490,6 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView17"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Lorem ipsum dolor sit amet"
@@ -510,6 +518,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="#9e9e9e"
                             android:text="SPECIAL OFFER" />
 
                         <TextView

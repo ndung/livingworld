@@ -1,5 +1,6 @@
 package com.livingworld.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.livingworld.R;
 import com.livingworld.adapter.MerchantCategoryAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.merchant.MerchantService;
+import com.livingworld.clients.merchant.model.Merchant;
 import com.livingworld.clients.merchant.model.MerchantCategory;
 import com.livingworld.clients.model.Response;
 import com.livingworld.util.GsonDeserializer;
@@ -36,11 +38,13 @@ public class MerchantListActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
 
     MerchantService merchantService;
     List<MerchantCategory> list = new ArrayList<>();
+    List<MerchantCategory> listMerchant;
     MerchantCategoryAdapter merchantAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,7 @@ public class MerchantListActivity extends BaseActivity {
                         Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                         JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
 
-                        List<MerchantCategory> listMerchant = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<MerchantCategory>>() {}.getType());
+                        listMerchant = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<MerchantCategory>>() {}.getType());
                         for (MerchantCategory category : listMerchant) {
                             list.add(category);
                         }
@@ -94,6 +98,32 @@ public class MerchantListActivity extends BaseActivity {
             }
         });
 
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search();
+            }
+        });
     }
 
+    private void search(){
+        startActivity(new Intent(this, MerchantSearchActivity.class));
+    }
+
+    private void onSearch(String text){
+        list.clear();
+        for (MerchantCategory category : listMerchant) {
+            List<Merchant> merchants = category.getMerchantList();
+            for (Merchant merchant : merchants){
+                if (!merchant.getMerchantName().toUpperCase().contains(text.toUpperCase())){
+                    merchants.remove(merchant);
+                }
+            }
+            category.setMerchantList(merchants);
+            if (!category.getMerchantList().isEmpty()){
+                list.add(category);
+            }
+        }
+        merchantAdapter.notifyDataSetChanged();
+    }
 }

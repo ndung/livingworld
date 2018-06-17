@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="5dp"
-                app:srcCompat="@drawable/logo_starbucks" />
+                app:srcCompat="@drawable/checklist" />
 
             <TextView
                 android:id="@+id/textView39"

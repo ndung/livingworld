@@ -30,9 +30,8 @@ public class GiveUsFeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_give_us_feedback);
         ButterKnife.bind(this);
-
+        rating.setIsIndicator(false);
         rating.setRating(5);
-
     }
 
     @OnClick(R.id.iv_finish)

@@ -27,10 +27,10 @@
                     android:layout_height="wrap_content"
                     android:text="Create Your Password"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textSize="24sp"/>
 
                 <TextView
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
@@ -50,6 +50,10 @@
                         android:id="@+id/et_pass1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
                         android:hint="Enter your password"
                         android:inputType="textPassword"
                         android:windowSoftInputMode="adjustResize" />
@@ -71,6 +75,10 @@
                         android:id="@+id/et_pass2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
                         android:hint="Confirm your password"
                         android:inputType="textPassword"
                         android:windowSoftInputMode="adjustResize" />

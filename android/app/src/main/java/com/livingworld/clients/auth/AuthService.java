@@ -27,4 +27,7 @@ public interface AuthService {
 
     @POST("user/sign-up")
     Call<Response> signUp(@Body Map<String, String> map);
+
+    @POST("user/change-pwd")
+    Call<Response> changePassword(@Body Map<String, String> map);
 }

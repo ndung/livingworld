@@ -11,8 +11,6 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.jaeger.library.StatusBarUtil;
 import com.livingworld.R;
 import com.livingworld.clients.offers.model.CurrentOffer;
 import com.livingworld.clients.offers.model.CurrentOfferImage;
@@ -57,8 +55,6 @@ public class CurrentOfferDetailActivity extends AppCompatActivity {
         tvTitle.setText(currentOffer.getTitle());
         tvDate.setText(dateFormatter.format(currentOffer.getStartDate())+" - "+dateFormatter.format(currentOffer.getEndDate()));
         tvDesc.setText(currentOffer.getDescription());
-
-        StatusBarUtil.setTransparent(this);
 
         HashMap<String, String> url_maps = new HashMap<>();
         if (currentOffer.getCurrentOfferImages()!=null){
