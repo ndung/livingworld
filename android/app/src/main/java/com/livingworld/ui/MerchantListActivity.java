@@ -1,11 +1,14 @@
 package com.livingworld.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,7 +42,9 @@ public class MerchantListActivity extends BaseActivity {
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.iv_search)
-    ImageView ivSearch;
+    SearchView ivSearch;
+    @BindView(R.id.tv_header)
+    TextView layoutHeader;
 
     MerchantService merchantService;
     List<MerchantCategory> list = new ArrayList<>();
@@ -98,32 +103,76 @@ public class MerchantListActivity extends BaseActivity {
             }
         });
 
-        ivSearch.setOnClickListener(new View.OnClickListener() {
+        ivSearch.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                search();
+                layoutHeader.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+            }
+        });
+        ivSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                onSearch(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        ivSearch.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                ivSearch.onActionViewCollapsed();
+                layoutHeader.setVisibility(View.VISIBLE);
+                list.clear();
+                Log.d(TAG, "listMerchant:"+listMerchant);
+                for (MerchantCategory category : listMerchant) {
+                    list.add(category);
+                }
+                recyclerView.setVisibility(View.VISIBLE);
+                merchantAdapter.notifyDataSetChanged();
+                return true;
             }
         });
     }
 
-    private void search(){
-        startActivity(new Intent(this, MerchantSearchActivity.class));
+    @Override
+    public void onBackPressed() {
+        if (!ivSearch.isIconified()) {
+            ivSearch.setIconified(true);
+        } else {
+            finish();
+        }
     }
 
     private void onSearch(String text){
         list.clear();
-        for (MerchantCategory category : listMerchant) {
-            List<Merchant> merchants = category.getMerchantList();
-            for (Merchant merchant : merchants){
-                if (!merchant.getMerchantName().toUpperCase().contains(text.toUpperCase())){
-                    merchants.remove(merchant);
+        for (MerchantCategory obj : listMerchant) {
+            try {
+                MerchantCategory category = obj.clone();
+                List<Merchant> merchants = category.getMerchantList();
+                List<Merchant> searched = new ArrayList<>();
+                for (Merchant merchant : merchants) {
+                    if (merchant.getMerchantName().toUpperCase().contains(text.toUpperCase())) {
+                        searched.add(merchant);
+                    }
                 }
-            }
-            category.setMerchantList(merchants);
-            if (!category.getMerchantList().isEmpty()){
-                list.add(category);
+                category.setMerchantList(searched);
+                if (!category.getMerchantList().isEmpty()) {
+                    list.add(category);
+                }
+            }catch(Exception ex){
+                Log.e(TAG, "err", ex);
             }
         }
-        merchantAdapter.notifyDataSetChanged();
+        if (!list.isEmpty()) {
+            merchantAdapter.notifyDataSetChanged();
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }
