@@ -1,8 +1,10 @@
 package com.livingworld.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.livingworld.R;
 import com.livingworld.clients.inbox.model.Inbox;
+import com.livingworld.util.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +30,18 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
 
     List<Inbox> list = new ArrayList<>();
 
+    private static final String TAG = InboxAdapter.class.toString();
+
     public interface OnItemClickListener {
         void onItemClick(Inbox model);
     }
 
     private final OnItemClickListener listener;
 
-    public InboxAdapter(List<Inbox> list, OnItemClickListener listener) {
+    Context context;
+
+    public InboxAdapter(Context context, List<Inbox> list, OnItemClickListener listener) {
+        this.context = context;
         this.list = list;
         this.listener = listener;
     }
@@ -47,6 +55,7 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Inbox inbox = list.get(position);
+
         holder.tvTitle.setText(inbox.getTitle());
         holder.tvDate.setText(inbox.getDate());
 //        if(position > 0){
@@ -56,9 +65,18 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
 //            holder.llNew.setVisibility(View.GONE);
 //        }
 
+        boolean bool = Preferences.isMessageRead(String.valueOf(inbox.getId()), context);
+        if (bool){
+            holder.llNew.setVisibility(View.GONE);
+            holder.ivInbox.setImageDrawable(context.getResources().getDrawable(R.drawable.rectangle_copy_2));
+        }else{
+            holder.llNew.setVisibility(View.VISIBLE);
+            holder.ivInbox.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_message_green));
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Preferences.addReadMessages(String.valueOf(inbox.getId()), context);
                 listener.onItemClick(inbox);
             }
         });

@@ -16,7 +16,7 @@ public interface UserService {
     User edit(String userId, UpdateMemberRequest request) throws Exception;
     User paymentRegistration(UserRequest userRequest);
     User uploadPhotoProfile(String userId, MultipartFile multipartFile);
-
+    User changePassword(String userId, ChangePasswordRequest request) throws Exception;
     List<User> findAll();
 
     User findOne(String userId);

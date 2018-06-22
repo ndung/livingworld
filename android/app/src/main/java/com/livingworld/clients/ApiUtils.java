@@ -10,7 +10,7 @@ import com.livingworld.clients.master.MasterService;
 import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.merchant.MerchantService;
 import com.livingworld.clients.offers.OffersService;
-import com.livingworld.clients.rewards.RewardsrService;
+import com.livingworld.clients.rewards.RewardsService;
 import com.livingworld.clients.trx.TrxService;
 import com.livingworld.util.Static;
 
@@ -39,8 +39,8 @@ public class ApiUtils {
         return RetrofitClient.getClient(context, API).create(MemberService.class);
     }
 
-    public static RewardsrService RewardsrService(Context context){
-        return RetrofitClient.getClient(context, API).create(RewardsrService.class);
+    public static RewardsService RewardService(Context context){
+        return RetrofitClient.getClient(context, API).create(RewardsService.class);
     }
 
     public static TrxService TrxService(Context context){

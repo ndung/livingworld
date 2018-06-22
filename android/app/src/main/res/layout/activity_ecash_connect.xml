@@ -60,6 +60,6 @@
         android:text="Continue"
         android:textColor="#FFF"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:letterSpacing="0.1"/>
 
 </RelativeLayout>

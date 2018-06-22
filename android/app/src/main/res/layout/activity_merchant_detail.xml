@@ -41,8 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
-                    android:paddingTop="30dp"
-                    app:srcCompat="@mipmap/ic_back_white" />
+                    android:paddingTop="10dp"
+                    app:srcCompat="@drawable/ic_back_white" />
 
             </RelativeLayout>
 
@@ -68,8 +68,7 @@
                             android:layout_height="wrap_content"
                             android:text="Cinema XXI"
                             android:textColor="@color/colorPrimaryText"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
+                            android:textSize="24sp"/>
 
                         <TextView
                             android:id="@+id/tv_description"
@@ -109,8 +108,7 @@
                                         android:layout_weight="1"
                                         android:text="Phone"
                                         android:textColor="@color/colorPrimary"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
+                                        android:textSize="16sp"/>
 
                                     <TextView
                                         android:id="@+id/tv_phone"
@@ -163,8 +161,7 @@
                                         android:layout_weight="1"
                                         android:text="Office Hours"
                                         android:textColor="@color/colorPrimary"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
+                                        android:textSize="16sp"/>
 
                                 </LinearLayout>
 

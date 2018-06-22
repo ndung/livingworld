@@ -43,7 +43,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_det_merchant, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_merchant, parent, false);
         return new ViewHolder(view);
     }
 

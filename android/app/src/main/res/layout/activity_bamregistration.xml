@@ -28,7 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relativeLayout"
-        android:padding="16dp">
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,23 +38,19 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView13"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:srcCompat="@drawable/img_card" />
 
             <TextView
-                android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Be A Member"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -66,7 +64,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Sesuai KTP" />
@@ -76,6 +73,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Your Name"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:textColorHint="#4d333333"
+                    android:backgroundTint="#d8d8d8"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -86,7 +87,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="No KTP" />
@@ -95,6 +95,10 @@
                     android:id="@+id/et_ktp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:textColorHint="#4d333333"
+                    android:backgroundTint="#d8d8d8"
                     android:hint="Enter your ID number"
                     android:inputType="number" />
 
@@ -107,12 +111,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Religion" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
+                    app:backgroundTint="#d8d8d8"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:id="@+id/sp_religion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -126,12 +133,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Gender" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
+                    app:backgroundTint="#d8d8d8"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:id="@+id/sp_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -145,12 +155,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Material Status" />
+                    android:text="Marital Status" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
+                    app:backgroundTint="#d8d8d8"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:id="@+id/sp_material_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -164,7 +177,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Date of Birth" />
@@ -173,6 +185,10 @@
                     android:id="@+id/et_bod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:textColorHint="#4d333333"
+                    android:backgroundTint="#d8d8d8"
                     android:drawableRight="@drawable/ic_calendaar"
                     android:hint="Enter your birth of date"
                     android:inputType="textPersonName" />
@@ -186,12 +202,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nationality" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
+                    app:backgroundTint="#d8d8d8"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:id="@+id/sp_nationality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -205,7 +224,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Address" />
@@ -215,8 +233,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:textColorHint="#4d333333"
+                    android:backgroundTint="#d8d8d8"
                     android:hint="Enter your address"
-                    android:minLines="4" />
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="4" />
 
             </LinearLayout>
 
@@ -227,21 +250,26 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="City" />
 
-                    <Spinner
+                    <android.support.v7.widget.AppCompatSpinner
+                        app:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:id="@+id/sp_city"
+                        android:gravity="bottom"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 
@@ -249,11 +277,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Zip Code" />
@@ -262,6 +290,10 @@
                         android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
                         android:hint="Enter your address"
                         android:inputType="number" />
 
@@ -276,7 +308,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Home Phone" />
@@ -285,25 +316,29 @@
                     android:id="@+id/et_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:textColorHint="#4d333333"
+                    android:backgroundTint="#d8d8d8"
                     android:hint="Enter your home phone"
                     android:inputType="phone" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/bt_next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="@color/colorAccent"
-                android:text="NEXT"
-                android:textColor="#FFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent"
+        android:text="NEXT"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:letterSpacing="0.1"/>
 </RelativeLayout>

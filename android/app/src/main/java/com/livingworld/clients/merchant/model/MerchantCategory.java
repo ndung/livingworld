@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Dizzay on 1/19/2018.
  */
 
-public class MerchantCategory implements Serializable {
+public class MerchantCategory implements Serializable, Cloneable {
 
     String merchantCategoryId;
     String merchantCategoryName;
@@ -35,5 +35,9 @@ public class MerchantCategory implements Serializable {
 
     public void setMerchantList(List<Merchant> merchantList) {
         this.merchantList = merchantList;
+    }
+
+    public MerchantCategory clone() throws CloneNotSupportedException {
+        return (MerchantCategory) super.clone();
     }
 }

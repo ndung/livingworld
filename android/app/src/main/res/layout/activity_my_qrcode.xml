@@ -14,6 +14,10 @@
 
         <ImageView
             android:id="@+id/iv_finish"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_back" />
@@ -25,23 +29,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:text="My QR Code"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"/>
 
             <TextView
-                android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:text="Provide the QR code below to the merchant to make a payment."
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp" />
@@ -54,7 +56,6 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/textView36"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
@@ -66,7 +67,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/tv_title"
+                        android:id="@+id/tv_balance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -78,7 +79,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView35"
+                        android:id="@+id/tv_ecash_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -93,20 +94,20 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/iv_barcode"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_barcode" />
 
             <TextView
-                android:id="@+id/textView37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Merchant want to you to scan their QR?"
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/textView38"
+                android:id="@+id/tv_scan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

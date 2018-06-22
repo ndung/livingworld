@@ -10,6 +10,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,11 +34,16 @@ import com.livingworld.clients.member.model.Member;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.offers.OffersService;
 import com.livingworld.clients.offers.model.CurrentOffer;
+import com.livingworld.clients.rewards.RewardsService;
+import com.livingworld.clients.rewards.model.Event;
+import com.livingworld.clients.rewards.model.Reward;
 import com.livingworld.clients.trx.TrxService;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.IDRUtils;
 import com.livingworld.util.Preferences;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -92,12 +98,21 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     @BindView(R.id.tv_bam)
     TextView tvBam;
 
+    @BindView(R.id.ll_reward)
+    RelativeLayout eventLayout;
+    @BindView(R.id.tv_eventName)
+    TextView tvEventName;
+    @BindView(R.id.tv_eventDate)
+    TextView tvEventDate;
+
     MemberService memberService;
     TrxService trxService;
     OffersService offersService;
+    RewardsService rewardService;
 
     HorizontalAdapter adapter;
     List<CurrentOffer> list;
+    Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +123,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         trxService = ApiUtils.TrxService(getApplicationContext());
         memberService = ApiUtils.MemberService(getApplicationContext());
         offersService = ApiUtils.OffersService(getApplicationContext());
+        rewardService = ApiUtils.RewardService(getApplicationContext());
 
         swiperefresh.setOnRefreshListener(this);
         tvTrxMonth.setVisibility(View.VISIBLE);
@@ -129,7 +145,10 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         recylerView.setLayoutManager(layoutManager);
         recylerView.setAdapter(adapter);
 
+        eventLayout.setVisibility(View.GONE);
+
         getCurrentOffers();
+        getCurrentEvent();
 
         tvBam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +213,35 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                         list.add(obj);
                     }
                     adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable throwable) {
+
+            }
+        });
+    }
+
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy");
+
+    private void getCurrentEvent(){
+        rewardService.getCurrentEvent().enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+
+                    List<Event> currentEvents = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Event>>() {
+                    }.getType());
+                    if (currentEvents!=null && !currentEvents.isEmpty()){
+                        event = currentEvents.get(0);
+                        eventLayout.setVisibility(View.VISIBLE);
+                        tvEventName.setText(Html.fromHtml(event.getName()));
+                        String date = dateFormatter.format(event.getStartDate())+" - "+dateFormatter.format(event.getEndDate());
+                        tvEventDate.setText(date);
+                    }
                 }
             }
 
@@ -287,7 +335,9 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(getApplicationContext(), MerchantListActivity.class));
                 break;
             case R.id.ll_reward:
-                startActivity(new Intent(getApplicationContext(), RewardsActivity.class));
+                Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
+                intent.putExtra("event", event);
+                startActivity(intent);
                 break;
         }
     }

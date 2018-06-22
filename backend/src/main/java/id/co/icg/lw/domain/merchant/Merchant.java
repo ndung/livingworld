@@ -1,6 +1,7 @@
 package id.co.icg.lw.domain.merchant;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NotFound;
@@ -25,6 +26,7 @@ public class Merchant {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="merchant_category_id")
     @NotFound(action = NotFoundAction.IGNORE)
+    @JsonIgnore
     private MerchantCategory merchantCategory;
 
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -35,7 +37,6 @@ public class Merchant {
 
     @Column(columnDefinition = "TEXT")
     private String description;
-
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
@@ -59,9 +60,7 @@ public class Merchant {
         this.merchantName = merchantName;
     }
 
-    public MerchantCategory getMerchantCategory() {
-        return merchantCategory;
-    }
+    public MerchantCategory getMerchantCategory() { return merchantCategory; }
 
     public void setMerchantCategory(MerchantCategory merchantCategory) {
         this.merchantCategory = merchantCategory;
@@ -131,5 +130,14 @@ public class Merchant {
 
     public void setMerchantPhone(String merchantPhone) {
         this.merchantPhone = merchantPhone;
+    }
+
+    @Override
+    public String toString() {
+        return "Merchant{" +
+                "merchantId='" + merchantId + '\'' +
+                ", merchantName='" + merchantName + '\'' +
+                ", merchantCategory=" + merchantCategory +
+                '}';
     }
 }

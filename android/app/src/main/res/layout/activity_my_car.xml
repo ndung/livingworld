@@ -29,13 +29,11 @@
             android:layout_below="@+id/iv_finish">
 
             <TextView
-                android:id="@+id/textView26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Cars"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView52"

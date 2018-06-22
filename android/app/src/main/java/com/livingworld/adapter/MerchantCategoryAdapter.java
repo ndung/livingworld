@@ -40,7 +40,7 @@ public class MerchantCategoryAdapter extends RecyclerView.Adapter<MerchantCatego
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_merchant, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_merchant_category, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,12 +48,7 @@ public class MerchantCategoryAdapter extends RecyclerView.Adapter<MerchantCatego
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final MerchantCategory model = list.get(position);
         holder.tvTitle.setText(model.getMerchantCategoryName());
-//        if(position > 0){
-//            holder.tvTitle.setTextColor(Color.parseColor("#333333"));
-//            holder.tvTitle.setTypeface(null, Typeface.NORMAL);
-//            holder.ivInbox.setImageResource(R.drawable.rectangle_copy_2);
-//            holder.llNew.setVisibility(View.GONE);
-//        }
+        holder.ivClick.setVisibility(View.VISIBLE);
 
         MerchantAdapter adapter = new MerchantAdapter(context, model.getMerchantList(), new MerchantAdapter.OnItemClickListener() {
             @Override
@@ -72,8 +67,10 @@ public class MerchantCategoryAdapter extends RecyclerView.Adapter<MerchantCatego
             @Override
             public void onClick(View view) {
                 if (holder.rvItem.getVisibility()== View.VISIBLE){
+                    holder.ivClick.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_chevron_grey));
                     holder.rvItem.setVisibility(View.GONE);
                 }else {
+                    holder.ivClick.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_chevron));
                     holder.rvItem.setVisibility(View.VISIBLE);
                 }
             }

@@ -144,7 +144,7 @@ public class RegistrationActivity extends BaseActivity {
                             Preferences.setToken(getApplicationContext(), token);
                             Preferences.setLoginFlag(getApplicationContext(), true);
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            IntroActivity.activity.finish();
+                            WelcomeActivity.activity.finish();
                             finish();
                         } else {
                             showMessage(body.getMessage());

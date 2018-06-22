@@ -3,11 +3,8 @@ package id.co.icg.lw.services.livingWorld;
 import id.co.icg.lw.api.livingWorld.*;
 import id.co.icg.lw.component.RetrofitClient;
 import id.co.icg.lw.domain.IFabulaResponse;
-import id.co.icg.lw.services.member.UpdateMemberResponse;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
-import okhttp3.Request;
 import okhttp3.ResponseBody;
-import okio.Buffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,6 @@ import org.springframework.stereotype.Component;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.IOException;
 
 @Component
 public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> implements LivingWorldApiService {

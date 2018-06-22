@@ -44,7 +44,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ConfirmationBillActivity.class));
                 break;
             case R.id.ll_add_payment:
-                startActivity(new Intent(getApplicationContext(), ECashConnectActivity.class));
+                startActivity(new Intent(getApplicationContext(), EcashConnectActivity.class));
                 break;
         }
     }

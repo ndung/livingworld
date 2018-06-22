@@ -8,9 +8,14 @@ import java.io.Serializable;
 
 public class Inbox implements Serializable{
 
+    private Integer id;
     private String title;
     private String message;
     private String date;
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public String getTitle() {
         return title;

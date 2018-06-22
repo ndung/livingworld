@@ -25,36 +25,35 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/relativeLayout"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView26"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="16dp"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="16dp"
                         android:paddingRight="16dp"
                         android:text="Rewards"
                         android:textColor="@color/colorPrimaryText"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textSize="24sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -64,7 +63,6 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/textView36"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:alpha="0.5"
@@ -91,15 +89,15 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/imageView5"
+                            android:id="@+id/imageView"
                             android:layout_width="match_parent"
-                            android:layout_height="176dp"
-                            android:scaleType="centerCrop"
+                            android:layout_height="175dp"
+                            android:scaleType="fitXY"
                             app:srcCompat="@drawable/heidi_sandstrom" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="174dp"
+                            android:layout_height="175dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
@@ -110,10 +108,10 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/textView70"
+                            android:id="@+id/tv_rewardsDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/imageView5"
+                            android:layout_alignBottom="@+id/imageView"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_marginBottom="16dp"
@@ -125,12 +123,14 @@
                             android:textSize="12sp" />
 
                         <LinearLayout
-                            android:id="@+id/linearLayout9"
+                            android:id="@+id/linearLayout"
                             android:layout_width="50dp"
                             android:layout_height="2dp"
-                            android:layout_above="@+id/textView70"
-                            android:layout_alignLeft="@+id/textView69"
-                            android:layout_alignStart="@+id/textView69"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_above="@+id/tv_rewardsDate"
+                            android:layout_alignLeft="@+id/tv_rewardsTitle"
+                            android:layout_alignStart="@+id/tv_rewardsTitle"
                             android:background="#FFF"
                             android:elevation="0dp"
                             android:orientation="vertical">
@@ -138,14 +138,14 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/textView69"
+                            android:id="@+id/tv_rewardsTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_above="@+id/linearLayout9"
-                            android:layout_alignLeft="@+id/textView70"
+                            android:layout_above="@+id/linearLayout"
+                            android:layout_alignLeft="@+id/tv_rewardsDate"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
-                            android:layout_alignStart="@+id/textView70"
+                            android:layout_alignStart="@+id/tv_rewardsDate"
                             android:gravity="left|end"
                             android:text="Celebrate Chrismast With us"
                             android:textColor="#FFF"
@@ -154,20 +154,21 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/how_to_redeem_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="16dp">
 
                             <TextView
-                                android:id="@+id/textView38"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="start"
                                 android:text="How To Redeem"
                                 android:textAlignment="textStart"
                                 android:textColor="@color/colorPrimary"
@@ -175,9 +176,9 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/textView71"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="start"
                                 android:text="Learn how to redeem your rewards here"
                                 android:textAlignment="viewStart"
                                 android:textColor="#999"
@@ -186,386 +187,25 @@
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView26"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="16dp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             app:srcCompat="@drawable/ic_info_blue" />
                     </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="16dp"
-                            android:layout_weight="1"
-                            android:padding="16dp"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="16dp"
-                            android:layout_weight="1"
-                            android:padding="16dp"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="16dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="16dp"
-                            android:layout_weight="1"
-                            android:padding="16dp"
-                            app:cardCornerRadius="10dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:id="@+id/imageView27"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/heidi_sandstrom" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:padding="16dp">
-
-                                    <TextView
-                                        android:id="@+id/textView72"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Bakmi Ayam Special"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textStyle="bold" />
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <ImageView
-                                            android:id="@+id/imageView28"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_alignParentTop="true"
-                                            app:srcCompat="@drawable/ic_chevron_grey" />
-
-                                        <TextView
-                                            android:id="@+id/textView73"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="500 Points" />
-                                    </RelativeLayout>
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-                    </LinearLayout>
-
                 </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_margin="16dp"
+                    android:id="@+id/rv_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
         </android.support.v4.widget.NestedScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 

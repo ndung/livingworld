@@ -14,16 +14,19 @@ import java.util.concurrent.TimeUnit;
 
 public class RetrofitClient<T> {
 
-    private Retrofit.Builder builder;
+    protected Retrofit.Builder builder;
 
-    private Retrofit retrofit;
+    protected Retrofit retrofit;
 
-    private static OkHttpClient.Builder httpClient;
+    protected OkHttpClient.Builder httpClient;
 
-    private static HttpLoggingInterceptor logging;
+    protected HttpLoggingInterceptor logging;
 
     protected T service;
 
+    public RetrofitClient(){
+
+    }
 
     public RetrofitClient(String baseUrl) {
         init(baseUrl);
@@ -39,7 +42,7 @@ public class RetrofitClient<T> {
         service = createService(tClass, header);
     }
 
-    private void init(String baseUrl) {
+    protected void init(String baseUrl) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -49,13 +52,15 @@ public class RetrofitClient<T> {
                 .addConverterFactory(GsonConverterFactory.create(gson));
         retrofit = builder.build();
         httpClient = new OkHttpClient.Builder();
-        logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
+        logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
-    private <T> T createService(Class<T> serviceClass, Map<String, String> headers) {
+    protected <T> T createService(Class<T> serviceClass, Map<String, String> headers) {
         if (headers != null) {
             httpClient.interceptors().clear();
-            httpClient.addInterceptor(chain -> {
+            httpClient
+                    .addInterceptor(logging)
+                    .addInterceptor(chain -> {
                 Request original = chain.request();
                 Request.Builder builder1 = original.newBuilder();
                 for (String key : headers.keySet()) {
@@ -78,4 +83,5 @@ public class RetrofitClient<T> {
     protected void setHeader(Class<T> clazz, Map<String, String> header) {
         service = createService(clazz, header);
     }
+
 }

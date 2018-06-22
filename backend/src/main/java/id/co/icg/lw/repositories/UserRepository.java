@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     User findOne(@Param("id") String id);
 
     User findByCardNumber(String cardNumber);
+
+    @Query("select u from User u where u.id = :id and u.password = :password")
+    User findOne(@Param("id") String id, @Param("password") String password);
 }

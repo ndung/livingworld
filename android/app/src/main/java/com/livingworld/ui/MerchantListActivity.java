@@ -3,8 +3,12 @@ package com.livingworld.ui;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,6 +18,7 @@ import com.livingworld.R;
 import com.livingworld.adapter.MerchantCategoryAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.merchant.MerchantService;
+import com.livingworld.clients.merchant.model.Merchant;
 import com.livingworld.clients.merchant.model.MerchantCategory;
 import com.livingworld.clients.model.Response;
 import com.livingworld.util.GsonDeserializer;
@@ -36,11 +41,15 @@ public class MerchantListActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
+    @BindView(R.id.iv_search)
+    SearchView ivSearch;
+    @BindView(R.id.tv_header)
+    TextView layoutHeader;
 
     MerchantService merchantService;
     List<MerchantCategory> list = new ArrayList<>();
+    List<MerchantCategory> listMerchant;
     MerchantCategoryAdapter merchantAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +83,7 @@ public class MerchantListActivity extends BaseActivity {
                         Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                         JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
 
-                        List<MerchantCategory> listMerchant = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<MerchantCategory>>() {}.getType());
+                        listMerchant = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<MerchantCategory>>() {}.getType());
                         for (MerchantCategory category : listMerchant) {
                             list.add(category);
                         }
@@ -94,6 +103,76 @@ public class MerchantListActivity extends BaseActivity {
             }
         });
 
+        ivSearch.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutHeader.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+            }
+        });
+        ivSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                onSearch(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        ivSearch.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                ivSearch.onActionViewCollapsed();
+                layoutHeader.setVisibility(View.VISIBLE);
+                list.clear();
+                Log.d(TAG, "listMerchant:"+listMerchant);
+                for (MerchantCategory category : listMerchant) {
+                    list.add(category);
+                }
+                recyclerView.setVisibility(View.VISIBLE);
+                merchantAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!ivSearch.isIconified()) {
+            ivSearch.setIconified(true);
+        } else {
+            finish();
+        }
+    }
+
+    private void onSearch(String text){
+        list.clear();
+        for (MerchantCategory obj : listMerchant) {
+            try {
+                MerchantCategory category = obj.clone();
+                List<Merchant> merchants = category.getMerchantList();
+                List<Merchant> searched = new ArrayList<>();
+                for (Merchant merchant : merchants) {
+                    if (merchant.getMerchantName().toUpperCase().contains(text.toUpperCase())) {
+                        searched.add(merchant);
+                    }
+                }
+                category.setMerchantList(searched);
+                if (!category.getMerchantList().isEmpty()) {
+                    list.add(category);
+                }
+            }catch(Exception ex){
+                Log.e(TAG, "err", ex);
+            }
+        }
+        if (!list.isEmpty()) {
+            merchantAdapter.notifyDataSetChanged();
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
 }

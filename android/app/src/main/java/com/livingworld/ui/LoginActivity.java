@@ -115,7 +115,6 @@ public class LoginActivity extends BaseActivity {
                     if(response.isSuccessful()){
                         Response body = response.body();
                         double data = (double) body.getData();
-                        Log.d(TAG, "data:"+data);
                         if(data > 0){
                             STEP = INPUT_PASSWORD;
                             setFragment(enterPasswordFragment);
@@ -172,7 +171,7 @@ public class LoginActivity extends BaseActivity {
                                 Preferences.setToken(getApplicationContext(), token);
                                 Preferences.setLoginFlag(getApplicationContext(), true);
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                IntroActivity.activity.finish();
+                                WelcomeActivity.activity.finish();
                                 finish();
                             } else {
                                 showMessage(body.getMessage());
@@ -234,7 +233,7 @@ public class LoginActivity extends BaseActivity {
                                 Preferences.setToken(getApplicationContext(), token);
                                 Preferences.setLoginFlag(getApplicationContext(), true);
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                IntroActivity.activity.finish();
+                                WelcomeActivity.activity.finish();
                                 finish();
                             } else {
                                 showMessage(body.getMessage());

@@ -8,6 +8,8 @@ import java.util.List;
 @Service
 public class RewardServiceBean implements RewardService {
 
+
+
     @Override
     public List<RewardResponse> getRewards() {
         return new ArrayList<>();

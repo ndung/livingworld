@@ -11,8 +11,10 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         app:cardBackgroundColor="#FFF"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="20dp">
+        app:cardCornerRadius="5dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        app:cardPreventCornerOverlap="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,13 +24,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/iv_offer"
                     android:layout_width="match_parent"
-                    android:layout_height="152dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/heidi_sandstrom" />
 
@@ -46,14 +47,13 @@
                     android:layout_height="wrap_content"
                     android:text="New menu on your Christmas"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tv_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
+                    android:textSize="14sp"
                     android:text="Donec euismod scelerisque ligula. Maecenas eu varius risus, aliquet arcu..." />
             </LinearLayout>
 
