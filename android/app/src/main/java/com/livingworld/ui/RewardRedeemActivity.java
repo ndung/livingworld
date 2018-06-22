@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.livingworld.R;
 import com.livingworld.adapter.RedeemAdapter;
 import com.livingworld.clients.rewards.model.Reward;
 import com.livingworld.util.Preferences;
+import com.livingworld.util.Static;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +39,8 @@ public class RewardRedeemActivity extends BaseActivity {
     Button btRedeem;
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
+    @BindView(R.id.iv_merchant)
+    ImageView ivMerchant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,13 @@ public class RewardRedeemActivity extends BaseActivity {
         tvPoint.setText(reward.getRewardPoint());
         tvDesc.setText(reward.getRewardDescription());
         tvMerchant.setText(reward.getMerchant().getMerchantName());
-
+        if (reward.getRewardImage()!=null) {
+            Glide.with(this)
+                    .load(Static.IMAGES_URL+reward.getRewardImage()).into(ivMerchant);
+        }else{
+            Glide.with(this)
+                    .load("http://103.27.207.124/~ifabula/demo/img/seller_galery/no_image.jpg").into(ivMerchant);
+        }
         ivFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

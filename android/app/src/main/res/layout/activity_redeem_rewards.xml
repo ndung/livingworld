@@ -38,28 +38,30 @@
 
     </RelativeLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <!--android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout">
+        android:layout_below="@+id/relativeLayout"-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_above="@+id/text_panel">
 
             <android.support.v7.widget.RecyclerView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    <!--/android.support.v4.widget.NestedScrollView-->
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/text_panel"
+        android:orientation="vertical"
         android:background="#F9F9F9"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
