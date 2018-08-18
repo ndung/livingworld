@@ -1,14 +1,21 @@
 basePath: http://localhost:7000
-spring:
+
+lw:
   datasource:
-    url: jdbc:mysql://localhost:3306/livingworld
+    url: jdbc:mysql://localhost:3369/livingworld
     username: root
-    password:
+    password: GO816og#@!@#$5758!
+    driver-class-name: com.mysql.jdbc.Driver
+parking:
+  datasource:
+    url: jdbc:mysql://localhost:3369/ois
+    username: root
+    password: GO816og#@!@#$5758!
     driver-class-name: com.mysql.jdbc.Driver
 debug: true
 
 file:
-  location: /Users/ndung/Documents/Workspace/livingworld/backend/src/main/resources/files/
+  location: C:\Workplace\livingworld\images\
 
-publicKey: /Users/ndung/Documents/Workspace/livingworld/docs/ECashSecurityPack/public_key.der
+publicKey: C:\Workplace\livingworld\docs\ECashSecurityPack\public_key.der
 

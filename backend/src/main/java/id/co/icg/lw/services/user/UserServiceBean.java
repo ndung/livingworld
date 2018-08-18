@@ -119,6 +119,7 @@ public class UserServiceBean implements UserService {
             user = checkCardNumberToIfabula(signUpRequest.getCardNumber());
             if (user != null) {
                 user.setPassword(PasswordUtil.md5Hash(signUpRequest.getPassword()));
+                System.out.println(user);
                 userRepository.saveAndFlush(user);
                 memberRepository.saveAndFlush(user.getMember());
                 return user;

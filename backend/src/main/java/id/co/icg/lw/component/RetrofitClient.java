@@ -56,11 +56,10 @@ public class RetrofitClient<T> {
     }
 
     protected <T> T createService(Class<T> serviceClass, Map<String, String> headers) {
+        httpClient.interceptors().clear();
+        httpClient.addInterceptor(logging);
         if (headers != null) {
-            httpClient.interceptors().clear();
-            httpClient
-                    .addInterceptor(logging)
-                    .addInterceptor(chain -> {
+            httpClient.addInterceptor(chain -> {
                 Request original = chain.request();
                 Request.Builder builder1 = original.newBuilder();
                 for (String key : headers.keySet()) {
@@ -69,14 +68,13 @@ public class RetrofitClient<T> {
                 Request request = builder1.build();
                 return chain.proceed(request);
             });
-            OkHttpClient client = httpClient
-                    .connectTimeout(180, TimeUnit.SECONDS)
-                    .readTimeout(180, TimeUnit.SECONDS)
-                    .build();
-            builder.client(client);
-            retrofit = builder.build();
         }
-
+        OkHttpClient client = httpClient
+                .connectTimeout(180, TimeUnit.SECONDS)
+                .readTimeout(180, TimeUnit.SECONDS)
+                .build();
+        builder.client(client);
+        retrofit = builder.build();
         return retrofit.create(serviceClass);
     }
 

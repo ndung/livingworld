@@ -7,4 +7,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface CityRepository extends JpaRepository<City, String> {
+
 }

@@ -1,11 +1,12 @@
 basePath: http://49.128.182.148:8085/lw
 
 spring:
-  datasource:
-    url: jdbc:mysql://192.168.1.6:3306/living_world
-    username: alif
-    password: icg123456
-    driver-class-name: com.mysql.jdbc.Driver
+  lw:
+    datasource:
+      url: jdbc:mysql://192.168.1.6:3306/living_world
+      username: alif
+      password: icg123456
+      driver-class-name: com.mysql.jdbc.Driver
 
 debug: false
 

@@ -76,8 +76,8 @@ public class EcashConnectActivity extends BaseActivity {
         fragmentList = new ArrayList<>();
         EcashIntroFragment ecashIntroFragment = new EcashIntroFragment();
         fragmentList.add(ecashIntroFragment);
-        EcashRegPhoneFragment ecashRegPhoneFragment = new EcashRegPhoneFragment();
-        fragmentList.add(ecashRegPhoneFragment);
+        //EcashRegPhoneFragment ecashRegPhoneFragment = new EcashRegPhoneFragment();
+        //fragmentList.add(ecashRegPhoneFragment);
         EcashVerifyFragment ecashVerifyFragment = new EcashVerifyFragment();
         fragmentList.add(ecashVerifyFragment);
         EcashSuccessFragment ecashSuccessFragment = new EcashSuccessFragment();
@@ -103,7 +103,12 @@ public class EcashConnectActivity extends BaseActivity {
                                 Map<String,String> data = gson.fromJson(response.body().getData().toString(), Map.class);
                                 String ticket = data.get("ticket");
                                 Log.d(TAG, "ticket:"+ticket);
-                                validate(ticket);
+                                //validate(ticket);
+                                if (ticket!=null) {
+                                    verify(ticket);
+                                }else{
+                                    showMessage(data.get("status"));
+                                }
                             }
                         }
 
@@ -113,16 +118,12 @@ public class EcashConnectActivity extends BaseActivity {
                         }
                     });
                 }
-                if (POSITION < fragmentList.size()) {
-                    setFragment(false);
-                }
             }
         });
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(fragmentManager);
         pagerBullet.setAdapter(viewPagerAdapter);
 
-        viewPagerAdapter.addFragment(new BlankFragment());
         viewPagerAdapter.addFragment(new BlankFragment());
         viewPagerAdapter.addFragment(new BlankFragment());
         viewPagerAdapter.addFragment(new BlankFragment());
@@ -158,6 +159,17 @@ public class EcashConnectActivity extends BaseActivity {
         webviewBuilder.show("http://188.166.220.62/h2h-register/Main/register?ticket="+ticket);
     }
 
+    private void verify(String ticket){
+        POSITION = POSITION + 1;
+        pagerBullet.setCurrentItem(POSITION-1);
+        tvStep.setText("STEP "+POSITION+"/"+fragmentList.size());
+        Bundle args = new Bundle();
+        args.putString("ticket", ticket);
+        Fragment fr = new EcashVerifyFragment();
+        fr.setArguments(args);
+        fragmentManager.beginTransaction().replace(mainFrame.getId(), fr, fr.getClass().getName()).commit();
+    }
+
     private void setFragment(boolean isBack) {
         Fragment fragment;
         if(!isBack){
@@ -169,7 +181,7 @@ public class EcashConnectActivity extends BaseActivity {
         }
         pagerBullet.setCurrentItem(POSITION-1);
         tvStep.setText("STEP "+POSITION+"/"+fragmentList.size());
-        fragmentManager.beginTransaction().replace(mainFrame.getId(), fragment, fragment.getClass().getName()).commit();
+        fragmentManager.beginTransaction().replace(mainFrame.getId(), fragment, fragment.getClass().getName()).commitAllowingStateLoss();
         if(POSITION == fragmentList.size()){
             btNext.setText("OK");
         }else{

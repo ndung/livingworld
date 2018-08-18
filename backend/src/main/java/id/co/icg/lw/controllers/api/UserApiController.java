@@ -6,6 +6,7 @@ import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
 import id.co.icg.lw.services.user.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class UserApiController extends BaseController {
 
     @Autowired
     private UserService userService;
+    Logger logger = Logger.getLogger(UserApiController.class);
 
     /**
      * @api {post} /user/check/card-number Check Card Number

@@ -158,11 +158,15 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                         dissmissPleasewaitDialog();
+
+                        Log.d(TAG, "resp:"+response);
                         if (response.isSuccessful()) {
                             Response body = response.body();
                             Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                             JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
+
                             User user = gson.fromJson(jsonObject, User.class);
+                            Log.d(TAG, "user:" + user);
                             if (user != null) {
                                 String token = response.headers().get("Token");
                                 Preferences.setUser(getApplicationContext(), user);
@@ -224,8 +228,9 @@ public class LoginActivity extends BaseActivity {
                         if (response.isSuccessful()) {
                             Response body = response.body();
                             Gson gson = new Gson();
-                            JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                            JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
                             User user = gson.fromJson(jsonObject, User.class);
+
                             if (user != null) {
                                 String token = response.headers().get("Token");
                                 Preferences.setUser(getApplicationContext(), user);

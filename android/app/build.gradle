@@ -65,6 +65,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
     compile 'com.snatik:storage:2.1.0'
     compile 'com.journeyapps:zxing-android-embedded:3.6.0'
+    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

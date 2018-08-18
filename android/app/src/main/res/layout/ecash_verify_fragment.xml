@@ -7,7 +7,7 @@
 
     <!-- TODO: Update fragment_blank fragment layout -->
 
-    <LinearLayout
+    <!--LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -76,6 +76,11 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </LinearLayout-->
+
+    <im.delight.android.webview.AdvancedWebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
