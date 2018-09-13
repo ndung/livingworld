@@ -5,3 +5,9 @@ android/app/build
 /android/app/.idea
 /android/app/local.properties
 /android/.idea
+/backend/.idea
+/backend/build
+/Mondelez-LoyaltyWebAdmin/.idea
+/backend/.gradle
+/lwWebAdmin/.idea
+/lwWebAdmin/target

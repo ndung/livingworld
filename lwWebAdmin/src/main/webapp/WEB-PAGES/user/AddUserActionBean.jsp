@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/WEB-PAGES/taglibs.jsp" %>
+
+<s:layout-render name="/WEB-PAGES/index.jsp" title="Add User">
+    <s:layout-component name="contents">
+        <div class="panel">
+            <div class="panel-body">
+                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.user.AddUserActionBean">
+                    <div class="p-x-1 col-md-5">
+                        <fieldset class="form-group form-group-md">
+                            <label>User Name</label>
+                            <s:text class="form-control" name="appUser.id"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Full Name</label>
+                            <s:text class="form-control" name="appUser.fullName"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Password</label>
+                            <s:password class="form-control" name="appUser.password"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Confirm Password</label>
+                            <s:password class="form-control" name="rePassword"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>E-Mail</label>
+                            <s:text class="form-control" name="appUser.email"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Phone Number</label>
+                            <s:text class="form-control" name="appUser.phone"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Status</label>
+                            <s:select name="appUser.status" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.statusActives}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Role</label>
+                            <s:select name="appUser.appRole.id" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.roles}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
+                        <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Save User</s:submit>
+                        <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>
+                    </div>
+                </s:form>
+            </div>
+        </div>
+    </s:layout-component>
+</s:layout-render>
