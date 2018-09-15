@@ -72,6 +72,9 @@
             android:name=".ui.PaymentMethodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.ParkingPaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.MyQRCodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

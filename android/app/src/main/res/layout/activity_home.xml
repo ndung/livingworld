@@ -11,12 +11,12 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="#FFF"
         android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:paddingBottom="16dp">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -48,23 +48,22 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout2">
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/linearLayout2"
-            android:id="@+id/nestedScrollView">
+            android:layout_below="@+id/linearLayout2">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,10 +194,12 @@
                         android:visibility="gone" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:background="@drawable/shadow"/>
+                    android:background="@drawable/shadow" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -247,16 +248,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Be A Member"
-                        android:visibility="gone"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:background="@drawable/shadow"/>
+                    android:background="@drawable/shadow" />
 
                 <RelativeLayout
                     android:id="@+id/ll_reward"
@@ -277,20 +278,20 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_reward_white"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:layout_alignParentStart="true"
+                        app:srcCompat="@drawable/ic_reward_white" />
 
                     <TextView
                         android:id="@+id/tv_eventName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Chirstmas &amp; New year\nSpecial"
-                        android:layout_marginLeft="16dp"
                         android:textColor="#FFF"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -300,13 +301,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_eventName"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
-                        android:layout_marginLeft="16dp"
+                        android:alpha="0.5"
                         android:text="21 Des - 28 Des 2017"
                         android:textColor="#fff"
-                        android:alpha="0.5"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -344,9 +345,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="1dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginLeft="1dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -379,9 +380,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="3dp"
                             android:layout_marginRight="3dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginLeft="3dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -415,8 +416,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
                             android:layout_marginRight="1dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -518,8 +519,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#9e9e9e"
-                            android:text="SPECIAL OFFER" />
+                            android:text="SPECIAL OFFER"
+                            android:textColor="#9e9e9e" />
 
                         <TextView
                             android:id="@+id/tv_view_coffer"

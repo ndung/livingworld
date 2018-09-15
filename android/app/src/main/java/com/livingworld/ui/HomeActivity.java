@@ -114,6 +114,8 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     List<CurrentOffer> list;
     Event event;
 
+    private int MODE = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,6 +317,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cv_scan_bc:
+                MODE = 0;
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
                 } else {
@@ -326,7 +329,13 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
                 break;
             case R.id.cv_parking:
-                startActivity(new Intent(getApplicationContext(), MyCarActivity.class));
+                MODE = 1;
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
+                } else {
+                    new IntentIntegrator(this).initiateScan();
+                }
+                //startActivity(new Intent(getApplicationContext(), MyCarActivity.class));
                 break;
             case R.id.tv_view_coffer:
                 startActivity(new Intent(getApplicationContext(), CurrentOffersActivity.class));
@@ -361,9 +370,11 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-            if (result != null) {
+            if (result.getContents() != null) {
                 Log.d(TAG, "result:" + result);
-                startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
+                Intent intent = new Intent(getApplicationContext(), PaymentMethodActivity.class);
+                intent.putExtra("MODE", MODE);
+                startActivity(intent);
             }
         }
     }

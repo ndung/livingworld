@@ -22,11 +22,15 @@ public class PaymentMethodActivity extends AppCompatActivity {
     @BindView(R.id.iv_img_inbox)
     ImageView ivImgInbox;
 
+    private int MODE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
         ButterKnife.bind(this);
+
+        MODE = getIntent().getIntExtra("MODE", 0);
     }
 
     @OnClick(R.id.iv_finish)
@@ -38,14 +42,22 @@ public class PaymentMethodActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_lw_pay:
-                startActivity(new Intent(getApplicationContext(), ConfirmationBillActivity.class));
+                startConfirmationActivity();
                 break;
             case R.id.iv_img_inbox:
-                startActivity(new Intent(getApplicationContext(), ConfirmationBillActivity.class));
+                startConfirmationActivity();
                 break;
             case R.id.ll_add_payment:
                 startActivity(new Intent(getApplicationContext(), EcashConnectActivity.class));
                 break;
+        }
+    }
+
+    private void startConfirmationActivity(){
+        if (MODE==0){
+            startActivity(new Intent(getApplicationContext(), ConfirmationBillActivity.class));
+        }else{
+            startActivity(new Intent(getApplicationContext(), ParkingPaymentActivity.class));
         }
     }
 }
