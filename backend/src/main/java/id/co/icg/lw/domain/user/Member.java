@@ -15,26 +15,45 @@ public class Member {
     User user;
 
     @Id
+    @Column(name = "card_number")
     private String cardNumber;
+
+    @Column(name = "identity_name")
     private String identityName;
+
+    @Column(name = "idenitity_number")
     private String idenitityNumber;
+
     private String religion;
     private String gender;
-    private String martialStatus;
     private String address;
     private String city;
     private String zipcode;
-    private String homePhone;
-    private String memberType;
     private String nationalitly;
-    private String dateOfBirth;
     private String email;
+
+    @Column(name = "martial_status")
+    private String martialStatus;
+
+    @Column(name = "home_phone")
+    private String homePhone;
+
+    @Column(name = "member_type")
+    private String memberType;
+
+
+    @Column(name = "date_of_birth")
+    private String dateOfBirth;
+
+    @Column(name = "mobile_number")
     private String mobileNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     public Member() {}

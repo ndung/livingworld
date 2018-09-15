@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="redeemed_award")
 public class RedeemedReward {
 
     @Id
@@ -58,9 +59,11 @@ public class RedeemedReward {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
 

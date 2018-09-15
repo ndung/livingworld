@@ -92,8 +92,8 @@
                         <img src="${pageContext.request.contextPath}/WEB-PAGES/assets/demo/avatars/1.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px;height: 54px;margin-top: 8px;">
                         <div class="font-size-15"><span class="font-weight-light">Welcome, </span><br/><strong>${actionBean.userSession.fullName}</strong></div>
                         <div class="btn-group" style="margin-top: 4px;">
-                            <s:link beanclass="id.co.icg.ie.web.user.MyAccountActionBean" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-user"></i></s:link>
-                            <s:link beanclass="id.co.icg.ie.web.credential.LoginActionBean" class="btn btn-xs btn-danger btn-outline" event="logout"><i class="fa fa-power-off"></i></s:link>
+                            <s:link beanclass="id.co.icg.lw.web.user.MyAccountActionBean" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-user"></i></s:link>
+                            <s:link beanclass="id.co.icg.lw.web.credential.LoginActionBean" class="btn btn-xs btn-danger btn-outline" event="logout"><i class="fa fa-power-off"></i></s:link>
                         </div>
                     </li>
                     ${actionBean.link}
@@ -124,11 +124,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <s:link beanclass="id.co.icg.ie.web.user.MyAccountActionBean"><span class="label label-warning pull-xs-right"><i class="fa fa-user"></i></span>Profile</s:link>
+                                    <s:link beanclass="id.co.icg.lw.web.user.MyAccountActionBean"><span class="label label-warning pull-xs-right"><i class="fa fa-user"></i></span>Profile</s:link>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <s:link beanclass="id.co.icg.ie.web.credential.LoginActionBean" event="logout">
+                                    <s:link beanclass="id.co.icg.lw.web.credential.LoginActionBean" event="logout">
                                         <i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out
                                     </s:link>
                                 </li>

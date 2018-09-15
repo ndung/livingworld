@@ -19,10 +19,13 @@ public class Vehicle {
     @NotFound(action = NotFoundAction.IGNORE)
     private User user;
 
+    @Column(name = "vehicle_type")
     private String vehicleType;
+
+    @Column(name = "vehicle_color")
     private String vehicleColor;
 
-    @Column(unique = true)
+    @Column(name = "vehicle_number")
     private String vehicleNumber;
 
     public String getVehicleId() {

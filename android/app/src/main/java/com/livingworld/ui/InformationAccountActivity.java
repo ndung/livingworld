@@ -454,7 +454,7 @@ public class InformationAccountActivity extends BaseActivity {
             }
         }
         map.put("cardNumber", member.getCardNumber());
-        map.put("tid", UUID.randomUUID().toString());
+        map.put("tid", user.getUserId());
         map.put("idNumber", member.getIdenitityNumber());
         map.put("memberType", member.getMemberType());
 

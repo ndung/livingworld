@@ -221,11 +221,11 @@ public class UserServiceBean implements UserService {
 
                     Member member = new Member();
 
-                    String userId = (String) map.get("cardId");
+                    String userId = (String) map.get("CustomerUUID");
                     String cardNo = (String) map.get("cardNumber");
                     String name = (String) map.get("name");
 
-                    String memberType = (String) map.get("memberType");
+                    String memberType = (String) map.get("cardId");
                     MemberType memberTypeObj = memberTypeRepository.findOne(memberType);
                     if (memberTypeObj == null) {
                         List<LinkedTreeMap> memberTypes = (List<LinkedTreeMap>) livingWorldApiService.getMemberType();
@@ -289,7 +289,6 @@ public class UserServiceBean implements UserService {
 
                     String city = (String) map.get("city");
                     City cityObj = cityRepository.findOne(city);
-                    System.out.println("cityObj:" + cityObj);
                     if (cityObj == null) {
                         List<LinkedTreeMap> cities = (List<LinkedTreeMap>) livingWorldApiService.getCity();
                         for (LinkedTreeMap cityMap : cities) {

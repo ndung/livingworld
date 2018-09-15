@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.user.AddUserActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.user.AddUserActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>User Name</label>
@@ -41,6 +41,12 @@
                             <label>Role</label>
                             <s:select name="appUser.appRole.id" class="form-control chosen-select" tabindex="2">
                                 <s:options-collection collection="${actionBean.roles}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Merchant</label>
+                            <s:select name="appUser.merchant.id" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.merchants}" value="value" label="label" group="group"/>
                             </s:select>
                         </fieldset>
                         <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Save User</s:submit>

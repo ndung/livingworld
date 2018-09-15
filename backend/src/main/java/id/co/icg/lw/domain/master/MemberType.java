@@ -1,5 +1,6 @@
 package id.co.icg.lw.domain.master;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -37,6 +38,7 @@ public class MemberType extends Master {
         this.name = name;
     }
 
+    @Column(name = "minimum_transaction")
     private String minimumTransaction;
 
     public String getMinimumTransaction() {

@@ -14,7 +14,7 @@ public interface MerchantService {
 
     List<MerchantCategory> findAllMerchantCategory();
 
-    MerchantCategory findOne(String name);
+    MerchantCategory findOne(String id);
 
     boolean createMerchant(Merchant merchant) throws Exception;
 

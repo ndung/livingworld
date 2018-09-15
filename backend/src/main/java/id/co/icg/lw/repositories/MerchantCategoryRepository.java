@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public interface MerchantCategoryRepository extends JpaRepository<MerchantCategory, Long> {
+public interface MerchantCategoryRepository extends JpaRepository<MerchantCategory, String> {
 
     @Query("select c from MerchantCategory c where c.merchantCategoryName = :categoryName")
     MerchantCategory findByCategoryName(@Param("categoryName") String categoryName);

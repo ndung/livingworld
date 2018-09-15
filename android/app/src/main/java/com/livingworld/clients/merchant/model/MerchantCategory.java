@@ -40,4 +40,13 @@ public class MerchantCategory implements Serializable, Cloneable {
     public MerchantCategory clone() throws CloneNotSupportedException {
         return (MerchantCategory) super.clone();
     }
+
+    @Override
+    public String toString() {
+        return "MerchantCategory{" +
+                "merchantCategoryId='" + merchantCategoryId + '\'' +
+                ", merchantCategoryName='" + merchantCategoryName + '\'' +
+                ", merchantList=" + merchantList +
+                '}';
+    }
 }

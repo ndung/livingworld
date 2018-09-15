@@ -132,7 +132,7 @@
     <body>
         <div class="page-404-bg bg-warning"></div>
         <div class="page-404-header bg-white">
-            <s:link class="px-demo-brand px-demo-brand-lg text-default" beanclass="id.co.icg.ie.web.credential.WelcomeActionBean">
+            <s:link class="px-demo-brand px-demo-brand-lg text-default" beanclass="id.co.icg.lw.web.credential.WelcomeActionBean">
                 <img src="${pageContext.request.contextPath}/WEB-PAGES/assets/images/ireload-engine-32.png" style="width:32px; height:32px; background-color: white;border-radius: 16px;"></img> 
                 iReload Engine
             </s:link>

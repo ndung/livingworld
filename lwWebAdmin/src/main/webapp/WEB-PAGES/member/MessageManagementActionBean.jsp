@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form beanclass="id.co.icg.ie.web.member.MessageManagementActionBean" method="get">
+                <s:form beanclass="id.co.icg.lw.web.member.MessageManagementActionBean" method="get">
                     <div class="p-x-1 col-lg-9">
                         <div class="row">
                             <div class="col-sm-4 form-group">
@@ -38,12 +38,24 @@
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
                             <d:column title="Title" property="title"  sortable="true" style="width: 20%; text-align: left"/>
                             <d:column title="Message" property="message" sortable="false" style="width: 60%; text-align: left"/>
-                            <d:column title="Create At" property="createAt" sortable="true" style="width: 10%; text-align: left" decorator="id.co.icg.ie.displaytag.DateTimeFormatDecorator"/>
+                            <d:column title="Create At" property="createAt" sortable="true" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
-                                <s:link beanclass="id.co.icg.ie.web.member.EditMessageActionBean" class="btn btn-sm">
+                                <s:link beanclass="id.co.icg.lw.web.member.EditMessageActionBean" class="btn btn-sm">
                                     <s:param name="message" value="${obj}"/>
                                     Edit
                                 </s:link>
+                                <c:if test="${obj.status == 1}">
+                                    <s:link beanclass="id.co.icg.lw.web.member.MessageManagementActionBean" event="deactivate" class="btn btn-sm confirm">
+                                        <s:param name="message" value="${obj}"/>
+                                        Deactivate
+                                    </s:link>
+                                </c:if>
+                                <c:if test="${obj.status == 0}">
+                                    <s:link beanclass="id.co.icg.lw.web.member.MessageManagementActionBean" event="activate" class="btn btn-sm confirm">
+                                        <s:param name="message" value="${obj}"/>
+                                        Activate
+                                    </s:link>
+                                </c:if>
                             </d:column>
                             <d:setProperty name="paging.banner.placement" value="bottom" />
                         </d:table>

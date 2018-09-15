@@ -17,13 +17,19 @@ public class Event {
     private String name;
     private String image;
     private String description;
+
+    @Column(name = "start_date")
     private Date startDate;
+
+    @Column(name = "end_date")
     private Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @LazyCollection(LazyCollectionOption.FALSE)

@@ -6,12 +6,12 @@
         <filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
         <init-param>
             <param-name>ActionResolver.Packages</param-name>
-            <param-value>id.co.icg.ie.web</param-value>
+            <param-value>id.co.icg.lw.web</param-value>
         </init-param>
         <init-param>
             <param-name>Extension.Packages</param-name>
             <param-value>
-                id.co.icg.ie.ext
+                id.co.icg.lw.ext
                 net.sourceforge.stripes.integration.spring
             </param-value>
         </init-param>
@@ -23,7 +23,7 @@
             <param-name>Interceptor.Classes</param-name>
             <param-value>
                 net.sourceforge.stripes.integration.spring.SpringInterceptor
-                id.co.icg.ie.filter.FilterActionBean
+                id.co.icg.lw.filter.FilterActionBean
             </param-value>
         </init-param>
         <init-param>
@@ -32,15 +32,15 @@
         </init-param>
         <init-param>
             <param-name>ExceptionHandler.Class</param-name>
-            <param-value>id.co.icg.ie.filter.MyExceptionHandler</param-value>
+            <param-value>id.co.icg.lw.filter.MyExceptionHandler</param-value>
         </init-param>
         <init-param>
             <param-name>Configuration.Class</param-name>
-            <param-value>id.co.icg.ie.filter.StartupActionBean</param-value>
+            <param-value>id.co.icg.lw.filter.StartupActionBean</param-value>
         </init-param>
         <init-param>
             <param-name>ActionBeanContext.Class</param-name>
-            <param-value>id.co.icg.ie.web.BaseActionBeanContext</param-value>
+            <param-value>id.co.icg.lw.web.BaseActionBeanContext</param-value>
         </init-param>
         <init-param>
             <param-name>Stripes.EncryptionKey</param-name>

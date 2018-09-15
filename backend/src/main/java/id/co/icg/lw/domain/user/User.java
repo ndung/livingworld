@@ -22,16 +22,24 @@ public class User {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "full_name")
     private String fullName;
+
     private String email;
+
+    @Column(name = "mobile_number")
     private String mobileNumber;
+
+    @Column(name = "date_of_birth")
     private Date dateOfBirth;
+
+    @Column(name = "photo_profile_url")
     private String photoProfileUrl;
 
+    @Column(name = "ecash_id")
     private String ecashId;
 
-    @NotNull
-    @Column(unique = true)
+    @Column(name = "card_number")
     private String cardNumber;
 
     @JsonIgnore
@@ -39,9 +47,11 @@ public class User {
     private int status;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -12,8 +12,6 @@ public class Merchant {
     private String image;
     private List<MerchantOfficeHour> officeHours;
 
-
-
     public String getId() {
         return id;
     }

@@ -103,10 +103,6 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
     public boolean updateMember(UpdateMemberRequest request) throws Exception {
         Call<ResponseBody> callSync = service.updateMember(request);
         Response<ResponseBody> body = callSync.execute();
-        System.out.println(body);
-        System.out.println(body.message());
-        System.out.println(body.raw());
-        System.out.println(body.toString());
 
         return true;
     }

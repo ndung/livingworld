@@ -49,8 +49,8 @@ public class MerchantServiceBean implements MerchantService {
     }
 
     @Override
-    public MerchantCategory findOne(String categoryName) {
-        return merchantCategoryRepository.findByCategoryName(categoryName);
+    public MerchantCategory findOne(String id) {
+        return merchantCategoryRepository.findOne(id);
     }
 
     @Override

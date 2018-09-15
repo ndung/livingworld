@@ -19,8 +19,13 @@ public class Merchant {
     @Column(name = "merchant_id")
     private String merchantId;
 
+    @Column(name = "merchant_name")
     private String merchantName;
+
+    @Column(name = "merchant_phone")
     private String merchantPhone;
+
+    @Column(name = "merchant_image")
     private String merchantImage;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -33,15 +38,18 @@ public class Merchant {
     @OneToMany(mappedBy="merchantId", cascade = {CascadeType.ALL})
     private List<MerchantOfficeHour> merchantOfficeHourList;
 
+    @Column(name = "merchant_logo")
     private String merchantLogo;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at", updatable = false)
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     public String getMerchantId() {

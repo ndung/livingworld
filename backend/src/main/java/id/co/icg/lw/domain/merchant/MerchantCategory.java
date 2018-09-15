@@ -15,6 +15,7 @@ public class MerchantCategory {
     @Column(name = "merchant_category_id")
     private String merchantCategoryId;
 
+    @Column(name = "merchant_category_name")
     private String merchantCategoryName;
 
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -46,9 +47,11 @@ public class MerchantCategory {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at", updatable = false)
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @PrePersist

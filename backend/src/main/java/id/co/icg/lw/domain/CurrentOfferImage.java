@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="current_offer_image")
 public class CurrentOfferImage {
     @Id
     @Column(name = "current_offer_image_id")
@@ -20,9 +21,11 @@ public class CurrentOfferImage {
     private CurrentOffer currentOffer;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @PrePersist

@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.user.ChangePinActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.user.ChangePinActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>Old Password</label>

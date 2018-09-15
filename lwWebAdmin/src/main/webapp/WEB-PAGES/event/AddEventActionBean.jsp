@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.event.AddEventActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.event.AddEventActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>Title</label>
@@ -24,10 +24,16 @@
                             <s:text class="form-control date" name="event.endDate"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label id="label-text">File</label>
+                            <label id="label-text">Image File</label>
                             <s:file class="form-control" name="fileBean" accept="image/*"/>
                         </fieldset>
-                        <s:submit name="add" class="btn btn-md btn-primary m-t-1">Add Event</s:submit>
+                        <fieldset class="form-group form-group-md">
+                            <label>Status</label>
+                            <s:select name="active" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.statusYNActives}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
+                        <s:submit name="save" class="btn btn-md btn-primary m-t-1">Save Event</s:submit>
                         <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>
                     </div>
                 </s:form>

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="merchant_office_hour")
 public class MerchantOfficeHour {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -20,14 +21,18 @@ public class MerchantOfficeHour {
 
     private int day;
 
+    @Column(name = "start_time")
     private String startTime;
 
+    @Column(name = "end_time")
     private String endTime;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
     private Date updateAt;
 
     @PrePersist

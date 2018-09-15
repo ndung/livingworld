@@ -100,4 +100,20 @@ public class Merchant implements Serializable{
     public void setMerchantOfficeHourList(List<MerchantOfficeHour> merchantOfficeHourList) {
         this.merchantOfficeHourList = merchantOfficeHourList;
     }
+
+    @Override
+    public String toString() {
+        return "Merchant{" +
+                "merchantId='" + merchantId + '\'' +
+                ", merchantName='" + merchantName + '\'' +
+                ", merchantPhone='" + merchantPhone + '\'' +
+                ", merchantImage='" + merchantImage + '\'' +
+                ", merchantCategory=" + merchantCategory +
+                ", merchantLogo='" + merchantLogo + '\'' +
+                ", description='" + description + '\'' +
+                ", createAt=" + createAt +
+                ", updateAt=" + updateAt +
+                ", merchantOfficeHourList=" + merchantOfficeHourList +
+                '}';
+    }
 }

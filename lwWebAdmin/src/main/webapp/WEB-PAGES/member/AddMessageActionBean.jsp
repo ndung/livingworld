@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.member.AddMessageActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.member.AddMessageActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>Title</label>
@@ -15,7 +15,7 @@
                             <label>Message</label>
                             <s:text class="form-control" name="message.message"/>
                         </fieldset>
-                        <s:submit name="add" class="btn btn-md btn-primary m-t-1 confirm">Add Message</s:submit>
+                        <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Send Message</s:submit>
                         <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>
                     </div>
                 </s:form>

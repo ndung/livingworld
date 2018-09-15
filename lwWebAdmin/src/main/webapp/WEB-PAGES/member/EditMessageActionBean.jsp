@@ -5,7 +5,8 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.member.EditMessageActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.member.EditMessageActionBean">
+                    <s:hidden name="message"/>
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>Title</label>

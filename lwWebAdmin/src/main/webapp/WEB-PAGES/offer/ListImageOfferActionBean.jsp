@@ -5,7 +5,7 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form beanclass="id.co.icg.ie.web.offer.ListImageOfferActionBean">
+                <s:form beanclass="id.co.icg.lw.web.offer.ListImageOfferActionBean">
                     <s:hidden name="currentOffer"/>
                     <fieldset class="form-group form-group-md">
                         <label id="label-text">File</label>
@@ -19,9 +19,9 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Image" property="id" sortable="false" style="width: 90%; text-align: left" decorator="id.co.icg.ie.displaytag.ImageThumbnailDecorator"/>
+                            <d:column title="Image" property="id" sortable="false" style="width: 90%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
-                                <s:link beanclass="id.co.icg.ie.web.offer.ListImageOfferActionBean" event="delete" class="btn btn-sm confirm">
+                                <s:link beanclass="id.co.icg.lw.web.offer.ListImageOfferActionBean" event="delete" class="btn btn-sm confirm">
                                     <s:param name="currentOfferImage" value="${obj}"/>
                                     Delete
                                 </s:link>

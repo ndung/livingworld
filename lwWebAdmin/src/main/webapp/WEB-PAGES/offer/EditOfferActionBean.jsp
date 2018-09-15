@@ -5,7 +5,8 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form class="form-horizontal" beanclass="id.co.icg.ie.web.offer.EditOfferActionBean">
+                <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.offer.EditOfferActionBean">
+                    <s:hidden name="currentOffer"/>
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
                             <label>Title</label>
@@ -21,11 +22,11 @@
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Start Date</label>
-                            <s:text class="form-control date" name="currentOffer.startDate"/>
+                            <s:text class="form-control date" formatType="date" formatPattern="MM/dd/yyyy" name="currentOffer.startDate"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>End Date</label>
-                            <s:text class="form-control date" name="currentOffer.endDate"/>
+                            <s:text class="form-control date" formatType="date" formatPattern="MM/dd/yyyy" name="currentOffer.endDate"/>
                         </fieldset>
                         <s:submit name="update" class="btn btn-md btn-primary m-t-1 confirm">Update Offer</s:submit>
                         <s:submit name="delete" class="btn btn-md btn-primary m-t-1 confirm">Delete Offer</s:submit>

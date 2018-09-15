@@ -84,6 +84,7 @@ public class MerchantListActivity extends BaseActivity {
                         JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
 
                         listMerchant = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<MerchantCategory>>() {}.getType());
+                        Log.d(TAG, "listMerchant:"+listMerchant);
                         for (MerchantCategory category : listMerchant) {
                             list.add(category);
                         }
@@ -130,7 +131,6 @@ public class MerchantListActivity extends BaseActivity {
                 ivSearch.onActionViewCollapsed();
                 layoutHeader.setVisibility(View.VISIBLE);
                 list.clear();
-                Log.d(TAG, "listMerchant:"+listMerchant);
                 for (MerchantCategory category : listMerchant) {
                     list.add(category);
                 }

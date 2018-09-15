@@ -21,9 +21,16 @@ public class Reward {
     @JsonIgnore
     private Event event;
 
+    @Column(name = "reward_name")
     String rewardName;
+
+    @Column(name = "reward_point")
     String rewardPoint;
+
+    @Column(name = "reward_image")
     String rewardImage;
+
+    @Column(name = "reward_description")
     String rewardDescription;
 
     @OneToOne

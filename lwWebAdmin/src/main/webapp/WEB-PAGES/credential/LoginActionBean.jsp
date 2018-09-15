@@ -105,7 +105,7 @@
 
                                 <!-- Sign In form -->
 
-                                <s:form class="p-a-4" id="page-signin-form" beanclass="id.co.icg.ie.web.credential.LoginActionBean">
+                                <s:form class="p-a-4" id="page-signin-form" beanclass="id.co.icg.lw.web.credential.LoginActionBean">
                                     <div style="text-align:center">
                                         <img src="${pageContext.request.contextPath}/WEB-PAGES/assets/images/ireload-engine-32.png" class="" style="width: auto!important;">
                                     </div>
@@ -132,7 +132,7 @@
 
                                 <!-- Reset form -->
 
-                                <s:form class="p-a-4" id="page-signin-forgot-form" beanclass="id.co.icg.ie.web.credential.LoginActionBean">
+                                <s:form class="p-a-4" id="page-signin-forgot-form" beanclass="id.co.icg.lw.web.credential.LoginActionBean">
                                     <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">Password reset</h4>
 
                                     <fieldset class="page-signin-form-group form-group form-group-lg">

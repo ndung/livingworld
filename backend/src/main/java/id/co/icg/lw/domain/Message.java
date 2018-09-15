@@ -28,8 +28,8 @@ public class Message {
     private User sender;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at")
     private Date createAt;
-
 
     public long getMessageId() {
         return messageId;
