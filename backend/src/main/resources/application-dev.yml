@@ -1,17 +1,12 @@
 basePath: http://localhost:7000
 
-lw:
+spring:
   datasource:
     url: jdbc:mysql://localhost:3369/livingworld
     username: root
     password: GO816og#@!@#$5758!
     driver-class-name: com.mysql.jdbc.Driver
-parking:
-  datasource:
-    url: jdbc:mysql://localhost:3369/ois
-    username: root
-    password: GO816og#@!@#$5758!
-    driver-class-name: com.mysql.jdbc.Driver
+
 debug: true
 
 file:

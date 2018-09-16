@@ -18,14 +18,4 @@ public class Application{
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    @ConfigurationProperties(prefix="parking.datasource")
-    public DataSource parkingDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Bean
-    public JdbcTemplate parkingJdbcTemplate(){
-        return new JdbcTemplate(parkingDataSource());
-    }
 }
