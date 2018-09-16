@@ -3,6 +3,7 @@ package id.co.icg.lw.dao.model.app;
 import id.co.icg.lw.dao.util.PojoModel;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "current_offer_image")
@@ -29,5 +30,15 @@ public class CurrentOfferImage extends PojoModel {
 
     public void setCurrentOffer(CurrentOffer currentOffer) {
         this.currentOffer = currentOffer;
+    }
+
+    private Date createAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at", updatable = false)
+    public Date getCreateAt() { return createAt; }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 }

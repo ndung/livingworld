@@ -26,9 +26,10 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Title"              property="title"         sortable="false" style="width: 15%; text-align: left"/>
-                            <d:column title="Short Description"  property="shortDescription" sortable="false" style="width: 20%; text-align: center" />
+                            <d:column title="Title"              property="title"         sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Short Description"  property="shortDescription" sortable="false" style="width: 15%; text-align: center" />
                             <d:column title="Long Description"   property="longDescription" sortable="true" style="width: 30%; text-align: center"/>
+                            <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Start Date"         property="startDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
                             <d:column title="End Date"           property="endDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
                             <d:column title="Action" style="width: 15%; text-align: center">

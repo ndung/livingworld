@@ -1,17 +1,16 @@
 basePath: http://49.128.182.148:8085/lw
 
-spring:
-  lw:
-    datasource:
-      url: jdbc:mysql://192.168.1.6:3306/living_world
-      username: alif
-      password: icg123456
-      driver-class-name: com.mysql.jdbc.Driver
+lw:
+  datasource:
+    url: jdbc:mysql://192.168.1.6:3306/livingword
+    username: root
+    password: GO816og#
+    driver-class-name: com.mysql.jdbc.Driver
 
-debug: false
+debug: true
 
 file:
-  location : /home/alif/livingworld/images/
+  location : /opt/tomcat-mondelez/webapps-loyalty/images/
 
 publicKey: /home/alif/livingworld/key/public_key.der
 

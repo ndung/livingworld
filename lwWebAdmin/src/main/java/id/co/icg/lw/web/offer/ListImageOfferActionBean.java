@@ -93,7 +93,8 @@ public class ListImageOfferActionBean extends ActionBeanClass {
             offerManager.deleteCurrentOfferImage(currentOfferImage);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));
-        return new RedirectResolution(this.getClass()).addParameter("currentOffer", currentOffer);
+        return back();
+        //return new RedirectResolution(this.getClass()).addParameter("currentOffer", currentOffer);
     }
 
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.*;
 
 @Entity
+@Table(name="vehicle")
 public class Vehicle {
     @Id
     @Column(name = "vehicle_id")

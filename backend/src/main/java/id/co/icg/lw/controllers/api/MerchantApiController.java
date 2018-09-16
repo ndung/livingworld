@@ -111,9 +111,9 @@ public class MerchantApiController extends BaseController {
                 MerchantCategory category = new MerchantCategory();
                 category.setMerchantCategoryId((String)map.get("id"));
                 category.setMerchantCategoryName((String)map.get("name"));
-                //if (i%10==0){
+                if (i%10==0){
                     merchantService.createCategory(category.getMerchantCategoryId(), category.getMerchantCategoryName());
-                //}
+                }
                 categoryMap.add(category);
             }
 
@@ -128,10 +128,10 @@ public class MerchantApiController extends BaseController {
                 request.setMerchantLogo(((String)map.get("icon")).trim());
                 request.setMerchantImage(((String)map.get("image")).trim());
 
-                //if (i%5==0) {
+                if (i%5==0) {
                     request.setMerchantCategory(merchantService.findOne(category));
                     merchantService.createMerchant(request);
-                //}
+                }
 
                 String[] openingTime = new String[]{"10:00","10:00","10:00","10:00","10:00","10:00","10:00"};
                 String[] closingTime = new String[]{"22:00","22:00","22:00","22:00","22:00","22:00","00:00"};

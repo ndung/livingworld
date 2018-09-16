@@ -55,6 +55,7 @@ public class OfferManagerImpl implements OfferManager {
             CurrentOfferImage currentOfferImage = new CurrentOfferImage();
             currentOfferImage.setId(fileName);
             currentOfferImage.setCurrentOffer(currentOffer);
+            currentOfferImage.setCreateAt(new Date());
             return daoHibernate.addOnlyObject(currentOfferImage)!=null;
         }catch(Exception ex){
             ex.printStackTrace();

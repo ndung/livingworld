@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="lucky_draw")
 public class LuckyDraw {
 
     @Id

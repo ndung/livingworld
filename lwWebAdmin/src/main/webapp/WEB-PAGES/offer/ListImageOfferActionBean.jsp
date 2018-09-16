@@ -19,7 +19,8 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Image" property="id" sortable="false" style="width: 90%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
+                            <d:column title="Image" property="id" sortable="false" style="width: 80%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
+                            <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
                                 <s:link beanclass="id.co.icg.lw.web.offer.ListImageOfferActionBean" event="delete" class="btn btn-sm confirm">
                                     <s:param name="currentOfferImage" value="${obj}"/>

@@ -25,8 +25,9 @@
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="1" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
                             <d:column title="Name" property="name" sortable="true" style="width: 15%; text-align: left"/>
-                            <d:column title="Description" property="description" sortable="true" style="width: 30%; text-align: left"/>
-                            <d:column title="Image" property="image" sortable="false" style="width: 25%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
+                            <d:column title="Description" property="description" sortable="true" style="width: 25%; text-align: left"/>
+                            <d:column title="Image" property="image" sortable="false" style="width: 20%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
+                            <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Start Date"  property="startDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
                             <d:column title="End Date"  property="endDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">

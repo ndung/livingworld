@@ -9,6 +9,7 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.*;
 
 @Entity
+@Table(name="reward")
 public class Reward {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

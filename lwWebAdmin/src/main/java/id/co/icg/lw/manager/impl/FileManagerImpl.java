@@ -2,6 +2,7 @@ package id.co.icg.lw.manager.impl;
 
 import id.co.icg.lw.manager.FileManager;
 import net.sourceforge.stripes.action.FileBean;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,8 +14,9 @@ public class FileManagerImpl implements FileManager {
     public String saveFile(FileBean fileBean) {
         try {
             String uuid = UUID.randomUUID().toString();
-            fileBean.save(new File("C:\\Workplace\\IE\\tomcat7\\webapps\\image\\" + uuid));
-            return fileBean.getFileName();
+            String ext = FilenameUtils.getExtension(fileBean.getFileName());
+            fileBean.save(new File("/opt/tomcat-mondelez/webapps-loyalty/images/" + uuid +"."+ext));
+            return uuid+"."+ext;
         }catch (Exception ex){
             ex.printStackTrace();
         }
