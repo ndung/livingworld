@@ -34,7 +34,9 @@ public class ConfirmationBillActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.bt_next:
-                startActivity(new Intent(getApplicationContext(), PinActivity.class));
+                Intent intent = new Intent(getApplicationContext(), PinActivity.class);
+                intent.putExtra("MODE", 0);
+                startActivity(intent);
                 break;
         }
     }

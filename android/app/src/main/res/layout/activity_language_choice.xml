@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Language"
+                android:text="@string/title_language"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>
 
@@ -42,7 +42,7 @@
                 android:layout_marginBottom="20dp"
                 android:alpha="0.5"
                 android:paddingTop="8dp"
-                android:text="Choose a language from the selection below."
+                android:text="@string/subtitle_language"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -86,7 +86,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_img_inbox"
                             android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="English (United States)"
+                            android:text="@string/lbl_english"
                             android:textColor="#333333"
                             android:textSize="16sp" />
 
@@ -126,7 +126,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_img_inbox"
                             android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Bahasa Indonesia"
+                            android:text="@string/lbl_bahasa"
                             android:textColor="#333333"
                             android:textSize="16sp" />
 

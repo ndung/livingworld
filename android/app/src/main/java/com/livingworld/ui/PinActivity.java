@@ -34,12 +34,15 @@ public class PinActivity extends BaseActivity {
     IndicatorDots mIndicatorDots;
 
     TrxService trxService;
+    private int MODE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
         ButterKnife.bind(this);
+
+        MODE = getIntent().getIntExtra("MODE", 0);
         mPinLockView.attachIndicatorDots(mIndicatorDots);
         mPinLockView.setPinLockListener(mPinLockListener);
         mPinLockView.setPinLockListener(mPinLockListener);
@@ -55,7 +58,13 @@ public class PinActivity extends BaseActivity {
     private PinLockListener mPinLockListener = new PinLockListener() {
         @Override
         public void onComplete(String pin) {
-            createTransaction();
+            if (MODE==0) {
+                createTransaction();
+            }else{
+                Dialog dialog = new Dialog(PinActivity.this);
+                dialog.setContentView(R.layout.dialog_parking);
+                dialog.show();
+            }
         }
 
         @Override
@@ -79,7 +88,7 @@ public class PinActivity extends BaseActivity {
         map.put("cardNumber",user.getMember().getCardNumber());
         map.put("merchant","0DA7E526-4175-4C55-B30C-87AF6A48E19D");
         map.put("receiptNo", UUID.randomUUID().toString());
-        map.put("amount","100000");
+        map.put("amount","1000000");
         map.put("sourceOfFund","01");
         map.put("description","Api Posting Transaction");
         map.put("memberType","01");

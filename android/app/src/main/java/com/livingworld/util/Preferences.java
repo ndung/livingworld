@@ -64,14 +64,6 @@ public class Preferences {
         putString(context, Static.TOKEN, token);
     }
 
-    public static String getCardNumber(Context context){
-        return getString(context, Static.CARD_NUMBER);
-    }
-
-    public static void setCardNumber(Context context, String token){
-        putString(context, Static.CARD_NUMBER, token);
-    }
-
     public static String getPublicKey(Context context){
         return getString(context, Static.PUBLIC_KEY);
     }

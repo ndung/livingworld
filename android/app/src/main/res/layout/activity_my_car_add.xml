@@ -50,7 +50,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add a Car"
+                android:text="@string/title_add_a_car"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 
@@ -58,7 +58,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please enter the information about your car" />
+                android:text="@string/subtitle_add_a_car" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,16 +67,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Car Type" />
+                    android:text="@string/lbl_car_type" />
 
                 <EditText
                     android:id="@+id/et_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your car type" />
+                    android:hint="@string/hint_enter_your_car_type" />
 
             </LinearLayout>
 
@@ -87,16 +86,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Car Colour" />
+                    android:text="@string/lbl_car_colour" />
 
                 <EditText
                     android:id="@+id/et_colour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your car colour" />
+                    android:hint="@string/hint_enter_your_car_colour" />
 
             </LinearLayout>
 
@@ -110,13 +108,13 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Plat Number" />
+                    android:text="@string/lbl_plat_number" />
 
                 <EditText
                     android:id="@+id/et_plat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your plat number" />
+                    android:hint="@string/hint_enter_your_plat_number" />
 
             </LinearLayout>
 
@@ -131,7 +129,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="NEXT"
+        android:text="@string/btn_next"
         android:textColor="#FFF"
         android:textSize="18sp"
         android:textStyle="bold" />

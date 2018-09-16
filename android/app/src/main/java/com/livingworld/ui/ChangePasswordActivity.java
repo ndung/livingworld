@@ -92,19 +92,20 @@ public class ChangePasswordActivity extends BaseActivity {
                                 } else {
                                     showMessage(body.getMessage());
                                 }
-                            }
-                            else if (response.errorBody()!=null){
-                                try {
-                                    showMessage(response.errorBody().string());
-                                }catch(Exception ex){
-                                    ex.printStackTrace();
+                            }else {
+                                if (response.code()==400){
+                                    authenticationFailed();
+                                } else if (response.errorBody() != null) {
+                                    try {
+                                        showMessage(response.errorBody().string());
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
+                                } else if (response.body() != null && response.body().getMessage() != null) {
+                                    showMessage(response.body().getMessage());
+                                } else {
+                                    showMessage(Static.SOMETHING_WRONG);
                                 }
-                            }
-                            else if (response.body()!=null && response.body().getMessage()!=null){
-                                showMessage(response.body().getMessage());
-                            }
-                            else {
-                                showMessage(Static.SOMETHING_WRONG);
                             }
                         }
 

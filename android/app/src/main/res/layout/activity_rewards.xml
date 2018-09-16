@@ -51,7 +51,7 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:text="Rewards"
+                        android:text="@string/title_rewards"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="24sp"/>
 
@@ -66,9 +66,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:alpha="0.5"
-                            android:text="Your total points"
+                            android:text="@string/lbl_your_total_points"
                             android:textAlignment="center"
                             android:textColor="#FFF" />
+
+                        <ProgressBar
+                            android:visibility="gone"
+                            android:layout_gravity="center"
+                            android:id="@+id/pg_wait_trx_month"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
 
                         <TextView
                             android:id="@+id/tv_point"
@@ -169,7 +177,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
-                                android:text="How To Redeem"
+                                android:text="@string/title_how_to_redeem"
                                 android:textAlignment="textStart"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="16sp"
@@ -179,7 +187,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
-                                android:text="Learn how to redeem your rewards here"
+                                android:text="@string/lbl_learn_how_to_redeem"
                                 android:textAlignment="viewStart"
                                 android:textColor="#999"
                                 android:textSize="12dp" />

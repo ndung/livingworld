@@ -50,7 +50,7 @@ public class RewardRedeemActivity extends BaseActivity {
 
         final Reward reward = (Reward) getIntent().getSerializableExtra("reward");
         tvTitle.setText(reward.getRewardName());
-        tvPoint.setText(reward.getRewardPoint());
+        tvPoint.setText(String.valueOf(reward.getRewardPoint()));
         tvDesc.setText(reward.getRewardDescription());
         tvMerchant.setText(reward.getMerchant().getMerchantName());
         if (reward.getRewardImage()!=null) {

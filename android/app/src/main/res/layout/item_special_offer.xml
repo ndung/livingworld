@@ -35,7 +35,7 @@
                 android:background="#80000000"></LinearLayout>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tv_offer_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

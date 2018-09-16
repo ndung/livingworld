@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "927737018466",
-    "firebase_url": "https://living-world.firebaseio.com",
-    "project_id": "living-world",
-    "storage_bucket": "living-world.appspot.com"
+    "project_number": "866595419500",
+    "firebase_url": "https://livingworld-c51be.firebaseio.com",
+    "project_id": "livingworld-c51be",
+    "storage_bucket": "livingworld-c51be.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:927737018466:android:d5221e821532488a",
+        "mobilesdk_app_id": "1:866595419500:android:d5221e821532488a",
         "android_client_info": {
           "package_name": "com.livingworld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "927737018466-dcgs00u3iq3gl216rm4i1j6evqs2uuoa.apps.googleusercontent.com",
+          "client_id": "866595419500-76rkfai9rho1d41r79a2l8dqolth798o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABNd0HmWZi1KRdO_mHMC6yLWHLR4hbvM4"
+          "current_key": "AIzaSyCgXiRfuDxWT7mgwwAfV4DP65Dzt3rTRtA"
         }
       ],
       "services": {

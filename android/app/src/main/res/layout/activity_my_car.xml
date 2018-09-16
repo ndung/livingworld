@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My Cars"
+                android:text="@string/title_my_cars"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="80dp"
                 android:alpha="0.5"
-                android:text="Below are a list of cars that you have added to your account."
+                android:text="@string/subtitle_my_cars"
                 android:textColor="#333333"
                 android:textSize="12sp" />
 

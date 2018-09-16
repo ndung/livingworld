@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:paddingTop="16dp"
             android:paddingBottom="8dp"
-            android:text="Lihat Promo"
+            android:text="@string/intro_title_direct_promotion_feed"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="24sp"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+            android:text="@string/intro_content_direct_promotion_feed"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="14sp" />

@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.livingworld.R;
+import com.livingworld.clients.auth.model.User;
+import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
 import butterknife.BindView;
@@ -37,6 +39,11 @@ public class InputCardNumberFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_card_number, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        User user = Preferences.getUser(getActivity());
+        if (user!=null && user.getMember()!=null && user.getMember().getCardNumber()!=null){
+            etCardNumber.setText(user.getMember().getCardNumber());
+        }
         return view;
     }
 
@@ -47,6 +54,9 @@ public class InputCardNumberFragment extends Fragment {
     }
 
     public String getNunber(){
-        return etCardNumber.getText().toString();
+        if (etCardNumber!=null) {
+            return etCardNumber.getText().toString();
+        }
+        return null;
     }
 }

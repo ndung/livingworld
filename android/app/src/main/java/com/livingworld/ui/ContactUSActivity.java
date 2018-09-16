@@ -78,7 +78,11 @@ public class ContactUsActivity extends BaseActivity {
                         showMessage(response.body().getMessage());
                     }
                 }else {
-                    showMessage(Static.SOMETHING_WRONG);
+                    if (response.code()==400){
+                        authenticationFailed();
+                    }else {
+                        showMessage(Static.SOMETHING_WRONG);
+                    }
                 }
             }
 

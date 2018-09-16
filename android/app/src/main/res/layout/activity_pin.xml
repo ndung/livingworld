@@ -42,7 +42,7 @@
             android:id="@+id/textView40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="e-cash PIN"
+            android:text="@string/title_e_cash_pin"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"

@@ -420,7 +420,6 @@ public class InformationAccountActivity extends BaseActivity {
                 break;
             }
         }
-        Log.d(TAG,"religion:"+map.get("religion"));
 
         for (int i=0; i < genderMasters.size(); i++){
             Master master = genderMasters.get(i);

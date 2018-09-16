@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -84,6 +85,11 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        if (inputCardNumberFragment.getNunber()!=null&&
+                !inputCardNumberFragment.getNunber().equalsIgnoreCase("")){
+            checkCard();
+        }
+
         STEP = STEP_CARD;
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +152,7 @@ public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.toString();
 
     private void signIn() {
-        String pwd = enterPasswordFragment.getPwd().toString();
+        final String pwd = enterPasswordFragment.getPwd().toString();
         if (!pwd.isEmpty()) {
             if (!cardNumber.isEmpty()) {
                 showPleasewaitDialog();
@@ -170,11 +176,12 @@ public class LoginActivity extends BaseActivity {
                             if (user != null) {
                                 String token = response.headers().get("Token");
                                 Preferences.setUser(getApplicationContext(), user);
-                                Preferences.setCardNumber(getApplicationContext(), cardNumber);
                                 Preferences.setPublicKey(getApplicationContext(), publicKey);
                                 Preferences.setToken(getApplicationContext(), token);
                                 Preferences.setLoginFlag(getApplicationContext(), true);
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                FirebaseMessaging.getInstance().subscribeToTopic(user.getUserId());
+                                FirebaseMessaging.getInstance().subscribeToTopic("global");
                                 WelcomeActivity.activity.finish();
                                 finish();
                             } else {
@@ -234,7 +241,6 @@ public class LoginActivity extends BaseActivity {
                             if (user != null) {
                                 String token = response.headers().get("Token");
                                 Preferences.setUser(getApplicationContext(), user);
-                                Preferences.setCardNumber(getApplicationContext(), cardNumber);
                                 Preferences.setToken(getApplicationContext(), token);
                                 Preferences.setLoginFlag(getApplicationContext(), true);
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));

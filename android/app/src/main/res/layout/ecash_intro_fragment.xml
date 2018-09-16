@@ -22,7 +22,7 @@
             android:id="@+id/textView44"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Connect my e-cash"
+            android:text="@string/title_connect_my_e_cash"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryText"
             android:textSize="24sp"
@@ -47,7 +47,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="30dp"
-                android:text="In order to pay your transactions using the app, we need you to connect your e-cash account to your Live Card account"
+                android:text="@string/subtitle_connect_my_e_cash"
                 android:textAlignment="center" />
         </LinearLayout>
 

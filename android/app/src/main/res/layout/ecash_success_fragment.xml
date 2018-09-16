@@ -22,7 +22,7 @@
             android:id="@+id/textView44"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Success"
+            android:text="@string/title_success"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryText"
             android:textSize="24sp"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
-            android:text="You have sucessfully made your payment"
+            android:text="@string/subtitle_success"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -56,7 +56,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="30dp"
-                android:text="Your e-Cash account has successfuly been connected. You can now pay your transaction with this app with ease"
+                android:text="@string/lbl_ecash_connection_success"
                 android:textAlignment="center" />
         </LinearLayout>
 

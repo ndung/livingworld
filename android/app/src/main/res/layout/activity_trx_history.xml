@@ -33,7 +33,7 @@
                 android:id="@+id/textView26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Transaction History"
+                android:text="@string/title_transaction_history"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:alpha="0.5"
-                android:text="Below are the list of transactions that you have done in the past"
+                android:text="@string/subtitle_transaction_history"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 

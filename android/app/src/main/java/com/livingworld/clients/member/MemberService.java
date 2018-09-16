@@ -27,8 +27,8 @@ public interface MemberService {
     @PUT("user/edit")
     Call<Response> updateMember(@Body Map<String, String> map);
 
-    @GET("member")
-    Call<Response> detail();
+    @POST("user/refresh")
+    Call<Response> refreshUser();
 
     @POST("user/registration")
     Call<Response> registerUser(@Body Map<String, String> map);

@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Give Us Feedback"
+                android:text="@string/title_give_us_feedback"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textColor="@color/colorPrimaryText"
@@ -52,7 +52,7 @@
                 android:alpha="0.5"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Tell us what you think about to app."
+                android:text="@string/subtitle_give_us_feedback"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="How could we improve this app?"
+                    android:text="@string/lbl_how_could_we_improve_this_app"
                     android:textAllCaps="true" />
 
                 <EditText
@@ -92,7 +92,7 @@
                     android:layout_height="160dp"
                     android:background="@drawable/edit_text_round_border"
                     android:gravity="top"
-                    android:hint="Type here"
+                    android:hint="@string/hint_type_here"
                     android:padding="16dp" />
 
             </LinearLayout>
@@ -108,7 +108,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="SUBMIT"
+        android:text="@string/btn_submit"
         android:letterSpacing="0.1"
         android:textColor="#FFF"
         android:textSize="16sp" />

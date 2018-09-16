@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Contact Us"
+                    android:text="@string/title_contact_us"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="24sp"/>
 
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:alpha="0.5"
-                    android:text="Please fill in the field below to contact us"
+                    android:text="@string/subtitle_contact_us"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -66,7 +66,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Name" />
+                        android:text="@string/lbl_name" />
 
                     <EditText
                         android:id="@+id/et_name"
@@ -76,7 +76,7 @@
                         android:layout_marginRight="-4dp"
                         android:textColorHint="#4d333333"
                         android:backgroundTint="#d8d8d8"
-                        android:hint="Enter your name" />
+                        android:hint="@string/hint_enter_your_name" />
 
                 </LinearLayout>
 
@@ -89,7 +89,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Email" />
+                        android:text="@string/lbl_email" />
 
                     <EditText
                         android:id="@+id/et_email"
@@ -99,7 +99,7 @@
                         android:layout_marginRight="-4dp"
                         android:textColorHint="#4d333333"
                         android:backgroundTint="#d8d8d8"
-                        android:hint="Enter your email" />
+                        android:hint="@string/hint_enter_your_email" />
 
                 </LinearLayout>
 
@@ -112,7 +112,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Comment" />
+                        android:text="@string/lbl_comment" />
 
                     <EditText
                         android:id="@+id/et_comment"
@@ -122,7 +122,7 @@
                         android:layout_marginRight="-4dp"
                         android:textColorHint="#4d333333"
                         android:backgroundTint="#d8d8d8"
-                        android:hint="Enter your comment" />
+                        android:hint="@string/hint_enter_your_comment" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -137,7 +137,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="NEXT"
+        android:text="@string/btn_next"
         android:textColor="#FFF"
         android:textSize="16sp"
         android:letterSpacing="0.1"/>

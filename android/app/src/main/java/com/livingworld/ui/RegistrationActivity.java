@@ -2,6 +2,7 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -22,6 +23,7 @@ import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,7 +142,6 @@ public class RegistrationActivity extends BaseActivity {
                         if (user != null) {
                             String token = response.headers().get("Token");
                             Preferences.setUser(getApplicationContext(), user);
-                            Preferences.setCardNumber(getApplicationContext(), user.getMember().getCardNumber());
                             Preferences.setToken(getApplicationContext(), token);
                             Preferences.setLoginFlag(getApplicationContext(), true);
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
@@ -150,7 +151,7 @@ public class RegistrationActivity extends BaseActivity {
                             showMessage(body.getMessage());
                         }
                     } else {
-                        showMessage(Static.SOMETHING_WRONG);
+                        showMessage(response.errorBody().toString());
                     }
                 }
 

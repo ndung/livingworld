@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Our Merchants"
+                android:text="@string/title_our_merchants"
                 android:paddingLeft="16dp"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>

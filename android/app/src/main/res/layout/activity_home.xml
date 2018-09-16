@@ -11,12 +11,12 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="#FFF"
         android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:paddingBottom="16dp">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -48,23 +48,22 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout2">
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/linearLayout2"
-            android:id="@+id/nestedScrollView">
+            android:layout_below="@+id/linearLayout2">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,15 +77,15 @@
                     <RelativeLayout
                         android:id="@+id/view_card"
                         android:layout_width="match_parent"
-                        android:layout_height="210dp"
+                        android:layout_height="200dp"
                         android:visibility="visible">
 
                         <ImageView
-                            android:id="@+id/imageView14"
+                            android:id="@+id/iv_live_card"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="210dp"
                             android:scaleType="fitXY"
-                            app:srcCompat="@drawable/img_card" />
+                            app:srcCompat="@drawable/green" />
 
                         <TextView
                             android:id="@+id/tv_name_card"
@@ -148,7 +147,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_marginLeft="30dp"
-                            android:text="Lucky Draw"
+                            android:text="@string/lbl_lucky_draw"
                             android:textColor="#FFF"
                             android:textSize="12sp" />
 
@@ -159,7 +158,7 @@
                             android:layout_above="@+id/tv_poin"
                             android:layout_alignLeft="@+id/tv_poin"
                             android:layout_alignStart="@+id/tv_poin"
-                            android:text="Your Points"
+                            android:text="@string/lbl_your_points"
                             android:textColor="#FFF"
                             android:textSize="12dp" />
 
@@ -195,10 +194,12 @@
                         android:visibility="gone" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:background="@drawable/shadow"/>
+                    android:background="@drawable/shadow" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -211,7 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="TRANSACTION THIS MONTH"
+                        android:text="@string/lbl_total_transaction"
                         android:textColor="#9e9e9e" />
 
                     <ProgressBar
@@ -240,23 +241,32 @@
                         android:id="@+id/tv_member"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Spend IDR250.000 today and become a Live Card member. Learn more" />
+                        android:text="@string/spend_more_description" />
+
+                    <TextView
+                        android:id="@+id/tv_learn_more"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_learn_more"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/tv_bam"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Be A Member"
-                        android:visibility="gone"
+                        android:text="@string/lbl_be_a_member"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:background="@drawable/shadow"/>
+                    android:background="@drawable/shadow" />
 
                 <RelativeLayout
                     android:id="@+id/ll_reward"
@@ -277,20 +287,20 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_reward_white"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:layout_alignParentStart="true"
+                        app:srcCompat="@drawable/ic_reward_white" />
 
                     <TextView
                         android:id="@+id/tv_eventName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
-                        android:text="Chirstmas &amp; New year\nSpecial"
-                        android:layout_marginLeft="16dp"
+                        android:text="@string/title_rewards"
                         android:textColor="#FFF"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -300,13 +310,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_eventName"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
-                        android:layout_marginLeft="16dp"
-                        android:text="21 Des - 28 Des 2017"
-                        android:textColor="#fff"
                         android:alpha="0.5"
+                        android:text="@string/lbl_coming_soon"
+                        android:textColor="#fff"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -329,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:layout_weight="1"
-                            android:text="PAYMENT"
+                            android:text="PAYMENT (Coming Soon)"
                             android:textColor="#9e9e9e" />
 
                     </LinearLayout>
@@ -344,9 +354,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="1dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginLeft="1dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -366,7 +376,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="6dp"
-                                    android:text="Scan\nBarcode"
+                                    android:text="@string/btn_scan_barcode"
                                     android:textAlignment="center"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="14sp"
@@ -379,9 +389,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="3dp"
                             android:layout_marginRight="3dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginLeft="3dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -401,7 +411,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="6dp"
-                                    android:text="Generate\nBarcode"
+                                    android:text="@string/btn_generate_barcode"
                                     android:textAlignment="center"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="14sp"
@@ -415,8 +425,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
                             android:layout_marginRight="1dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             app:cardCornerRadius="5dp">
 
@@ -436,7 +446,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="6dp"
-                                    android:text="Bayar\nParkir"
+                                    android:text="@string/btn_parking_payment"
                                     android:textAlignment="center"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="14sp"
@@ -484,7 +494,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Our Merchants"
+                                    android:text="@string/title_our_merchants"
                                     android:textColor="#FFF"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
@@ -494,7 +504,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="Lorem ipsum dolor sit amet"
                                     android:textColor="#FFF"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:visibility="gone"/>
                             </LinearLayout>
 
                             <ImageView
@@ -518,8 +529,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#9e9e9e"
-                            android:text="SPECIAL OFFER" />
+                            android:text="@string/title_special_offers"
+                            android:textColor="#9e9e9e" />
 
                         <TextView
                             android:id="@+id/tv_view_coffer"
@@ -528,7 +539,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
-                            android:text="VIEW ALL"
+                            android:text="@string/lbl_view_all"
                             android:textColor="@color/colorAccent" />
                     </RelativeLayout>
 

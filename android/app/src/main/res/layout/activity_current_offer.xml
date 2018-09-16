@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current Offers"
+                android:text="@string/title_current_offers"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 

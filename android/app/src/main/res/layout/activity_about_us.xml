@@ -38,34 +38,34 @@
             android:layout_gravity="center"
             android:layout_width="160dp"
             android:layout_height="83dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="About us"
+            android:text="@string/title_about_us"
             android:textColor="#FFFFFF"
             android:textSize="20dp"/>
 
         <TextView
-            android:id="@+id/textView61"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc ultrices."
+            android:text="@string/subtitle_about_us"
             android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="200dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Version"
+                android:text="@string/lbl_version"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"/>
 
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Customer Service"
+                android:text="@string/lbl_customer_service"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="021 278 19281"
+                android:text="@string/lbl_cs_phone_number"
                 android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"

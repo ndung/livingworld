@@ -50,7 +50,7 @@
                 android:layout_toRightOf="@+id/iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Search .."
+                android:hint="@string/lbl_search"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginRight="-4dp"
                 android:textColorHint="#4d333333"

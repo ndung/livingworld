@@ -57,7 +57,7 @@ public class AccountSettingActivity extends AppCompatActivity {
             Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
         }
         tvName.setText(user.getFullName());
-        tvCardNumber.setText(Preferences.getCardNumber(getApplicationContext()));
+        tvCardNumber.setText(user.getMember().getCardNumber());
     }
 
     @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile, R.id.menu_logout})
@@ -93,7 +93,6 @@ public class AccountSettingActivity extends AppCompatActivity {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                 Preferences.setUser(getApplicationContext(), null);
-                                Preferences.setCardNumber(getApplicationContext(), null);
                                 Preferences.setPublicKey(getApplicationContext(), null);
                                 Preferences.setToken(getApplicationContext(), null);
                                 Preferences.setLoginFlag(getApplicationContext(), false);
