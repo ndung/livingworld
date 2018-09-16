@@ -34,12 +34,14 @@ public class CurrentOffer {
     private Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_at")
+    @Column(name = "create_at", updatable = false)
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_at")
     private Date updateAt;
+
+    private String active;
 
     @PrePersist
     protected void onCreate() {
@@ -121,6 +123,14 @@ public class CurrentOffer {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 }
 

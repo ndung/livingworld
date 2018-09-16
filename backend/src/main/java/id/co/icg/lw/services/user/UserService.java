@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserService {
     int checkCardNumber(String cardNumber);
-    User register(UserRequest request);
+    User register(UserRequest request) throws Exception;
     User signUp(SignUpRequest signUpRequest) throws Exception;
     User signIn(SignInRequest request) throws Exception;
     User edit(String userId, UpdateMemberRequest request) throws Exception;
@@ -18,6 +18,6 @@ public interface UserService {
     User uploadPhotoProfile(String userId, MultipartFile multipartFile);
     User changePassword(String userId, ChangePasswordRequest request) throws Exception;
     List<User> findAll();
-
+    User refreshUserById(String userId);
     User findOne(String userId);
 }

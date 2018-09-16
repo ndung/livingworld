@@ -49,7 +49,7 @@ public class Member {
     private String mobileNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_at")
+    @Column(name = "create_at", updatable = false)
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)

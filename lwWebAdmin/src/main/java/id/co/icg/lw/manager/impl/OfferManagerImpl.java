@@ -24,6 +24,7 @@ public class OfferManagerImpl implements OfferManager {
     @Override
     public Long saveCurrentOffer(CurrentOffer currentOffer) {
         currentOffer.setCreateAt(new Date());
+        currentOffer.setActive("Y");
         Serializable result = daoHibernate.addOnlyObject(currentOffer);
         if (result!=null){
             return (Long) result;

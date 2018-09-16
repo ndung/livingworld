@@ -14,7 +14,7 @@
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Message</label>
-                            <s:text class="form-control" name="message.message"/>
+                            <s:textarea class="form-control" name="message.message"/>
                         </fieldset>
                         <s:submit name="update" class="btn btn-md btn-primary m-t-1 confirm">Update Message</s:submit>
                         <s:submit name="delete" class="btn btn-md btn-primary m-t-1 confirm">Delete Message</s:submit>

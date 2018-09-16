@@ -394,5 +394,20 @@ public class UserApiController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "/refresh", method = RequestMethod.POST)
+    public ResponseEntity<Response> getUserByCardNumber(@RequestHeader(Application.AUTH) String token) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
 
+        try {
+            String userId = getUserId(token);
+            User user = userService.refreshUserById(userId);
+            return getHttpStatus(new Response(user));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+
+    }
 }

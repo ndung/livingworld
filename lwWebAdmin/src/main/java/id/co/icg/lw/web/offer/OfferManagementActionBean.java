@@ -64,7 +64,7 @@ public class OfferManagementActionBean extends ActionBeanClass {
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(CurrentOffer.class);
         parameter.setMaxRows(10);
-
+        parameter.setDescOrders("createAt");
         return baseHibernateManager.getList(parameter, getExtendedPaginated());
     }
 

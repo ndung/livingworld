@@ -6,13 +6,9 @@
 package id.co.icg.lw.dao.model.app;
 
 import id.co.icg.lw.dao.util.PojoModel;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  *
@@ -33,6 +29,8 @@ public class User extends PojoModel {
     private String imagePath;
     private AppAdminRole appRole;
     private Merchant merchant;
+    private Date createAt;
+    private Date updateAt;
 
     public User() {
     }
@@ -116,4 +114,22 @@ public class User extends PojoModel {
     public Merchant getMerchant() { return merchant; }
 
     public void setMerchant(Merchant merchant) { this.merchant = merchant; }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_at", updatable = false)
+    public Date getCreateAt() { return createAt; }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_at")
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
+    }
 }

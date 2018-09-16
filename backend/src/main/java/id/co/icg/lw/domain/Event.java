@@ -2,6 +2,7 @@ package id.co.icg.lw.domain;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,7 +35,10 @@ public class Event {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="event", cascade = {CascadeType.ALL})
+    @Where(clause = "active = 'Y'")
     private List<Reward> rewards;
+
+    private String active;
 
     public long getEventId() {
         return eventId;
@@ -98,5 +102,13 @@ public class Event {
 
     public void setRewards(List<Reward> rewards) {
         this.rewards = rewards;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 }

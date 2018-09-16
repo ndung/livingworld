@@ -7,8 +7,10 @@ import id.co.icg.lw.domain.Redeem;
 import id.co.icg.lw.domain.RedeemedReward;
 import id.co.icg.lw.domain.Response;
 import id.co.icg.lw.domain.Reward;
+import id.co.icg.lw.domain.user.Member;
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
+import id.co.icg.lw.repositories.MemberRepository;
 import id.co.icg.lw.repositories.RedeemRepository;
 import id.co.icg.lw.repositories.RewardRepository;
 import id.co.icg.lw.repositories.UserRepository;
@@ -16,23 +18,27 @@ import id.co.icg.lw.services.reward.RedeemRequest;
 import id.co.icg.lw.services.reward.RewardResponse;
 import id.co.icg.lw.services.reward.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping(Application.API_PATH + "/reward")
 public class RewardController extends BaseController {
+
+    @Value("${redeemExpiredHours}")
+    private String expiredHours;
 
     @Autowired
     private RewardService rewardService;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @Autowired
     private RewardRepository rewardRepository;
@@ -117,18 +123,26 @@ public class RewardController extends BaseController {
         try {
             String userId = getUserId(token);
             User user = userRepository.findOne(userId);
+            Member member = memberRepository.findByUser(user);
             List<RedeemedReward> redeemedRewards = new ArrayList<>();
             Gson gson = new Gson();
             Map<String,String> map = gson.fromJson(request.getRewards(), Map.class);
             Redeem redeem = new Redeem();
             redeem.setCode(UUID.randomUUID().toString().substring(0,8).toUpperCase());
-            redeem.setUser(user);
+            redeem.setMember(member);
+            Date date = new Date();
+            redeem.setCreateAt(date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.HOUR, Integer.parseInt(expiredHours));
+            redeem.setExpiredDate(calendar.getTime());
             for (String key : map.keySet()) {
                 Reward reward = rewardRepository.findOne(Long.valueOf(key));
                 RedeemedReward obj = new RedeemedReward();
                 obj.setRewardId(reward);
                 obj.setRedeemId(redeem);
                 obj.setQuantity(Integer.parseInt((String) map.get(key)));
+                obj.setStatus(0);
                 redeemedRewards.add(obj);
             }
             redeem.setRedeemedRewards(redeemedRewards);

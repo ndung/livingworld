@@ -19,6 +19,7 @@ public class UpdateMemberRequest  {
     private String address;
     private String city;
     private String zipCode;
+    private String cardId;
     private String homePhoneNumber;
 
     public String getTid() {
@@ -147,5 +148,13 @@ public class UpdateMemberRequest  {
 
     public void setHomePhoneNumber(String homePhoneNumber) {
         this.homePhoneNumber = homePhoneNumber;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 }

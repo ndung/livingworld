@@ -28,7 +28,7 @@
                             <d:column title="Description" property="description" sortable="true" style="width: 20%; text-align: left"/>
                             <d:column title="Image" property="image" sortable="false" style="width: 15%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
                             <d:column title="Point" property="point" sortable="true" style="width: 5%; text-align: left"/>
-                            <d:column title="Expired Date"  property="expiredDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
+                            <!--d:column title="Expired Date"  property="expiredDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/-->
                             <d:column title="Event" property="event.name" sortable="false" style="width: 20%; text-align: left"/>
                             <d:column title="Merchant" property="merchant.name" sortable="false" style="width: 10%; text-align: left"/>
                             <d:column title="Action" style="width: 10%; text-align: center">

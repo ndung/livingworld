@@ -5,11 +5,14 @@ import id.co.icg.lw.dao.model.app.CurrentOffer;
 import id.co.icg.lw.dao.model.app.Message;
 import id.co.icg.lw.manager.MessageManager;
 import id.co.icg.lw.manager.OfferManager;
+import id.co.icg.lw.util.FcmSender;
 import id.co.icg.lw.web.ActionBeanClass;
 import id.co.icg.lw.web.offer.OfferManagementActionBean;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.*;
+
+import java.util.Date;
 
 @UrlBinding("/member/addmessage.html")
 public class AddMessageActionBean extends ActionBeanClass {
@@ -38,8 +41,12 @@ public class AddMessageActionBean extends ActionBeanClass {
     }
     
     public Resolution save() {
+        message.setSender(getUserSession());
+        message.setStatus(1);
+        message.setCreateAt(new Date());
         if(messageManager.saveMessage(message)) {
-            getContext().getMessages().add(new LocalizableMessage("success"));
+            String resp = new FcmSender().sendMessage(message.getTitle(), message.getMessage(), "global");
+            getContext().getMessages().add(new LocalizableMessage(resp));
         }
         else {
             getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));

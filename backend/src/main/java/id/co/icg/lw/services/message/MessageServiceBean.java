@@ -44,6 +44,9 @@ public class MessageServiceBean implements MessageService {
         User sender = userService.findOne(userId);
         Message message = new Message();
         message.setTitle("Contact Us");
+        if (sendMessageRequest.getRating()!=null && !sendMessageRequest.getRating().equals("")){
+            message.setTitle("Feedback "+sendMessageRequest.getRating()+"* rating");
+        }
         message.setMessage(sendMessageRequest.getComment());
         message.setSender(sender);
         messageRepository.save(message);

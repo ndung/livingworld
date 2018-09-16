@@ -19,11 +19,11 @@ public interface CurrentOfferRepository extends JpaRepository<CurrentOffer, Long
     @Query("select new id.co.icg.lw.services.currentOffer.CurrentOfferDetailRequest(co) from CurrentOffer co where co.currentOfferId = :id")
     CurrentOfferDetailRequest findById(@Param("id") long id);
 
-    @Query("select new id.co.icg.lw.services.currentOffer.CurrentOfferRequest(co) from CurrentOffer co where " +
+    @Query("select new id.co.icg.lw.services.currentOffer.CurrentOfferRequest(co) from CurrentOffer co where co.active = 'Y' and " +
             "co.startDate < current_date() and co.endDate > current_date() order by co.createAt desc")
     List<CurrentOfferRequest> findAllCurrentOffer(Pageable pageable);
 
 
-    @Query("select c from CurrentOffer c where c.startDate < current_date() and c.endDate > current_date() order by c.createAt desc")
+    @Query("select c from CurrentOffer c where c.active = 'Y' and c.startDate < current_date() and c.endDate > current_date() order by c.createAt desc")
     List<CurrentOffer> findALlActive();
 }

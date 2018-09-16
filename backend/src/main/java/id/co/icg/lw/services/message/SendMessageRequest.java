@@ -3,6 +3,7 @@ package id.co.icg.lw.services.message;
 public class SendMessageRequest {
     private String firstName;
     private String email;
+    private String rating;
     private String comment;
 
     public String getFirstName() {
@@ -28,4 +29,8 @@ public class SendMessageRequest {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public String getRating() { return rating; }
+
+    public void setRating(String rating) { this.rating = rating; }
 }

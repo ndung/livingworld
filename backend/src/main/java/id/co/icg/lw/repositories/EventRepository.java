@@ -10,6 +10,6 @@ import java.util.List;
 @Transactional
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    @Query("select e from Event e where e.startDate < current_date() and e.endDate > current_date() order by e.startDate desc")
+    @Query("select e from Event e where e.active = 'Y' and e.startDate < current_date() and e.endDate > current_date() order by e.startDate desc")
     List<Event> findAllActive();
 }

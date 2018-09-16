@@ -25,7 +25,7 @@ public class Reward {
     String rewardName;
 
     @Column(name = "reward_point")
-    String rewardPoint;
+    int rewardPoint;
 
     @Column(name = "reward_image")
     String rewardImage;
@@ -37,6 +37,8 @@ public class Reward {
     @JoinColumn(name="merchant_id")
     @NotFound(action = NotFoundAction.IGNORE)
     private Merchant merchant;
+
+    private String active;
 
     public long getRewardId() {
         return rewardId;
@@ -62,11 +64,11 @@ public class Reward {
         this.rewardName = rewardName;
     }
 
-    public String getRewardPoint() {
+    public int getRewardPoint() {
         return rewardPoint;
     }
 
-    public void setRewardPoint(String rewardPoint) {
+    public void setRewardPoint(int rewardPoint) {
         this.rewardPoint = rewardPoint;
     }
 
@@ -93,4 +95,8 @@ public class Reward {
     public void setMerchant(Merchant merchant) {
         this.merchant = merchant;
     }
+
+    public String getActive() { return active; }
+
+    public void setActive(String active) { this.active = active; }
 }

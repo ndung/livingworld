@@ -56,7 +56,9 @@ public class AddOfferActionBean extends ActionBeanClass {
 
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
-        if (fileBean1!=null && !(fileBean1.getFileName().endsWith(".jpeg")||fileBean1.getFileName().endsWith(".jpg")
+        if (fileBean1 == null) {
+            errors.add("fileBean", new LocalizableError("file.not.found"));
+        } else if (fileBean1!=null && !(fileBean1.getFileName().endsWith(".jpeg")||fileBean1.getFileName().endsWith(".jpg")
                 ||fileBean1.getFileName().endsWith(".png"))) {
             errors.add("fileBean1", new LocalizableError("file.wrong.format"));
         }

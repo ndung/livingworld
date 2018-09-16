@@ -15,6 +15,7 @@ public class Redeem extends PojoModel {
     private String code;
     private Member member;
     private Date createAt;
+    private Date expiredDate;
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
@@ -55,4 +56,10 @@ public class Redeem extends PojoModel {
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "expired_date")
+    public Date getExpiredDate() { return expiredDate; }
+
+    public void setExpiredDate(Date expiredDate) { this.expiredDate = expiredDate; }
 }

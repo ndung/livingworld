@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="redeemed_award")
+@Table(name="redeemed_reward")
 public class RedeemedReward {
 
     @Id
@@ -25,6 +25,9 @@ public class RedeemedReward {
     private Reward rewardId;
 
     private int quantity;
+
+    @Column(name = "approved_status")
+    private int status;
 
     public long getId() {
         return id;
@@ -59,7 +62,7 @@ public class RedeemedReward {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_at")
+    @Column(name = "create_at", updatable = false)
     private Date createAt;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -93,4 +96,7 @@ public class RedeemedReward {
         updateAt = new Date();
     }
 
+    public int getStatus() { return status; }
+
+    public void setStatus(int status) { this.status = status; }
 }

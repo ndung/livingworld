@@ -42,7 +42,7 @@
                             <d:column title="Date of Birth" property="dateOfBirth" sortable="true" style="width: 10%; text-align: left"/>
                             <d:column title="Email" property="email" sortable="true" style="width: 10%; text-align: left"/>
                             <d:column title="Mobile Number" property="mobileNumber" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Create At"  property="startDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
+                            <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:setProperty name="paging.banner.placement" value="bottom" />
                         </d:table>
                     </div>

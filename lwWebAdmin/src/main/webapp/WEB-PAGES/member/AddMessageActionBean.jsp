@@ -13,7 +13,7 @@
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Message</label>
-                            <s:text class="form-control" name="message.message"/>
+                            <s:textarea class="form-control" name="message.message"/>
                         </fieldset>
                         <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Send Message</s:submit>
                         <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>

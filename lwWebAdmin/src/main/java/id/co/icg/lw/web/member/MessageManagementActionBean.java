@@ -78,6 +78,7 @@ public class MessageManagementActionBean extends ActionBeanClass {
         ParameterDao parameter = new ParameterDao(Message.class);
         if (getTitle() != null) parameter.setEqualsOrLikes("title", getTitle());
         if (getText() != null) parameter.setEqualsOrLikes("message", getText());
+        parameter.setDescOrders("createAt");
         parameter.setMaxRows(10);
 
         return baseHibernateManager.getList(parameter, getExtendedPaginated());

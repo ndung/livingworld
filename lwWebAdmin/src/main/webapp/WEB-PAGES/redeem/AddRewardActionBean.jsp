@@ -23,10 +23,10 @@
                             <label id="label-text">Image File</label>
                             <s:file class="form-control" name="fileBean" accept="image/*"/>
                         </fieldset>
-                        <fieldset class="form-group form-group-md">
+                        <!--fieldset class="form-group form-group-md">
                             <label>Expired Date</label>
-                            <s:text class="form-control date" name="reward.expiredDate"/>
-                        </fieldset>
+                            <!--s:text class="form-control date" name="reward.expiredDate"/>
+                        </fieldset-->
                         <fieldset class="form-group form-group-md">
                             <label>Event</label>
                             <s:select name="reward.event.id" class="form-control chosen-select" tabindex="2">

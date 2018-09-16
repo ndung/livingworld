@@ -37,7 +37,8 @@
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
                             <d:column title="Title" property="title"  sortable="true" style="width: 20%; text-align: left"/>
-                            <d:column title="Message" property="message" sortable="false" style="width: 60%; text-align: left"/>
+                            <d:column title="Message" property="message" sortable="false" style="width: 45%; text-align: left"/>
+                            <d:column title="Sender" property="sender.fullName" sortable="true" style="width: 15%; text-align: left"/>
                             <d:column title="Create At" property="createAt" sortable="true" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
                                 <s:link beanclass="id.co.icg.lw.web.member.EditMessageActionBean" class="btn btn-sm">

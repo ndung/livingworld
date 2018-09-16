@@ -16,6 +16,7 @@ public class Message extends PojoModel {
     private String message;
     private Date createAt;
     private int status;
+    private User sender;
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
@@ -55,7 +56,7 @@ public class Message extends PojoModel {
         this.status = status;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at", updatable = false)
     public Date getCreateAt() {
         return createAt;
@@ -63,5 +64,15 @@ public class Message extends PojoModel {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="sender_id")
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 }
