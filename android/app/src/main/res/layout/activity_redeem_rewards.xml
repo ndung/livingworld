@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Redeem"
+                android:text="@string/title_redeem"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>
         </LinearLayout>
@@ -67,7 +67,7 @@
         android:paddingRight="16dp"
         android:paddingTop="20dp"
         android:paddingBottom="30dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_panel"
         android:layout_gravity="center_vertical">
@@ -87,7 +87,7 @@
                 android:gravity="start"
                 android:textColor="#333333"
                 android:textSize="14sp"
-                android:text="Total point to redeem" />
+                android:text="@string/lbl_total_point_to_redeem" />
 
             <TextView
                 android:id="@+id/tv_totalPoints"
@@ -106,14 +106,54 @@
             android:layout_height="1dp"
             android:background="#d8d8d8" />
 
-        <TextView
-
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+        <LinearLayout
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Your current point is 10.00pts affter redemtion you will have 40.000pts" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="@string/lbl_your_current_point_is"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "/>
+
+            <TextView
+                android:id="@+id/tv_current_points"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000 pts"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="@string/lbl_after_redeeming_you_will_have"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "/>
+
+            <TextView
+                android:id="@+id/tv_points"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4000 pts"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
@@ -132,7 +172,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="@color/colorAccent"
-            android:text="REDEEM NOW"
+            android:text="@string/btn_redeem_now"
             android:textColor="#FFF"
             android:textSize="16sp"
             android:letterSpacing="0.1"/>

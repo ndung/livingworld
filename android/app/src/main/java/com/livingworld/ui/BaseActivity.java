@@ -70,4 +70,9 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void authenticationFailed(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

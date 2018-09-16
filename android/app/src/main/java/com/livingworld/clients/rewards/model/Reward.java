@@ -15,7 +15,7 @@ public class Reward implements Serializable, Comparable<Reward>{
 
     Long rewardId;
     String rewardName;
-    String rewardPoint;
+    Integer rewardPoint;
     String rewardImage;
     String rewardDescription;
     private Merchant merchant;
@@ -36,11 +36,11 @@ public class Reward implements Serializable, Comparable<Reward>{
         this.rewardName = rewardName;
     }
 
-    public String getRewardPoint() {
+    public Integer getRewardPoint() {
         return rewardPoint;
     }
 
-    public void setRewardPoint(String rewardPoint) {
+    public void setRewardPoint(Integer rewardPoint) {
         this.rewardPoint = rewardPoint;
     }
 

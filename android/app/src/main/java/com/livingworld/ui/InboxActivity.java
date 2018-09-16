@@ -63,22 +63,27 @@ public class InboxActivity extends BaseActivity {
     }
 
     private void getMessage() {
-        inboxService.getMessage("message/"+PAGE+"/page").enqueue(new Callback<Response>() {
+        inboxService.getMessage("message/" + PAGE + "/page").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 dissmissPleasewaitDialog();
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Response body = response.body();
-                    if(body.getData() != null){
+                    if (body.getData() != null) {
                         Gson gson = new Gson();
                         JsonObject jsonObject = gson.toJsonTree(body).getAsJsonObject();
-                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {}.getType());
+                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {
+                        }.getType());
                         list.addAll(listBody);
                         inboxAdapter.notifyDataSetChanged();
                         loading = false;
                     }
-                }else{
-                    showMessage(Static.SOMETHING_WRONG);
+                } else {
+                    if (response.code() == 400) {
+                        authenticationFailed();
+                    } else {
+                        showMessage(Static.SOMETHING_WRONG);
+                    }
                 }
             }
 
@@ -91,21 +96,22 @@ public class InboxActivity extends BaseActivity {
     }
 
     private void pagging() {
-        inboxService.getMessage("message/"+PAGE+"/page").enqueue(new Callback<Response>() {
+        inboxService.getMessage("message/" + PAGE + "/page").enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 dissmissPleasewaitDialog();
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Response body = response.body();
-                    if(body.getData() != null){
+                    if (body.getData() != null) {
                         Gson gson = new Gson();
                         JsonObject jsonObject = gson.toJsonTree(body).getAsJsonObject();
-                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {}.getType());
+                        List<Inbox> listBody = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Inbox>>() {
+                        }.getType());
                         list.addAll(listBody);
                         inboxAdapter.notifyDataSetChanged();
                         loading = false;
                     }
-                }else{
+                } else {
                     showMessage(Static.SOMETHING_WRONG);
                 }
             }
@@ -134,18 +140,15 @@ public class InboxActivity extends BaseActivity {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if(dy > 0)
-                {
+                if (dy > 0) {
                     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
                     visibleItemCount = layoutManager.getChildCount();
                     totalItemCount = layoutManager.getItemCount();
                     pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
 
-                    if (!loading)
-                    {
-                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
-                        {
+                    if (!loading) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
                             loading = true;
                             PAGE = PAGE + 1;
                             pagging();

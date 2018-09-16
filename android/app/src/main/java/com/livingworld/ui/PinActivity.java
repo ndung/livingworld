@@ -88,7 +88,7 @@ public class PinActivity extends BaseActivity {
         map.put("cardNumber",user.getMember().getCardNumber());
         map.put("merchant","0DA7E526-4175-4C55-B30C-87AF6A48E19D");
         map.put("receiptNo", UUID.randomUUID().toString());
-        map.put("amount","100000");
+        map.put("amount","1000000");
         map.put("sourceOfFund","01");
         map.put("description","Api Posting Transaction");
         map.put("memberType","01");

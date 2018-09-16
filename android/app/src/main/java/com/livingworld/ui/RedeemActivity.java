@@ -110,7 +110,7 @@ public class RedeemActivity extends BaseActivity {
     private void totalPoints(Map<Reward, String> map){
         int pts = 0;
         for (Reward reward : map.keySet()){
-            pts = pts + (Integer.parseInt(reward.getRewardPoint()))*Integer.parseInt(map.get(reward));
+            pts = pts + reward.getRewardPoint()*Integer.parseInt(map.get(reward));
         }
         tvTotalPoints.setText(String.valueOf(pts));
     }

@@ -1,6 +1,7 @@
 package com.livingworld.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,10 +13,18 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.livingworld.R;
 import com.livingworld.clients.ApiUtils;
+import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.master.MasterService;
+import com.livingworld.clients.master.model.City;
+import com.livingworld.clients.master.model.Gender;
+import com.livingworld.clients.master.model.MaritalStatus;
 import com.livingworld.clients.master.model.Master;
+import com.livingworld.clients.master.model.Nationality;
+import com.livingworld.clients.master.model.Religion;
 import com.livingworld.clients.member.MemberService;
+import com.livingworld.clients.member.model.Member;
 import com.livingworld.clients.model.Response;
+import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -57,13 +66,14 @@ public class BAMRegistrationActivity extends BaseActivity {
     @BindView(R.id.bt_next)
     Button btNext;
     MasterService masterService;
-    List<Master> religionMasters = new ArrayList<>();
-    List<Master> cityMasters = new ArrayList<>();
-    List<Master> materialStatusMasters = new ArrayList<>();
-    List<Master> genderMasters = new ArrayList<>();
-    List<Master> nationalityMasters = new ArrayList<>();
+    List<Religion> religionMasters = new ArrayList<>();
+    List<City> cityMasters = new ArrayList<>();
+    List<MaritalStatus> materialStatusMasters = new ArrayList<>();
+    List<Gender> genderMasters = new ArrayList<>();
+    List<Nationality> nationalityMasters = new ArrayList<>();
 
     MemberService memberService;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,54 +82,87 @@ public class BAMRegistrationActivity extends BaseActivity {
         ButterKnife.bind(this);
         masterService = ApiUtils.MasterService(getApplicationContext());
         memberService = ApiUtils.MemberService(getApplicationContext());
-        initMasters();
+
+        user = Preferences.getUser(getApplicationContext());
+
+        Member member = user.getMember();
+
+        religionMasters = user.getMember().getReligions();
+
+        ArrayAdapter<Religion> religionAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
+        religionAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spReligion.setAdapter(religionAdapter);
+        for (int i=0; i < religionMasters.size(); i++){
+            Master master = religionMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getReligion())){
+                spReligion.setSelection(i);
+                break;
+            }
+        }
+
+        cityMasters = user.getMember().getCities();
+
+        ArrayAdapter<City> cityAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
+        cityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spCity.setAdapter(cityAdapter);
+        for (int i=0; i < cityMasters.size(); i++){
+            Master master = cityMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getCity())){
+                spCity.setSelection(i);
+                break;
+            }
+        }
+
+        materialStatusMasters = user.getMember().getMaritalStatuses();
+
+        ArrayAdapter<MaritalStatus> materialStatusAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
+        materialStatusAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spMaterialStatus.setAdapter(materialStatusAdapter);
+        for (int i=0; i < materialStatusMasters.size(); i++){
+            Master master = materialStatusMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getMartialStatus())){
+                spMaterialStatus.setSelection(i);
+                break;
+            }
+        }
+
+        genderMasters = user.getMember().getGenders();
+
+        ArrayAdapter<Gender> genderAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
+        genderAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spGender.setAdapter(genderAdapter);
+        for (int i=0; i < genderMasters.size(); i++){
+            Master master = genderMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getGender())){
+                spGender.setSelection(i);
+                break;
+            }
+        }
+
+        nationalityMasters = user.getMember().getNationalities();
+
+        ArrayAdapter<Nationality> nationalityAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
+        nationalityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spNationality.setAdapter(nationalityAdapter);
+        for (int i=0; i < nationalityMasters.size(); i++){
+            Master master = nationalityMasters.get(i);
+            if(member != null && master.getId().equalsIgnoreCase(member.getNationalitly())){
+                spNationality.setSelection(i);
+                break;
+            }
+        }
+
+        etKtp.setText(member.getIdenitityNumber());
+        etName.setText(member.getIdentityName());
+        etAddress.setText(member.getAddress());
+        etBod.setText(member.getDateOfBirth());
+        etHome.setText(member.getHomePhone());
+        etZipCode.setText(member.getZipcode());
 
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nama = etName.getText().toString();
-                if(nama.isEmpty()){
-                    showMessage("Name "+ Static.REQUIRED);
-                    return;
-                }
-
-                String ktp = etKtp.getText().toString();
-                if(ktp.isEmpty()){
-                    showMessage("KTP "+ Static.REQUIRED);
-                    return;
-                }
-
-                String date = etBod.getText().toString();
-                if(date.isEmpty()){
-                    showMessage("Date "+ Static.REQUIRED);
-                    return;
-                }
-
-                String address = etAddress.getText().toString();
-                if(address.isEmpty()){
-                    showMessage("Address "+ Static.REQUIRED);
-                    return;
-                }
-
-                String zipCode = etZipCode.getText().toString();
-                if(zipCode.isEmpty()){
-                    showMessage("ZIP Code "+ Static.REQUIRED);
-                    return;
-                }
-
-                String homePhone = etHome.getText().toString();
-                if(homePhone.isEmpty()){
-                    showMessage("Home Phone "+ Static.REQUIRED);
-                    return;
-                }
-
-                String idReligion = String.valueOf(religionMasters.get(spReligion.getSelectedItemPosition()).getId());
-                String idGender = String.valueOf(genderMasters.get(spGender.getSelectedItemPosition()).getId());
-                String idMaterialStatus = String.valueOf(materialStatusMasters.get(spMaterialStatus.getSelectedItemPosition()).getId());
-                String idNationality = String.valueOf(nationalityMasters.get(spNationality.getSelectedItemPosition()).getId());
-                String idCity = String.valueOf(cityMasters.get(spCity.getSelectedItemPosition()).getId());
-
-                registerMember(nama, ktp, date, address, zipCode, homePhone, idReligion, idGender, idMaterialStatus, idNationality, idCity);
+                setData();
             }
         });
 
@@ -134,20 +177,20 @@ public class BAMRegistrationActivity extends BaseActivity {
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
                                 int month = (monthOfYear + 1);
                                 String monthS;
-                                if(month <= 9){
-                                    monthS = "0"+month;
+                                if (month <= 9) {
+                                    monthS = "0" + month;
                                 } else {
                                     monthS = String.valueOf(month);
                                 }
 
                                 int day = dayOfMonth;
                                 String dayS;
-                                if(day <= 9){
-                                    dayS = "0"+day;
+                                if (day <= 9) {
+                                    dayS = "0" + day;
                                 } else {
                                     dayS = String.valueOf(day);
                                 }
-                                String tgl = String.valueOf(year + "-" +monthS+ "-" +dayS);
+                                String tgl = String.valueOf(year + "-" + monthS + "-" + dayS);
                                 etBod.setText(tgl);
                             }
                         },
@@ -160,185 +203,114 @@ public class BAMRegistrationActivity extends BaseActivity {
         });
     }
 
-    private void registerMember(String nama, String ktp, String date, String address, String zipCode, String homePhone, String idReligion, String idGender, String idMaterialStatus, String idNationality, String idCity) {
-        showPleasewaitDialog();
+    private void setData(){
         Map<String, String> map = new HashMap<>();
-        map.put("fullName", nama);
-        map.put("ktpNo", ktp);
-        map.put("gender", idGender);
-        map.put("religion", idReligion);
-        map.put("martialStatus", idMaterialStatus);
-        map.put("dateOfBirth", date);
-        map.put("nationality", idNationality);
-        map.put("address", address);
-        map.put("city", idCity);
-        map.put("zipCode", zipCode);
-        map.put("homeNumber", homePhone);
+        map.put("tid", user.getUserId());
 
-        memberService.registerMember(map).enqueue(new Callback<Response>() {
-        @Override
-        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-            dissmissPleasewaitDialog();
-            if(response.isSuccessful()){
-                Response body = response.body();
-                boolean success = (boolean) body.getData();
-                if(success){
-                    showMessage("Success to register member");
-                    finish();
+        if(etKtp.getText().toString().isEmpty()){
+            showMessage("KTP "+ Static.REQUIRED);
+            return;
+        }
+        map.put("idNumber", etKtp.getText().toString());
+
+        if(etName.getText().toString().isEmpty()){
+            showMessage("Name "+ Static.REQUIRED);
+            return;
+        }
+        map.put("name",etName.getText().toString());
+        map.put("email",user.getMember().getEmail());
+        map.put("mobilePhoneNumber",user.getMember().getMobileNumber());
+
+        if(etBod.getText().toString().isEmpty()){
+            showMessage("Date of Birth "+ Static.REQUIRED);
+            return;
+        }
+        map.put("birthOfDate",etBod.getText().toString());
+
+        if(etAddress.getText().toString().isEmpty()){
+            showMessage("Address "+ Static.REQUIRED);
+            return;
+        }
+        map.put("address",etAddress.getText().toString());
+
+        if(etZipCode.getText().toString().isEmpty()){
+            showMessage("ZIP Code "+ Static.REQUIRED);
+            return;
+        }
+        map.put("zipCode",etZipCode.getText().toString());
+
+        //if(etHome.getText().toString().isEmpty()){
+        //    showMessage("Home Number "+ Static.REQUIRED);
+        //    return;
+        //}
+        map.put("homePhoneNumber",etHome.getText().toString());
+
+        map.put("memberType", "38C5EAD7-7E31-4A7E-9545-FEA543B8751E");
+        map.put("cardId", "38C5EAD7-7E31-4A7E-9545-FEA543B8751E");
+        map.put("cardNumber", user.getMember().getCardNumber());
+
+        for (int i=0; i < religionMasters.size(); i++){
+            Master master = religionMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spReligion.getSelectedItem().toString())){
+                map.put("religion",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < genderMasters.size(); i++){
+            Master master = genderMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spGender.getSelectedItem().toString())){
+                map.put("gender",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < materialStatusMasters.size(); i++){
+            Master master = materialStatusMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spMaterialStatus.getSelectedItem().toString())){
+                map.put("maritalStatus",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < nationalityMasters.size(); i++){
+            Master master = nationalityMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spNationality.getSelectedItem().toString())){
+                map.put("nationality",master.getId());
+                break;
+            }
+        }
+
+        for (int i=0; i < cityMasters.size(); i++){
+            Master master = cityMasters.get(i);
+            if(master.getName().equalsIgnoreCase(spCity.getSelectedItem().toString())){
+                map.put("city",master.getId());
+                break;
+            }
+        }
+
+        showPleasewaitDialog();
+        memberService.updateMember(map).enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                dissmissPleasewaitDialog();
+                if(response.isSuccessful()){
+                    Gson gson = new Gson();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                    User user = gson.fromJson(jsonObject.get("data"), User.class);
+                    Preferences.setUser(getApplicationContext(), user);
+                    showMessage("Berhasil update profil");
+                }else{
+                    showMessage(Static.SOMETHING_WRONG);
                 }
-            }else{
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                dissmissPleasewaitDialog();
                 showMessage(Static.SOMETHING_WRONG);
             }
-        }
-
-        @Override
-        public void onFailure(Call<Response> call, Throwable t) {
-            dissmissPleasewaitDialog();
-            showMessage(Static.SOMETHING_WRONG);
-        }
-    });
-}
-
-    private void initMasters() {
-        initMasterReligion();
-        initMasterMaterialStatus();
-        initMasterGender();
-        initMasterNationality();
-        initMasterCity();
-    }
-
-    private void initMasterReligion() {
-        masterService.getMaster(Static.MASTER_RELIGION).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    try{
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                        religionMasters.addAll(list);
-                        ArrayAdapter<Master> adapter =
-                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
-                        adapter.setDropDownViewResource(R.layout.spinner_item);
-                        spReligion.setAdapter(adapter);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
         });
     }
 
-    private void initMasterCity() {
-        masterService.getMaster(Static.MASTER_CITY).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    try{
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                        cityMasters.addAll(list);
-                        ArrayAdapter<Master> adapter =
-                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, cityMasters);
-                        adapter.setDropDownViewResource(R.layout.spinner_item);
-                        spCity.setAdapter(adapter);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterMaterialStatus() {
-        masterService.getMaster(Static.MASTER_MATERIAL_STATUS).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    try{
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                        materialStatusMasters.addAll(list);
-                        ArrayAdapter<Master> adapter =
-                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
-                        adapter.setDropDownViewResource(R.layout.spinner_item);
-                        spMaterialStatus.setAdapter(adapter);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterGender() {
-        masterService.getMaster(Static.MASTER_GENDER).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    try{
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                        genderMasters.addAll(list);
-                        ArrayAdapter<Master> adapter =
-                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
-                        adapter.setDropDownViewResource(R.layout.spinner_item);
-                        spGender.setAdapter(adapter);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void initMasterNationality() {
-        masterService.getMaster(Static.MASTER_NATIONALITY).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                if(response.isSuccessful()){
-                    try{
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                        List<Master> list = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Master>>() {}.getType());
-                        nationalityMasters.addAll(list);
-                        ArrayAdapter<Master> adapter =
-                                new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
-                        adapter.setDropDownViewResource(R.layout.spinner_item);
-                        spNationality.setAdapter(adapter);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-
-            }
-        });
-    }
 }

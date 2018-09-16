@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Payment Method"
+                android:text="@string/title_payment_method"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec donec viverra"
+                android:text="@string/subtitle_payment_method"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_lw"
                         android:layout_toRightOf="@+id/iv_lw"
-                        android:text="Living World"
+                        android:text="@string/lbl_indie_pay"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -124,7 +124,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_ecash"
                         android:layout_toRightOf="@+id/iv_ecash"
-                        android:text="Mandiri e-Cash"
+                        android:text="@string/lbl_mandiri_e_cash"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -188,7 +188,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_img_inbox"
                             android:layout_toRightOf="@+id/iv_img_inbox"
-                            android:text="Add payment method"
+                            android:text="@string/lbl_add_payment_method"
                             android:textColor="@color/colorPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -197,7 +197,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:alpha="0.5"
-                            android:text="Tap here to add payment method"
+                            android:text="@string/lbl_tap_here_to_add_payment_method"
                             android:textColor="#333333"
                             android:textSize="12sp" />
                     </LinearLayout>

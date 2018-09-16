@@ -27,6 +27,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.livingworld.R;
 import com.livingworld.adapter.HorizontalAdapter;
 import com.livingworld.clients.ApiUtils;
+import com.livingworld.clients.auth.AuthService;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.master.model.MemberType;
 import com.livingworld.clients.member.MemberService;
@@ -36,19 +37,21 @@ import com.livingworld.clients.offers.OffersService;
 import com.livingworld.clients.offers.model.CurrentOffer;
 import com.livingworld.clients.rewards.RewardsService;
 import com.livingworld.clients.rewards.model.Event;
-import com.livingworld.clients.rewards.model.Reward;
 import com.livingworld.clients.trx.TrxService;
+import com.livingworld.util.ChipperUtils;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.IDRUtils;
 import com.livingworld.util.Preferences;
+import com.livingworld.util.Static;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,7 +93,8 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     TextView tvPoin;
     @BindView(R.id.tv_lucdraw)
     TextView tvLucdraw;
-
+    @BindView(R.id.iv_live_card)
+    ImageView ivLiveCard;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     @BindView(R.id.tv_member)
@@ -147,8 +151,6 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         recylerView.setLayoutManager(layoutManager);
         recylerView.setAdapter(adapter);
 
-        eventLayout.setVisibility(View.GONE);
-
         getCurrentOffers();
         getCurrentEvent();
 
@@ -177,28 +179,6 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     }
 
-    private void getBalanceMonth() {
-        tvTrxMonth.setVisibility(View.GONE);
-        pgWaitTrxMonth.setVisibility(View.VISIBLE);
-        trxService.getBalanceMonth().enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                swiperefresh.setRefreshing(false);
-                if (response.isSuccessful()) {
-                    Response body = response.body();
-                    tvTrxMonth.setText(IDRUtils.toRupiah((Double) body.getData()));
-                    tvTrxMonth.setVisibility(View.VISIBLE);
-                    pgWaitTrxMonth.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-                swiperefresh.setRefreshing(false);
-            }
-        });
-    }
-
     private static final String TAG = HomeActivity.class.toString();
 
     private void getCurrentOffers() {
@@ -206,6 +186,8 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (response.isSuccessful()) {
+                    List<CurrentOffer> offers = list;
+                    list.removeAll(offers);
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                     JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
 
@@ -239,7 +221,6 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                     }.getType());
                     if (currentEvents!=null && !currentEvents.isEmpty()){
                         event = currentEvents.get(0);
-                        eventLayout.setVisibility(View.VISIBLE);
                         tvEventName.setText(Html.fromHtml(event.getName()));
                         String date = dateFormatter.format(event.getStartDate())+" - "+dateFormatter.format(event.getEndDate());
                         tvEventDate.setText(date);
@@ -265,21 +246,12 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private void initGetDetail() {
         User user = Preferences.getUser(getApplicationContext());
-        Log.d(TAG, "user:" + user);
         Member member = user.getMember();
         if (member != null) {
-            tvNameCard.setText(member.getIdentityName());
-            tvCard.setText(member.getCardNumber());
-            tvPoin.setText(member.getPoints() + "pts");
-            tvLucdraw.setText(member.getLuckyDraws());
-            Double currentMonthTransaction = 0d;
-            if (member.getCurrentMonthTransaction() != null) {
-                currentMonthTransaction = Double.parseDouble(member.getCurrentMonthTransaction());
-            }
 
-            tvTrxMonth.setText(IDRUtils.toRupiah(currentMonthTransaction));
-
+            String memberType = member.getMemberType();
             List<MemberType> memberTypes = member.getMemberTypes();
+
             Collections.sort(memberTypes, new Comparator<MemberType>() {
                 @Override
                 public int compare(MemberType o1, MemberType o2) {
@@ -287,28 +259,53 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                             compareTo(Double.valueOf(Double.parseDouble(o2.getMinimumTransaction())));
                 }
             });
-            Double minimumValue = 0d;
 
-            for (MemberType memberType : memberTypes) {
-                if (currentMonthTransaction < Double.parseDouble(memberType.getMinimumTransaction())) {
-                    minimumValue = Double.parseDouble(memberType.getMinimumTransaction());
-                    tvMember.setText("Spend " + IDRUtils.toRupiah(minimumValue) + " today and become a " + memberType.getName() + " Live Card member");
+            int i = 1;
+            for (MemberType type : memberTypes){
+                if (memberType.equals(type.getId())){
+                    if (type.getName().equalsIgnoreCase("BLUE")){
+                        ivLiveCard.setImageDrawable(getResources().getDrawable(R.drawable.blue));
+                    }
+                    else if (type.getName().equalsIgnoreCase("PREMIERE")){
+                        ivLiveCard.setImageDrawable(getResources().getDrawable(R.drawable.black));
+                    }
                     break;
-                } else {
-                    //if (!member.getMemberType().equals(memberType.getId())){
-                    //    tvBam.setVisibility(View.VISIBLE);
-                    //    break;
-                    //}
+                }
+                i=i+1;
+            }
+
+            if (i==memberTypes.size()){
+                tvTrxMonth.setText("Congratulations");
+                progressBar.setVisibility(View.GONE);
+                tvMember.setText(getResources().getString(R.string.black_member_description));
+            }else {
+                Double currentMonthTransaction = 0d;
+                if (member.getCurrentMonthTransaction() != null) {
+                    currentMonthTransaction = Double.parseDouble(member.getCurrentMonthTransaction());
+                }
+
+                tvTrxMonth.setText(IDRUtils.toRupiah(currentMonthTransaction));
+
+                MemberType upgrade = memberTypes.get(i);
+                Double minimumValue = Double.parseDouble(upgrade.getMinimumTransaction());
+                String mystring = String.format(getResources().getString(R.string.spend_more_description),
+                        IDRUtils.toRupiah(minimumValue), upgrade.getName());
+                tvMember.setText(mystring);
+
+                Double progress = currentMonthTransaction / minimumValue * 100;
+                progressBar.setProgress(progress.intValue());
+
+                if (progress>=100){
+                    tvBam.setVisibility(View.VISIBLE);
                 }
             }
-            Double progress = currentMonthTransaction / minimumValue * 100;
-            progressBar.setProgress(progress.intValue());
-        }
-    }
 
-    private void initNotMember() {
-        tvName.setVisibility(View.VISIBLE);
-        viewCard.setVisibility(View.GONE);
+            tvNameCard.setText(member.getIdentityName());
+            tvCard.setText(member.getCardNumber());
+            tvPoin.setText(member.getPoints() + "pts");
+            tvLucdraw.setText(member.getLuckyDraws());
+
+        }
     }
 
     private static final int MY_PERMISSION = 1;
@@ -317,24 +314,24 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cv_scan_bc:
-                MODE = 0;
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
-                } else {
-                    new IntentIntegrator(this).initiateScan();
-                }
+                //MODE = 0;
+                //if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
+                //} else {
+                //    new IntentIntegrator(this).initiateScan();
+                //}
                 //startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
                 break;
             case R.id.cv_my_bc:
-                startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
+                //startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
                 break;
             case R.id.cv_parking:
-                MODE = 1;
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
-                } else {
-                    new IntentIntegrator(this).initiateScan();
-                }
+                //MODE = 1;
+                //if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSION);
+                //} else {
+                //    new IntentIntegrator(this).initiateScan();
+                //}
                 //startActivity(new Intent(getApplicationContext(), MyCarActivity.class));
                 break;
             case R.id.tv_view_coffer:
@@ -371,7 +368,6 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             if (result.getContents() != null) {
-                Log.d(TAG, "result:" + result);
                 Intent intent = new Intent(getApplicationContext(), PaymentMethodActivity.class);
                 intent.putExtra("MODE", MODE);
                 startActivity(intent);
@@ -381,7 +377,42 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        //getBalanceMonth();
+        tvTrxMonth.setVisibility(View.GONE);
+        pgWaitTrxMonth.setVisibility(View.VISIBLE);
+        memberService.refreshUser().enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    Response body = response.body();
+                    Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
+                    JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
+
+                    User user = gson.fromJson(jsonObject, User.class);
+                    if (user!=null){
+                        Preferences.setUser(getApplicationContext(), user);
+                        initGetDetail();
+                    }
+                    tvTrxMonth.setVisibility(View.VISIBLE);
+                    pgWaitTrxMonth.setVisibility(View.GONE);
+                }else{
+                    tvTrxMonth.setVisibility(View.VISIBLE);
+                    pgWaitTrxMonth.setVisibility(View.GONE);
+
+                    if (response.code()==400){
+                        authenticationFailed();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                tvTrxMonth.setVisibility(View.VISIBLE);
+                pgWaitTrxMonth.setVisibility(View.GONE);
+
+            }
+        });
+        getCurrentEvent();
+        getCurrentOffers();
         swiperefresh.setRefreshing(false);
     }
 }

@@ -24,7 +24,7 @@
             android:id="@+id/textView22"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Congratulation!"
+            android:text="@string/title_congratulation"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="32sp"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="You are a loyal customer of living world. We welcome you to be a Live Card Member."
+            android:text="@string/subtitle_congratulation"
             android:textAlignment="center"
             android:textSize="16dp" />
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            android:text="BE A MEMBER NOW"
+            android:text="@string/btn_be_a_member_now"
             android:textColor="#FFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFF"
-            android:text="I'LL DO IT LATER"
+            android:text="@string/btn_ill_do_it_later"
             android:textColor="#FF9B9B9B"
             android:textSize="18sp" />
     </LinearLayout>

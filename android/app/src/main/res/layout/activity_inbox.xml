@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="Inbox"
+                android:text="@string/title_inbox"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>
 

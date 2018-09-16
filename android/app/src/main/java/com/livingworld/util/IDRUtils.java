@@ -20,7 +20,7 @@ public class IDRUtils {
         formatRp.setGroupingSeparator('.');
 
         kursIndonesia.setDecimalFormatSymbols(formatRp);
-        return CURRENCY_SYMBOL+". "+kursIndonesia.format(harga).replaceAll("\\,00", "");
+        return CURRENCY_SYMBOL+" "+kursIndonesia.format(harga).replaceAll("\\,00", "");
     }
 
     public static final String toAccounting(double harga){

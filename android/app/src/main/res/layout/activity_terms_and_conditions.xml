@@ -43,7 +43,7 @@
                         android:id="@+id/tv_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Terms &amp; Conditions"
+                        android:text="@string/title_terms_and_conditions"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="24sp" />
 

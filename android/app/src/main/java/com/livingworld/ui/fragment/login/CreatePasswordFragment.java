@@ -37,7 +37,7 @@ public class CreatePasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_created_password, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_password, container, false);
         unbinder = ButterKnife.bind(this, view);
 
         tvTnc.setOnClickListener(new View.OnClickListener() {

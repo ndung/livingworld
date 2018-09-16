@@ -30,6 +30,9 @@
         android:layout_below="@+id/relativeLayout"
         android:paddingLeft="16dp"
         android:paddingBottom="16dp"
+        android:layout_above="@+id/bt_next"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         >
 
         <LinearLayout
@@ -38,6 +41,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:paddingRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:srcCompat="@drawable/img_card" />
@@ -46,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Be A Member"
+                android:text="@string/title_be_a_member"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 
@@ -54,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Fill in the information below a Live Card Member "
+                android:text="@string/subtitle_be_a_member"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -66,13 +70,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama Sesuai KTP" />
+                    android:text="@string/lbl_name_as_per_identity" />
 
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Your Name"
+                    android:hint="@string/hint_enter_your_name"
                     android:layout_marginLeft="-4dp"
                     android:layout_marginRight="-4dp"
                     android:textColorHint="#4d333333"
@@ -89,7 +93,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No KTP" />
+                    android:text="@string/lbl_identity_no" />
 
                 <EditText
                     android:id="@+id/et_ktp"
@@ -99,7 +103,7 @@
                     android:layout_marginRight="-4dp"
                     android:textColorHint="#4d333333"
                     android:backgroundTint="#d8d8d8"
-                    android:hint="Enter your ID number"
+                    android:hint="@string/hint_enter_your_id_number"
                     android:inputType="number" />
 
             </LinearLayout>
@@ -113,7 +117,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Religion" />
+                    android:text="@string/lbl_religion" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
@@ -135,7 +139,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gender" />
+                    android:text="@string/lbl_gender" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
@@ -157,7 +161,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Marital Status" />
+                    android:text="@string/lbl_marital_status" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
@@ -179,7 +183,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date of Birth" />
+                    android:text="@string/lbl_date_of_birth" />
 
                 <EditText
                     android:id="@+id/et_bod"
@@ -190,7 +194,7 @@
                     android:textColorHint="#4d333333"
                     android:backgroundTint="#d8d8d8"
                     android:drawableRight="@drawable/ic_calendaar"
-                    android:hint="Enter your birth of date"
+                    android:hint="@string/hint_enter_your_birth_of_date"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -204,7 +208,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nationality" />
+                    android:text="@string/lbl_nationality" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
@@ -226,7 +230,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Address" />
+                    android:text="@string/lbl_address" />
 
                 <EditText
                     android:id="@+id/et_address"
@@ -237,7 +241,7 @@
                     android:layout_marginRight="-4dp"
                     android:textColorHint="#4d333333"
                     android:backgroundTint="#d8d8d8"
-                    android:hint="Enter your address"
+                    android:hint="@string/hint_enter_your_address"
                     android:inputType="textCapSentences|textMultiLine"
                     android:maxLines="4" />
 
@@ -259,7 +263,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="City" />
+                        android:text="@string/lbl_city" />
 
                     <android.support.v7.widget.AppCompatSpinner
                         app:backgroundTint="#d8d8d8"
@@ -284,7 +288,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Zip Code" />
+                        android:text="@string/lbl_zip_code" />
 
                     <EditText
                         android:id="@+id/et_zip_code"
@@ -294,7 +298,7 @@
                         android:layout_marginRight="-4dp"
                         android:textColorHint="#4d333333"
                         android:backgroundTint="#d8d8d8"
-                        android:hint="Enter your address"
+                        android:hint="@string/hint_enter_your_zipcode"
                         android:inputType="number" />
 
                 </LinearLayout>
@@ -310,7 +314,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Home Phone" />
+                    android:text="@string/lbl_home_phone" />
 
                 <EditText
                     android:id="@+id/et_home"
@@ -320,7 +324,7 @@
                     android:layout_marginRight="-4dp"
                     android:textColorHint="#4d333333"
                     android:backgroundTint="#d8d8d8"
-                    android:hint="Enter your home phone"
+                    android:hint="@string/hint_enter_your_home_phone"
                     android:inputType="phone" />
 
             </LinearLayout>
@@ -337,7 +341,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="NEXT"
+        android:text="@string/btn_next"
         android:textColor="#FFF"
         android:textSize="16sp"
         android:letterSpacing="0.1"/>

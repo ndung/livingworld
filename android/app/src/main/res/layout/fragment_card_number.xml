@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello"
+                android:text="@string/title_hello"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp" />
 
@@ -29,7 +29,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
+                android:text="@string/subtitle_hello" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Card Number" />
+                    android:text="@string/lbl_card_number" />
 
                 <EditText
                     android:id="@+id/et_card_number"
@@ -50,7 +50,7 @@
                     android:layout_marginRight="-4dp"
                     android:textColorHint="#4d333333"
                     android:backgroundTint="#d8d8d8"
-                    android:hint="Enter your card number" />
+                    android:hint="@string/hint_enter_your_card_number" />
 
             </LinearLayout>
 

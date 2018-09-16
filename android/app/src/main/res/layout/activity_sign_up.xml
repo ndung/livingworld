@@ -51,7 +51,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="NEXT"
+        android:text="@string/btn_next"
         android:letterSpacing="0.1"
         android:textColor="#FFF"
         android:textSize="16sp"/>

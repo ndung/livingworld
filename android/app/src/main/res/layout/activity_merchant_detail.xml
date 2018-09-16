@@ -106,7 +106,7 @@
                                         android:layout_alignParentStart="true"
                                         android:layout_centerVertical="true"
                                         android:layout_weight="1"
-                                        android:text="Phone"
+                                        android:text="@string/lbl_phone"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="16sp"/>
 
@@ -159,7 +159,7 @@
                                         android:layout_alignParentStart="true"
                                         android:layout_centerVertical="true"
                                         android:layout_weight="1"
-                                        android:text="Office Hours"
+                                        android:text="@string/lbl_office_hours"
                                         android:textColor="@color/colorPrimary"
                                         android:textSize="16sp"/>
 
@@ -209,7 +209,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Monday"
+                                    android:text="@string/lbl_monday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -275,7 +275,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Tuesday"
+                                    android:text="@string/lbl_tuesday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -333,7 +333,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Wednesday"
+                                    android:text="@string/lbl_wednesday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -392,7 +392,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Thursday"
+                                    android:text="@string/lbl_thursday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -451,7 +451,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Friday"
+                                    android:text="@string/lbl_friday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -509,7 +509,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Saturday"
+                                    android:text="@string/lbl_saturday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 
@@ -568,7 +568,7 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_centerVertical="true"
                                     android:layout_weight="1"
-                                    android:text="Sunday"
+                                    android:text="@string/lbl_sunday"
                                     android:textColor="#333333"
                                     android:textSize="14sp" />
 

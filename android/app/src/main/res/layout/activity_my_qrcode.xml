@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="My QR Code"
+                android:text="@string/title_my_qr_code"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"/>
 
@@ -44,7 +44,7 @@
                 android:paddingRight="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="Provide the QR code below to the merchant to make a payment."
+                android:text="@string/subtitle_my_qr_code"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp" />
 
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
-                    android:text="Your E-cash Balance"
+                    android:text="@string/lbl_e_cash_balance"
                     android:textColor="#FFF" />
 
                 <RelativeLayout
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Merchant want to you to scan their QR?"
+                android:text="@string/lbl_merchant_want_to_you_to_scan_their_qr"
                 android:textAlignment="center" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="SCAN QR"
+                android:text="@string/lbl_scan_qr"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp"

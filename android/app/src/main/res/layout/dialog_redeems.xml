@@ -24,7 +24,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Your Redeemed Products"
+                    android:text="@string/title_your_redeemed_products"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="24sp" />
@@ -35,7 +35,7 @@
                     android:paddingBottom="16dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    android:text="Below are the products that you have chosen to redeem"
+                    android:text="@string/subtitle_your_redeemed_products"
                     android:textAlignment="center"
                     android:textColor="#8A8B8A" />
 
@@ -54,7 +54,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:background="@color/colorAccent"
-                    android:text="OK"
+                    android:text="@string/btn_ok"
                     android:letterSpacing="0.1"
                     android:textColor="#FFF"
                     android:textSize="16sp" />

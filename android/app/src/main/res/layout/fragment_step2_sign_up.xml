@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Create Your Password"
+                    android:text="@string/title_create_your_password"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="24sp"/>
 
@@ -33,7 +33,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
+                    android:text="@string/subtitle_create_your_password" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Create Password" />
+                        android:text="@string/lbl_create_password" />
 
                     <EditText
                         android:id="@+id/et_pass1"
@@ -54,7 +54,7 @@
                         android:backgroundTint="#d8d8d8"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:hint="Enter your password"
+                        android:hint="@string/hint_enter_your_password"
                         android:inputType="textPassword"
                         android:windowSoftInputMode="adjustResize" />
 
@@ -69,7 +69,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Confirm Password" />
+                        android:text="@string/lbl_confirm_password" />
 
                     <EditText
                         android:id="@+id/et_pass2"
@@ -79,7 +79,7 @@
                         android:backgroundTint="#d8d8d8"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:hint="Confirm your password"
+                        android:hint="@string/hint_confirm_your_password"
                         android:inputType="textPassword"
                         android:windowSoftInputMode="adjustResize" />
 
@@ -101,7 +101,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="By clicking Sign Up,"
+                    android:text="@string/lbl_by_clicking_sign_up"
                     android:textAlignment="center" />
 
                 <LinearLayout
@@ -114,15 +114,20 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="I agree with the "
+                        android:text="@string/lbl_i_agree_with_the"
                         android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:text="terms &amp; conditions"
+                        android:text="@string/lbl_terms_and_conditions"
                         android:textAlignment="textStart"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold" />
