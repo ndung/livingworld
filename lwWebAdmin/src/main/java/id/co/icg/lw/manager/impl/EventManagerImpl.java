@@ -28,6 +28,7 @@ public class EventManagerImpl implements EventManager {
     public boolean saveEvent(Event event, FileBean fileBean) {
         String fileName = fileManager.saveFile(fileBean);
         event.setImage(fileName);
+        event.setCreateAt(new Date());
         return daoHibernate.addOnlyObject(event)!=null;
     }
 
