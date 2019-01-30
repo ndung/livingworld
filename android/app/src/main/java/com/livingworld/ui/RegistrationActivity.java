@@ -2,7 +2,6 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -22,8 +21,10 @@ import com.livingworld.ui.fragment.registration.Step2SignUpFragment;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
+import com.livingworld.util.StringUtils;
 
-import java.io.IOException;
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,36 +93,68 @@ public class RegistrationActivity extends BaseActivity {
     MemberService memberService;
 
     private boolean next(Step1SignUpFragment step1) {
-        bod = step1.getEtBod().getText().toString();
-        name = step1.getEtNama().getText().toString();
-        mobile = step1.getEtMobile().getText().toString();
-        email = step1.getEtEmail().getText().toString();
-
-        if (bod.isEmpty()) {
-            showSnackbar("Date of birth should not be empty");
-        } else if (name.isEmpty()) {
-            showSnackbar("Name should not be empty");
-        } else if (mobile.isEmpty()) {
-            showSnackbar("Mobile phone number should not be empty");
-        } else if (email.isEmpty()) {
-            showSnackbar("Email should not be empty");
-        } else {
-            return true;
+        bod = step1.getEtBod().getEditText().getText().toString();
+        name = step1.getEtNama().getEditText().getText().toString();
+        mobile = step1.getEtMobile().getEditText().getText().toString();
+        email = step1.getEtEmail().getEditText().getText().toString();
+        boolean bool = true;
+        if (email.isEmpty()) {
+            step1.getEtEmail().setError("Email should not be empty");
+            bool = false;
+        } else if (!StringUtils.isEmailValid(email)){
+            step1.getEtEmail().setError("Email should be valid");
+            bool = false;
+        } else{
+            step1.getEtEmail().setError(null);
         }
-        return false;
+        if (mobile.isEmpty()) {
+            step1.getEtMobile().setError("Mobile phone number should not be empty");
+            bool = false;
+        } else if (mobile.length()<10 || !StringUtils.isMobilePhoneNumberValid(mobile)){
+            step1.getEtMobile().setError("Mobile phone number should be valid");
+            bool = false;
+        } else{
+            step1.getEtMobile().setError(null);
+        }
+        if (bod.isEmpty()) {
+            step1.getEtBod().setError("Date of birth should not be empty");
+            bool = false;
+        } else{
+            step1.getEtBod().setError(null);
+        }
+        if (name.isEmpty()) {
+            step1.getEtNama().setError("Name should not be empty");
+            bool = false;
+        }else{
+            step1.getEtNama().setError(null);
+        }
+        return bool;
     }
 
-    private boolean signUp(Step2SignUpFragment step2) {
-        password = step2.getEtPass1().getText().toString();
-        confirmPassword = step2.getEtPass2().getText().toString();
 
+    private boolean signUp(Step2SignUpFragment step2) {
+        password = step2.getEtPass1().getEditText().getText().toString();
+        confirmPassword = step2.getEtPass2().getEditText().getText().toString();
+        boolean bool = true;
         if (password.isEmpty()) {
-            showSnackbar("Password should not be empty");
-        } else if (confirmPassword.isEmpty()) {
-            showSnackbar("Password should be confirmed");
+            step2.getEtPass1().setError("Password should not be empty");
+            bool = false;
+        }else if (!StringUtils.isPasswordValid(password, true, true, 6, 20)) {
+            step2.getEtPass1().setError("Password should be valid");
+            bool = false;
+        }else{
+            step2.getEtPass1().setError(null);
+        }
+        if (confirmPassword.isEmpty()) {
+            step2.getEtPass2().setError("Password should be confirmed");
+            bool = false;
         } else if (!password.equalsIgnoreCase(confirmPassword)) {
-            showSnackbar("Password and confirmed password should match");
-        } else {
+            step2.getEtPass2().setError("Password and confirmed password should match");
+            bool = false;
+        } else{
+            step2.getEtPass2().setError(null);
+        }
+        if (bool){
             Map<String, String> map = new HashMap<>();
             map.put("fullName", name);
             map.put("email", email);
@@ -148,17 +181,24 @@ public class RegistrationActivity extends BaseActivity {
                             WelcomeActivity.activity.finish();
                             finish();
                         } else {
-                            showMessage(body.getMessage());
+                            showSnackbar(body.getMessage());
+                        }
+                    } else if (response.errorBody() != null) {
+                        try {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                            showSnackbar(jObjError.getString("message"));
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
                         }
                     } else {
-                        showMessage(response.errorBody().toString());
+                        showSnackbar(Static.SOMETHING_WRONG);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
                     dissmissPleasewaitDialog();
-                    showMessage(Static.SOMETHING_WRONG);
+                    showSnackbar(Static.SOMETHING_WRONG);
                 }
             });
         }

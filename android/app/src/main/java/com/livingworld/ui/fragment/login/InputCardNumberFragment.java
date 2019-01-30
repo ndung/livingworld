@@ -2,6 +2,7 @@ package com.livingworld.ui.fragment.login;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ public class InputCardNumberFragment extends Fragment {
 
 
     @BindView(R.id.et_card_number)
-    EditText etCardNumber;
+    TextInputLayout etCardNumber;
     Unbinder unbinder;
 
     public InputCardNumberFragment() {
@@ -42,7 +43,7 @@ public class InputCardNumberFragment extends Fragment {
 
         User user = Preferences.getUser(getActivity());
         if (user!=null && user.getMember()!=null && user.getMember().getCardNumber()!=null){
-            etCardNumber.setText(user.getMember().getCardNumber());
+            etCardNumber.getEditText().setText(user.getMember().getCardNumber());
         }
         return view;
     }
@@ -53,10 +54,7 @@ public class InputCardNumberFragment extends Fragment {
         unbinder.unbind();
     }
 
-    public String getNunber(){
-        if (etCardNumber!=null) {
-            return etCardNumber.getText().toString();
-        }
-        return null;
+    public TextInputLayout getEtCardNumber() {
+        return etCardNumber;
     }
 }

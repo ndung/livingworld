@@ -4,6 +4,7 @@ package com.livingworld.ui.fragment.registration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,27 +27,27 @@ public class Step1SignUpFragment extends Fragment {
 
 
     @BindView(R.id.et_nama)
-    EditText etNama;
+    TextInputLayout etNama;
     @BindView(R.id.et_bod)
-    EditText etBod;
+    TextInputLayout etBod;
     @BindView(R.id.et_mobile)
-    EditText etMobile;
+    TextInputLayout etMobile;
     @BindView(R.id.et_email)
-    EditText etEmail;
+    TextInputLayout etEmail;
 
-    public EditText getEtNama() {
+    public TextInputLayout getEtNama() {
         return etNama;
     }
 
-    public EditText getEtBod() {
+    public TextInputLayout getEtBod() {
         return etBod;
     }
 
-    public EditText getEtMobile() {
+    public TextInputLayout getEtMobile() {
         return etMobile;
     }
 
-    public EditText getEtEmail() {
+    public TextInputLayout getEtEmail() {
         return etEmail;
     }
 
@@ -73,7 +74,7 @@ public class Step1SignUpFragment extends Fragment {
     }
 
     private void initTglLahir() {
-        etBod.setOnClickListener(new View.OnClickListener() {
+        etBod.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar now = Calendar.getInstance();
@@ -81,7 +82,7 @@ public class Step1SignUpFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                etBod.setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
+                                etBod.getEditText().setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
                             }
                         },
                         now.get(Calendar.YEAR),
@@ -92,7 +93,7 @@ public class Step1SignUpFragment extends Fragment {
             }
         });
 
-        etBod.setFocusable(false);
+        etBod.getEditText().setFocusable(false);
     }
 
     private String convertNumber(int number){

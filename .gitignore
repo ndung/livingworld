@@ -11,3 +11,4 @@ android/app/build
 /backend/.gradle
 /lwWebAdmin/.idea
 /lwWebAdmin/target
+*.DS_Store

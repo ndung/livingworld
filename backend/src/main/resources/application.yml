@@ -26,7 +26,7 @@ redeemExpiredHours : 48
 pageSize : 10
 
 iFabula:
-  url: http://103.27.207.124/~ifabula/demo/apis/
+  url: http://149.129.216.149/loyalty/apis/
 
 indiePay:
   url: http://indiepay.damcorp.id/api/indiepay/

@@ -44,7 +44,7 @@ public class EnterPasswordFragment extends Fragment {
         unbinder.unbind();
     }
 
-    public String getPwd(){
-        return etPass.getEditText().getText().toString();
+    public TextInputLayout getEtPass() {
+        return etPass;
     }
 }

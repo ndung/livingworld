@@ -28,6 +28,8 @@ import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -300,7 +302,14 @@ public class BAMRegistrationActivity extends BaseActivity {
                     User user = gson.fromJson(jsonObject.get("data"), User.class);
                     Preferences.setUser(getApplicationContext(), user);
                     showMessage("Berhasil update profil");
-                }else{
+                }else if (response.errorBody() != null) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                        showMessage(jObjError.getString("message"));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
                     showMessage(Static.SOMETHING_WRONG);
                 }
             }

@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,16 +40,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_name" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/et_nama"
-                    android:textColorHint="#4d333333"
-                    android:backgroundTint="#d8d8d8"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
+                    app:hintEnabled="false"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_enter_your_name" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_enter_your_name" />
+
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -62,15 +69,24 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_date_of_birth" />
 
-                <EditText
+
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/et_bod"
-                    android:textColorHint="#4d333333"
-                    android:backgroundTint="#d8d8d8"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
+                    app:hintEnabled="false"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_enter_your_birth_of_date" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:inputType="date"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_enter_your_birth_of_date" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
@@ -85,17 +101,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_mobile_number" />
 
-                <EditText
-                    android:id="@+id/et_mobile"
-                    android:textColorHint="#4d333333"
-                    android:backgroundTint="#d8d8d8"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_enter_your_mobile_number"
-                    android:inputType="number" />
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/et_mobile"
+                    app:hintEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_enter_your_mobile_number"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -109,16 +131,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_email" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/et_email"
-                    android:textColorHint="#4d333333"
-                    android:backgroundTint="#d8d8d8"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
+                    app:hintEnabled="false"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_enter_your_email" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:textColorHint="#4d333333"
+                        android:inputType="textEmailAddress"
+                        android:backgroundTint="#d8d8d8"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_enter_your_email" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

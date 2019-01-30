@@ -159,10 +159,6 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
                 }else{
                     tvPoint.setVisibility(View.VISIBLE);
                     pgWaitTrxMonth.setVisibility(View.GONE);
-
-                    if (response.code()==400){
-                        authenticationFailed();
-                    }
                 }
             }
 

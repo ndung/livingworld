@@ -36,7 +36,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void showSnackbar(String message){
-        Snackbar.make(getCurrentFocus(), message, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
     }
 
     public void showActivity(Context packageContext, Class<?> cls) {

@@ -27,6 +27,9 @@ import com.livingworld.util.ChipperUtils;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
+import com.livingworld.util.StringUtils;
+
+import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -85,20 +88,19 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        if (inputCardNumberFragment.getNunber()!=null&&
-                !inputCardNumberFragment.getNunber().equalsIgnoreCase("")){
-            checkCard();
-        }
+        //if (inputCardNumberFragment.getEtCardNumber().getText().toString().equalsIgnoreCase("")) {
+        //    checkCard();
+        //}
 
         STEP = STEP_CARD;
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(STEP == STEP_CARD){
+                if (STEP == STEP_CARD) {
                     checkCard();
-                } else if(STEP == INPUT_PASSWORD){
+                } else if (STEP == INPUT_PASSWORD) {
                     signIn();
-                } else if(STEP == CREATE_PASSWORD){
+                } else if (STEP == CREATE_PASSWORD) {
                     signUp();
                 }
             }
@@ -106,8 +108,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void checkCard() {
-        cardNumber = inputCardNumberFragment.getNunber();
-        if(!cardNumber.isEmpty()){
+        cardNumber = inputCardNumberFragment.getEtCardNumber().getEditText().getText().toString();
+        if (!cardNumber.isEmpty()) {
             showPleasewaitDialog();
             String params = "cardNumber";
             Map<String, String> map = new HashMap<>();
@@ -118,20 +120,27 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                     dissmissPleasewaitDialog();
-                    if(response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         Response body = response.body();
                         double data = (double) body.getData();
-                        if(data > 0){
+                        if (data > 0) {
                             STEP = INPUT_PASSWORD;
                             setFragment(enterPasswordFragment);
-                        } else if(data == 0){
+                        } else if (data == 0) {
                             STEP = CREATE_PASSWORD;
                             setFragment(createPasswordFragment);
-                        } else if(data < 0){
-                            showMessage("Kartu tidak terdaftar");
+                        } else if (data < 0) {
+                            inputCardNumberFragment.getEtCardNumber().setError("Card number is not registered");
                         }
-                    } else{
-                        showMessage(Static.SOMETHING_WRONG);
+                    } else if (response.errorBody() != null) {
+                        try {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                            inputCardNumberFragment.getEtCardNumber().setError(jObjError.getString("message"));
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        showSnackbar(Static.SOMETHING_WRONG);
                     }
                 }
 
@@ -139,20 +148,19 @@ public class LoginActivity extends BaseActivity {
                 public void onFailure(Call<Response> call, Throwable t) {
                     dissmissPleasewaitDialog();
                     Log.e(TAG, "error", t);
-                    showMessage(Static.SOMETHING_WRONG);
+                    showSnackbar(Static.SOMETHING_WRONG);
 
                 }
             });
-        }else {
-            Toast.makeText(getApplicationContext(), "Card number "+ Static.REQUIRED, Toast.LENGTH_LONG).show();
-
+        } else {
+            inputCardNumberFragment.getEtCardNumber().setError("Card number should not be empty");
         }
     }
 
     private static final String TAG = LoginActivity.class.toString();
 
     private void signIn() {
-        final String pwd = enterPasswordFragment.getPwd().toString();
+        final String pwd = enterPasswordFragment.getEtPass().getEditText().getText().toString();
         if (!pwd.isEmpty()) {
             if (!cardNumber.isEmpty()) {
                 showPleasewaitDialog();
@@ -165,7 +173,7 @@ public class LoginActivity extends BaseActivity {
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                         dissmissPleasewaitDialog();
 
-                        Log.d(TAG, "resp:"+response);
+                        Log.d(TAG, "resp:" + response);
                         if (response.isSuccessful()) {
                             Response body = response.body();
                             Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
@@ -185,21 +193,19 @@ public class LoginActivity extends BaseActivity {
                                 WelcomeActivity.activity.finish();
                                 finish();
                             } else {
-                                showMessage(body.getMessage());
+                                showSnackbar(body.getMessage());
                             }
-                        }
-                        else if (response.errorBody()!=null){
+                        } else if (response.errorBody() != null) {
                             try {
-                                showMessage(response.errorBody().string());
-                            }catch(Exception ex){
+                                JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                enterPasswordFragment.getEtPass().setError(jObjError.getString("message"));
+                            } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
-                        }
-                        else if (response.body()!=null && response.body().getMessage()!=null){
-                            showMessage(response.body().getMessage());
-                        }
-                        else {
-                            showMessage(Static.SOMETHING_WRONG);
+                        } else if (response.body() != null && response.body().getMessage() != null) {
+                            showSnackbar(response.body().getMessage());
+                        } else {
+                            showSnackbar(Static.SOMETHING_WRONG);
                         }
                     }
 
@@ -207,67 +213,77 @@ public class LoginActivity extends BaseActivity {
                     public void onFailure(Call<Response> call, Throwable t) {
                         dissmissPleasewaitDialog();
                         Log.e(TAG, "error", t);
-                        showMessage(Static.SOMETHING_WRONG);
+                        showSnackbar(Static.SOMETHING_WRONG);
 
                     }
                 });
             } else {
                 Toast.makeText(getApplicationContext(), "Card number " + Static.REQUIRED, Toast.LENGTH_LONG).show();
-
             }
-        }else {
-            Toast.makeText(getApplicationContext(), "Password " + Static.REQUIRED, Toast.LENGTH_LONG).show();
+        } else {
+            enterPasswordFragment.getEtPass().setError("Password should not be empty");
         }
     }
 
-    private void signUp(){
-        String pwd = createPasswordFragment.getPwd().toString();
+    private void signUp() {
+        String pwd = createPasswordFragment.getEtPass().getEditText().getText().toString();
+        Log.d(TAG, "pwd:"+pwd);
         if (!pwd.isEmpty()) {
-            if (!cardNumber.isEmpty()) {
-                showPleasewaitDialog();
-                Map<String, String> map = new HashMap<>();
-                map.put("cardNumber", cardNumber);
-                map.put("password", pwd);
-                authService.signUp(map).enqueue(new Callback<Response>() {
-                    @Override
-                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                        dissmissPleasewaitDialog();
-                        if (response.isSuccessful()) {
-                            Response body = response.body();
-                            Gson gson = new Gson();
-                            JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
-                            User user = gson.fromJson(jsonObject, User.class);
+            if (StringUtils.isPasswordValid(pwd, true, true, 6, 20)) {
+                if (!cardNumber.isEmpty()) {
+                    showPleasewaitDialog();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("cardNumber", cardNumber);
+                    map.put("password", pwd);
+                    authService.signUp(map).enqueue(new Callback<Response>() {
+                        @Override
+                        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                            dissmissPleasewaitDialog();
+                            if (response.isSuccessful()) {
+                                Response body = response.body();
+                                Gson gson = new Gson();
+                                JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
+                                User user = gson.fromJson(jsonObject, User.class);
 
-                            if (user != null) {
-                                String token = response.headers().get("Token");
-                                Preferences.setUser(getApplicationContext(), user);
-                                Preferences.setToken(getApplicationContext(), token);
-                                Preferences.setLoginFlag(getApplicationContext(), true);
-                                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                WelcomeActivity.activity.finish();
-                                finish();
+                                if (user != null) {
+                                    String token = response.headers().get("Token");
+                                    Preferences.setUser(getApplicationContext(), user);
+                                    Preferences.setToken(getApplicationContext(), token);
+                                    Preferences.setLoginFlag(getApplicationContext(), true);
+                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                    WelcomeActivity.activity.finish();
+                                    finish();
+                                } else {
+                                    showSnackbar(body.getMessage());
+                                }
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    createPasswordFragment.getEtPass().setError(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             } else {
-                                showMessage(body.getMessage());
+                                showSnackbar(Static.SOMETHING_WRONG);
                             }
-                        } else {
-                            showMessage(Static.SOMETHING_WRONG);
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Response> call, Throwable t) {
-                        dissmissPleasewaitDialog();
-                        Log.e(TAG, "error", t);
-                        showMessage(Static.SOMETHING_WRONG);
+                        @Override
+                        public void onFailure(Call<Response> call, Throwable t) {
+                            dissmissPleasewaitDialog();
+                            Log.e(TAG, "error", t);
+                            showSnackbar(Static.SOMETHING_WRONG);
 
-                    }
-                });
+                        }
+                    });
+                } else {
+                    showSnackbar("Card number " + Static.REQUIRED);
+                }
             } else {
-                Toast.makeText(getApplicationContext(), "Card number " + Static.REQUIRED, Toast.LENGTH_LONG).show();
-
+                createPasswordFragment.getEtPass().setError("Password should be valid");
             }
-        }else {
-            Toast.makeText(getApplicationContext(), "Password " + Static.REQUIRED, Toast.LENGTH_LONG).show();
+        } else {
+            createPasswordFragment.getEtPass().setError("Password should not be empty");
         }
     }
 

@@ -14,6 +14,8 @@ import com.livingworld.clients.car.CarrService;
 import com.livingworld.clients.model.Response;
 import com.livingworld.util.Static;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,6 +83,13 @@ public class MyCarAddActivity extends BaseActivity {
                             dissmissPleasewaitDialog();
                             if (response.isSuccessful()) {
                                 finish();
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    showMessage(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             } else {
                                 showMessage(Static.SOMETHING_WRONG);
                             }
@@ -100,6 +109,13 @@ public class MyCarAddActivity extends BaseActivity {
                             dissmissPleasewaitDialog();
                             if (response.isSuccessful()) {
                                 finish();
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    showMessage(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             } else {
                                 showMessage(Static.SOMETHING_WRONG);
                             }

@@ -28,6 +28,8 @@ import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,9 +53,16 @@ public class RedeemActivity extends BaseActivity {
     @BindView(R.id.tv_totalPoints)
     TextView tvTotalPoints;
 
+    @BindView(R.id.tv_current_points)
+    TextView tvCurrentPoints;
+    @BindView(R.id.tv_points)
+    TextView tvAfterRedeemPoints;
+
     Activity activity;
     RewardsService rewardsService;
     RedeemsAdapter adapter;
+
+    User user;
 
     private static final String TAG = RedeemActivity.class.toString();
 
@@ -63,6 +72,7 @@ public class RedeemActivity extends BaseActivity {
         setContentView(R.layout.activity_redeem_rewards);
         ButterKnife.bind(this);
         activity = this;
+        user = Preferences.getUser(activity);
         ivFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +122,12 @@ public class RedeemActivity extends BaseActivity {
         for (Reward reward : map.keySet()){
             pts = pts + reward.getRewardPoint()*Integer.parseInt(map.get(reward));
         }
+        int currentPoint = 0;
+        tvCurrentPoints.setText(user.getMember().getPoints()+" pts");
+        if (user.getMember()!=null && user.getMember().getPoints()!=null){
+            currentPoint = Integer.parseInt(user.getMember().getPoints());
+        }
+        tvAfterRedeemPoints.setText((currentPoint-pts)+" pts");
         tvTotalPoints.setText(String.valueOf(pts));
     }
 
@@ -169,6 +185,13 @@ public class RedeemActivity extends BaseActivity {
                         }
                     });
                     dialog.show();
+                } else if (response.errorBody() != null) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                        showMessage(jObjError.getString("message"));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 } else {
                     showMessage(Static.SOMETHING_WRONG);
                 }

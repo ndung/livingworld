@@ -31,7 +31,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout"
-        android:paddingBottom="16dp"
         android:paddingLeft="16dp">
 
         <LinearLayout
@@ -55,7 +54,7 @@
                     android:id="@+id/iv_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/heidi_sandstrom" />
+                    android:src="@drawable/ic_account_blue" />
             </RelativeLayout>
 
             <LinearLayout
@@ -69,16 +68,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_name" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:hint="@string/hint_enter_your_name"
-                    android:text="John Doe"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:hint="@string/hint_enter_your_name"
+                        android:text="John Doe"
+                        android:textColorHint="#4d333333" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
@@ -92,17 +98,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_email" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:hint="@string/hint_enter_your_email"
-                    android:text="johndoe@gmail.com"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:inputType="textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:hint="@string/hint_enter_your_email"
+                        android:text="johndoe@gmail.com"
+                        android:textColorHint="#4d333333" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -115,17 +127,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_mobile_number" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:hint="@string/hint_enter_your_mobile_number"
-                    android:text="081234567890"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:hint="@string/hint_enter_your_mobile_number"
+                        android:text="081234567890"
+                        android:textColorHint="#4d333333" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <RelativeLayout
@@ -143,18 +160,24 @@
                         android:layout_height="wrap_content"
                         android:text="@string/lbl_password" />
 
-                    <EditText
+                    <android.support.design.widget.TextInputLayout
+                        app:hintEnabled="false"
                         android:id="@+id/et_pwd"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-4dp"
-                        android:layout_marginRight="-4dp"
-                        android:backgroundTint="#d8d8d8"
-                        android:hint="@string/hint_enter_your_password"
-                        android:inputType="textPassword"
-                        android:text="081234567890"
-                        android:textColorHint="#4d333333" />
+                        android:layout_height="wrap_content">
 
+                        <EditText
+                            android:enabled="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-4dp"
+                            android:layout_marginRight="-4dp"
+                            android:backgroundTint="#d8d8d8"
+                            android:hint="@string/hint_enter_your_password"
+                            android:inputType="textPassword"
+                            android:text="081234567890"
+                            android:textColorHint="#4d333333" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <ImageView
@@ -178,7 +201,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_religion" />
-
 
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
@@ -224,7 +246,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_marital_status" />
 
-
                 <android.support.v7.widget.AppCompatSpinner
                     app:backgroundTint="#d8d8d8"
                     android:layout_marginLeft="-4dp"
@@ -247,17 +268,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_date_of_birth" />
 
-                <EditText
+
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_bod"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:drawableRight="@drawable/ic_calendaar"
-                    android:hint="@string/hint_enter_your_birth_of_date"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:drawableRight="@drawable/ic_calendaar"
+                        android:hint="@string/hint_enter_your_birth_of_date"
+                        android:textColorHint="#4d333333" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -293,19 +320,24 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_address" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:gravity="top"
-                    android:hint="@string/hint_enter_your_address"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLines="4"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:gravity="top"
+                        android:hint="@string/hint_enter_your_address"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="4"
+                        android:textColorHint="#4d333333" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
 
@@ -352,17 +384,22 @@
                         android:layout_height="wrap_content"
                         android:text="@string/lbl_zip_code" />
 
-                    <EditText
+                    <android.support.design.widget.TextInputLayout
+                        app:hintEnabled="false"
                         android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="-4dp"
-                        android:layout_marginRight="-4dp"
-                        android:backgroundTint="#d8d8d8"
-                        android:hint="@string/hint_enter_your_zipcode"
-                        android:inputType="number"
-                        android:textColorHint="#4d333333" />
+                        android:layout_height="wrap_content">
 
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-4dp"
+                            android:layout_marginRight="-4dp"
+                            android:backgroundTint="#d8d8d8"
+                            android:hint="@string/hint_enter_your_zipcode"
+                            android:inputType="number"
+                        android:textColorHint="#4d333333" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -378,16 +415,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_home_phone" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
+                    app:hintEnabled="false"
                     android:id="@+id/et_home_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:backgroundTint="#d8d8d8"
-                    android:hint="@string/hint_enter_your_home_phone"
-                    android:textColorHint="#4d333333" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:backgroundTint="#d8d8d8"
+                        android:inputType="number"
+                        android:hint="@string/hint_enter_your_home_phone"
+                        android:textColorHint="#4d333333" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
         </LinearLayout>

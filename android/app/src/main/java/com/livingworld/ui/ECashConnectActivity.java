@@ -28,9 +28,12 @@ import com.livingworld.ui.fragment.ecash.EcashSuccessFragment;
 import com.livingworld.ui.fragment.ecash.EcashVerifyFragment;
 import com.livingworld.ui.fragment.ecash.EcashIntroFragment;
 import com.livingworld.util.GsonDeserializer;
+import com.livingworld.util.Static;
 import com.robohorse.pagerbullet.PagerBullet;
 import com.thefinestartist.finestwebview.FinestWebView;
 import com.thefinestartist.finestwebview.listeners.WebViewListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -109,6 +112,15 @@ public class EcashConnectActivity extends BaseActivity {
                                 }else{
                                     showMessage(data.get("status"));
                                 }
+                            }else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    showMessage(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } else {
+                                showMessage(Static.SOMETHING_WRONG);
                             }
                         }
 

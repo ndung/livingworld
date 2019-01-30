@@ -57,11 +57,12 @@ public class LuckyDrawsActivity extends BaseActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
+        showPleasewaitDialog();
         trxService = ApiUtils.TrxService(getApplicationContext());
         trxService.getLuckyDraws().enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                dissmissPleasewaitDialog();
                 if (response.isSuccessful()) {
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                     JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
@@ -78,6 +79,7 @@ public class LuckyDrawsActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
+                dissmissPleasewaitDialog();
                 showMessage(Static.SOMETHING_WRONG);
             }
         });

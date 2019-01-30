@@ -219,11 +219,15 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
                     List<Event> currentEvents = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Event>>() {
                     }.getType());
+                    System.out.println("currentEvents:"+currentEvents);
                     if (currentEvents!=null && !currentEvents.isEmpty()){
                         event = currentEvents.get(0);
                         tvEventName.setText(Html.fromHtml(event.getName()));
                         String date = dateFormatter.format(event.getStartDate())+" - "+dateFormatter.format(event.getEndDate());
                         tvEventDate.setText(date);
+                    }else if (currentEvents.isEmpty()){
+                        tvEventName.setText("Rewards");
+                        tvEventDate.setText("Coming Soon");
                     }
                 }
             }

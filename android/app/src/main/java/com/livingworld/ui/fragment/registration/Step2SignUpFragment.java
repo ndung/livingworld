@@ -2,11 +2,11 @@ package com.livingworld.ui.fragment.registration;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.livingworld.R;
 
@@ -21,16 +21,16 @@ public class Step2SignUpFragment extends Fragment {
 
 
     @BindView(R.id.et_pass1)
-    EditText etPass1;
+    TextInputLayout etPass1;
     @BindView(R.id.et_pass2)
-    EditText etPass2;
+    TextInputLayout etPass2;
     Unbinder unbinder;
 
-    public EditText getEtPass1() {
+    public TextInputLayout getEtPass1() {
         return etPass1;
     }
 
-    public EditText getEtPass2() {
+    public TextInputLayout getEtPass2() {
         return etPass2;
     }
 

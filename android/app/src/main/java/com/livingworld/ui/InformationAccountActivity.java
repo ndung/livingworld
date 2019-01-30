@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +39,10 @@ import com.livingworld.clients.model.Response;
 import com.livingworld.util.PartUtils;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
+import com.livingworld.util.StringUtils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,6 +51,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,11 +73,11 @@ public class InformationAccountActivity extends BaseActivity {
     @BindView(R.id.iv_change_pwd)
     ImageView ivChangePwd;
     @BindView(R.id.et_name)
-    EditText etName;
+    TextInputLayout etName;
     @BindView(R.id.et_email)
-    EditText etEmail;
+    TextInputLayout etEmail;
     @BindView(R.id.et_phone)
-    EditText etPhone;
+    TextInputLayout etPhone;
     @BindView(R.id.sp_religion)
     Spinner spReligion;
     @BindView(R.id.sp_gender)
@@ -79,17 +85,17 @@ public class InformationAccountActivity extends BaseActivity {
     @BindView(R.id.sp_material_status)
     Spinner spMaterialStatus;
     @BindView(R.id.et_bod)
-    EditText etBod;
+    TextInputLayout etBod;
     @BindView(R.id.sp_nationality)
     Spinner spNationality;
     @BindView(R.id.et_address)
-    EditText etAddress;
+    TextInputLayout etAddress;
     @BindView(R.id.sp_city)
     Spinner spCity;
     @BindView(R.id.et_zip_code)
-    EditText etZipCode;
+    TextInputLayout etZipCode;
     @BindView(R.id.et_home_phone)
-    EditText etHomePhone;
+    TextInputLayout etHomePhone;
     @BindView(R.id.button4)
     Button submit;
     User user;
@@ -204,13 +210,13 @@ public class InformationAccountActivity extends BaseActivity {
             }
         }
 
-        etName.setText(member.getIdentityName());
-        etEmail.setText(member.getEmail());
-        etAddress.setText(member.getAddress());
-        etBod.setText(member.getDateOfBirth());
-        etPhone.setText(user.getMobileNumber());
-        etHomePhone.setText(member.getHomePhone());
-        etZipCode.setText(member.getZipcode());
+        etName.getEditText().setText(member.getIdentityName());
+        etEmail.getEditText().setText(member.getEmail());
+        etAddress.getEditText().setText(member.getAddress());
+        etBod.getEditText().setText(member.getDateOfBirth());
+        etPhone.getEditText().setText(user.getMobileNumber());
+        etHomePhone.getEditText().setText(member.getHomePhone());
+        etZipCode.getEditText().setText(member.getZipcode());
     }
 
     private void initChangePicture() {
@@ -223,7 +229,7 @@ public class InformationAccountActivity extends BaseActivity {
     }
 
     private void initTglLahir() {
-        etBod.setOnClickListener(new View.OnClickListener() {
+        etBod.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar now = Calendar.getInstance();
@@ -231,7 +237,7 @@ public class InformationAccountActivity extends BaseActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                etBod.setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
+                                etBod.getEditText().setText(year + "-" + convertNumber((monthOfYear + 1)) + "-" + convertNumber(dayOfMonth));
                             }
                         },
                         now.get(Calendar.YEAR),
@@ -242,7 +248,7 @@ public class InformationAccountActivity extends BaseActivity {
             }
         });
 
-        etBod.setFocusable(false);
+        etBod.getEditText().setFocusable(false);
     }
 
     private String convertNumber(int number){
@@ -260,7 +266,7 @@ public class InformationAccountActivity extends BaseActivity {
                     public void onPermissionGranted() {
                         String[] list = new String[]{"Camera", "Gallery"};
                         new MaterialDialog.Builder(InformationAccountActivity.this)
-                                .title("Pilih")
+                                .title("Choose")
                                 .items(list)
                                 .itemsCallback(new MaterialDialog.ListCallback() {
                                     @Override
@@ -298,15 +304,9 @@ public class InformationAccountActivity extends BaseActivity {
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
                 switch (type) {
                     case CODE_CAMERA:
-//                        String nameNewFile = PartUtils.prepareUpload(getApplicationContext(), imageFile, user.getId());
-//                        imageKTPPath = nameNewFile;
-//                        Glide.with(InformationAccountActivity.this).load(imageFile).into(ivProfile);
                         confirmDialog(imageFile);
                         break;
                     case CODE_GALLERY:
-//                        nameNewFile = PartUtils.prepareUpload(getApplicationContext(), imageFile, user.getId());
-//                        imageKTPPath = nameNewFile;
-//                        Glide.with(InformationAccountActivity.this).load(imageFile).into(ivProfile);
                         confirmDialog(imageFile);
                         break;
                 }
@@ -317,7 +317,7 @@ public class InformationAccountActivity extends BaseActivity {
 
     private void confirmDialog(final File path){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
                 showPleasewaitDialog();
@@ -333,20 +333,27 @@ public class InformationAccountActivity extends BaseActivity {
                             Preferences.setUser(getApplicationContext(), user);
                             Glide.with(getApplicationContext()).load(Static.IMAGES_URL+user.getPhotoProfileUrl()).into(ivProfile);
                             dialog.dismiss();
-                            showMessage("Berhasil upload photo profile");
-                        }else{
-                            showMessage(Static.SOMETHING_WRONG);
+                            //showMessage("Berhasil upload photo profile");
+                        }else if (response.errorBody() != null) {
+                            try {
+                                JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                showSnackbar(jObjError.getString("message"));
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        } else {
+                            showSnackbar(Static.SOMETHING_WRONG);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Response> call, Throwable t) {
                         dissmissPleasewaitDialog();
-                        showMessage(Static.SOMETHING_WRONG);
+                        showSnackbar(Static.SOMETHING_WRONG);
                     }
                 });
             }
-        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -360,58 +367,80 @@ public class InformationAccountActivity extends BaseActivity {
 
         ImageView image = dialogLayout.findViewById(R.id.iv_show_image);
         Glide.with(getApplicationContext()).load(path).into(image);
-//        Bitmap icon = BitmapFactory.decodeFile(path.getAbsolutePath());
-//        image.setImageBitmap(icon);
 
         dialog.show();
-
-
     }
 
     private void setData(){
         Map<String,String> map = new HashMap<>();
-
-        if(etName.getText().toString().isEmpty()){
-            showMessage("Name "+ Static.REQUIRED);
-            return;
+        boolean bool = true;
+        if(etName.getEditText().getText().toString().isEmpty()){
+            etName.setError("Name should not be empty");
+            bool = false;
+        }else{
+            etName.setError(null);
         }
-        map.put("name",etName.getText().toString());
+        map.put("name",etName.getEditText().getText().toString());
 
-        if(etEmail.getText().toString().isEmpty()){
-            showMessage("Email "+ Static.REQUIRED);
-            return;
+        if(etEmail.getEditText().getText().toString().isEmpty()){
+            etEmail.setError("Email should not be empty");
+            bool = false;
+        }else if (!StringUtils.isEmailValid(etEmail.getEditText().getText().toString())){
+            etEmail.setError("Email should be valid");
+            bool = false;
+        }else{
+            etEmail.setError(null);
         }
-        map.put("email",etEmail.getText().toString());
+        map.put("email",etEmail.getEditText().getText().toString());
 
-        if(etPhone.getText().toString().isEmpty()){
-            showMessage("Mobile Number "+ Static.REQUIRED);
-            return;
+        if(etPhone.getEditText().getText().toString().isEmpty()){
+            etPhone.setError("Mobile Number should not be empty");
+            bool = false;
+        }else if(etPhone.getEditText().getText().toString().length()<10 || !StringUtils.isMobilePhoneNumberValid(etPhone.getEditText().getText().toString())){
+            etPhone.setError("Mobile Number should be valid");
+            bool = false;
+        }else{
+            etPhone.setError(null);
         }
-        map.put("mobilePhoneNumber",etPhone.getText().toString());
+        map.put("mobilePhoneNumber",etPhone.getEditText().getText().toString());
 
-        if(etBod.getText().toString().isEmpty()){
-            showMessage("Date of Birth "+ Static.REQUIRED);
-            return;
+        if(etBod.getEditText().getText().toString().isEmpty()){
+            etBod.setError("Date of Birth should not be empty");
+            bool = false;
+        }else{
+            etBod.setError(null);
         }
-        map.put("birthOfDate",etBod.getText().toString());
+        map.put("birthOfDate",etBod.getEditText().getText().toString());
 
-        if(etAddress.getText().toString().isEmpty()){
-            showMessage("Address "+ Static.REQUIRED);
-            return;
+        if(etAddress.getEditText().getText().toString().isEmpty()){
+            etAddress.setError("Address should not be empty");
+            bool = false;
+        }else{
+            etAddress.setError(null);
         }
-        map.put("address",etAddress.getText().toString());
+        map.put("address",etAddress.getEditText().getText().toString());
 
-        if(etZipCode.getText().toString().isEmpty()){
-            showMessage("ZIP Code "+ Static.REQUIRED);
-            return;
+        if(etZipCode.getEditText().getText().toString().isEmpty()){
+            etZipCode.setError("Zip Code should not be empty");
+            bool = false;
+        }else if (etZipCode.getEditText().getText().toString().length()!=5){
+            etZipCode.setError("Zip Code should be valid");
+            bool = false;
+        }else{
+            etZipCode.setError(null);
         }
-        map.put("zipCode",etZipCode.getText().toString());
+        map.put("zipCode",etZipCode.getEditText().getText().toString());
 
-        if(etHomePhone.getText().toString().isEmpty()){
-            showMessage("Home Number "+ Static.REQUIRED);
-            return;
+        if(etHomePhone.getEditText().getText().toString().isEmpty()){
+            etHomePhone.setError("Home phone number should not be empty");
+            bool = false;
+        } else if (etHomePhone.getEditText().getText().toString().length()<8){
+            etHomePhone.setError("Home phone number should be valid");
+            bool = false;
+        }else{
+            etHomePhone.setError(null);
         }
-        map.put("homePhoneNumber",etHomePhone.getText().toString());
+        map.put("homePhoneNumber",etHomePhone.getEditText().getText().toString());
 
         for (int i=0; i < religionMasters.size(); i++){
             Master master = religionMasters.get(i);
@@ -455,30 +484,40 @@ public class InformationAccountActivity extends BaseActivity {
         map.put("cardNumber", member.getCardNumber());
         map.put("tid", user.getUserId());
         map.put("idNumber", member.getIdenitityNumber());
-        map.put("memberType", member.getMemberType());
+        map.put("cardId", member.getMemberType());
+        map.put("memberType", "01");
 
-        showPleasewaitDialog();
-        memberService.updateMember(map).enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                dissmissPleasewaitDialog();
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                    User user = gson.fromJson(jsonObject.get("data"), User.class);
-                    Preferences.setUser(getApplicationContext(), user);
-                    showMessage("Berhasil update profil");
-                }else{
-                    showMessage(Static.SOMETHING_WRONG);
+        if (bool) {
+            showPleasewaitDialog();
+            memberService.updateMember(map).enqueue(new Callback<Response>() {
+                @Override
+                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                    dissmissPleasewaitDialog();
+                    if (response.isSuccessful()) {
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                        User user = gson.fromJson(jsonObject.get("data"), User.class);
+                        Preferences.setUser(getApplicationContext(), user);
+                        showMessage("Success");
+                    } else if (response.errorBody() != null) {
+                        try {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                            showSnackbar(jObjError.getString("message"));
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        showSnackbar(Static.SOMETHING_WRONG);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-                dissmissPleasewaitDialog();
-                showMessage(Static.SOMETHING_WRONG);
-            }
-        });
+                @Override
+                public void onFailure(Call<Response> call, Throwable t) {
+                    dissmissPleasewaitDialog();
+                    showSnackbar(Static.SOMETHING_WRONG);
+                }
+            });
+        }
     }
 
     @OnClick({R.id.iv_finish, R.id.iv_profile, R.id.iv_change_pwd})

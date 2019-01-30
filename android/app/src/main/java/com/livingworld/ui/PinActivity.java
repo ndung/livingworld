@@ -15,6 +15,8 @@ import com.livingworld.clients.trx.TrxService;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -105,7 +107,14 @@ public class PinActivity extends BaseActivity {
                         dialog.setContentView(R.layout.dialog_custom);
                         dialog.show();
                     }
-                }else{
+                }else if (response.errorBody() != null) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                        showMessage(jObjError.getString("message"));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
                     showMessage(Static.SOMETHING_WRONG);
                 }
             }

@@ -1,12 +1,9 @@
 package com.livingworld.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -17,11 +14,12 @@ import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.auth.AuthService;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.model.Response;
-import com.livingworld.util.ChipperUtils;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
-import com.thefinestartist.Base;
+import com.livingworld.util.StringUtils;
+
+import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -29,7 +27,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -38,11 +35,11 @@ public class ChangePasswordActivity extends BaseActivity {
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
     @BindView(R.id.et_old_password)
-    EditText etOldPassword;
+    TextInputLayout etOldPassword;
     @BindView(R.id.et_new_password)
-    EditText etNewPassword;
+    TextInputLayout etNewPassword;
     @BindView(R.id.et_confirm_password)
-    EditText etConfirmPassword;
+    TextInputLayout etConfirmPassword;
     @BindView(R.id.bt_next)
     Button btNext;
 
@@ -66,17 +63,30 @@ public class ChangePasswordActivity extends BaseActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etOldPassword.getText().toString().equals("")){
-                    showMessage("Old password should not be blank");
-                }else if (etNewPassword.getText().toString().equals("")){
-                    showMessage("New password should not be blank");
-                }else if (etConfirmPassword.getText().toString().equals("")){
-                    showMessage("Confirmed new password should not be blank");
-                }else if (etNewPassword.getText().toString().contains(etConfirmPassword.getText().toString())){
+                boolean bool = true;
+                if (etOldPassword.getEditText().getText().toString().equals("")){
+                    etOldPassword.setError("Old password should not be empty");
+                    bool = false;
+                }
+                if (etNewPassword.getEditText().getText().toString().equals("")){
+                    etNewPassword.setError("New password should not be empty");
+                    bool = false;
+                }else if (!StringUtils.isPasswordValid(etNewPassword.getEditText().getText().toString(), true, true, 6, 20)) {
+                    etNewPassword.setError("New password should be valid");
+                    bool = false;
+                }
+                if (etConfirmPassword.getEditText().getText().toString().equals("")){
+                    etConfirmPassword.setError("Confirmed new password should not be empty");
+                    bool = false;
+                }else if (!etNewPassword.getEditText().getText().toString().equals(etConfirmPassword.getEditText().getText().toString())) {
+                    etConfirmPassword.setError("New password should be the same with the confirmed password");
+                    bool = false;
+                }
+                if (bool){
                     showPleasewaitDialog();
                     Map<String, String> map = new HashMap<>();
-                    map.put("oldPassword", etOldPassword.getText().toString());
-                    map.put("newPassword", etNewPassword.getText().toString());
+                    map.put("oldPassword", etOldPassword.getEditText().getText().toString());
+                    map.put("newPassword", etNewPassword.getEditText().getText().toString());
                     authService.changePassword(map).enqueue(new Callback<Response>() {
                         @Override
                         public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -90,34 +100,27 @@ public class ChangePasswordActivity extends BaseActivity {
                                     Preferences.setUser(getApplicationContext(), user);
                                     finish();
                                 } else {
-                                    showMessage(body.getMessage());
+                                    showSnackbar(body.getMessage());
                                 }
-                            }else {
-                                if (response.code()==400){
-                                    authenticationFailed();
-                                } else if (response.errorBody() != null) {
-                                    try {
-                                        showMessage(response.errorBody().string());
-                                    } catch (Exception ex) {
-                                        ex.printStackTrace();
-                                    }
-                                } else if (response.body() != null && response.body().getMessage() != null) {
-                                    showMessage(response.body().getMessage());
-                                } else {
-                                    showMessage(Static.SOMETHING_WRONG);
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    etOldPassword.setError(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
                                 }
+                            } else {
+                                showSnackbar(Static.SOMETHING_WRONG);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Response> call, Throwable t) {
                             dissmissPleasewaitDialog();
-                            showMessage(Static.SOMETHING_WRONG);
+                            showSnackbar(Static.SOMETHING_WRONG);
 
                         }
                     });
-                }else{
-                    showMessage("New password should be the same with the confirmed password");
                 }
             }
         });

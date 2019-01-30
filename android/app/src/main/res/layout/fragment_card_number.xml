@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -42,16 +43,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_card_number" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/et_card_number"
+                    app:hintEnabled="false"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:textColorHint="#4d333333"
-                    android:backgroundTint="#d8d8d8"
-                    android:hint="@string/hint_enter_your_card_number" />
+                    android:layout_height="wrap_content">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginRight="-4dp"
+                        android:textColorHint="#4d333333"
+                        android:backgroundTint="#d8d8d8"
+                        android:hint="@string/hint_enter_your_card_number" />
+
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
         </LinearLayout>
