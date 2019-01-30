@@ -44,6 +44,7 @@ public class ListRedeemedRewardActionBean extends ActionBeanClass {
         if (getUserSession().getMerchant()!=null){
             parameter.setEqualsOrLikes("reward.merchant", getUserSession().getMerchant());
         }
+        parameter.setDescOrders("createAt");
         parameter.setMaxRows(10);
 
         return baseHibernateManager.getList(parameter, getExtendedPaginated());

@@ -67,7 +67,7 @@ public class MemberManagementActionBean extends ActionBeanClass {
         if (getId() != null) parameter.setEqualsOrLikes("id", getId());
         if (getFullName() != null) parameter.setEqualsOrLikes("fullName", getFullName());
         parameter.setMaxRows(10);
-
+        parameter.setDescOrders("createAt");
         return baseHibernateManager.getList(parameter, getExtendedPaginated());
     }
 
