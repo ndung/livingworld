@@ -1,6 +1,5 @@
 package id.co.icg.lw.web.user;
 
-
 import id.co.icg.lw.dao.model.app.User;
 import id.co.icg.lw.manager.UserAdminManager;
 import id.co.icg.lw.web.ActionBeanClass;
@@ -46,6 +45,7 @@ public class MyAccountActionBean extends ActionBeanClass {
         User au = userAdminManager.getUserAdmin(appUser.getId());
         if(au==null) errors.add("myaccount" , new LocalizableError("user.myaccount.error"));
         if(phone!=null && !phone.matches("[0-9]+")) errors.add("myaccount" , new LocalizableError("user.myaccount.error.phone"));
+        if(email!=null && !isValidEmailAddress(email)) errors.add("email" , new LocalizableError("user.myaccount.error.email"));
     }
     
     public Resolution update() {
@@ -94,6 +94,13 @@ public class MyAccountActionBean extends ActionBeanClass {
 
     public void setAppUser(User appUser) {
         this.appUser = appUser;
+    }
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 }
 

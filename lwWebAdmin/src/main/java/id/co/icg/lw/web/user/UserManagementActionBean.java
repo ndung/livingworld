@@ -1,6 +1,5 @@
 package id.co.icg.lw.web.user;
 
-
 import id.co.icg.lw.dao.model.app.User;
 import id.co.icg.lw.dao.util.ParameterDao;
 import id.co.icg.lw.manager.BaseHibernateManager;

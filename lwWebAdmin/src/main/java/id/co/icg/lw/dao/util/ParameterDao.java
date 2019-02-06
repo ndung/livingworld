@@ -31,6 +31,7 @@ public class ParameterDao implements Serializable {
     private Class                        clazz;
     private int                          number;
     private boolean                      showList;
+    private String                       alias;
 
     public ParameterDao(Class clazz) {
         maps          = new HashMap<>();
@@ -153,5 +154,12 @@ public class ParameterDao implements Serializable {
     public boolean isShowList() {
         return showList;
     }
-    
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 }

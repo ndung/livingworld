@@ -1,32 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-PAGES/taglibs.jsp" %>
 
-<s:layout-render name="/WEB-PAGES/index.jsp" title="List Member">
+<s:layout-render name="/WEB-PAGES/index.jsp" title="List Message">
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
                 <s:form beanclass="id.co.icg.lw.web.member.MessageManagementActionBean" method="get">
-                    <div class="p-x-1 col-lg-9">
-                        <div class="row">
-                            <div class="col-sm-4 form-group">
-                                <label>Title</label>
-                                <s:text class="form-control" name="title" id="title"/>
-                            </div>
-                            <div class="col-sm-4 form-group">
-                                <label>Content</label>
-                                <s:text class="form-control" name="text" id="text"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 form-group">
-                                <label>Date From</label>
-                                <s:text class="form-control date" name="dateFrom"/>
-                            </div>
-                            <div class="col-sm-2 form-group">
-                                <label>Date To</label>
-                                <s:text class="form-control date" name="dateTo"/>
-                            </div>
-                        </div>
+                    <div class="p-x-1 col-lg-5">
+                        <fieldset class="form-group form-group-md">
+                            <label>Title</label>
+                            <s:text class="form-control" name="title"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Content</label>
+                            <s:text class="form-control" name="text"/>
+                        </fieldset>
                         <button type="submit" class="btn btn-md btn-primary">Find</button>
                         <button type="submit" name="add" class="btn btn-md btn-primary">Add Message</button>
                     </div>

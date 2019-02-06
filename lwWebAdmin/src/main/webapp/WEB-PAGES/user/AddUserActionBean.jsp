@@ -17,11 +17,13 @@
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Password</label>
-                            <s:password class="form-control" name="appUser.password"/>
+                            <s:password id="myInput1" class="form-control" name="appUser.password"/>
+                            <input type="checkbox" onclick="myFunction1()">Show
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Confirm Password</label>
-                            <s:password class="form-control" name="rePassword"/>
+                            <s:password id="myInput2" class="form-control" name="rePassword"/>
+                            <input type="checkbox" onclick="myFunction2()">Show
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>E-Mail</label>
@@ -57,3 +59,23 @@
         </div>
     </s:layout-component>
 </s:layout-render>
+
+
+<script>
+    function myFunction1() {
+        var x = document.getElementById("myInput1");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    function myFunction2() {
+        var x = document.getElementById("myInput2");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

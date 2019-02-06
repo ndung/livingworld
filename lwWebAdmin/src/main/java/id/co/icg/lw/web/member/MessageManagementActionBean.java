@@ -1,15 +1,10 @@
 package id.co.icg.lw.web.member;
 
-
-import id.co.icg.lw.dao.model.app.Member;
 import id.co.icg.lw.dao.model.app.Message;
-import id.co.icg.lw.dao.model.app.User;
 import id.co.icg.lw.dao.util.ParameterDao;
 import id.co.icg.lw.manager.BaseHibernateManager;
 import id.co.icg.lw.manager.MessageManager;
-import id.co.icg.lw.manager.UserAdminManager;
 import id.co.icg.lw.web.ActionBeanClass;
-import id.co.icg.lw.web.user.AddUserActionBean;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.LocalizableError;
@@ -76,8 +71,8 @@ public class MessageManagementActionBean extends ActionBeanClass {
 
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(Message.class);
-        if (getTitle() != null) parameter.setEqualsOrLikes("title", getTitle());
-        if (getText() != null) parameter.setEqualsOrLikes("message", getText());
+        if (getTitle() != null) parameter.setEqualsOrLikes("title", "%" + getTitle() + "%");
+        if (getText() != null) parameter.setEqualsOrLikes("message", "%" + getText() + "%");
         parameter.setDescOrders("createAt");
         parameter.setMaxRows(10);
 

@@ -6,19 +6,17 @@
         <div class="panel">
             <div class="panel-body">
                 <s:form beanclass="id.co.icg.lw.web.offer.OfferManagementActionBean" method="get">
-                    <div class="p-x-1 col-lg-9">
-                        <div class="row">
-                            <div class="col-sm-4 form-group">
-                                <label>Title</label>
-                                <s:text class="form-control" name="title"/>
-                            </div>
-                            <div class="col-sm-4 form-group">
-                                <label>Description</label>
-                                <s:text class="form-control" name="text"/>
-                            </div>
-                        </div>
+                    <div class="p-x-1 col-lg-5">
+                        <fieldset class="form-group form-group-md">
+                            <label>Title</label>
+                            <s:text class="form-control" name="title"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Description</label>
+                            <s:text class="form-control" name="description"/>
+                        </fieldset>
                         <button type="submit" class="btn btn-md btn-primary">Find</button>
-                        <button type="submit" name="add" class="btn btn-md btn-primary">Add New Offer</button>
+                        <button type="submit" name="add" class="btn btn-md btn-primary">Add Message</button>
                     </div>
                 </s:form>
             </div>

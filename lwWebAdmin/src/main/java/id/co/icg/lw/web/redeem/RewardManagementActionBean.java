@@ -15,7 +15,25 @@ import org.displaytag.pagination.PaginatedList;
 @UrlBinding("/redeem/rewardmanagement.html")
 public class RewardManagementActionBean extends ActionBeanClass {
 
+    private String name;
+    private String description;
     private Reward reward;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Reward getReward() {
         return reward;
@@ -42,17 +60,23 @@ public class RewardManagementActionBean extends ActionBeanClass {
     @Before
     public void init() {
     }
-    
+
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
     }
-    
+
     public Resolution add() {
         return new ForwardResolution(AddRewardActionBean.class);
     }
 
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(Reward.class);
+        if (getName() != null) {
+            parameter.setEqualsOrLikes("name", "%" + getName() + "%");
+        }
+        if (getDescription() != null) {
+            parameter.setEqualsOrLikes("description", "%" + getDescription() + "%");
+        }
         parameter.setMaxRows(10);
         parameter.setDescOrders("createAt");
         return baseHibernateManager.getList(parameter, getExtendedPaginated());
@@ -60,7 +84,7 @@ public class RewardManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution activate() {
-        if(reward!=null){
+        if (reward != null) {
             boolean bool = rewardManager.activateReward("Y", reward);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));
@@ -69,7 +93,7 @@ public class RewardManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution deactivate() {
-        if(reward!=null){
+        if (reward != null) {
             boolean bool = rewardManager.activateReward("N", reward);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));

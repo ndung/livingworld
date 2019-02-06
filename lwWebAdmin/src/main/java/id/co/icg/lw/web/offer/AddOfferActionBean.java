@@ -56,18 +56,24 @@ public class AddOfferActionBean extends ActionBeanClass {
 
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
+        if (currentOffer.getStartDate().after(currentOffer.getEndDate())){
+            errors.add("startDate", new LocalizableError("start.date.before.end.date"));
+        }
         if (fileBean1 == null) {
             errors.add("fileBean", new LocalizableError("file.not.found"));
-        } else if (fileBean1!=null && !(fileBean1.getFileName().endsWith(".jpeg")||fileBean1.getFileName().endsWith(".jpg")
-                ||fileBean1.getFileName().endsWith(".png"))) {
+        } else if (fileBean1!=null && !(fileBean1.getFileName().toLowerCase().endsWith(".jpeg")
+                ||fileBean1.getFileName().toLowerCase().endsWith(".jpg")
+                ||fileBean1.getFileName().toLowerCase().endsWith(".png"))) {
             errors.add("fileBean1", new LocalizableError("file.wrong.format"));
         }
-        if (fileBean2!=null && !(fileBean2.getFileName().endsWith(".jpeg")||fileBean2.getFileName().endsWith(".jpg")
-                ||fileBean2.getFileName().endsWith(".png"))) {
+        if (fileBean2!=null && !(fileBean2.getFileName().toLowerCase().endsWith(".jpeg")
+                ||fileBean2.getFileName().toLowerCase().endsWith(".jpg")
+                ||fileBean2.getFileName().toLowerCase().endsWith(".png"))) {
             errors.add("fileBean2", new LocalizableError("file.wrong.format"));
         }
-        if (fileBean3!=null && !(fileBean3.getFileName().endsWith(".jpeg")||fileBean3.getFileName().endsWith(".jpg")
-                ||fileBean3.getFileName().endsWith(".png"))) {
+        if (fileBean3!=null && !(fileBean3.getFileName().toLowerCase().endsWith(".jpeg")
+                ||fileBean3.getFileName().toLowerCase().endsWith(".jpg")
+                ||fileBean3.getFileName().toLowerCase().endsWith(".png"))) {
             errors.add("fileBean3", new LocalizableError("file.wrong.format"));
         }
     }

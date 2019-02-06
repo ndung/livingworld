@@ -1,6 +1,5 @@
 package id.co.icg.lw.web.user;
 
-
 import id.co.icg.lw.dao.model.app.User;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -46,6 +45,12 @@ public class EditUserActionBean extends AddUserActionBean {
         User au = userAdminManager.getUserAdmin(appUser.getId());
         if(au==null) {
             errors.add("username" , new LocalizableError("user.management.user.notfound", appUser.getId()));
+        }
+        if (appUser.getAppRole().getId()!=2){
+            appUser.setMerchant(null);
+        }
+        if(appUser.getEmail()!=null && !isValidEmailAddress(appUser.getEmail())){
+            errors.add("email" , new LocalizableError("user.myaccount.error.email"));
         }
         if(appUser.getPhone()!=null && !appUser.getPhone().matches("[0-9]+")) {
             errors.add("phone" , new LocalizableError("user.myaccount.error.phone"));

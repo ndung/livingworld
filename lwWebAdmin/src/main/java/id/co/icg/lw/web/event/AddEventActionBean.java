@@ -35,9 +35,14 @@ public class AddEventActionBean extends ActionBeanClass {
 
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
+        if (event.getStartDate().after(event.getEndDate())){
+            errors.add("startDate", new LocalizableError("start.date.before.end.date"));
+        }
         if (fileBean == null) {
             errors.add("fileBean", new LocalizableError("file.not.found"));
-        } else if (!(fileBean.getFileName().endsWith(".jpeg")||fileBean.getFileName().endsWith(".jpg")||fileBean.getFileName().endsWith(".png"))) {
+        } else if (!(fileBean.getFileName().toLowerCase().endsWith(".jpeg")||
+                fileBean.getFileName().toLowerCase().endsWith(".jpg")||
+                fileBean.getFileName().toLowerCase().endsWith(".png"))) {
             errors.add("fileBean", new LocalizableError("file.wrong.format"));
         }
     }

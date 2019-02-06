@@ -57,6 +57,23 @@ public class BaseHibernateManagerImpl implements BaseHibernateManager {
         return paginated;
     }
 
+    public PaginatedList getList2(ParameterDao parameter, PaginatedListImpl paginated)
+    {
+        parameter.setOffside(Integer.valueOf(paginated.getPageNumber()));
+        if (paginated.getSortCriterion() != null) {
+            if (paginated.getSortDirection().equals(SortOrderEnum.ASCENDING)) {
+                parameter.setAscOrders(paginated.getSortCriterion());
+            } else if (paginated.getSortDirection().equals(SortOrderEnum.DESCENDING)) {
+                parameter.setDescOrders(paginated.getSortCriterion());
+            }
+        }
+        CurrentPage cp = this.daoHibernate.getList2(parameter);
+        paginated.setList(cp.getPageItems());
+        paginated.setTotalNumberOfRows(cp.getTotalSize());
+        paginated.setPageSize(cp.getPageSize());
+        return paginated;
+    }
+
     @Override
     public boolean deleteList(List list) {
         return daoHibernate.deleteList(list);

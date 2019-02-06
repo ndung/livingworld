@@ -19,6 +19,7 @@ import org.displaytag.pagination.PaginatedList;
 public interface BaseHibernateManager {
     CurrentPage   getList(ParameterDao parameter);
     PaginatedList getList(ParameterDao parameter, PaginatedListImpl paginatedList);
+    PaginatedList getList2(ParameterDao parameter, PaginatedListImpl paginated);
     boolean       deleteList  (List list);
     boolean       addList     (List list);
     List          getHQLList  (String sql);

@@ -1,13 +1,9 @@
 package id.co.icg.lw.web.member;
 
-
-import id.co.icg.lw.dao.model.app.CurrentOffer;
 import id.co.icg.lw.dao.model.app.Message;
 import id.co.icg.lw.manager.MessageManager;
-import id.co.icg.lw.manager.OfferManager;
 import id.co.icg.lw.util.FcmSender;
 import id.co.icg.lw.web.ActionBeanClass;
-import id.co.icg.lw.web.offer.OfferManagementActionBean;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.*;

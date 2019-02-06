@@ -5,12 +5,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "event")
 public class Event extends PojoModel {
+
     private Long id;
     private String name;
     private String description;
@@ -102,4 +104,17 @@ public class Event extends PojoModel {
     public String getActive() { return active; }
 
     public void setActive(String active) { this.active = active; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return Objects.equals(id, event.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

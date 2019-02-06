@@ -1,6 +1,5 @@
 package id.co.icg.lw.web.user;
 
-
 import id.co.icg.lw.dao.model.app.AppAdminRole;
 import id.co.icg.lw.dao.model.app.Merchant;
 import id.co.icg.lw.dao.model.app.User;
@@ -72,7 +71,10 @@ public class AddUserActionBean extends ActionBeanClass {
         if(au!=null) {
             errors.add("username" , new LocalizableError("user.management.add.exist", appUser.getId()));
         }
-        if(getAppUser().getPhone()!=null && !appUser.getPhone().matches("[0-9]+")) {
+        if(appUser.getEmail()!=null && !isValidEmailAddress(appUser.getEmail())){
+            errors.add("email" , new LocalizableError("user.myaccount.error.email"));
+        }
+        if(appUser.getPhone()!=null && !appUser.getPhone().matches("[0-9]+")) {
             errors.add("phone" , new LocalizableError("user.myaccount.error.phone"));
         }
         if(rePassword==null || !appUser.getPassword().equals(rePassword)) {
@@ -124,6 +126,13 @@ public class AddUserActionBean extends ActionBeanClass {
             pcs.add(new SelectValue(merchant.getId(), merchant.getName()));
         }
         return pcs;
+    }
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 }
 

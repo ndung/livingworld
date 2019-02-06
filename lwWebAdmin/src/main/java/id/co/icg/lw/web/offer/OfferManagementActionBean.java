@@ -26,6 +26,7 @@ public class OfferManagementActionBean extends ActionBeanClass {
     }
 
     private String title;
+    private String description;
 
     public String getTitle() {
         return title;
@@ -33,6 +34,14 @@ public class OfferManagementActionBean extends ActionBeanClass {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     private BaseHibernateManager baseHibernateManager;
@@ -52,17 +61,23 @@ public class OfferManagementActionBean extends ActionBeanClass {
     @Before
     public void init() {
     }
-    
+
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
     }
-    
+
     public Resolution add() {
         return new ForwardResolution(AddOfferActionBean.class);
     }
 
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(CurrentOffer.class);
+        if (getTitle() != null) {
+            parameter.setEqualsOrLikes("title", "%" + getTitle() + "%");
+        }
+        if (getDescription() != null) {
+            parameter.setEqualsOrLikes("longDescription", "%" + getDescription() + "%");
+        }
         parameter.setMaxRows(10);
         parameter.setDescOrders("createAt");
         return baseHibernateManager.getList(parameter, getExtendedPaginated());
@@ -70,7 +85,7 @@ public class OfferManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution activate() {
-        if(currentOffer!=null){
+        if (currentOffer != null) {
             boolean bool = offerManager.activateOffer("Y", currentOffer);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));
@@ -79,7 +94,7 @@ public class OfferManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution deactivate() {
-        if(currentOffer!=null){
+        if (currentOffer != null) {
             boolean bool = offerManager.activateOffer("N", currentOffer);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));

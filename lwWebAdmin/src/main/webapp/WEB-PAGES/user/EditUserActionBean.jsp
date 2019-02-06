@@ -30,6 +30,12 @@
                                 <s:options-collection collection="${actionBean.roles}" value="value" label="label" group="group"/>
                             </s:select>
                         </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Merchant</label>
+                            <s:select name="appUser.merchant.id" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.merchants}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
                         <s:submit name="update" class="btn btn-md btn-primary m-t-1 confirm">Update User</s:submit>
                         <s:submit name="delete" class="btn btn-md btn-primary m-t-1 confirm">Delete User</s:submit>
                         <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>

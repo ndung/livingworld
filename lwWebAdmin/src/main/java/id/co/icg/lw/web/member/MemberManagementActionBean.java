@@ -1,6 +1,5 @@
 package id.co.icg.lw.web.member;
 
-
 import id.co.icg.lw.dao.model.app.User;
 import id.co.icg.lw.dao.model.app.Member;
 import id.co.icg.lw.dao.util.ParameterDao;
@@ -64,11 +63,16 @@ public class MemberManagementActionBean extends ActionBeanClass {
 
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(Member.class);
-        if (getId() != null) parameter.setEqualsOrLikes("id", getId());
-        if (getFullName() != null) parameter.setEqualsOrLikes("fullName", getFullName());
+        parameter.setAlias("member");
+        if (getId() != null) {
+            parameter.setEqualsOrLikes("cardNumber", "%" + getId() + "%");
+        }
+        if (getFullName() != null) {
+            parameter.setEqualsOrLikes("user.fullName", "%" + getFullName() + "%");
+        }
         parameter.setMaxRows(10);
         parameter.setDescOrders("createAt");
-        return baseHibernateManager.getList(parameter, getExtendedPaginated());
+        return baseHibernateManager.getList2(parameter, getExtendedPaginated());
     }
 
     public User getAppAdminUser() {

@@ -6,27 +6,15 @@
         <div class="panel">
             <div class="panel-body">
                 <s:form beanclass="id.co.icg.lw.web.member.MemberManagementActionBean" method="get">
-                    <div class="p-x-1 col-lg-9">
-                        <div class="row">
-                            <div class="col-sm-4 form-group">
-                                <label>Member Name</label>
-                                <s:text class="form-control" name="memberId" id="memberId"/>
-                            </div>
-                            <%--div class="col-sm-4 form-group">
-                                <label>Sales</label>
-                                <s:text class="form-control" name="salesId" id="saleses"/>
-                            </div--%>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 form-group">
-                                <label>Date From</label>
-                                <s:text class="form-control date" name="dateFrom"/>
-                            </div>
-                            <div class="col-sm-2 form-group">
-                                <label>Date To</label>
-                                <s:text class="form-control date" name="dateTo"/>
-                            </div>
-                        </div>
+                    <div class="p-x-1 col-lg-5">
+                        <fieldset class="form-group form-group-md">
+                            <label>Card Number</label>
+                            <s:text class="form-control" name="id"/>
+                        </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Full Name</label>
+                            <s:text class="form-control" name="fullName"/>
+                        </fieldset>
                         <button type="submit" class="btn btn-md btn-primary">Find</button>
                     </div>
                 </s:form>

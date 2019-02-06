@@ -16,6 +16,7 @@ import java.util.List;
  */
 public interface DaoHibernate {
     CurrentPage getList   (ParameterDao parameter);
+    CurrentPage getList2  (ParameterDao parameter);
     List        getList   (Class clazz);
     Object      getObject (ParameterDao parameter);
     Object      getObject (Class clazz, Serializable id);

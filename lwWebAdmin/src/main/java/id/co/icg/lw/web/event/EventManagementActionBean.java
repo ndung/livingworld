@@ -15,7 +15,25 @@ import org.displaytag.pagination.PaginatedList;
 @UrlBinding("/event/eventmanagement.html")
 public class EventManagementActionBean extends ActionBeanClass {
 
+    private String name;
+    private String description;
     private Event event;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Event getEvent() {
         return event;
@@ -41,17 +59,23 @@ public class EventManagementActionBean extends ActionBeanClass {
     @Before
     public void init() {
     }
-    
+
     @ValidationMethod
     public void otherCheck(ValidationErrors errors) {
     }
-    
+
     public Resolution add() {
         return new ForwardResolution(AddEventActionBean.class);
     }
 
     public PaginatedList getList() {
         ParameterDao parameter = new ParameterDao(Event.class);
+        if (getName() != null) {
+            parameter.setEqualsOrLikes("name", "%" + getName() + "%");
+        }
+        if (getDescription() != null) {
+            parameter.setEqualsOrLikes("description", "%" + getDescription() + "%");
+        }
         parameter.setMaxRows(10);
         parameter.setDescOrders("createAt");
         return baseHibernateManager.getList(parameter, getExtendedPaginated());
@@ -59,7 +83,7 @@ public class EventManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution activate() {
-        if(event!=null){
+        if (event != null) {
             eventManager.activateEvent("Y", event);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));
@@ -69,7 +93,7 @@ public class EventManagementActionBean extends ActionBeanClass {
 
     @DontValidate
     public Resolution deactivate() {
-        if(event!=null){
+        if (event != null) {
             eventManager.activateEvent("N", event);
             getContext().getMessages().add(new LocalizableMessage("success"));
         } else getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));

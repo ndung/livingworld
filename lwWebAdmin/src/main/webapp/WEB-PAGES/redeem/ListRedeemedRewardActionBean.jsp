@@ -5,31 +5,32 @@
     <s:layout-component name="contents">
         <div class="panel">
             <div class="panel-body">
-                <s:form beanclass="id.co.icg.lw.web.member.MessageManagementActionBean" method="get">
+                <s:form beanclass="id.co.icg.lw.web.redeem.ListRedeemedRewardActionBean" method="get">
                     <div class="p-x-1 col-lg-9">
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label>Member</label>
-                                <s:text class="form-control" name="member" id="member"/>
+                                <s:text class="form-control" name="member"/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label>Name</label>
-                                <s:text class="form-control" name="name" id="name"/>
+                                <s:text class="form-control" name="name"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 form-group">
                                 <label>Code</label>
-                                <s:text class="form-control" name="code" id="code"/>
+                                <s:text class="form-control" name="code"/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <label>Event</label>
-                                <s:select name="event" class="form-control chosen-select" tabindex="2">
+                                <s:select name="even" class="form-control chosen-select" tabindex="2">
                                     <s:options-collection collection="${actionBean.events}" value="value" label="label" group="group"/>
                                 </s:select>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-md btn-primary">Find</button>
+
                     </div>
                 </s:form>
             </div>
