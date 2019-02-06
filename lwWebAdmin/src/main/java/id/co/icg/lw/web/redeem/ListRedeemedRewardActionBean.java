@@ -59,7 +59,7 @@ public class ListRedeemedRewardActionBean extends ActionBeanClass {
         return event;
     }
 
-    public void setEven(Long event) {
+    public void setEvent(Long event) {
         this.event = event;
     }
 

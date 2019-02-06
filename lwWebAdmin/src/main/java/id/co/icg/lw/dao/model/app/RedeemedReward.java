@@ -98,4 +98,22 @@ public class RedeemedReward extends PojoModel{
     public void setApprovedUser(User approvedUser) {
         this.approvedUser = approvedUser;
     }
+
+    @Transient
+    public String getStatus() {
+        if(approvedStatus == 1) {
+            return "Approved";
+        } else if(approvedStatus == 2) {
+            return "Rejected";
+        } else if(approvedStatus == 0) {
+            if (redeem.getExpiredDate() != null && redeem.getExpiredDate().after(new Date())) {
+                return "Pending";
+            } else {
+                return "Expired";
+            }
+        }
+        return String.valueOf(approvedStatus);
+    }
+
+
 }
