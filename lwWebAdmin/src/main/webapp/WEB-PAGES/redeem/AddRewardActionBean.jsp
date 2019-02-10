@@ -41,7 +41,7 @@
                         </fieldset>
                         <fieldset class="form-group form-group-md">
                             <label>Status</label>
-                            <s:select name="active" class="form-control chosen-select" tabindex="2">
+                            <s:select name="reward.active" class="form-control chosen-select" tabindex="2">
                                 <s:options-collection collection="${actionBean.statusYNActives}" value="value" label="label" group="group"/>
                             </s:select>
                         </fieldset>

@@ -38,13 +38,13 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Code" property="redeem.code" sortable="true" style="width: 5%; text-align: left"/>
-                            <d:column title="Member" property="redeem.member.cardNumber" sortable="true" style="width: 5%; text-align: left"/>
-                            <d:column title="Name" property="redeem.member.user.fullName" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Create At" property="redeem.createAt" sortable="true" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
-                            <d:column title="Expired Date" property="redeem.expiredDate" sortable="true" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
-                            <d:column title="Reward" property="reward.name" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Qty" property="quantity" sortable="true" style="width: 5%; text-align: left"/>
+                            <d:column title="Code" property="redeem.code" sortable="false" style="width: 5%; text-align: left"/>
+                            <d:column title="Member" property="redeem.member.cardNumber" sortable="false" style="width: 5%; text-align: left"/>
+                            <d:column title="Name" property="redeem.member.user.fullName" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Create At" property="redeem.createAt" sortable="false" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
+                            <d:column title="Expired Date" property="redeem.expiredDate" sortable="false" style="width: 10%; text-align: left" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
+                            <d:column title="Reward" property="reward.name" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Qty" property="quantity" sortable="false" style="width: 5%; text-align: left"/>
                             <d:column title="Status" property="status" sortable="false" style="width: 5%; text-align: left"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
                                 <c:if test="${obj.approvedStatus == 0 && obj.redeem.expiredDate !=null && obj.redeem.expiredDate >= now}">

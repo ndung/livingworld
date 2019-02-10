@@ -16,7 +16,7 @@
                             <s:text class="form-control" name="description"/>
                         </fieldset>
                         <button type="submit" class="btn btn-md btn-primary">Find</button>
-                        <button type="submit" name="add" class="btn btn-md btn-primary">Add Message</button>
+                        <button type="submit" name="add" class="btn btn-md btn-primary">Add Offer</button>
                     </div>
                 </s:form>
             </div>
@@ -26,7 +26,7 @@
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
                             <d:column title="Title"              property="title"         sortable="false" style="width: 10%; text-align: left"/>
                             <d:column title="Short Description"  property="shortDescription" sortable="false" style="width: 15%; text-align: center" />
-                            <d:column title="Long Description"   property="longDescription" sortable="true" style="width: 30%; text-align: center"/>
+                            <d:column title="Long Description"   property="longDescription" sortable="false" style="width: 30%; text-align: center"/>
                             <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:column title="Start Date"         property="startDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>
                             <d:column title="End Date"           property="endDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateFormatDecorator"/>

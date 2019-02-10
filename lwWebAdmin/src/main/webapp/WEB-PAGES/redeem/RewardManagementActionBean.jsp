@@ -24,10 +24,10 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="1" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Name" property="name" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Description" property="description" sortable="true" style="width: 20%; text-align: left"/>
+                            <d:column title="Name" property="name" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Description" property="description" sortable="false" style="width: 20%; text-align: left"/>
                             <d:column title="Image" property="image" sortable="false" style="width: 15%; text-align: left" decorator="id.co.icg.lw.displaytag.ImageThumbnailDecorator"/>
-                            <d:column title="Point" property="point" sortable="true" style="width: 5%; text-align: left"/>
+                            <d:column title="Point" property="point" sortable="false" style="width: 5%; text-align: left"/>
                             <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <!--d:column title="Expired Date"  property="expiredDate" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/-->
                             <d:column title="Event" property="event.name" sortable="false" style="width: 20%; text-align: left"/>

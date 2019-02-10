@@ -85,8 +85,8 @@ public class UserManagementActionBean extends ActionBeanClass {
         ParameterDao parameter = new ParameterDao(User.class);
         parameter.setIsNotNull("appRole");
         parameter.setDescOrders("createAt");
-        if (getId() != null) parameter.setEqualsOrLikes("id", getId());
-        if (getFullName() != null) parameter.setEqualsOrLikes("fullName", getFullName());
+        if (getId() != null) parameter.setEqualsOrLikes("id", "%"+getId()+"%");
+        if (getFullName() != null) parameter.setEqualsOrLikes("fullName", "%"+getFullName()+"%");
         parameter.setMaxRows(10);
 
         return baseHibernateManager.getList(parameter, getExtendedPaginated());

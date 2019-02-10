@@ -23,13 +23,13 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="7" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="Card Number" property="cardNumber" sortable="true" style="width: 10%; text-align: left"/>
+                            <d:column title="Card Number" property="cardNumber" sortable="false" style="width: 10%; text-align: left"/>
                             <d:column title="Member Name" property="user.fullName" sortable="false" style="width: 20%; text-align: left"/>
-                            <d:column title="Member Type" property="memberType.name" sortable="true" style="width: 15%; text-align: left"/>
-                            <d:column title="Gender" property="gender.name" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Date of Birth" property="dateOfBirth" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Email" property="email" sortable="true" style="width: 10%; text-align: left"/>
-                            <d:column title="Mobile Number" property="mobileNumber" sortable="true" style="width: 10%; text-align: left"/>
+                            <d:column title="Member Type" property="memberType.name" sortable="false" style="width: 15%; text-align: left"/>
+                            <d:column title="Gender" property="gender.name" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Date of Birth" property="dateOfBirth" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Email" property="email" sortable="false" style="width: 10%; text-align: left"/>
+                            <d:column title="Mobile Number" property="mobileNumber" sortable="false" style="width: 10%; text-align: left"/>
                             <d:column title="Create At"  property="createAt" sortable="false" style="width: 10%; text-align: center" decorator="id.co.icg.lw.displaytag.DateTimeFormatDecorator"/>
                             <d:setProperty name="paging.banner.placement" value="bottom" />
                         </d:table>

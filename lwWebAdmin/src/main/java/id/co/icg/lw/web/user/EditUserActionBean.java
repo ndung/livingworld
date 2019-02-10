@@ -58,7 +58,8 @@ public class EditUserActionBean extends AddUserActionBean {
     }
     
     public Resolution delete() {
-        if(appUser!=null&&getUserSession().getAppRole().getName().equals("Administrator")){
+        if(appUser!=null&&getUserSession().getAppRole().getName().equalsIgnoreCase("user")||
+                getUserSession().getAppRole().getName().toLowerCase().contains("admin")){
             boolean resp = userAdminManager.deleteUserAdmin(appUser.getId());
             if(resp) {
                 getContext().getMessages().add(new LocalizableMessage("user.management.delete.success", appUser.getId()));

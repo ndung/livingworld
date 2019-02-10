@@ -55,8 +55,7 @@ public class AddEventActionBean extends ActionBeanClass {
     public Resolution save() {
         if(eventManager.saveEvent(event, fileBean)) {
             getContext().getMessages().add(new LocalizableMessage("success"));
-        }
-        else {
+        } else {
             getContext().getValidationErrors().addGlobalError(new LocalizableError("failed"));
         }
         return new RedirectResolution(EventManagementActionBean.class);

@@ -39,6 +39,12 @@
                             <label id="label-text">Image File 3</label>
                             <s:file class="form-control" name="fileBean3" accept="image/*" id="fileBean3"/>
                         </fieldset>
+                        <fieldset class="form-group form-group-md">
+                            <label>Status</label>
+                            <s:select name="currentOffer.active" class="form-control chosen-select" tabindex="2">
+                                <s:options-collection collection="${actionBean.statusYNActives}" value="value" label="label" group="group"/>
+                            </s:select>
+                        </fieldset>
                         <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Save Offer</s:submit>
                         <s:submit name="back" class="btn btn-md btn-primary m-t-1">Back</s:submit>
                     </div>

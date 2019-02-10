@@ -24,13 +24,13 @@
                 <div class="table-primary">
                     <div class="dataTables_table_wrapper">
                         <d:table class="table table-striped table-bordered dataTable text-center" name="${actionBean.list}" id="obj" requestURI="" defaultsort="1" partialList="true" size="${actionBean.list.fullListSize}" pagesize="${actionBean.list.objectsPerPage}">
-                            <d:column title="User Name" property="id" sortable="true" style="width: 15%; text-align: center"/>
-                            <d:column title="Full Name" property="fullName" sortable="true" style="width: 20%; text-align: center"/>
+                            <d:column title="User Name" property="id" sortable="false" style="width: 15%; text-align: center"/>
+                            <d:column title="Full Name" property="fullName" sortable="false" style="width: 20%; text-align: center"/>
                             <d:column title="Email" property="email" sortable="false" style="width: 15%; text-align: center"/>
                             <d:column title="Phone" property="phone" sortable="false" style="width: 10%; text-align: center"/>
                             <d:column title="Role" property="appRole.name" sortable="false" style="width: 10%; text-align: center"/>
-                            <d:column title="Merchant" property="merchant.name" sortable="true" style="width: 15%; text-align: center"/>
-                            <d:column title="Status" property="status" sortable="true" style="width: 5%; text-align: center" decorator="id.co.icg.lw.displaytag.StatusFormatDecorator"/>
+                            <d:column title="Merchant" property="merchant.name" sortable="false" style="width: 15%; text-align: center"/>
+                            <d:column title="Status" property="status" sortable="false" style="width: 5%; text-align: center" decorator="id.co.icg.lw.displaytag.StatusFormatDecorator"/>
                             <d:column title="Action" style="width: 10%; text-align: center">
                                 <s:link beanclass="id.co.icg.lw.web.user.EditUserActionBean" class="btn btn-sm">
                                     <s:param name="appUser" value="${obj}"/>
