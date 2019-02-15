@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.livingworld.R;
@@ -24,8 +25,8 @@ public class CreatePasswordFragment extends Fragment {
 
     @BindView(R.id.et_pass)
     TextInputLayout etPass;
-    @BindView(R.id.tv_tnc)
-    TextView tvTnc;
+    @BindView(R.id.layout_tnc)
+    LinearLayout tvTnc;
     Unbinder unbinder;
 
     public CreatePasswordFragment() {

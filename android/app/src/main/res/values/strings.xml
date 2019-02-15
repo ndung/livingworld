@@ -280,4 +280,41 @@ Service (021 5312 8580)\n
     <string name="btn_ok">OK</string>
     <string name="lbl_your_redeem_code">Your Redeem Code</string>
     <string name="subtitle_your_redeem_code">Please provide the code above to the customer service to get your rewards</string>
+    <string name="about_live_cards">About Live Cards</string>
+    <string name="green_live_cards">Green Live Cards</string>
+    <string name="how_to_apply_green_live_cards">Spend minimum of Rp. 500,000 applies to combination of shopping receipts. Customers can redeem shopping receipts on the same day at the Redemption Counter, 1st floor.</string>
+    <string name="how_to_apply_blue_live_cards">Spend minimum of Rp. 10,000,000 or accumulated in 1 month for purchases that have been redeemed at the Redemption Counter, 1st floor.</string>
+    <string name="how_to_apply_black_live_cards">Spend minimum of Rp. 40,000,000 or accumulated in 1 month for purchases that have been redeemed at the Redemption Counter, 1st floor.</string>
+    <string name="green_card_privilege"><![CDATA[\n
+• Get update on Discount and Events at Living World\n
+• Get Lucky Draw number when shopping with a minimum of Rp. 500,000, -\n
+• Have chances to take part in the Draw and win the Grand Prize\n
+]]></string>
+    <string name="blue_card_privilege"><![CDATA[\n
+• Get update on Discount and Events at Living World\n
+• Get Double Lucky Draw when shopping with a minimum of Rp. 500,000, -\n
+• Have chances to take part in the Draw and win the Grand Prize\n
+• Get special invitation at the events of Living World\n
+]]></string>
+    <string name="black_card_privilege"><![CDATA[\n
+• Get update on Discount and Events at Living World\n
+• Get 4x Lucky Draw when shopping with a minimum of Rp. 500,000, -\n
+• Have chances to take part in the Draw and win the Grand Prize\n
+• Get special invitation at the events of Living World\n
+• Get a slot for parking at the Premiere Parking (limited quota)\n
+]]></string>
+    <string name="terms_and_condition"><![CDATA[\n
+1. Live Card is a property belonging to Living World\n
+2. The Live Card is valid for 1 year and Living World has the right to deactivate the account for members who within 1 year do not redeem purchases on Redemption Counter\n
+3. Live Card is not as a Debit Card, Credit or Refill Card that can be used for payment\n
+4. Ownership of a Live Card is only for individuals and is not permitted on behalf of the company\n
+5. The Live Card can be used as an identity when participating in the Shopping Draw Program at Living World\n
+6. Living World reserves the right to change the Terms and Conditions of the Live Card without prior notice\n\n
+OTHER PROVISIONS:\n
+1. Live Card and Lucky Draw Numbers cannot be transferred\n
+2. Living World has the right to cancel the Live Card transaction if the validity of the customer data and its spending is uncertain\n
+3. All customer data are confidential and are only used for the benefit of the Shopping Program held at Living World\n
+4. For all employees of the PT Group Retail Solution along with the families of Tenants (Shop Owners and Employees), Advertising Agencies, Sponsors are not allowed to become Live Card Members\n
+5. Living World decisions are absolute and cannot be contested\n
+]]></string>
 </resources>

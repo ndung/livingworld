@@ -111,6 +111,10 @@
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
                         android:backgroundTint="#d8d8d8"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/hint_enter_your_email"
                         android:text="johndoe@gmail.com"
                         android:textColorHint="#4d333333" />
@@ -282,6 +286,10 @@
                         android:layout_marginRight="-4dp"
                         android:backgroundTint="#d8d8d8"
                         android:drawableRight="@drawable/ic_calendaar"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:hint="@string/hint_enter_your_birth_of_date"
                         android:textColorHint="#4d333333" />
                 </android.support.design.widget.TextInputLayout>

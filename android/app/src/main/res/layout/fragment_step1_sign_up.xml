@@ -53,6 +53,7 @@
                         android:layout_marginRight="-4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,'"
                         android:hint="@string/hint_enter_your_name" />
 
                 </android.support.design.widget.TextInputLayout>

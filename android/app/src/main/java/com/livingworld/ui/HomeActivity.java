@@ -11,6 +11,9 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -116,7 +119,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     HorizontalAdapter adapter;
     List<CurrentOffer> list;
-    Event event;
+    Event event = null;
 
     private int MODE = 0;
 
@@ -242,7 +245,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private void initMember() {
         ivInbox.setImageResource(R.drawable.ic_inbox);
         tvName.setVisibility(View.GONE);
-        viewCard.setVisibility(View.VISIBLE);
+        //viewCard.setVisibility(View.VISIBLE);
 
         initGetDetail();
 
@@ -283,19 +286,38 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 progressBar.setVisibility(View.GONE);
                 tvMember.setText(getResources().getString(R.string.black_member_description));
             }else {
+                final Intent intent = new Intent(getApplicationContext(), AboutLiveCardActivity.class);
                 Double currentMonthTransaction = 0d;
                 if (member.getCurrentMonthTransaction() != null) {
                     currentMonthTransaction = Double.parseDouble(member.getCurrentMonthTransaction());
                 }
+                Double minimumValue = 500000d;
+                String myString = String.format(getResources().getString(R.string.spend_more_description), IDRUtils.toRupiah(minimumValue), "GREEN");
+                if (currentMonthTransaction>=minimumValue){
+                    MemberType upgrade = memberTypes.get(i);
+                    minimumValue = Double.parseDouble(upgrade.getMinimumTransaction());
+                    myString = String.format(getResources().getString(R.string.spend_more_description), IDRUtils.toRupiah(minimumValue), upgrade.getName());
+                    tvName.setVisibility(View.GONE);
+                    viewCard.setVisibility(View.VISIBLE);
+                    intent.putExtra("card", i);
+                }else{
+                    tvName.setVisibility(View.VISIBLE);
+                    tvName.setText("Hello, "+user.getFullName()+"!");
+                    viewCard.setVisibility(View.GONE);
+                }
+                myString = myString + ". Learn more";
+                int j = myString.indexOf("Learn more");
+                Spannable wordtoSpan = new SpannableString(myString);
+                wordtoSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), j, j+10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tvMember.setText(wordtoSpan);
+                tvMember.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(intent);
+                    }
+                });
 
                 tvTrxMonth.setText(IDRUtils.toRupiah(currentMonthTransaction));
-
-                MemberType upgrade = memberTypes.get(i);
-                Double minimumValue = Double.parseDouble(upgrade.getMinimumTransaction());
-                String mystring = String.format(getResources().getString(R.string.spend_more_description),
-                        IDRUtils.toRupiah(minimumValue), upgrade.getName());
-                tvMember.setText(mystring);
-
                 Double progress = currentMonthTransaction / minimumValue * 100;
                 progressBar.setProgress(progress.intValue());
 
@@ -345,9 +367,11 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(getApplicationContext(), MerchantListActivity.class));
                 break;
             case R.id.ll_reward:
-                Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
-                intent.putExtra("event", event);
-                startActivity(intent);
+                if (event!=null) {
+                    Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
+                    intent.putExtra("event", event);
+                    startActivity(intent);
+                }
                 break;
         }
     }
