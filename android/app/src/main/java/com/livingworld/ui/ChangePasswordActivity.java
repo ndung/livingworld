@@ -97,7 +97,8 @@ public class ChangePasswordActivity extends BaseActivity {
                                 JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
                                 User user = gson.fromJson(jsonObject, User.class);
                                 if (user != null) {
-                                    Preferences.setUser(getApplicationContext(), user);
+                                    //Preferences.setUser(getApplicationContext(), user);
+                                    showMessage("Password is successfully changed");
                                     finish();
                                 } else {
                                     showSnackbar(body.getMessage());

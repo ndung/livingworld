@@ -3,7 +3,14 @@ package com.livingworld.ui;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -45,10 +52,14 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -58,6 +69,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
 import okhttp3.MultipartBody;
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
@@ -136,7 +148,7 @@ public class InformationAccountActivity extends BaseActivity {
             }
         });
 
-        initTglLahir();
+        //initTglLahir();
         initChangePicture();
 
         if (user.getPhotoProfileUrl()!=null) {
@@ -315,60 +327,66 @@ public class InformationAccountActivity extends BaseActivity {
         });
     }
 
-    private void confirmDialog(final File path){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, int which) {
-                showPleasewaitDialog();
-                MultipartBody.Part body = PartUtils.prepareFilePart("photo", path);
-                memberService.upload(body).enqueue(new Callback<Response>() {
-                    @Override
-                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                        dissmissPleasewaitDialog();
-                        if(response.isSuccessful()){
-                            Gson gson = new Gson();
-                            JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
-                            User user = gson.fromJson(jsonObject.get("data"), User.class);
-                            Preferences.setUser(getApplicationContext(), user);
-                            Glide.with(getApplicationContext()).load(Static.IMAGES_URL+user.getPhotoProfileUrl()).into(ivProfile);
-                            dialog.dismiss();
-                            //showMessage("Berhasil upload photo profile");
-                        }else if (response.errorBody() != null) {
-                            try {
-                                JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
-                                showSnackbar(jObjError.getString("message"));
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
+    private void confirmDialog(final File file){
+        try {
+            final File path = new Compressor(this).compressToFile(file);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialog, int which) {
+                    showPleasewaitDialog();
+                    MultipartBody.Part body = PartUtils.prepareFilePart("photo", path);
+                    memberService.upload(body).enqueue(new Callback<Response>() {
+                        @Override
+                        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                            dissmissPleasewaitDialog();
+                            if (response.isSuccessful()) {
+                                Gson gson = new Gson();
+                                JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+                                User user = gson.fromJson(jsonObject.get("data"), User.class);
+                                Preferences.setUser(getApplicationContext(), user);
+                                Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
+                                dialog.dismiss();
+                                //showMessage("Berhasil upload photo profile");
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                                    System.out.println(jObjError);
+                                    showSnackbar(jObjError.getString("message"));
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            } else {
+                                showSnackbar(Static.SOMETHING_WRONG);
                             }
-                        } else {
+                        }
+
+                        @Override
+                        public void onFailure(Call<Response> call, Throwable t) {
+                            dissmissPleasewaitDialog();
                             showSnackbar(Static.SOMETHING_WRONG);
                         }
-                    }
+                    });
+                }
+            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            final AlertDialog dialog = builder.create();
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogLayout = inflater.inflate(R.layout.dialog_image_confirmation, null);
+            dialog.setView(dialogLayout);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-                    @Override
-                    public void onFailure(Call<Response> call, Throwable t) {
-                        dissmissPleasewaitDialog();
-                        showSnackbar(Static.SOMETHING_WRONG);
-                    }
-                });
-            }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        final AlertDialog dialog = builder.create();
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogLayout = inflater.inflate(R.layout.dialog_image_confirmation, null);
-        dialog.setView(dialogLayout);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            ImageView image = dialogLayout.findViewById(R.id.iv_show_image);
+            Glide.with(getApplicationContext()).load(path).into(image);
 
-        ImageView image = dialogLayout.findViewById(R.id.iv_show_image);
-        Glide.with(getApplicationContext()).load(path).into(image);
-
-        dialog.show();
+            dialog.show();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void setData(){

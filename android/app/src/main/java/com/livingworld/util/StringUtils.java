@@ -32,14 +32,14 @@ public class StringUtils {
 
     public static boolean isPasswordValid(String password, boolean isDigit, boolean isCase, int minLength, int maxLength) {
 
-        String PASSWORD_PATTERN = "";
+        String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
 
-        if (isDigit) PASSWORD_PATTERN += "(?=.*\\d)";
+        /**if (isDigit) PASSWORD_PATTERN += "(?=.*\\d)";
         if (isCase) PASSWORD_PATTERN += "(?=.*[a-z])";
         PASSWORD_PATTERN += ".{" + minLength + "," + maxLength + "}";
-        PASSWORD_PATTERN = "(" + PASSWORD_PATTERN + ")";
+        PASSWORD_PATTERN = "(" + PASSWORD_PATTERN + ")";*/
 
-        Pattern pattern = Pattern.compile(PASSWORD_PATTERN, Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
@@ -50,7 +50,14 @@ public class StringUtils {
             "0895", "0896", "0897", "0898", "0899",
             "0881", "0882", "0883", "0884", "0885", "0886", "0887", "0888", "0889");
 
+
+    public static final List<String> PHONENUMBER_PREFIXES = Arrays.asList("62811", "62812", "62813", "62821", "62822", "62823", "62851", "62852", "62853",
+            "62855", "62856", "62857", "62858", "62814", "62815", "62816",
+            "62817", "62818", "62819", "62859", "62877", "62878", "62831", "62832", "62838",
+            "62895", "62896", "62897", "62898", "62899",
+            "62881", "62882", "62883", "62884", "62885", "62886", "62887", "62888", "62889");
+
     public static boolean isMobilePhoneNumberValid(String phoneNumber){
-        return PHONE_NUMBER_PREFIXES.contains(phoneNumber.substring(0,4));
+        return PHONE_NUMBER_PREFIXES.contains(phoneNumber.substring(0,4))||PHONENUMBER_PREFIXES.contains(phoneNumber.substring(0,5));
     }
 }

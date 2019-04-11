@@ -1,14 +1,18 @@
 package com.livingworld.ui.fragment.registration;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.livingworld.R;
+import com.livingworld.ui.TermsAndConditionsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +28,9 @@ public class Step2SignUpFragment extends Fragment {
     TextInputLayout etPass1;
     @BindView(R.id.et_pass2)
     TextInputLayout etPass2;
+    @BindView(R.id.tv_tnc)
+    TextView tvTnc;
+
     Unbinder unbinder;
 
     public TextInputLayout getEtPass1() {
@@ -45,6 +52,14 @@ public class Step2SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_step2_sign_up, container, false);
         unbinder = ButterKnife.bind(this, view);
+        etPass1.setError(null);
+        etPass2.setError(null);
+        tvTnc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(new Intent(getActivity(), TermsAndConditionsActivity.class));
+            }
+        });
         return view;
     }
 

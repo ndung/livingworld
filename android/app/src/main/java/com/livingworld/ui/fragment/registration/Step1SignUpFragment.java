@@ -15,6 +15,7 @@ import com.livingworld.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,6 +65,14 @@ public class Step1SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_step1_sign_up, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        Bundle args = getArguments();
+        if (args!=null) {
+            etNama.getEditText().setText(args.getString("name", ""));
+            etBod.getEditText().setText(args.getString("bod", ""));
+            etMobile.getEditText().setText(args.getString("mobile", ""));
+            etEmail.getEditText().setText(args.getString("email", ""));
+        }
         return view;
     }
 
@@ -89,6 +98,9 @@ public class Step1SignUpFragment extends Fragment {
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
                 );
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date());
+                dpd.setMaxDate(calendar);
                 dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
             }
         });

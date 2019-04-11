@@ -60,6 +60,20 @@ public class AccountSettingActivity extends AppCompatActivity {
         tvCardNumber.setText(user.getMember().getCardNumber());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        User user = Preferences.getUser(getApplicationContext());
+
+        if (user.getPhotoProfileUrl()!=null) {
+            Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
+        }else{
+            Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
+        }
+        tvName.setText(user.getFullName());
+        tvCardNumber.setText(user.getMember().getCardNumber());
+    }
+
     @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile, R.id.menu_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {

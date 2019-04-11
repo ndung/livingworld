@@ -47,6 +47,11 @@ public class RegistrationActivity extends BaseActivity {
     @BindView(R.id.tv_step)
     TextView tvStep;
 
+    boolean bool = false;
+
+    final Step1SignUpFragment step1 = new Step1SignUpFragment();
+    final Step2SignUpFragment step2 = new Step2SignUpFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         memberService = ApiUtils.MemberService(getApplicationContext());
@@ -59,13 +64,9 @@ public class RegistrationActivity extends BaseActivity {
         ivFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
-
-
-        final Step1SignUpFragment step1 = new Step1SignUpFragment();
-        final Step2SignUpFragment step2 = new Step2SignUpFragment();
 
         getSupportFragmentManager().beginTransaction().add(mainFrame.getId(), step1).commit();
 
@@ -73,11 +74,14 @@ public class RegistrationActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (btNext.getText().equals("NEXT") && next(step1)) {
+
                     getSupportFragmentManager().beginTransaction().replace(mainFrame.getId(), step2).commit();
                     tvStep.setText("Step 2/2");
                     btNext.setText("SIGN UP");
+                    bool = true;
                 } else if (btNext.getText().equals("SIGN UP")) {
                     signUp(step2);
+                    bool = false;
                 }
             }
         });
@@ -208,6 +212,20 @@ public class RegistrationActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (btNext.getText().equals("SIGN UP")) {
+            Bundle args = new Bundle();
+            args.putString("bod", bod);
+            args.putString("name", name);
+            args.putString("mobile", mobile);
+            args.putString("email", email);
+            step1.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(mainFrame.getId(), step1).commit();
+            tvStep.setText("Step 1/2");
+            btNext.setText("NEXT");
+        } else if (btNext.getText().equals("NEXT")) {
+            finish();
+        }
+
+
     }
 }

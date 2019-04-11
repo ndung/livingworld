@@ -148,6 +148,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.RedeemActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.AboutLiveCardActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

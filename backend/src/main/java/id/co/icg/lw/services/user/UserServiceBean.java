@@ -150,6 +150,7 @@ public class UserServiceBean implements UserService {
         }
         User updatedUser = checkCardNumberToIfabula(request.getCardNumber());
         if (updatedUser != null) {
+            updatedUser.setPhotoProfileUrl(user.getPhotoProfileUrl());
             updatedUser.setPassword(user.getPassword());
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
@@ -163,6 +164,7 @@ public class UserServiceBean implements UserService {
         User user = userRepository.findOne(userId);
         User updatedUser = checkCardNumberToIfabula(user.getCardNumber());
         if (updatedUser != null) {
+            updatedUser.setPhotoProfileUrl(user.getPhotoProfileUrl());
             updatedUser.setPassword(user.getPassword());
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
@@ -180,6 +182,7 @@ public class UserServiceBean implements UserService {
         livingWorldApiService.updateMember(request);
         User updatedUser = checkCardNumberToIfabula(request.getCardNumber());
         if (updatedUser != null) {
+            updatedUser.setPhotoProfileUrl(user.getPhotoProfileUrl());
             updatedUser.setPassword(user.getPassword());
             userRepository.saveAndFlush(updatedUser);
             memberRepository.saveAndFlush(updatedUser.getMember());
