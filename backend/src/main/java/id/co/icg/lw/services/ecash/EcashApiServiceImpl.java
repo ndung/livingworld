@@ -104,8 +104,6 @@ public class EcashApiServiceImpl extends EcashRetrofitClient<EcashApi> implement
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        LoginResponse login = this.login();
-        System.out.println("login:"+login);
-
+        //LoginResponse login = this.login();
     }
 }

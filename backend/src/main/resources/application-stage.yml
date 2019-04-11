@@ -1,8 +1,8 @@
-basePath: http://49.128.182.148:8085/lw
+basePath: http://103.84.192.244:8085/lw
 
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.6:3306/livingword
+    url: jdbc:mysql://localhost:3306/livingword
     username: root
     password: GO816og#
     driver-class-name: com.mysql.jdbc.Driver
@@ -22,7 +22,7 @@ spring:
 debug: true
 
 file:
-  location : /opt/tomcat-mondelez/webapps-loyalty/images/
+  location : /opt/apache-tomcat-8.5.39/webapps/images/
 
-publicKey: /home/alif/livingworld/key/public_key.der
+publicKey: /opt/public_key.der
 

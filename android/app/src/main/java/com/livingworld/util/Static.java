@@ -9,11 +9,11 @@ public class Static {
     public final static String MyPref = "lw_pref";
 
     public final static String PORT = ":8085";
-    public final static String IP = "49.128.182.148"+PORT;
+    public final static String IP = "103.84.192.244"+PORT;
     public final static String APPS = "/lw/api/v1/";
     public final static String BASE_URL = "http://"+IP+APPS;
     //public final static String BASE_URL = "http://192.168.48.150:7000/api/v1/";
-    public final static String IMAGES_URL = "http://49.128.182.148:8085/lw/api/v1/files/";
+    public final static String IMAGES_URL = "http://103.84.192.244:8085/lw/api/v1/files/";
     public final static String LW_URL = "http://149.129.216.149/loyalty";
     public final static String NO_IMAGE_URL = LW_URL+"/img/seller_galery/no_image.jpg";
 
