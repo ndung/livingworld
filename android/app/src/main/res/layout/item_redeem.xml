@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/thumbnail"
-            android:text="Bakmi GM"
+            android:text=""
             android:textColor="#333333"
             android:alpha="0.5"
             android:textSize="12sp"/>

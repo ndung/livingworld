@@ -1,5 +1,6 @@
 package id.co.icg.lw.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -17,6 +18,7 @@ public class RedeemedReward {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="redeem_id")
     @NotFound(action = NotFoundAction.IGNORE)
+    @JsonIgnore
     private Redeem redeemId;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -69,6 +71,8 @@ public class RedeemedReward {
     @Column(name = "update_at")
     private Date updateAt;
 
+    @Column(name = "reward_point")
+    int rewardPoint;
 
     public Date getCreateAt() {
         return createAt;
@@ -99,4 +103,12 @@ public class RedeemedReward {
     public int getStatus() { return status; }
 
     public void setStatus(int status) { this.status = status; }
+
+    public int getRewardPoint() {
+        return rewardPoint;
+    }
+
+    public void setRewardPoint(int rewardPoint) {
+        this.rewardPoint = rewardPoint;
+    }
 }

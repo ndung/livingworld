@@ -17,12 +17,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.livingworld.R;
 import com.livingworld.adapter.RedeemAdapter;
+import com.livingworld.adapter.RedeemedAdapter;
 import com.livingworld.adapter.RedeemsAdapter;
 import com.livingworld.clients.ApiUtils;
 import com.livingworld.clients.auth.model.User;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.rewards.RewardsService;
 import com.livingworld.clients.rewards.model.Redeem;
+import com.livingworld.clients.rewards.model.RedeemedReward;
 import com.livingworld.clients.rewards.model.Reward;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
@@ -36,6 +38,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +68,8 @@ public class RedeemActivity extends BaseActivity {
     User user;
 
     private static final String TAG = RedeemActivity.class.toString();
+    List<Reward> redeemedRewards = new ArrayList<>();
+    RedeemAdapter redeemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +87,11 @@ public class RedeemActivity extends BaseActivity {
 
         rewardsService = ApiUtils.RewardService(getApplicationContext());
 
-        final List<Reward> rewardList = new ArrayList<>();
         final Map<Reward, String> map = Preferences.getRedeems(this);
         totalPoints(map);
-        rewardList.addAll(map.keySet());
+        redeemedRewards.addAll(map.keySet());
 
-        RedeemAdapter redeemAdapter = new RedeemAdapter(this, rewardList, new RedeemAdapter.OnItemClickListener() {
+        redeemAdapter = new RedeemAdapter(this, redeemedRewards, new RedeemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Reward model, int x) {
                 Map<Reward, String> map = Preferences.getRedeems(activity);
@@ -103,7 +107,7 @@ public class RedeemActivity extends BaseActivity {
                 Preferences.setRedeems(activity, map);
             }
         });
-        adapter = new RedeemsAdapter(this, rewardList);
+        adapter = new RedeemsAdapter(this, redeemedRewards);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -112,7 +116,12 @@ public class RedeemActivity extends BaseActivity {
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                redeem(map);
+                final Map<Reward, String> aMap = Preferences.getRedeems(activity);
+                if (!aMap.isEmpty()) {
+                    redeem(aMap);
+                }else{
+                    showMessage("Please choose products to redeem");
+                }
             }
         });
     }
@@ -131,14 +140,13 @@ public class RedeemActivity extends BaseActivity {
         tvTotalPoints.setText(String.valueOf(pts));
     }
 
-    private void redeem(Map<Reward, String>  rewardList){
+    private void redeem(final Map<Reward, String>  rewardList){
         Map<String, String> map = new HashMap<>();
         Map<String, String> rewards = new LinkedHashMap<>();
         for (Reward reward : rewardList.keySet()){
             rewards.put(String.valueOf(reward.getRewardId()), rewardList.get(reward));
         }
         map.put("rewards", new Gson().toJson(rewards));
-
         showPleasewaitDialog();
         rewardsService.redeem(map).enqueue(new Callback<Response>() {
             @Override
@@ -161,8 +169,16 @@ public class RedeemActivity extends BaseActivity {
                         @Override
                         public void onClick(View view) {
                             dialog.dismiss();
+                            startRedeemHistoryActivity();
                         }
                     });
+                    final List<Reward> list = new ArrayList<>();
+                    list.addAll(rewardList.keySet());
+                    redeemedRewards.clear();
+                    redeemAdapter.notifyDataSetChanged();
+                    Preferences.setRedeems(activity, new TreeMap<Reward, String>());
+                    totalPoints(Preferences.getRedeems(activity));
+
                     tv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -171,7 +187,7 @@ public class RedeemActivity extends BaseActivity {
                             RecyclerView rv = dialog2.findViewById(R.id.rv_item);
                             final LinearLayoutManager llManager = new LinearLayoutManager(getApplicationContext());
                             rv.setLayoutManager(llManager);
-                            rv.setAdapter(adapter);
+                            rv.setAdapter(new RedeemedAdapter(activity, list, rewardList));
 
                             Button btOk = dialog2.findViewById(R.id.bt_ok);
                             btOk.setOnClickListener(new View.OnClickListener() {
@@ -205,4 +221,8 @@ public class RedeemActivity extends BaseActivity {
         });
     }
 
+    private void startRedeemHistoryActivity(){
+        Intent intent = new Intent(this, RedeemedRewardActivity.class);
+        startActivity(intent);
+    }
 }

@@ -277,6 +277,8 @@ Service (021 5312 8580)\n
     <string name="subtitle_connect_my_e_cash">In order to pay your transactions using the app, we need you to connect your e-cash account to your Live Card account</string>
     <string name="title_your_redeemed_products">Your Redeemed Products</string>
     <string name="subtitle_your_redeemed_products">Below are the products that you have chosen to redeem</string>
+    <string name="title_your_redeemed_codes">Your Redeemed Codes</string>
+    <string name="subtitle_your_redeemed_codes">Below are the codes that you have chosen to redeem</string>
     <string name="btn_ok">OK</string>
     <string name="lbl_your_redeem_code">Your Redeem Code</string>
     <string name="subtitle_your_redeem_code">Please provide the code above to the customer service to get your rewards</string>

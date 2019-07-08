@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.livingworld.R;
 import com.livingworld.clients.auth.model.User;
+import com.livingworld.clients.rewards.model.RedeemedReward;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
 
@@ -32,6 +33,8 @@ public class AccountSettingActivity extends AppCompatActivity {
     LinearLayout menuTrxHistory;
     @BindView(R.id.menu_lucky_draw)
     LinearLayout menuLuckyDraw;
+    @BindView(R.id.menu_redeemed_reward)
+    LinearLayout menuRedeemedReward;
     @BindView(R.id.menu_about_us)
     LinearLayout menuAboutUs;
     @BindView(R.id.menu_feedback)
@@ -74,7 +77,7 @@ public class AccountSettingActivity extends AppCompatActivity {
         tvCardNumber.setText(user.getMember().getCardNumber());
     }
 
-    @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile, R.id.menu_logout})
+    @OnClick({R.id.iv_finish, R.id.menu_trx_history, R.id.menu_lucky_draw, R.id.menu_redeemed_reward, R.id.menu_about_us, R.id.menu_language, R.id.menu_feedback, R.id.ll_profile, R.id.menu_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
@@ -88,6 +91,9 @@ public class AccountSettingActivity extends AppCompatActivity {
                 break;
             case R.id.menu_lucky_draw:
                 startActivity(new Intent(getApplicationContext(), LuckyDrawsActivity.class));
+                break;
+            case R.id.menu_redeemed_reward:
+                startActivity(new Intent(getApplicationContext(), RedeemedRewardActivity.class));
                 break;
             case R.id.menu_about_us:
                 startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));

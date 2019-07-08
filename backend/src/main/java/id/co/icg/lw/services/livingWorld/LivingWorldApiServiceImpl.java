@@ -109,15 +109,16 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
 
     @Override
     public Object addTransaction(AddTransactionRequest request) throws Exception {
-        System.out.println("before");
-        Call<ResponseBody> callSync = service.addTransaction(request);
-        Response body = callSync.execute();
-        System.out.println(body);
-        System.out.println(body.message());
-        System.out.println(body.raw());
-        System.out.println(body.toString());
-        System.out.println(body.errorBody());
-        return null;
+        Call<AddTransactionResponse> callSync = service.addTransaction(request);
+        Response<AddTransactionResponse> response = callSync.execute();
+        return response.body();
+    }
+
+    @Override
+    public Object redeemPoints(RedeemPointRequest request) throws Exception {
+        Call<ResponseBody> callSync = service.redeemPoints(request);
+        Response<ResponseBody> response = callSync.execute();
+        return response.body();
     }
 
 //    public AddTransactionResponse addMemberTransaction(AddTransactionRequest request) throws Exception {
@@ -138,6 +139,11 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
         return iFabulaResponse.getList();
     }
 
-
+    public Object getMasterReward(String card) throws Exception {
+        Call<IFabulaResponse> callSync = service.getReward("reward", card);
+        Response<IFabulaResponse> response = callSync.execute();
+        IFabulaResponse iFabulaResponse = response.body();
+        return iFabulaResponse.getList();
+    }
 
 }

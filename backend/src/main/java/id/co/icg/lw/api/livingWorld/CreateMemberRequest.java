@@ -3,7 +3,7 @@ package id.co.icg.lw.api.livingWorld;
 public class CreateMemberRequest {
 
     private String name;
-    private int memberType;
+    private String memberType;
     private String birthOfDate;
     private String mobilePhoneNumber;
     private String email;
@@ -18,11 +18,11 @@ public class CreateMemberRequest {
         this.name = name;
     }
 
-    public int getMemberType() {
+    public String getMemberType() {
         return memberType;
     }
 
-    public void setMemberType(int memberType) {
+    public void setMemberType(String memberType) {
         this.memberType = memberType;
     }
 

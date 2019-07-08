@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -26,6 +27,7 @@ import com.livingworld.clients.member.MemberService;
 import com.livingworld.clients.model.Response;
 import com.livingworld.clients.rewards.RewardsService;
 import com.livingworld.clients.rewards.model.Event;
+import com.livingworld.clients.rewards.model.Redeem;
 import com.livingworld.clients.rewards.model.Reward;
 import com.livingworld.util.GsonDeserializer;
 import com.livingworld.util.Preferences;
@@ -88,7 +90,7 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
             tvRewardsTitle.setText(event.getDescription());
             String date = dateFormatter.format(event.getStartDate())+" - "+dateFormatter.format(event.getEndDate());
             tvRewardsDate.setText(date);
-            list = event.getRewards();
+            //list = event.getRewards();
             if (event.getImage()!=null) {
                 Glide.with(this)
                         .load(Static.IMAGES_URL+event.getImage()).into(imageView);
@@ -109,8 +111,9 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
         int numberOfColumns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         recyclerView.setAdapter(rewardsAdapter);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(16));
+        //recyclerView.addItemDecoration(new SpacesItemDecoration(0));
 
+        getCurrentRewards();
     }
 
     class SpacesItemDecoration extends RecyclerView.ItemDecoration {
@@ -169,6 +172,7 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
             }
         });
         getCurrentEvent();
+        getCurrentRewards();
         swiperefresh.setRefreshing(false);
     }
 
@@ -199,13 +203,13 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
                         tvRewardsTitle.setText(event.getDescription());
                         String date = dateFormatter.format(event.getStartDate())+" - "+dateFormatter.format(event.getEndDate());
                         tvRewardsDate.setText(date);
-                        List<Reward> rewards = list;
-                        list.removeAll(rewards);
-                        rewards = event.getRewards();
-                        for (Reward reward : rewards){
-                            list.add(reward);
-                        }
-                        rewardsAdapter.notifyDataSetChanged();
+                        //List<Reward> rewards = list;
+                        //list.removeAll(rewards);
+                        //rewards = event.getRewards();
+                        //for (Reward reward : rewards){
+                        //    list.add(reward);
+                        //}
+                        //rewardsAdapter.notifyDataSetChanged();
                         if (event.getImage()!=null) {
                             Glide.with(getApplicationContext())
                                     .load(Static.IMAGES_URL+event.getImage()).into(imageView);
@@ -220,6 +224,33 @@ public class RewardsActivity extends BaseActivity implements SwipeRefreshLayout.
             @Override
             public void onFailure(Call<Response> call, Throwable throwable) {
 
+            }
+        });
+    }
+
+    private void getCurrentRewards(){
+        List<Reward> rewards = list;
+        list.removeAll(rewards);
+        rewardsService.getRewardList().enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
+                    JsonObject jsonObject = gson.toJsonTree(response.body()).getAsJsonObject();
+
+                    List<Reward> data = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Reward>>() {}.getType());
+                    Log.d("TAG", "data:"+data);
+                    for (Reward obj : data){
+                        list.add(obj);
+                    }
+                    rewardsAdapter.notifyDataSetChanged();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                showMessage(Static.SOMETHING_WRONG);
             }
         });
     }

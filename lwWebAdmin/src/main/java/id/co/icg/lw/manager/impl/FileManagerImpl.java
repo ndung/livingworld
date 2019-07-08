@@ -15,7 +15,7 @@ public class FileManagerImpl implements FileManager {
         try {
             String uuid = UUID.randomUUID().toString();
             String ext = FilenameUtils.getExtension(fileBean.getFileName());
-            fileBean.save(new File("/opt/tomcat-mondelez/webapps-loyalty/images/" + uuid +"."+ext));
+            fileBean.save(new File("/opt/tomcat1/webapps/images/" + uuid +"."+ext));
             return uuid+"."+ext;
         }catch (Exception ex){
             ex.printStackTrace();

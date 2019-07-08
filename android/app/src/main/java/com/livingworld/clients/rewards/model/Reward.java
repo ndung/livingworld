@@ -14,8 +14,10 @@ import java.io.Serializable;
 public class Reward implements Serializable, Comparable<Reward>{
 
     Long rewardId;
+    String id;
     String rewardName;
     Integer rewardPoint;
+    Integer stock;
     String rewardImage;
     String rewardDescription;
     private Merchant merchant;
@@ -59,6 +61,22 @@ public class Reward implements Serializable, Comparable<Reward>{
     public Merchant getMerchant() { return merchant; }
 
     public void setMerchant(Merchant merchant) { this.merchant = merchant; }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
 
     @Override
     public String toString() {

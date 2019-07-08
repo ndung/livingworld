@@ -23,7 +23,6 @@ public class Redeem {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="redeemId", cascade = {CascadeType.ALL})
-    @JsonIgnore
     private List<RedeemedReward> redeemedRewards;
 
     @ManyToOne(cascade = CascadeType.ALL)

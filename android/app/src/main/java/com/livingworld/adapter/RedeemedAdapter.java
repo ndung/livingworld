@@ -21,31 +21,32 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RedeemsAdapter extends RecyclerView.Adapter<RedeemsAdapter.ViewHolder> {
+public class RedeemedAdapter extends RecyclerView.Adapter<RedeemedAdapter.ViewHolder> {
 
     private static final String TAG = RedeemAdapter.class.toString();
     private List<Reward> list;
+    private Map<Reward,String> map;
     private Context context;
 
-    public RedeemsAdapter(Context context, List<Reward> list) {
+    public RedeemedAdapter(Context context, List<Reward> list, Map<Reward,String> map) {
         this.list = list;
+        this.map = map;
         this.context = context;
     }
 
     @Override
-    public RedeemsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public RedeemedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_redeems, parent, false);
-        return new RedeemsAdapter.ViewHolder(view);
+        return new RedeemedAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final RedeemsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RedeemedAdapter.ViewHolder holder, int position) {
         final Reward model = list.get(position);
-        if(model.getMerchant()!=null) {
+        if (model.getMerchant()!=null) {
             holder.tvMerchant.setText(model.getMerchant().getMerchantName());
         }
         holder.tvReward.setText(model.getRewardName());
-        Map<Reward, String> map = Preferences.getRedeems(context);
 
         if (map == null) {
             map = new HashMap<Reward, String>();

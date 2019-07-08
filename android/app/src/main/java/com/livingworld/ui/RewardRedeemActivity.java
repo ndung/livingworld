@@ -52,10 +52,12 @@ public class RewardRedeemActivity extends BaseActivity {
         tvTitle.setText(reward.getRewardName());
         tvPoint.setText(String.valueOf(reward.getRewardPoint()));
         tvDesc.setText(reward.getRewardDescription());
-        tvMerchant.setText(reward.getMerchant().getMerchantName());
+        if (reward.getMerchant()!=null) {
+            tvMerchant.setText(reward.getMerchant().getMerchantName());
+        }
         if (reward.getRewardImage()!=null) {
             Glide.with(this)
-                    .load(Static.IMAGES_URL+reward.getRewardImage()).into(ivMerchant);
+                    .load(Static.LW_URL+reward.getRewardImage()).into(ivMerchant);
         }else{
             Glide.with(this)
                     .load("http://103.27.207.124/~ifabula/demo/img/seller_galery/no_image.jpg").into(ivMerchant);

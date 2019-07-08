@@ -12,7 +12,7 @@ public class ImageThumbnailDecorator implements DisplaytagColumnDecorator {
     public Object decorate(Object columnValue, PageContext arg1, MediaTypeEnum arg2) throws DecoratorException {
         if (columnValue != null) {
             String link = (String) columnValue;
-            String xxx = "<img onclick=\"window.open(\'" + link + "\',\'_blank\');\" src=\"http://49.128.182.148:8085/images/" + link + "\" alt=\"\" style=\"height:7em!important\">";
+            String xxx = "<img onclick=\"window.open(\'" + link + "\',\'_blank\');\" src=\"http://103.84.192.244:8085/images/" + link + "\" alt=\"\" style=\"height:7em!important\">";
             return xxx;
         } else {
             return columnValue;

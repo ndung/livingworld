@@ -1,85 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:background="@null">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        app:contentPadding="10dp">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView19"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="5dp"
-                app:srcCompat="@drawable/checklist" />
-
-            <TextView
-                android:id="@+id/textView39"
+            <LinearLayout
+                android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Success"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textView46"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="You have sucessfully made \nyour payment"
-                android:textAlignment="center" />
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="5dp"
+                    app:srcCompat="@drawable/checklist" />
 
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:text="Starbuck’s Coffee"
-                android:textAlignment="center"
-                android:textColor="#8A8B8A" />
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Success"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView47"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="IDR100.000"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="36sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView46"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You have sucessfully made \nyour payment"
+                    android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/textView48"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Transaction Date: 08 January 2018"
-                android:textAlignment="center"
-                android:textColor="#8A8B8A" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Point"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="1.3"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Lucky Draw"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_lucky_draw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="-"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Starbuck’s Coffee"
+                    android:textAlignment="center"
+                    android:textColor="#8A8B8A" />
+
+                <TextView
+                    android:id="@+id/tv_trx_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IDR100.000"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_trx_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Transaction Date: 08 January 2018"
+                    android:textAlignment="center"
+                    android:textColor="#8A8B8A" />
+
+
+            </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="200dp"
+                android:id="@+id/bt_ok"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="26dp"
+                android:layout_below="@id/ll"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="16dp"
                 android:background="@color/colorAccent"
-                android:text="OK"
+                android:letterSpacing="0.1"
+                android:text="@string/btn_ok"
                 android:textColor="#FFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+                android:textSize="16sp" />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</RelativeLayout>

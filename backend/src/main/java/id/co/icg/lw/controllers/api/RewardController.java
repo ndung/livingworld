@@ -1,27 +1,28 @@
 package id.co.icg.lw.controllers.api;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import id.co.icg.lw.Application;
+import id.co.icg.lw.api.livingWorld.RedeemPointRequest;
 import id.co.icg.lw.domain.Redeem;
 import id.co.icg.lw.domain.RedeemedReward;
 import id.co.icg.lw.domain.Response;
 import id.co.icg.lw.domain.Reward;
-import id.co.icg.lw.domain.user.Member;
 import id.co.icg.lw.domain.user.User;
 import id.co.icg.lw.enums.RoleEnum;
 import id.co.icg.lw.repositories.MemberRepository;
 import id.co.icg.lw.repositories.RedeemRepository;
 import id.co.icg.lw.repositories.RewardRepository;
 import id.co.icg.lw.repositories.UserRepository;
+import id.co.icg.lw.services.livingWorld.LivingWorldApiService;
 import id.co.icg.lw.services.reward.RedeemRequest;
-import id.co.icg.lw.services.reward.RewardResponse;
 import id.co.icg.lw.services.reward.RewardService;
+import id.co.icg.lw.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -35,6 +36,9 @@ public class RewardController extends BaseController {
     private RewardService rewardService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -45,6 +49,9 @@ public class RewardController extends BaseController {
 
     @Autowired
     private RedeemRepository redeemRepository;
+
+    @Autowired
+    private LivingWorldApiService livingWorldApiService;
 
     /**
      * @api {get} /reward/point Get Total Point
@@ -80,7 +87,7 @@ public class RewardController extends BaseController {
 
         try {
             String userId = getUserId(token);
-            long balance = rewardService.getPoint(userId);
+            long balance = 0;//rewardService.getPoint(userId);
             return getHttpStatus(new Response(balance));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
@@ -122,20 +129,20 @@ public class RewardController extends BaseController {
 
         try {
             String userId = getUserId(token);
-            User user = userRepository.findOne(userId);
-            Member member = memberRepository.findByUser(user);
+            User user = userService.refreshUserById(userId);
             List<RedeemedReward> redeemedRewards = new ArrayList<>();
             Gson gson = new Gson();
             Map<String,String> map = gson.fromJson(request.getRewards(), Map.class);
             Redeem redeem = new Redeem();
             redeem.setCode(UUID.randomUUID().toString().substring(0,8).toUpperCase());
-            redeem.setMember(member);
+            redeem.setMember(user.getMember());
             Date date = new Date();
             redeem.setCreateAt(date);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
             calendar.add(Calendar.HOUR, Integer.parseInt(expiredHours));
             redeem.setExpiredDate(calendar.getTime());
+            int points = 0;
             for (String key : map.keySet()) {
                 Reward reward = rewardRepository.findOne(Long.valueOf(key));
                 RedeemedReward obj = new RedeemedReward();
@@ -143,11 +150,27 @@ public class RewardController extends BaseController {
                 obj.setRedeemId(redeem);
                 obj.setQuantity(Integer.parseInt((String) map.get(key)));
                 obj.setStatus(0);
+                obj.setRewardPoint(reward.getRewardPoint());
                 redeemedRewards.add(obj);
+                points = points + reward.getRewardPoint();
+
+                RedeemPointRequest redeemRequest = new RedeemPointRequest();
+                redeemRequest.setCardId(user.getUserId());
+                redeemRequest.setRewardId(reward.getId());
+                redeemRequest.setCardNumber(user.getMember().getCardNumber());
+                redeemRequest.setDescription("redeem points");
+                redeemRequest.setTid(UUID.randomUUID().toString());
+                redeemRequest.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                redeemRequest.setPoints(points);
+                Object object = livingWorldApiService.redeemPoints(redeemRequest);
+                System.out.println(object);
             }
             redeem.setRedeemedRewards(redeemedRewards);
-            redeemRepository.save(redeem);
-            return getHttpStatus(new Response(redeem));
+            if (points<=Integer.parseInt(user.getMember().getPoints())) {
+                redeemRepository.save(redeem);
+                return getHttpStatus(new Response(redeem));
+            }
+            return getHttpStatus(new Response("Insufficient points to reedem reward"));
         } catch (Exception e) {
             e.printStackTrace();
             return getHttpStatus(new Response(e.getMessage()));
@@ -197,9 +220,26 @@ public class RewardController extends BaseController {
 
         try {
             String userId = getUserId(token);
-            List<RewardResponse> rewards = rewardService.getRewards();
+            List<Redeem> rewards = rewardService.getRewards(userId);
             return getHttpStatus(new Response(rewards));
         } catch (Exception e) {
+            e.printStackTrace();
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ResponseEntity<Response> getRewardList(@RequestHeader(Application.AUTH) String token) {
+        if (!authorize(RoleEnum.USER, token)) {
+            return FORBIDDEN;
+        }
+
+        try {
+            String userId = getUserId(token);
+            List<Reward> rewards = rewardService.getRewardList(userId);
+            return getHttpStatus(new Response(rewards));
+        } catch (Exception e) {
+            e.printStackTrace();
             return getHttpStatus(new Response(e.getMessage()));
         }
     }

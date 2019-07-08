@@ -3,6 +3,7 @@ package id.co.icg.lw.services.livingWorld;
 import id.co.icg.lw.api.livingWorld.AddTransactionRequest;
 import id.co.icg.lw.api.livingWorld.AddTransactionResponse;
 import id.co.icg.lw.api.livingWorld.CreateMemberRequest;
+import id.co.icg.lw.api.livingWorld.RedeemPointRequest;
 import id.co.icg.lw.services.member.UpdateMemberRequest;
 
 public interface LivingWorldApiService {
@@ -25,6 +26,8 @@ public interface LivingWorldApiService {
 
     Object getSourceOfFunds() throws Exception;
 
+    Object getMasterReward(String card) throws Exception;
+
     Object getTransactionHistory(String cardNumber) throws Exception;
 
     Object getLuckyDraw(String cardNumber) throws Exception;
@@ -36,4 +39,6 @@ public interface LivingWorldApiService {
     boolean updateMember(UpdateMemberRequest request) throws Exception;
 
     Object addTransaction(AddTransactionRequest request) throws Exception;
+
+    Object redeemPoints(RedeemPointRequest request) throws Exception;
 }

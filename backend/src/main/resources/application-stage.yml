@@ -22,7 +22,7 @@ spring:
 debug: true
 
 file:
-  location : /opt/apache-tomcat-8.5.39/webapps/images/
+  location : /opt/tomcat1/webapps/images/
 
 publicKey: /opt/public_key.der
 

@@ -205,7 +205,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
             @Override
             public void onFailure(Call<Response> call, Throwable throwable) {
-
+                throwable.printStackTrace();
             }
         });
     }
@@ -222,7 +222,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
                     List<Event> currentEvents = gson.fromJson(jsonObject.getAsJsonArray("data"), new TypeToken<List<Event>>() {
                     }.getType());
-                    System.out.println("currentEvents:"+currentEvents);
+                    Log.d(TAG,"currentEvents:"+currentEvents);
                     if (currentEvents!=null && !currentEvents.isEmpty()){
                         event = currentEvents.get(0);
                         tvEventName.setText(Html.fromHtml(event.getName()));
@@ -237,7 +237,7 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
             @Override
             public void onFailure(Call<Response> call, Throwable throwable) {
-
+                throwable.printStackTrace();
             }
         });
     }
@@ -293,17 +293,17 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 }
                 Double minimumValue = 500000d;
                 String myString = String.format(getResources().getString(R.string.spend_more_description), IDRUtils.toRupiah(minimumValue), "GREEN");
-                if (currentMonthTransaction>=minimumValue){
+                if (member.getMemberType().equalsIgnoreCase("DCB2E640-C16D-4D55-86D4-DEAB5A7DD092")&&currentMonthTransaction<minimumValue){
+                    tvName.setVisibility(View.VISIBLE);
+                    tvName.setText("Hello, "+user.getFullName()+"!");
+                    viewCard.setVisibility(View.GONE);
+                }else{
                     MemberType upgrade = memberTypes.get(i);
                     minimumValue = Double.parseDouble(upgrade.getMinimumTransaction());
                     myString = String.format(getResources().getString(R.string.spend_more_description), IDRUtils.toRupiah(minimumValue), upgrade.getName());
                     tvName.setVisibility(View.GONE);
                     viewCard.setVisibility(View.VISIBLE);
                     intent.putExtra("card", i);
-                }else{
-                    tvName.setVisibility(View.VISIBLE);
-                    tvName.setText("Hello, "+user.getFullName()+"!");
-                    viewCard.setVisibility(View.GONE);
                 }
                 myString = myString + ". Learn more";
                 int j = myString.indexOf("Learn more");
@@ -346,10 +346,10 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 //} else {
                 //    new IntentIntegrator(this).initiateScan();
                 //}
-                //startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
+                startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
                 break;
             case R.id.cv_my_bc:
-                //startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
                 break;
             case R.id.cv_parking:
                 //MODE = 1;
@@ -367,11 +367,11 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(new Intent(getApplicationContext(), MerchantListActivity.class));
                 break;
             case R.id.ll_reward:
-                if (event!=null) {
+                //if (event!=null) {
                     Intent intent = new Intent(getApplicationContext(), RewardsActivity.class);
                     intent.putExtra("event", event);
                     startActivity(intent);
-                }
+                //}
                 break;
         }
     }

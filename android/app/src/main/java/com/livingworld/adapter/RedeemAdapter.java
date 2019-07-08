@@ -49,7 +49,9 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final RedeemAdapter.ViewHolder holder, int position) {
         final Reward model = list.get(position);
-        holder.tvMerchant.setText(model.getMerchant().getMerchantName());
+        if (model.getMerchant()!=null) {
+            holder.tvMerchant.setText(model.getMerchant().getMerchantName());
+        }
         holder.tvReward.setText(model.getRewardName());
         Map<Reward, String> map = Preferences.getRedeems(context);
 
@@ -60,7 +62,7 @@ public class RedeemAdapter extends RecyclerView.Adapter<RedeemAdapter.ViewHolder
         holder.tvPoints.setText(model.getRewardPoint()+" Points");
         if (model.getRewardImage()!=null) {
             Glide.with(context)
-                    .load(Static.IMAGES_URL+model.getRewardImage()).into(holder.imageView);
+                    .load(Static.LW_URL+model.getRewardImage()).into(holder.imageView);
         }else{
             Glide.with(context)
                     .load("http://103.27.207.124/~ifabula/demo/img/seller_galery/no_image.jpg").into(holder.imageView);

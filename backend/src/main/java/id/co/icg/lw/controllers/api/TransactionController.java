@@ -142,8 +142,7 @@ public class TransactionController extends BaseController {
         }
         try {
             String userId = getUserId(token);
-            Object response = livingWorldApiService.addTransaction(request);
-            return getHttpStatus(new Response(response));
+            return getHttpStatus(new Response(livingWorldApiService.addTransaction(request)));
         } catch (Exception e) {
             e.printStackTrace();
             return getHttpStatus(new Response(e.getMessage()));

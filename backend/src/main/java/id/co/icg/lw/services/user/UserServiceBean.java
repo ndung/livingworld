@@ -82,7 +82,7 @@ public class UserServiceBean implements UserService {
             throw new Exception("Password is invalid");
         }
         CreateMemberRequest createMemberRequest = new CreateMemberRequest();
-        createMemberRequest.setMemberType(0);
+        createMemberRequest.setMemberType("01");
         createMemberRequest.setBirthOfDate(dateFormatter.format(request.getDateOfBirth()));
         createMemberRequest.setEmail(request.getEmail());
         createMemberRequest.setMobilePhoneNumber(request.getMobileNumber());

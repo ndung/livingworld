@@ -18,6 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/iv_img_inbox"
             android:layout_toRightOf="@+id/iv_img_inbox"
+            android:textStyle=""
             android:text="Madiri e-Cash"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />

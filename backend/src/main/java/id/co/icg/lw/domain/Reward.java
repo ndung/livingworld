@@ -16,6 +16,9 @@ public class Reward {
     @Column(name = "reward_id")
     private long rewardId;
 
+    @Column(name = "id")
+    private String id;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id")
     @NotFound(action = NotFoundAction.IGNORE)
@@ -33,6 +36,9 @@ public class Reward {
 
     @Column(name = "reward_description")
     String rewardDescription;
+
+    @Column(name = "stock")
+    int stock;
 
     @OneToOne
     @JoinColumn(name="merchant_id")
@@ -100,4 +106,20 @@ public class Reward {
     public String getActive() { return active; }
 
     public void setActive(String active) { this.active = active; }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }

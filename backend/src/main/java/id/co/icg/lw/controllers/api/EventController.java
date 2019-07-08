@@ -63,6 +63,7 @@ public class EventController extends BaseController {
             list = eventRepository.findAllActive();
             message = "Success";
         } catch (Exception e) {
+            e.printStackTrace();
             message = e.getMessage();
         }
         return getHttpStatus(new Response(list, message));

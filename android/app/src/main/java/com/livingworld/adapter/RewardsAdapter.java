@@ -47,7 +47,7 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.ViewHold
         holder.tvPoints.setText(model.getRewardPoint()+" Points");
         if (model.getRewardImage()!=null) {
             Glide.with(context)
-                    .load(Static.IMAGES_URL+model.getRewardImage()).into(holder.imageView);
+                    .load(Static.LW_URL+model.getRewardImage()).into(holder.imageView);
         }else{
             Glide.with(context)
                     .load("http://103.27.207.124/~ifabula/demo/img/seller_galery/no_image.jpg").into(holder.imageView);

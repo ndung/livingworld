@@ -42,7 +42,6 @@ public class Member {
     @Column(name = "member_type")
     private String memberType;
 
-
     @Column(name = "date_of_birth")
     private String dateOfBirth;
 

@@ -19,10 +19,13 @@ public interface RewardsService {
     @GET("event")
     Call<Response> getCurrentEvent();
 
-    @GET("reward/point")
-    Call<Response> getTotalPoint();
+    @GET("reward")
+    Call<Response> getRedeemedReward();
 
     @POST("reward/redeem")
     Call<Response> redeem(@Body Map<String, String> map);
+
+    @GET("reward/list")
+    Call<Response> getRewardList();
 
 }
