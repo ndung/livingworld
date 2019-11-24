@@ -8,23 +8,23 @@
                 <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.event.AddEventActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
-                            <label>Title</label>
+                            <label>Name (*)</label>
                             <s:text class="form-control" name="event.name"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Message</label>
+                            <label>Description (*)</label>
                             <s:textarea class="form-control" name="event.description"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Start Date</label>
+                            <label>Start Date (*)</label>
                             <s:text class="form-control date" name="event.startDate"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>End Date</label>
+                            <label>End Date (*)</label>
                             <s:text class="form-control date" name="event.endDate"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label id="label-text">Image File</label>
+                            <label id="label-text">Image File (*)</label>
                             <s:file class="form-control" name="fileBean" accept="image/*"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">

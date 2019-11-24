@@ -8,24 +8,24 @@
                 <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.user.EditUserActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
-                            <label>User Name</label>
+                            <label>User Name (*)</label>
                             <s:text class="form-control" name="appUser.id" readonly="true"/>
                             <s:hidden name="appUser"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Full Name</label>
+                            <label>Full Name (*)</label>
                             <s:text class="form-control" name="appUser.fullName"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>E-Mail</label>
+                            <label>E-mail (*)</label>
                             <s:text class="form-control" name="appUser.email"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Phone Number</label>
+                            <label>Phone Number (*)</label>
                             <s:text class="form-control" name="appUser.phone"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Role</label>
+                            <label>Role (*)</label>
                             <s:select name="appUser.appRole.id" class="form-control chosen-select" tabindex="2">
                                 <s:options-collection collection="${actionBean.roles}" value="value" label="label" group="group"/>
                             </s:select>

@@ -27,7 +27,6 @@ public class MemberServiceBean implements MemberService {
         }
         member = new Member();
         member.setIdentityName(request.getFullName());
-        member.setIdenitityNumber(request.getKtpNo());
         member.setAddress(request.getAddress());
         member.setHomePhone(request.getHomePhone());
         member.setGender(request.getGender());
@@ -59,7 +58,6 @@ public class MemberServiceBean implements MemberService {
         }
 
         member.setIdentityName(request.getFullName());
-        member.setIdenitityNumber(request.getKtpNo());
         member.setAddress(request.getAddress());
         member.setHomePhone(request.getHomePhone());
         member.setGender(request.getGender());

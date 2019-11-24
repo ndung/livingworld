@@ -12,8 +12,7 @@ public class LinkDecorator implements DisplaytagColumnDecorator {
     public Object decorate(Object columnValue, PageContext arg1, MediaTypeEnum arg2) throws DecoratorException {
         if (columnValue != null) {
             String link = (String) columnValue;
-            String xxx = "<a onclick=\"window.open(\'" + link + "\',\'_blank\');\">Click Me</a>";
-            return xxx;
+            return "<a onclick=\"window.open(\'" + link + "\',\'_blank\');\">Click Me</a>";
         } else {
             return columnValue;
         }

@@ -8,11 +8,11 @@
                 <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.member.AddMessageActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
-                            <label>Title</label>
+                            <label>Title (*)</label>
                             <s:text class="form-control" name="message.title"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Message</label>
+                            <label>Message (*)</label>
                             <s:textarea class="form-control" name="message.message"/>
                         </fieldset>
                         <s:submit name="save" class="btn btn-md btn-primary m-t-1 confirm">Send Message</s:submit>

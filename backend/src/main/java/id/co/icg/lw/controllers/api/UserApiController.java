@@ -50,7 +50,18 @@ public class UserApiController extends BaseController {
      */
     @RequestMapping(value = "/check/card-number", method = RequestMethod.POST)
     public ResponseEntity<Response> checkCardNumber(@RequestBody String cardNumber) {
-        int result = userService.checkCardNumber(cardNumber);
+        int result = 0;
+        if (cardNumber.length()>10){
+            result = userService.checkIdNumber(cardNumber);
+        }else {
+            result = userService.checkCardNumber(cardNumber);
+        }
+        return getHttpStatus(new Response(result));
+    }
+
+    @RequestMapping(value = "/reset-pwd", method = RequestMethod.POST)
+    public ResponseEntity<Response> resetPassword(@RequestBody ResetPasswordRequest request) {
+        int result = userService.resetPassword(request);
         return getHttpStatus(new Response(result));
     }
 
@@ -103,6 +114,21 @@ public class UserApiController extends BaseController {
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Token", token);
             return getHttpStatus(new Response(user), responseHeaders);
+        } catch (Exception e) {
+            return getHttpStatus(new Response(e.getMessage()));
+        }
+    }
+
+    @RequestMapping(value = "/sign-out", method = RequestMethod.POST)
+    public ResponseEntity<Response> signOut(@RequestHeader(Application.AUTH) String token) {
+        try {
+            if (!authorize(RoleEnum.USER, token)) {
+                return FORBIDDEN;
+            }
+
+            String userId = getUserId(token);
+            User user = userService.signOut(userId);
+            return getHttpStatus(new Response(user));
         } catch (Exception e) {
             return getHttpStatus(new Response(e.getMessage()));
         }

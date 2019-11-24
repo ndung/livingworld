@@ -34,6 +34,8 @@ public interface LivingWorldApiService {
 
     Object getMember(String cardNumber) throws Exception;
 
+    Object getMemberByNoKtp(String cardNumber) throws Exception;
+
     String createMember(CreateMemberRequest request) throws Exception;
 
     boolean updateMember(UpdateMemberRequest request) throws Exception;

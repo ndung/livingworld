@@ -10,9 +10,12 @@ import java.util.List;
 
 public interface UserService {
     int checkCardNumber(String cardNumber);
+    int checkIdNumber(String idNumber);
+    int resetPassword(ResetPasswordRequest request);
     User register(UserRequest request) throws Exception;
     User signUp(SignUpRequest signUpRequest) throws Exception;
     User signIn(SignInRequest request) throws Exception;
+    User signOut(String userId) throws Exception;
     User edit(String userId, UpdateMemberRequest request) throws Exception;
     User paymentRegistration(UserRequest userRequest);
     User uploadPhotoProfile(String userId, MultipartFile multipartFile);

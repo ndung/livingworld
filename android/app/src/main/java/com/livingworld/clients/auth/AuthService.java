@@ -30,4 +30,10 @@ public interface AuthService {
 
     @POST("user/change-pwd")
     Call<Response> changePassword(@Body Map<String, String> map);
+
+    @POST("user/reset-pwd")
+    Call<Response> resetPassword(@Body Map<String, String> map);
+
+    @POST("user/sign-out")
+    Call<Response> signOut();
 }

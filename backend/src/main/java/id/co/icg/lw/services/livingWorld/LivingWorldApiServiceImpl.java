@@ -22,8 +22,10 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
     String baseUrl;
 
     @Autowired
-    public LivingWorldApiServiceImpl(@Value("${iFabula.url}") String baseUrl) {
-        super(baseUrl, LivingWorldApi.class);
+    public LivingWorldApiServiceImpl(@Value("${iFabula.url}") String baseUrl,
+                                     @Value("${proxy.host}") String proxyHost,
+                                     @Value("${proxy.port}") int proxyPort) {
+        super(baseUrl, LivingWorldApi.class, proxyHost, proxyPort);
         this.baseUrl = baseUrl;
     }
 
@@ -84,6 +86,13 @@ public class LivingWorldApiServiceImpl extends RetrofitClient<LivingWorldApi> im
 
     public Object getMember(String cardNumber) throws Exception {
         Call<IFabulaResponse> callSync = service.getMember(cardNumber);
+        Response<IFabulaResponse> response = callSync.execute();
+        IFabulaResponse iFabulaResponse = response.body();
+        return iFabulaResponse.getList();
+    }
+
+    public Object getMemberByNoKtp(String ktp) throws Exception {
+        Call<IFabulaResponse> callSync = service.getMemberByNoKtp(ktp);
         Response<IFabulaResponse> response = callSync.execute();
         IFabulaResponse iFabulaResponse = response.body();
         return iFabulaResponse.getList();

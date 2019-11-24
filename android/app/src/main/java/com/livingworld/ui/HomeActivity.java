@@ -180,6 +180,10 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
         initMember();
 
+        User user = Preferences.getUser(getApplicationContext());
+        if (user.getPasswordStatus()==1){
+            startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
+        }
     }
 
     private static final String TAG = HomeActivity.class.toString();
@@ -293,7 +297,8 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 }
                 Double minimumValue = 500000d;
                 String myString = String.format(getResources().getString(R.string.spend_more_description), IDRUtils.toRupiah(minimumValue), "GREEN");
-                if (member.getMemberType().equalsIgnoreCase("DCB2E640-C16D-4D55-86D4-DEAB5A7DD092")&&currentMonthTransaction<minimumValue){
+                Log.d(TAG, "user.status:"+user.getStatus());
+                if (user.getStatus()==3){//.getMemberType().equalsIgnoreCase("DCB2E640-C16D-4D55-86D4-DEAB5A7DD092")&&currentMonthTransaction<minimumValue){
                     tvName.setVisibility(View.VISIBLE);
                     tvName.setText("Hello, "+user.getFullName()+"!");
                     viewCard.setVisibility(View.GONE);
@@ -346,10 +351,10 @@ public class HomeActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 //} else {
                 //    new IntentIntegrator(this).initiateScan();
                 //}
-                startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
+                //startActivity(new Intent(getApplicationContext(), PaymentMethodActivity.class));
                 break;
             case R.id.cv_my_bc:
-                startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
+                //startActivity(new Intent(getApplicationContext(), MyQRCodeActivity.class));
                 break;
             case R.id.cv_parking:
                 //MODE = 1;

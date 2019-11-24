@@ -18,8 +18,10 @@ public class User implements Serializable{
     private String mobileNumber;
     //private Date dateOfBirth;
     private String photoProfileUrl;
+    private int status;
+    private String idNumber;
+    private int passwordStatus;
 
-    private String ecashId;
     private Member member;
 
     public String getUserId() {
@@ -66,16 +68,18 @@ public class User implements Serializable{
         return photoProfileUrl;
     }
 
-    public void setPhotoProfileUrl(String photoProfileUrl) {
-        this.photoProfileUrl = photoProfileUrl;
+    public void setPhotoProfileUrl(String photoProfileUrl) { this.photoProfileUrl = photoProfileUrl; }
+
+    public int getStatus() { return status; }
+
+    public void setStatus(int status) { this.status = status; }
+
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public String getEcashId() {
-        return ecashId;
-    }
-
-    public void setEcashId(String ecashId) {
-        this.ecashId = ecashId;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
     public Member getMember() {
@@ -86,6 +90,10 @@ public class User implements Serializable{
         this.member = member;
     }
 
+    public int getPasswordStatus() { return passwordStatus; }
+
+    public void setPasswordStatus(int passwordStatus) { this.passwordStatus = passwordStatus; }
+
     @Override
     public String toString() {
         return "User{" +
@@ -95,7 +103,9 @@ public class User implements Serializable{
                 ", mobileNumber='" + mobileNumber + '\'' +
                 //", dateOfBirth=" + dateOfBirth +
                 ", photoProfileUrl='" + photoProfileUrl + '\'' +
-                ", ecashId='" + ecashId + '\'' +
+                ", status='" + status + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", passwordStatus='" + passwordStatus + '\'' +
                 ", member=" + member +
                 '}';
     }

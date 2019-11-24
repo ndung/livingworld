@@ -8,39 +8,39 @@
                 <s:form class="form-horizontal" beanclass="id.co.icg.lw.web.user.AddUserActionBean">
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
-                            <label>User Name</label>
+                            <label>User Name (*)</label>
                             <s:text class="form-control" name="appUser.id"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Full Name</label>
+                            <label>Full Name (*)</label>
                             <s:text class="form-control" name="appUser.fullName"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Password</label>
+                            <label>Password (*)</label>
                             <s:password id="myInput1" class="form-control" name="appUser.password"/>
                             <input type="checkbox" onclick="myFunction1()">Show
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Confirm Password</label>
+                            <label>Confirm Password (*)</label>
                             <s:password id="myInput2" class="form-control" name="rePassword"/>
                             <input type="checkbox" onclick="myFunction2()">Show
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>E-Mail</label>
+                            <label>E-mail (*)</label>
                             <s:text class="form-control" name="appUser.email"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Phone Number</label>
+                            <label>Phone Number (*)</label>
                             <s:text class="form-control" name="appUser.phone"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Status</label>
+                            <label>Status (*)</label>
                             <s:select name="appUser.status" class="form-control chosen-select" tabindex="2">
                                 <s:options-collection collection="${actionBean.statusActives}" value="value" label="label" group="group"/>
                             </s:select>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Role</label>
+                            <label>Role (*)</label>
                             <s:select name="appUser.appRole.id" class="form-control chosen-select" tabindex="2">
                                 <s:options-collection collection="${actionBean.roles}" value="value" label="label" group="group"/>
                             </s:select>

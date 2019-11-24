@@ -30,6 +30,9 @@ public interface LivingWorldApi {
     @GET("member?type=read")
     Call<IFabulaResponse> getMember(@Query("card_number") String cardNumber);
 
+    @GET("member?type=read")
+    Call<IFabulaResponse> getMemberByNoKtp(@Query("no_ktp") String cardNumber);
+
     @POST("member?type=create")
     Call<CreateMemberResponse> createMember(@Body CreateMemberRequest body);
 

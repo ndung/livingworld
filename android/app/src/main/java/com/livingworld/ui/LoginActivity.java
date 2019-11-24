@@ -2,6 +2,7 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -110,6 +111,7 @@ public class LoginActivity extends BaseActivity {
     private void checkCard() {
         cardNumber = inputCardNumberFragment.getEtCardNumber().getEditText().getText().toString();
         if (!cardNumber.isEmpty()) {
+            Preferences.putString(this, "cardNumber", cardNumber);
             showPleasewaitDialog();
             String params = "cardNumber";
             Map<String, String> map = new HashMap<>();
@@ -130,7 +132,7 @@ public class LoginActivity extends BaseActivity {
                             STEP = CREATE_PASSWORD;
                             setFragment(createPasswordFragment);
                         } else if (data < 0) {
-                            inputCardNumberFragment.getEtCardNumber().setError("Card number is not registered");
+                            inputCardNumberFragment.getEtCardNumber().setError("Card number / ID number (KTP) is not registered");
                         }
                     } else if (response.errorBody() != null) {
                         try {
@@ -168,19 +170,17 @@ public class LoginActivity extends BaseActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put("cardNumber", cardNumber);
                 map.put("publicKey", publicKey);
+                map.put("deviceId", Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID));
                 authService.signIn(map).enqueue(new Callback<Response>() {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                         dissmissPleasewaitDialog();
-
-                        Log.d(TAG, "resp:" + response);
                         if (response.isSuccessful()) {
                             Response body = response.body();
                             Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new GsonDeserializer()).create();
                             JsonObject jsonObject = gson.toJsonTree(body.getData()).getAsJsonObject();
 
                             User user = gson.fromJson(jsonObject, User.class);
-                            Log.d(TAG, "user:" + user);
                             if (user != null) {
                                 String token = response.headers().get("Token");
                                 Preferences.setUser(getApplicationContext(), user);
@@ -227,7 +227,6 @@ public class LoginActivity extends BaseActivity {
 
     private void signUp() {
         String pwd = createPasswordFragment.getEtPass().getEditText().getText().toString();
-        Log.d(TAG, "pwd:"+pwd);
         if (!pwd.isEmpty()) {
             if (StringUtils.isPasswordValid(pwd, true, true, 6, 20)) {
                 if (!cardNumber.isEmpty()) {
@@ -235,6 +234,7 @@ public class LoginActivity extends BaseActivity {
                     Map<String, String> map = new HashMap<>();
                     map.put("cardNumber", cardNumber);
                     map.put("password", pwd);
+                    map.put("deviceId", Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID));
                     authService.signUp(map).enqueue(new Callback<Response>() {
                         @Override
                         public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {

@@ -20,7 +20,6 @@ public class Member implements Serializable{
 
     private String cardNumber;
     private String identityName;
-    private String idenitityNumber;
     private String religion;
     private String gender;
     private String martialStatus;
@@ -52,14 +51,6 @@ public class Member implements Serializable{
 
     public void setIdentityName(String identityName) {
         this.identityName = identityName;
-    }
-
-    public String getIdenitityNumber() {
-        return idenitityNumber;
-    }
-
-    public void setIdenitityNumber(String idenitityNumber) {
-        this.idenitityNumber = idenitityNumber;
     }
 
     public String getReligion() {
@@ -203,7 +194,6 @@ public class Member implements Serializable{
         return "Member{" +
                 "cardNumber='" + cardNumber + '\'' +
                 ", identityName='" + identityName + '\'' +
-                ", idenitityNumber='" + idenitityNumber + '\'' +
                 ", religion='" + religion + '\'' +
                 ", gender='" + gender + '\'' +
                 ", martialStatus='" + martialStatus + '\'' +

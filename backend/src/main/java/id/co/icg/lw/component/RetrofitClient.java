@@ -8,9 +8,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 
 public class RetrofitClient<T> {
 
@@ -24,34 +25,36 @@ public class RetrofitClient<T> {
 
     protected T service;
 
-    public RetrofitClient(){
+    public RetrofitClient() {
 
     }
 
-    public RetrofitClient(String baseUrl) {
-        init(baseUrl);
-
-    }
-    public RetrofitClient(String baseUrl, Class<T> clazz) {
-        init(baseUrl);
+    public RetrofitClient(String baseUrl, Class<T> clazz, String proxyHost, int proxyPort) {
+        init(baseUrl, proxyHost, proxyPort);
         service = createService(clazz, null);
     }
 
-    public RetrofitClient(String baseUrl, Class<T> tClass, Map<String, String> header) {
-        init(baseUrl);
-        service = createService(tClass, header);
+    protected void init(String baseUrl){
+        init(baseUrl, null, 0);
     }
 
-    protected void init(String baseUrl) {
+    protected void init(String baseUrl, String proxyHost, int proxyPort) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
+        Proxy proxy = null;
+        if (proxyHost!=null && !proxyHost.isEmpty()) {
+            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+        }
         builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson));
         retrofit = builder.build();
         httpClient = new OkHttpClient.Builder();
+        if (proxy!=null){
+            httpClient = new OkHttpClient.Builder().proxy(proxy);
+        }
         logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 

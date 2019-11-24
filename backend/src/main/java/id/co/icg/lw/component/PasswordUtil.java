@@ -1,12 +1,15 @@
 package id.co.icg.lw.component;
 
+import org.passay.*;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class PasswordUtil {
@@ -110,6 +113,29 @@ public class PasswordUtil {
 
     }
 
+    public static String generatePassword() {
+
+        List<CharacterRule> rules = new ArrayList<CharacterRule>();
+
+        //CharacterCharacteristicsRule r2 = new CharacterCharacteristicsRule();
+        // Define M (3 in this case)
+        //r2.setNumberOfCharacteristics(3);
+        // at least one upper-case character
+        CharacterRule rule1 = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+        rules.add(rule1);
+        // at least one lower-case character
+        CharacterRule rule2 = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+        rules.add(rule2);
+        // at least one digit character
+        CharacterRule rule3 = new CharacterRule(EnglishCharacterData.Digit, 1);
+        rules.add(rule3);
+        // at least one symbol (special character)
+        //r2.getRules().add(new CharacterRule(EnglishCharacterData.Special, 1));
+        //list.add(r2);
+
+        PasswordGenerator generator = new PasswordGenerator();
+        return generator.generatePassword(6, rules);
+    }
 
     public static boolean checkPublicKey(String publicKey, String cardNumber, String password) {
         Date date = new Date();

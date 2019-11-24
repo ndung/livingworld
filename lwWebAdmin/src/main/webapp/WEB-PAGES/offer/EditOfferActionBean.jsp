@@ -9,23 +9,23 @@
                     <s:hidden name="currentOffer"/>
                     <div class="p-x-1 col-md-5">
                         <fieldset class="form-group form-group-md">
-                            <label>Title</label>
+                            <label>Title (*)</label>
                             <s:text class="form-control" name="currentOffer.title"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Short Description</label>
+                            <label>Short Description (*)</label>
                             <s:text class="form-control" name="currentOffer.shortDescription"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Long Description</label>
+                            <label>Long Description (*)</label>
                             <s:textarea class="form-control" name="currentOffer.longDescription"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>Start Date</label>
+                            <label>Start Date (*)</label>
                             <s:text class="form-control date" formatType="date" formatPattern="MM/dd/yyyy" name="currentOffer.startDate"/>
                         </fieldset>
                         <fieldset class="form-group form-group-md">
-                            <label>End Date</label>
+                            <label>End Date (*)</label>
                             <s:text class="form-control date" formatType="date" formatPattern="MM/dd/yyyy" name="currentOffer.endDate"/>
                         </fieldset>
                         <s:submit name="update" class="btn btn-md btn-primary m-t-1 confirm">Update Offer</s:submit>

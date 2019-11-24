@@ -2,6 +2,11 @@ package id.co.icg.lw.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nokieng17.emvcoqr.*;
+import com.nokieng17.emvcoqr.encoding.PayloadEncoding;
+import com.nokieng17.emvcoqr.iso.Iso3166Countries;
+import com.nokieng17.emvcoqr.iso.Iso4217Currency;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -226,7 +231,39 @@ public class StringUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(hiddenText(" tapi  oke"));
+    public static void main(String[] args) throws IllegalAccessException {
+
+        String origin = "00020101021229300012D156000000000510A93FO3230Q31280012D15600000001030812345678520441115802CN5914BEST TRANSPORT6007BEIJING64200002ZH0104最佳运输0202北京540523.7253031565502016233030412340603***0708A60086670902ME91320016A0112233449988770708123456786304A13A";
+
+        MerchantPayload payload = MerchantPayloadFunc.CreateStatic(
+                new MerchantAccountInformationMap()
+                        .add(26, new MerchantAccountInformation()
+                                .setGlobalUniqueIdentifier("ID.CO.LIVINGWORLD.WWW"))
+                        //.addPaymentNetworkSpecifics(1, "936005030000003081")
+                        //.addPaymentNetworkSpecifics(2, "08200000000227")
+                        //.addPaymentNetworkSpecifics(3, "UBE"))
+                        .add(50, new MerchantAccountInformation()
+                                .setGlobalUniqueIdentifier("123"))
+                        .add(51, new MerchantAccountInformation()
+                                .setGlobalUniqueIdentifier("ID.CO.QRIS.WWW")),
+                //.addPaymentNetworkSpecifics(2, "ID8200000000227")
+                //.addPaymentNetworkSpecifics(3, "UBE")),
+                5499,
+                new Iso4217Currency.Indonesiaextends().getNumericCode(),
+                Iso3166Countries.INDONESIA ,
+                "one to three",
+                "Tangerang Selatan","15325");
+        payload.setTransactionCurrency(new Iso4217Currency.Indonesiaextends().getNumericCode());
+        /**payload.setAdditionalData(
+         new MerchantAdditionalData()
+         .setReferenceLabel("cibinong")
+         .setCustomerLabel("478408")
+         .setTerminalLabel("A01"));*/
+        PayloadEncoding encode = new PayloadEncoding();
+        String qr = encode.GeneratePayload(payload);
+
+        System.out.println(qr);
+        System.out.println(origin);
+
     }
 }

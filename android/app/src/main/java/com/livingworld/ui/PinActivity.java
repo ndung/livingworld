@@ -61,7 +61,10 @@ public class PinActivity extends BaseActivity {
         @Override
         public void onComplete(String pin) {
             if (MODE==0) {
-                createTransaction();
+                //createTransaction();
+                final Dialog dialog = new Dialog(PinActivity.this);
+                dialog.setContentView(R.layout.dialog_custom);
+                dialog.show();
             }else{
                 Dialog dialog = new Dialog(PinActivity.this);
                 dialog.setContentView(R.layout.dialog_parking);

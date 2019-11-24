@@ -36,8 +36,8 @@ public class User {
     @Column(name = "photo_profile_url")
     private String photoProfileUrl;
 
-    @Column(name = "ecash_id")
-    private String ecashId;
+    @Column(name = "id_number")
+    private String idNumber;
 
     @Column(name = "card_number")
     private String cardNumber;
@@ -57,6 +57,15 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<Role>();
+
+    @Column(name = "password_status")
+    private int passwordStatus;
+
+    @Column(name = "device_id")
+    private String deviceId;
+
+    @Column(name = "login_status")
+    private int loginStatus;
 
     public List<Role> getRoles() {
         if (roles == null)
@@ -170,12 +179,12 @@ public class User {
         this.photoProfileUrl = photoProfileUrl;
     }
 
-    public String getEcashId() {
-        return ecashId;
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public void setEcashId(String ecashId) {
-        this.ecashId = ecashId;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
     @Transient
@@ -188,4 +197,16 @@ public class User {
     public void setMember(Member member) {
         this.member = member;
     }
+
+    public int getPasswordStatus() { return passwordStatus; }
+
+    public void setPasswordStatus(int passwordStatus) { this.passwordStatus = passwordStatus; }
+
+    public String getDeviceId() { return deviceId; }
+
+    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+
+    public int getLoginStatus() { return loginStatus; }
+
+    public void setLoginStatus(int loginStatus) { this.loginStatus = loginStatus; }
 }

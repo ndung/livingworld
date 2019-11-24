@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,17 +14,30 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.livingworld.R;
+import com.livingworld.clients.ApiUtils;
+import com.livingworld.clients.auth.AuthService;
 import com.livingworld.clients.auth.model.User;
+import com.livingworld.clients.model.Response;
 import com.livingworld.clients.rewards.model.RedeemedReward;
 import com.livingworld.util.Preferences;
 import com.livingworld.util.Static;
+import com.thefinestartist.Base;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 
-public class AccountSettingActivity extends AppCompatActivity {
+public class AccountSettingActivity extends BaseActivity {
 
     @BindView(R.id.iv_finish)
     ImageView ivFinish;
@@ -44,23 +58,32 @@ public class AccountSettingActivity extends AppCompatActivity {
     @BindView(R.id.tv_card_number)
     TextView tvCardNumber;
 
+    AuthService authService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_setting);
         ButterKnife.bind(this);
 
+        authService = ApiUtils.AuthService(this);
+
 //        Glide.with(this).load("https://scontent-sit4-1.cdninstagram.com/t51.2885-19/s150x150/22158665_821785821334849_4414678351050964992_n.jpg").apply(new RequestOptions().centerCrop()).into(ivProfile);
 
         User user = Preferences.getUser(getApplicationContext());
 
-        if (user.getPhotoProfileUrl()!=null) {
+        if (user.getPhotoProfileUrl() != null) {
             Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
-        }else{
+        } else {
             Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
         }
         tvName.setText(user.getFullName());
         tvCardNumber.setText(user.getMember().getCardNumber());
+        if (user.getStatus() == 3) {
+            tvCardNumber.setVisibility(View.GONE);
+        } else {
+            tvCardNumber.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -68,9 +91,9 @@ public class AccountSettingActivity extends AppCompatActivity {
         super.onResume();
         User user = Preferences.getUser(getApplicationContext());
 
-        if (user.getPhotoProfileUrl()!=null) {
+        if (user.getPhotoProfileUrl() != null) {
             Glide.with(getApplicationContext()).load(Static.IMAGES_URL + user.getPhotoProfileUrl()).into(ivProfile);
-        }else{
+        } else {
             Glide.with(getApplicationContext()).load(Static.NO_IMAGE_URL).into(ivProfile);
         }
         tvName.setText(user.getFullName());
@@ -112,13 +135,7 @@ public class AccountSettingActivity extends AppCompatActivity {
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                Preferences.setUser(getApplicationContext(), null);
-                                Preferences.setPublicKey(getApplicationContext(), null);
-                                Preferences.setToken(getApplicationContext(), null);
-                                Preferences.setLoginFlag(getApplicationContext(), false);
-                                Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                signOut();
                             }
                         })
                         .negativeText("No")
@@ -131,5 +148,41 @@ public class AccountSettingActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    private void signOut() {
+        showPleasewaitDialog();
+
+        authService.signOut().enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                dissmissPleasewaitDialog();
+                if (response.isSuccessful()) {
+                    Preferences.setUser(getApplicationContext(), null);
+                    Preferences.setPublicKey(getApplicationContext(), null);
+                    Preferences.setToken(getApplicationContext(), null);
+                    Preferences.setLoginFlag(getApplicationContext(), false);
+                    Intent intent = new Intent(getApplicationContext(), SplashScreen.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else if (response.errorBody() != null) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string().trim());
+                        showSnackbar(jObjError.getString("message"));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
+                    showSnackbar(Static.SOMETHING_WRONG);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                dissmissPleasewaitDialog();
+                showSnackbar(Static.SOMETHING_WRONG);
+            }
+        });
+
     }
 }

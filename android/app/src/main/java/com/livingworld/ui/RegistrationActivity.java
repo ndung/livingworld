@@ -2,6 +2,7 @@ package com.livingworld.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -91,6 +92,7 @@ public class RegistrationActivity extends BaseActivity {
     private String name;
     private String mobile;
     private String email;
+    private String ktp;
     private String password;
     private String confirmPassword;
 
@@ -101,6 +103,7 @@ public class RegistrationActivity extends BaseActivity {
         name = step1.getEtNama().getEditText().getText().toString();
         mobile = step1.getEtMobile().getEditText().getText().toString();
         email = step1.getEtEmail().getEditText().getText().toString();
+        ktp = step1.getEtKtp().getEditText().getText().toString();
         boolean bool = true;
         if (email.isEmpty()) {
             step1.getEtEmail().setError("Email should not be empty");
@@ -128,6 +131,12 @@ public class RegistrationActivity extends BaseActivity {
         }
         if (name.isEmpty()) {
             step1.getEtNama().setError("Name should not be empty");
+            bool = false;
+        }else{
+            step1.getEtNama().setError(null);
+        }
+        if (ktp.isEmpty()) {
+            step1.getEtKtp().setError("No KTP should not be empty");
             bool = false;
         }else{
             step1.getEtNama().setError(null);
@@ -165,7 +174,8 @@ public class RegistrationActivity extends BaseActivity {
             map.put("mobileNumber", mobile);
             map.put("dateOfBirth", bod);
             map.put("password", password);
-
+            map.put("ktp", ktp);
+            map.put("deviceId", Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID));
             showPleasewaitDialog();
             memberService.registerUser(map).enqueue(new Callback<Response>() {
                 @Override
@@ -218,6 +228,7 @@ public class RegistrationActivity extends BaseActivity {
             args.putString("name", name);
             args.putString("mobile", mobile);
             args.putString("email", email);
+            args.putString("ktp", ktp);
             step1.setArguments(args);
             getSupportFragmentManager().beginTransaction().replace(mainFrame.getId(), step1).commit();
             tvStep.setText("Step 1/2");

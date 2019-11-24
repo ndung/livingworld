@@ -162,6 +162,8 @@ public class InformationAccountActivity extends BaseActivity {
         ArrayAdapter<Religion> religionAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, religionMasters);
         religionAdapter.setDropDownViewResource(R.layout.spinner_item);
         spReligion.setAdapter(religionAdapter);
+        spReligion.setEnabled(false);
+        spReligion.setClickable(false);
         for (int i=0; i < religionMasters.size(); i++){
             Master master = religionMasters.get(i);
             if(member != null && master.getId().equalsIgnoreCase(member.getReligion())){
@@ -187,6 +189,8 @@ public class InformationAccountActivity extends BaseActivity {
 
         ArrayAdapter<MaritalStatus> materialStatusAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, materialStatusMasters);
         materialStatusAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spMaterialStatus.setEnabled(false);
+        spMaterialStatus.setClickable(false);
         spMaterialStatus.setAdapter(materialStatusAdapter);
         for (int i=0; i < materialStatusMasters.size(); i++){
             Master master = materialStatusMasters.get(i);
@@ -200,6 +204,8 @@ public class InformationAccountActivity extends BaseActivity {
 
         ArrayAdapter<Gender> genderAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genderMasters);
         genderAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spGender.setEnabled(false);
+        spGender.setClickable(false);
         spGender.setAdapter(genderAdapter);
         for (int i=0; i < genderMasters.size(); i++){
             Master master = genderMasters.get(i);
@@ -213,6 +219,8 @@ public class InformationAccountActivity extends BaseActivity {
 
         ArrayAdapter<Nationality> nationalityAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, nationalityMasters);
         nationalityAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spNationality.setEnabled(false);
+        spNationality.setClickable(false);
         spNationality.setAdapter(nationalityAdapter);
         for (int i=0; i < nationalityMasters.size(); i++){
             Master master = nationalityMasters.get(i);
@@ -448,18 +456,17 @@ public class InformationAccountActivity extends BaseActivity {
             etZipCode.setError(null);
         }
         map.put("zipCode",etZipCode.getEditText().getText().toString());
-
-        if(etHomePhone.getEditText().getText().toString().isEmpty()){
-            etHomePhone.setError("Home phone number should not be empty");
-            bool = false;
-        } else if (etHomePhone.getEditText().getText().toString().length()<8){
-            etHomePhone.setError("Home phone number should be valid");
-            bool = false;
-        }else{
-            etHomePhone.setError(null);
-        }
-        map.put("homePhoneNumber",etHomePhone.getEditText().getText().toString());
-
+        /**if (etHomePhone.getEditText().getText().toString().isEmpty()) {
+             etHomePhone.setError("Home phone number should not be empty");
+             bool = false;
+         } else if (etHomePhone.getEditText().getText().toString().length() < 8) {
+             etHomePhone.setError("Home phone number should be valid");
+             bool = false;
+         } else {
+             etHomePhone.setError(null);
+             }
+         map.put("homePhoneNumber", etHomePhone.getEditText().getText().toString());
+         */
         for (int i=0; i < religionMasters.size(); i++){
             Master master = religionMasters.get(i);
             if(master.getName().equalsIgnoreCase(spReligion.getSelectedItem().toString())){
@@ -501,9 +508,9 @@ public class InformationAccountActivity extends BaseActivity {
         }
         map.put("cardNumber", member.getCardNumber());
         map.put("tid", user.getUserId());
-        map.put("idNumber", member.getIdenitityNumber());
+        map.put("idNumber", user.getIdNumber());
         map.put("cardId", member.getMemberType());
-        map.put("memberType", "01");
+        map.put("memberType", "0" + user.getStatus());
 
         if (bool) {
             showPleasewaitDialog();

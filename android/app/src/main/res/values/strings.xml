@@ -127,8 +127,8 @@
     <string name="lbl_terms_and_conditions"><![CDATA[terms & conditions]]></string>
     <string name="title_hello">Hello</string>
     <string name="subtitle_hello">Thank you for connecting with us. Living World Mobile Application is a platform that will enhance your shopping experience. Get instant access for special offers and updates.</string>
-    <string name="lbl_card_number">Card Number</string>
-    <string name="hint_enter_your_card_number">Enter your card number</string>
+    <string name="lbl_card_number">Card Number / ID Number (KTP) </string>
+    <string name="hint_enter_your_card_number">Enter your card number / ID no (KTP)</string>
     <string name="lbl_password">Password</string>
     <string name="lbl_forgot_password">Forgot Password</string>
     <string name="subtitle_enter_your_password"><![CDATA[Enter your own password with minimum 6 characters (number & alphabets) and at least have one uppercase letter]]></string>
@@ -136,7 +136,7 @@
     <string name="lbl_lucky_draw">Lucky Draw</string>
     <string name="lbl_your_points">Your Points</string>
     <string name="lbl_total_transaction">TOTAL TRANSACTION</string>
-    <string name="title_rewards">Rewards</string>
+    <string name="title_rewards">Point Redemption</string>
     <string name="lbl_coming_soon">Coming Soon</string>
     <string name="black_member_description">You are now a Premiere member, get your card at the Customer Service for Free parking.</string>
     <string name="spend_more_description">Spend %1$s and upgrade to %2$s Live Card member</string>
@@ -180,7 +180,7 @@
     <string name="lbl_home_phone">Home Phone</string>
     <string name="hint_enter_your_home_phone">Enter your home phone</string>
     <string name="title_change_password">Change Password</string>
-    <string name="subtitle_change_password">Please enter the information below to continue</string>
+    <string name="subtitle_change_password">Please enter the information below to continue\n<![CDATA[Create your new password with minimum 6 characters (number & alphabets) and at least have one uppercase letter]]></string>
     <string name="lbl_old_password">Old Password</string>
     <string name="hint_enter_your_old_password">Enter your old password</string>
     <string name="lbl_new_password">New Password</string>
@@ -255,10 +255,10 @@ Service (021 5312 8580)\n
     <string name="title_payment_method">Payment Method</string>
     <string name="subtitle_payment_method">Choose your payment method. Please make sure your transaction before payment. You will not be able to refund once you proceed.</string>
     <string name="lbl_indie_pay">Living World</string>
-    <string name="lbl_mandiri_e_cash">Mandiri e-Cash</string>
+    <string name="lbl_mandiri_e_cash">Link Aja</string>
     <string name="lbl_add_payment_method">Add payment method</string>
     <string name="lbl_tap_here_to_add_payment_method">Tap here to add payment method</string>
-    <string name="title_e_cash_pin">e-cash PIN</string>
+    <string name="title_e_cash_pin">Link Aja PIN</string>
     <string name="btn_redeem_this_product">REDEEM THIS PRODUCT</string>
     <string name="title_redeem">Redeem</string>
     <string name="lbl_total_point_to_redeem">Total point to redeem</string>
@@ -319,4 +319,10 @@ OTHER PROVISIONS:\n
 4. For all employees of the PT Group Retail Solution along with the families of Tenants (Shop Owners and Employees), Advertising Agencies, Sponsors are not allowed to become Live Card Members\n
 5. Living World decisions are absolute and cannot be contested\n
 ]]></string>
+    <string name="hint_enter_your_ktp">Enter your ID number (KTP)</string>
+    <string name="lbl_ktp">ID Number (KTP)</string>
+    <string name="reset_password_email">The email entered does not match the registered email</string>
+    <string name="reset_password_failed">Reset password failed, please call customer service!</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="email">Email</string>
 </resources>

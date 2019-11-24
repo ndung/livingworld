@@ -35,6 +35,8 @@ public class Step1SignUpFragment extends Fragment {
     TextInputLayout etMobile;
     @BindView(R.id.et_email)
     TextInputLayout etEmail;
+    @BindView(R.id.et_ktp)
+    TextInputLayout etKtp;
 
     public TextInputLayout getEtNama() {
         return etNama;
@@ -50,6 +52,10 @@ public class Step1SignUpFragment extends Fragment {
 
     public TextInputLayout getEtEmail() {
         return etEmail;
+    }
+
+    public TextInputLayout getEtKtp() {
+        return etKtp;
     }
 
     Unbinder unbinder;
@@ -72,6 +78,7 @@ public class Step1SignUpFragment extends Fragment {
             etBod.getEditText().setText(args.getString("bod", ""));
             etMobile.getEditText().setText(args.getString("mobile", ""));
             etEmail.getEditText().setText(args.getString("email", ""));
+            etKtp.getEditText().setText(args.getString("ktp", ""));
         }
         return view;
     }

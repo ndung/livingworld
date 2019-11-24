@@ -22,9 +22,6 @@ public class Member {
     @Column(name = "identity_name")
     private String identityName;
 
-    @Column(name = "idenitity_number")
-    private String idenitityNumber;
-
     private String religion;
     private String gender;
     private String address;
@@ -80,14 +77,6 @@ public class Member {
 
     public void setIdentityName(String identityName) {
         this.identityName = identityName;
-    }
-
-    public String getIdenitityNumber() {
-        return idenitityNumber;
-    }
-
-    public void setIdenitityNumber(String idenitityNumber) {
-        this.idenitityNumber = idenitityNumber;
     }
 
     public String getReligion() {

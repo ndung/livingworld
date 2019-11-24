@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.livingworld.R;
+import com.livingworld.clients.auth.model.User;
 import com.livingworld.util.Preferences;
 import com.thefinestartist.finestwebview.FinestWebView;
 import com.thefinestartist.finestwebview.listeners.WebViewListener;
+import com.thefinestartist.utils.preferences.Pref;
 
 public class SplashScreen extends AppCompatActivity {
 

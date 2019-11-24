@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MemberResponse {
+
     private String fullName;
-    private String ktpNo;
     private String religion;
     private String gender;
     private String martialStatus;
@@ -24,7 +24,6 @@ public class MemberResponse {
         setCity(member.getCity());
         setDateOfBirth(member.getDateOfBirth());
         setGender(member.getGender());
-        setKtpNo(member.getIdenitityNumber());
         setReligion(member.getReligion());
         setNationality(member.getNationalitly());
         setZipCode(member.getZipcode());
@@ -38,14 +37,6 @@ public class MemberResponse {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getKtpNo() {
-        return ktpNo;
-    }
-
-    public void setKtpNo(String ktpNo) {
-        this.ktpNo = ktpNo;
     }
 
     public String getReligion() {

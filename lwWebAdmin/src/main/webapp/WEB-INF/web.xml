@@ -46,10 +46,6 @@
             <param-name>Stripes.EncryptionKey</param-name>
             <param-value>c03P0384n9Et</param-value>
         </init-param>
-        <init-param>
-            <param-name>MultipartWrapper.Class</param-name>
-            <param-value>net.sourceforge.stripes.controller.multipart.CommonsMultipartWrapper</param-value>
-        </init-param>
     </filter>
     <servlet>
         <servlet-name>StripesDispatcher</servlet-name>

@@ -63,10 +63,10 @@ public class ConfirmationBillActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bt_next:
-                //Intent intent = new Intent(getApplicationContext(), PinActivity.class);
-                //intent.putExtra("MODE", 0);
-                //startActivity(intent);
-                createTransaction();
+                Intent intent = new Intent(getApplicationContext(), PinActivity.class);
+                intent.putExtra("MODE", 0);
+                startActivity(intent);
+                //createTransaction();
                 break;
         }
     }

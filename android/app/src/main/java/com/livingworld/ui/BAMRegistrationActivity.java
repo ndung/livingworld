@@ -154,7 +154,7 @@ public class BAMRegistrationActivity extends BaseActivity {
             }
         }
 
-        etKtp.setText(member.getIdenitityNumber());
+        etKtp.setText(user.getIdNumber());
         etName.setText(member.getIdentityName());
         etAddress.setText(member.getAddress());
         etBod.setText(member.getDateOfBirth());
