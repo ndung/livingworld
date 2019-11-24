@@ -12,3 +12,4 @@ android/app/build
 /lwWebAdmin/.idea
 /lwWebAdmin/target
 *.DS_Store
+/android/app/release
